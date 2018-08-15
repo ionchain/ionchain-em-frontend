@@ -1,5 +1,6 @@
 <template>
   <div>
+    <my-header />
     <nuxt/>
     <my-footer/>
   </div>
@@ -7,10 +8,13 @@
 
 <script>
 import MyFooter from '../components/Footer.vue'
+import MyHeader from '../components/Header.vue'
+import '../less/public.less'
 
 export default {
   components: {
-    MyFooter
+    MyFooter,
+    MyHeader
   }
 }
 </script>
