@@ -7,6 +7,7 @@
     border-radius: 6px;
     padding:50px; 
     border: 1px  solid @inputBorderColor;
+    box-sizing: border-box;
 }
 .login_right>.login_right_logo{
     text-align: center;
@@ -42,4 +43,18 @@
 }
 .login_right>.login_right_pw{
     margin-bottom: 16px;
+}
+.login_right>.login_right_select{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.login_right>.login_right_select>div:last-child{
+    color: @grayText;
+    font-size: 14x;
+}
+.login_right>.login_right_log{
+    background: @baseColor;
+    font-size:16px;
+    color: #fff;
 }
