@@ -1,6 +1,8 @@
 <template>
   <div class="ly-main">
-      <div class="login_left"></div>
+      <div class="login_left">
+        <img src="../static/login_img.png" alt="">
+      </div>
       <div class="login_right">
           <div class="login_right_logo">
               <div><img src="../static/icon/logo.svg" alt=""></div>

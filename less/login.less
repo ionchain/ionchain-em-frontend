@@ -1,4 +1,9 @@
 @import 'imports/variable.less';
+.login_left{
+    width: 670px;
+    margin-right: 58px;
+    padding-top: 48px;
+}
 .login_left,.login_right{
     float: left;
 }
@@ -8,57 +13,66 @@
     padding:50px; 
     border: 1px  solid @inputBorderColor;
     box-sizing: border-box;
+    .login_right_logo{
+        text-align: center;
+    }
+    .login_right_logo{
+        div:first-child{
+            height: 100px;
+        }
+        div:first-child>img{
+            width: 100px;
+        }
+        div:last-child{
+            color: @baseColor;
+            font-size: 26px;
+            margin: 16px 0 20px;
+        }
+    }
+    .login_right_hint{
+        height: 30px;
+        border:1px solid #FFBAB8;
+        background:#FFE7E6; 
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #FF5F58;
+        display: flex;
+        align-items: center;
+        span:first-child{
+            width: 20px;
+            height: 20px;
+            margin: 0 7px 0 12px;
+        }
+    }
+    .login_right_name{
+        margin-bottom: 20px;
+    }
+    .login_right_pw{
+        margin-bottom: 16px;
+    }
+    .login_right_select{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    .login_right_select{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        div:last-child{
+            color: @grayText;
+            font-size: 14x;
+        }
+    }
+    .login_right_log{
+        background: @baseColor;
+        font-size:16px;
+        color: @buttonColor;
+        text-align: center;
+        height: 48px;
+        line-height: 48px;
+        border-radius: 24px;
+    }
 }
-.login_right>.login_right_logo{
-    text-align: center;
-}
-.login_right>.login_right_logo>div:first-child{
-    height: 100px;
-}
-.login_right>.login_right_logo>div:first-child>img{
-    width: 100px;
-}
-.login_right>.login_right_logo>div:last-child{
-    color: @baseColor;
-    font-size: 26px;
-    margin: 16px 0 20px;
-}
-.login_right>.login_right_hint{
-    height: 30px;
-    border:1px solid #FFBAB8;
-    background:#FFE7E6; 
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #FF5F58;
-    display: flex;
-    align-items: center;
-}
-.login_right>.login_right_hint>span:first-child{
-    width: 20px;
-    height: 20px;
-    margin: 0 7px 0 12px;
-}
-.login_right>.login_right_name{
-    margin-bottom: 20px;
-}
-.login_right>.login_right_pw{
-    margin-bottom: 16px;
-}
-.login_right>.login_right_select{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-}
-.login_right>.login_right_select>div:last-child{
-    color: @grayText;
-    font-size: 14x;
-}
-.login_right>.login_right_log{
-    background: @baseColor;
-    font-size:16px;
-    color: @buttonColor;
-    text-align: center;
-    height: 48px;
-    line-height: 48px;
-    border-radius: 24px;
-}
+
+
