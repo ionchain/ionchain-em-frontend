@@ -9,7 +9,6 @@
 <script>
 import MyFooter from '../components/Footer.vue'
 import MyHeader from '../components/Header.vue'
-import '../less/public.less'
 
 export default {
   components: {
