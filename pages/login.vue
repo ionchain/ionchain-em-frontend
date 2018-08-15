@@ -22,6 +22,7 @@
 <script>
 import '../less/login.less'
 export default {
+  layout: 'simple',
   asyncData({ req }) {
     return {
       name: req ? 'server' : 'client'

@@ -1,5 +1,5 @@
 <template>
-  <head>
+  <header>
     这是头部
-  </head>
+  </header>
 </template>
