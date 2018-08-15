@@ -106,7 +106,8 @@ module.exports = {
         });
       }
     }
-  }
+  },
+  plugins: ['~plugins/pretty-checkbox-vue']
 };
 
 /***/ },
