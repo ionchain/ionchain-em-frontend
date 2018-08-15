@@ -7,7 +7,6 @@
 <script>
 
 import MyHeader from '../components/Header.vue'
-import '../less/public.less'
 
 export default {
   components: {

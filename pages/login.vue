@@ -25,7 +25,6 @@
   </div>
 </template>
 <script>
-import '../less/login.less'
 export default {
   layout: 'simple',
   asyncData({ req }) {
