@@ -5,13 +5,29 @@
 @import 'imports/global.less';
 @import "imports/form.less";
 
-
-
 .ly-main{
     width: 1200px;
     background: #fff;
     margin: 0 auto;
     .clearFix();
+}
+.ly-header{
+    border-bottom: 1px solid #F1F1F1;
+    // box-shadow: 0 0 20px 2px #F1F1F1;
+    position: relative;
+    z-index: 3;
+    .logo{
+        height:80px;
+        line-height: 80px;
+        img{
+            height:48px;
+            vertical-align: middle;
+        }
+    }
+    .h-main{
+        width: 1200px;
+        margin: auto;
+    }
 }
 
 @import "register.less";

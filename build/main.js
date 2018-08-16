@@ -65,12 +65,19 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(__dirname) {var merge = __webpack_require__(6);
+var path = __webpack_require__(4);
+
+function resolve(dir) {
+  return path.join(__dirname, '..', dir);
+}
 
 module.exports = {
   /*
@@ -84,7 +91,9 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~assets/css/main.css', { src: '~less/public.less', lang: 'less' }, { src: '~less/login.less', lang: 'less' }],
+  css: [
+  // '~assets/css/main.css',
+  { src: '~less/public.less', lang: 'less' }, { src: '~less/login.less', lang: 'less' }],
   /*
   ** Customize the progress-bar color
   */
@@ -104,17 +113,26 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         });
+        config = merge(config, {
+          resolve: {
+            extensions: ['.js', '.vue', '.json'],
+            alias: {
+              '@': resolve('./')
+            }
+          }
+        });
       }
     }
   },
   plugins: ['~plugins/pretty-checkbox-vue']
 };
+/* WEBPACK VAR INJECTION */}.call(exports, ""))
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(4);
+module.exports = __webpack_require__(5);
 
 
 /***/ },
@@ -133,16 +151,28 @@ module.exports = require("nuxt");
 /* 4 */
 /***/ function(module, exports) {
 
-module.exports = require("regenerator-runtime");
+module.exports = require("path");
 
 /***/ },
 /* 5 */
+/***/ function(module, exports) {
+
+module.exports = require("regenerator-runtime");
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+module.exports = require("webpack-merge");
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_LiQiong_Prpject_3_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_LiQiong_Prpject_3_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_LiQiong_Prpject_3_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(3);
@@ -150,9 +180,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 
 var start = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_LiQiong_Prpject_3_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee() {
     var app, host, port, config, nuxt, builder;
-    return __WEBPACK_IMPORTED_MODULE_0_D_LiQiong_Prpject_3_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    return __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:

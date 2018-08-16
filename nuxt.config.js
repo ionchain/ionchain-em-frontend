@@ -1,3 +1,10 @@
+const merge = require('webpack-merge')
+const path = require('path')
+
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 module.exports = {
   /*
   ** Headers of the page
@@ -17,7 +24,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~assets/css/main.css',
+    // '~assets/css/main.css',
     { src: '~less/public.less', lang: 'less' },
     { src: '~less/login.less', lang: 'less' }
   ],
@@ -32,13 +39,21 @@ module.exports = {
     /*
      ** Run ESLINT on save
      */
-    extend (config, ctx) {
+    extend(config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
+        })
+        config = merge(config, {
+          resolve: {
+            extensions: ['.js', '.vue', '.json'],
+            alias: {
+              '@': resolve('./')
+            }
+          }        
         })
       }
     }
