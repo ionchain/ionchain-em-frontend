@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ly-root">
         <my-header />
         <nuxt/>
     </div>
