@@ -35,3 +35,33 @@
         
     </div>
 </template>
+<script>
+import * as api from '@/api'
+export default {
+  layout: 'default',
+  asyncData({ req }) {
+    return {
+      name: req ? 'server' : 'client'
+    }
+  },
+  data() {
+    return {
+    }
+  },
+  head() {
+    return {
+      title: `About Page (${this.name}-side)`
+    }
+  },
+  methods: {
+    Login() {
+      api.Login().then((res) => {
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

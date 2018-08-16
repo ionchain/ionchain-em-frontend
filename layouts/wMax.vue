@@ -1,7 +1,9 @@
 <template>
   <div class="ly-root">
     <my-header />
-    <nuxt/>
+    <div class="ly-body">
+      <nuxt />
+    </div>
     <my-footer/>
   </div>
 </template>
