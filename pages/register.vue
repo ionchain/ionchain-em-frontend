@@ -33,18 +33,26 @@
                 </div>
                 <!-- 下一步按钮 -->
                 <div class="register_next">
-                    <a href="">下一步</a>
+                    <a href="javascript:;">下一步</a>
                 </div>
             </li>
             <!-- 填写企业信息 -->
             <li class="register-step2 register_cont_xx">
                 <p><input type="text" placeholder="请输入企业名称"></p>
                 <p><input type="text" placeholder="请输入组织机构代码"></p>
-                <p><textarea name="" id="" cols="30" rows="10">请输入您的icon地址</textarea></p>
+                <p><textarea name="" id="" cols="30" rows="6" placeholder="请输入您的icon地址"></textarea></p>
                 <!-- 下一步按钮 -->
                 <div class="register_next">
-                    <a href="">下一步</a>
+                    <a href="javascript:;">下一步</a>
                 </div>
+            </li>
+            <!-- 注册完成 -->
+            <li class="register-step3 register_cont_wc">
+                    <div><img src="/icon/succeed.svg" alt=""></div>
+                    <div>恭喜您，注册成功！</div>
+                    <div class="register_next">
+                        <a href="javascript:;">完成</a>
+                    </div>
             </li>
         </ul>
        
