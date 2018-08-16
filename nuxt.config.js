@@ -58,5 +58,17 @@ module.exports = {
       }
     }
   },
-  plugins: ['~plugins/pretty-checkbox-vue','~plugins/plugins-all']
+  plugins: ['~plugins/pretty-checkbox-vue','~plugins/plugins-all'],
+  modules: [
+    '@nuxtjs/proxy'
+  ],
+  proxy: [
+    [
+      '/api',
+      {
+        target: 'http://localhost:3001',
+        pathRewrite: {'^/api': ''}
+      }
+    ]
+  ]
 }

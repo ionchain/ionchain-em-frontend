@@ -1,9 +1,9 @@
 const _config = {
   'development': {
-    BASE_URL: '/api-proxy/xxx'
+    BASE_URL: '/api'
   },
   'production': {
-    BASE_URL: '/'
+    BASE_URL: ''
   }
 }
 _config.testing = _config.development

@@ -1,6 +1,5 @@
 @import 'imports/variable.less';
 
-
 // 手机验证 
 .register_cont_yz{
     margin-top: 60px;
@@ -149,12 +148,33 @@
     }
 }
 .page-register{
+    padding: 50px 0;
     .register-form-box{
         >li{
             display: none;
             &.active{
                 display: block;
             }
+        }
+    }
+}
+.stepA-box{
+    position: relative;
+    .stepA-item{
+        display: none;
+        position: absolute;
+        left: 100%;
+        transform: translate(-50%,0);
+        opacity: 0;
+        transition: all 0.35s ease-in-out;
+        &.active{
+            display: block;
+            opacity: 1;
+            left: 50%;
+        }
+        &.finish{
+            left:-100%;
+            opacity: 0;
         }
     }
 }

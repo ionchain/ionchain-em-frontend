@@ -8,33 +8,38 @@
         <ul class="register-form-box">
             <!-- 手机验证 -->
             <li class="register-step1 register_cont_yz" :class="{active:formStatus[0]}">
-                <div class="login_right_hint login_right_w">
+              <div class="stepA-box">
+                <div :class="{active:stepA==1,finish:stepA>1}" class="stepA-item register_cont_number">
+                  <div class="login_right_hint login_right_w">
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>账户名不存在，请重新输入</span>
+                  </div>
+                  <div><input type="text" v-model="phone" placeholder="请输入手机号"></div>
+                  <div><button class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
-                <div class="register_cont_number">
-                    <input type="text" placeholder="请输入手机号">
+                <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
+                  <prevent-robot :isVisible="true" @robot-check="robotCheck" />
                 </div>
-                <div class="register_cont_click">
-                    <button @click="showCheckRobotBox">点击按钮进行验证</button>
-                    <div class="register_cont_click_yz">
-                        <div class="click_yz_yz">
-                            <div><input type="text" placeholder="手机验证码"></div>
-                            <div ><button>120s后重新获取</button><button class="click_yz_cx">重新获取</button></div> 
-                        </div>
-                        <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
+                <div :class="{active:stepA==3,finish:stepA>3}" class="stepA-item register_cont_click">
+                  <div class="register_cont_click_yz">
+                    <div class="click_yz_yz">
+                        <div><input type="text" placeholder="手机验证码"></div>
+                        <div ><button>120s后重新获取</button><button class="click_yz_cx">重新获取</button></div> 
                     </div>
+                    <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
+                  </div>
                 </div>
-                <prevent-robot :isVisible="isVisible" @robot-check="robotCheck" />
                 <!-- 输入密码 -->
-                <div class="register_cont_pw">
-                    <p><input type="text" placeholder="请输入密码"></p>
-                    <p><input type="text"  placeholder="确定密码"></p>
+                <div :class="{active:stepA==4,finish:stepA>4}" class="stepA-item register_cont_pw">
+                  <p><input type="text" placeholder="请输入密码"></p>
+                  <p><input type="text"  placeholder="确定密码"></p>
+                  <!-- 下一步按钮 -->
+                  <button class="i-button" @click="nextStep">
+                      下一步
+                  </button>
                 </div>
-                <!-- 下一步按钮 -->
-                <button class="i-button" @click="nextStep">
-                    下一步
-                </button>
+              </div>
+              
             </li>
             <!-- 填写企业信息 -->
             <li class="register-step2 register_cont_xx" :class="{active:formStatus[1]}">
@@ -76,7 +81,9 @@ export default {
       isVisible: false,
       step: 0, // 从0开始
       stepMax: 2,
-      formStatus: [true, false, false]
+      formStatus: [true, false, false],
+      stepA: 1,
+      phone: ''
     }
   },
   head() {
@@ -90,10 +97,12 @@ export default {
       })
     },
     robotCheck(test) {
-      console.log('robotCheck', test)
+      if (test) {
+        this.getSmsCode()
+      }
     },
     showCheckRobotBox() {
-      this.isVisible = true
+      this.stepA += 1
     },
     nextStep() {
       if (this.step < this.stepMax) {
@@ -106,6 +115,10 @@ export default {
           }
         }
       }
+    },
+    getSmsCode() {
+      api.getSmsCode(this.phone).then((res) => {
+      })
     }
   }
 }

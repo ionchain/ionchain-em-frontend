@@ -42,6 +42,10 @@ export const DATA_TEST2 = (params) => {
   return _axios.get('/data-test', { params: params })
 }
 // 登录
-export const Login = (params) => {
-  return _axios.get('/login', { params: params })
+export const Login = (data, params) => {
+  return _axios.post('/login', data, { params: params })
+}
+// 获取短信验证码
+export const getSmsCode = (params) => {
+  return _axios.get('/getSmsCode', { params: params })
 }
