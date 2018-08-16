@@ -58,17 +58,28 @@ module.exports = {
       }
     }
   },
-  plugins: ['~plugins/pretty-checkbox-vue','~plugins/plugins-all'],
+  plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-all'],
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/proxy'
   ],
+  /* proxy: {
+    '/api': {
+      target: 'http://192.168.1.124:3000', 
+      ws: false, 
+      pathRewrite: {
+        '^/api': ''
+      }
+    }
+  } */
   proxy: [
     [
-      '/api',
-      {
-        target: 'http://localhost:3001',
-        pathRewrite: {'^/api': ''}
+      '/api', 
+      { 
+        target: 'http://192.168.21.146:3000' // api主机
+        // pathRewrite: { '/api' : '' }
       }
     ]
   ]
 }
+

@@ -10,11 +10,11 @@
             <li class="register-step1 register_cont_yz" :class="{active:formStatus[0]}">
               <div class="stepA-box">
                 <div :class="{active:stepA==1,finish:stepA>1}" class="stepA-item register_cont_number">
-                  <div class="login_right_hint login_right_w">
+                  <div class="login_right_hint login_right_w" v-show="errors.has('mobile')">
                     <span><img src="/icon/error.svg" alt=""></span>
-                    <span>账户名不存在，请重新输入</span>
+                    <span>{{ errors.first('mobile') }}</span>
                   </div>
-                  <div><input type="text" v-model="phone" placeholder="请输入手机号"></div>
+                  <div><input v-validate="'required'" name="mobile" type="text" v-model="mobile" placeholder="请输入手机号"></div>
                   <div><button class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
                 <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
@@ -83,13 +83,16 @@ export default {
       stepMax: 2,
       formStatus: [true, false, false],
       stepA: 1,
-      phone: ''
+      mobile: '',
+      showErrorTip: false
     }
   },
   head() {
     return {
       title: `register - ${this.name}`
     }
+  },
+  created() {
   },
   methods: {
     Login() {
@@ -98,11 +101,15 @@ export default {
     },
     robotCheck(test) {
       if (test) {
-        this.getSmsCode()
+        this.getSmsCode(this.mobile)
       }
     },
     showCheckRobotBox() {
-      this.stepA += 1
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.stepA += 1
+        }
+      })
     },
     nextStep() {
       if (this.step < this.stepMax) {
@@ -116,8 +123,8 @@ export default {
         }
       }
     },
-    getSmsCode() {
-      api.getSmsCode(this.phone).then((res) => {
+    getSmsCode(_mobile) {
+      api.getSmsCode({mobile: _mobile}).then((res) => {
       })
     }
   }

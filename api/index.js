@@ -35,7 +35,7 @@ _axios.interceptors.response.use(
 
 // 测试数据
 export const DATA_TEST = (data, params) => {
-  return _axios.post('/data-test', data, { params: params })
+  return _axios.post('/data-test', data, {params: params, baseURL: '/api'})
 }
 // 测试数据
 export const DATA_TEST2 = (params) => {
@@ -46,6 +46,6 @@ export const Login = (data, params) => {
   return _axios.post('/login', data, { params: params })
 }
 // 获取短信验证码
-export const getSmsCode = (params) => {
-  return _axios.get('/getSmsCode', { params: params })
+export const getSmsCode = (data, params) => {
+  return _axios.post('/users/sms_code', data, {params: params})
 }

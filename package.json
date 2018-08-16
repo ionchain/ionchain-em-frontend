@@ -18,9 +18,11 @@
     "nuxt": "latest",
     "pretty-checkbox": "^3.0.3",
     "pretty-checkbox-vue": "^1.1.9",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.15",
+    "vee-validate": "^2.1.0-beta.7"
   },
   "devDependencies": {
+    "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/proxy": "^1.2.4",
     "axios": "^0.18.0",
     "babel-eslint": "^7.1.1",
@@ -40,6 +42,7 @@
     "moment": "^2.22.2",
     "nodemon": "^1.11.0",
     "scmp": "^2.0.0",
+    "vue-i18n": "^8.0.0",
     "webpack-merge": "^4.1.4"
   }
 }

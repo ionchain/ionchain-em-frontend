@@ -1,6 +1,6 @@
 const _config = {
   'development': {
-    BASE_URL: '/api'
+    BASE_URL: '/api/v1'
   },
   'production': {
     BASE_URL: ''

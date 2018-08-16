@@ -125,10 +125,19 @@ module.exports = {
     }
   },
   plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-all'],
-  modules: ['@nuxtjs/proxy'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+  /* proxy: {
+    '/api': {
+      target: 'http://192.168.1.124:3000', 
+      ws: false, 
+      pathRewrite: {
+        '^/api': ''
+      }
+    }
+  } */
   proxy: [['/api', {
-    target: 'http://localhost:3001',
-    pathRewrite: { '^/api': '' }
+    target: 'http://192.168.21.146:3000' // api主机
+    // pathRewrite: { '/api' : '' }
   }]]
 };
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
@@ -221,6 +230,7 @@ var start = function () {
               ctx.status = 200;
               ctx.respond = false; // Mark request as handled for Koa
               ctx.req.ctx = ctx; // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
+              console.log('xxxxxx');
               nuxt.render(ctx.req, ctx.res);
             });
 
