@@ -30,11 +30,7 @@
               </div>
               <div>注册 ION Chain ID</div>
           </div>
-<<<<<<< HEAD
-          <div class="login_right_log"><a href="">登录</a></div>
-=======
-          <div class="login_right_log" @click="Login">登录</div>
->>>>>>> b0a05c1cf13c16f86b4356de7efa6a2e1a736f15
+          <div class="login_right_log"><a href="javascript:;" @click="Login">登录</a></div>
       </div>
   </div>
 </template>
