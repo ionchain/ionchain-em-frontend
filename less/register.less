@@ -27,8 +27,7 @@
         
     }
 }
-.register_active{
-    >div:first-child{
+div.register_active{  //高亮
         color:@baseColor;
         >b{
             background: @baseColor;
@@ -36,12 +35,12 @@
         >span{
             border:2px solid @baseColor;
         }
-    }
-   
 }
+   
+
 // 手机验证 
 .register_cont_yz{
-    margin: 60px 0 330px;
+    margin-top: 60px;
     text-align:center;
     .login_right_w{
         width: 372px;
@@ -49,8 +48,7 @@
     }
     .register_cont_number{
         input{
-            height: 40px;
-            width: 372px;
+            .w-h();
             border: 1px solid @inputBorderColor;
             border-radius: 6px;
             font-size: 14px;
@@ -62,8 +60,7 @@
     .register_cont_click{
         padding-top: 20px;
         >button{
-            height: 40px;
-            width: 372px;
+            .w-h();
             border: 1px solid @baseColor;
             border-radius: 6px;
             background: #fff;
@@ -98,13 +95,11 @@
                 }
                
             }
-            .click_yz_active{  //高亮部分
-                >div:last-child{
+            div.click_yz_active{  //高亮部分
                     >button{
-                        border: 1px solid @baseColor;
-                        color: @baseColor;
+                        border: 1px solid @baseColor !important;
+                        color: @baseColor !important;
                     } 
-                }
             }
             .click_yz_text{
                 font-size: 12px;
@@ -113,17 +108,55 @@
             }
         }
     }
-    .register_cont_next{
-        margin: 40px auto 0;
-        height: 40px;
-        width: 372px;
-        background: @baseColor;
-        border-radius:24px;
-        >a{
-            color: @buttonColor;
-            line-height: 40px;
-            text-decoration: none;
+    .register_cont_pw{   //输入密码
+        >p:first-child{
+            padding-bottom: 20px;
+        }
+        >p{
+            text-align: center;
+            >input{
+                .w-h();
+                border-radius: 6px;
+                padding-left: 14px;
+                box-sizing: border-box;
+            }
+            .placeholder(@inputTextColor);
+
+        }
+        
+    }  
+}
+
+// 填写企业信息
+.register_cont_xx{
+    margin-top:60px;
+    text-align: center;
+    >p{
+        input{
+            .w-h(); 
+            border-radius:6px;
+            border: 1px solid @inputBorderColor;
+            padding-left: 14px;
+            box-sizing: border-box;
+        }
+        .placeholder(@inputTextColor);
+        textarea{
+            width: 372px;
+            box-sizing: border-box;
         }
     }
-    
+}
+
+// 下一步按钮
+.register_next{
+    margin: 40px auto 0;
+    .w-h();
+    text-align: center;
+    background: @baseColor;
+    border-radius:24px;
+    >a{
+        color: @buttonColor;
+        line-height: 40px;
+        text-decoration: none;
+    }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="page-register">
-        <div class="register_verify register_active">
-            <div><span>1</span><label>手机验证</label></div>
+        <div class="register_verify">
+            <div class="register_active"><span>1</span><label>手机验证</label></div>
             <div><b></b><span>2</span><label>填写企业信息</label></div>
             <div><b></b><span>3</span><label>注册成功</label></div>
         </div>
@@ -17,21 +17,30 @@
             <div class="register_cont_click">
                     <button>点击按钮进行验证</button>
                     <div class="register_cont_click_yz">
-                        <div class="click_yz_yz click_yz_active">
+                        <div class="click_yz_yz">
                             <div><input type="text" placeholder="手机验证码"></div>
-                            <div><button>120s后重新获取</button></div> 
+                            <div class="click_yz_active"><button>120s后重新获取</button></div> 
                         </div>
                         <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                     </div>
             </div>
             <!-- 输入密码 -->
             <div class="register_cont_pw">
-
+                <p><input type="text" placeholder="请输入密码"></p>
+                <p><input type="text"  placeholder="确定密码"></p>
             </div>
-            <div class="register_cont_next">
-                <a href="">下一步</a>
-            </div>
+            
         </div>
-        
+        <!-- 填写企业信息 -->
+        <div class="register_cont_xx">
+            <p><input type="text" placeholder="请输入企业名称"></p>
+            <p><input type="text" placeholder="请输入组织机构代码"></p>
+            <p><textarea name="" id="" cols="30" rows="10">请输入您的icon地址</textarea></p>
+        </div>
+        <!-- 下一步按钮 -->
+
+        <div class="register_next">
+            <a href="">下一步</a>
+        </div>
     </div>
 </template>
