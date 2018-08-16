@@ -1,16 +1,16 @@
 @import 'imports/variable.less';
 .login_left{
-    width: 670px;
-    margin-right: 58px;
-    padding-top: 48px;
+    width: 590px;
+   margin-right: 158px;
+    padding-top: 45px;
 }
 .login_left,.login_right{
     float: left;
 }
 .login_right{
-    width: 472px;
+    width: 452px;
     border-radius: 6px;
-    padding:50px; 
+    padding:40px; 
     border: 1px  solid @inputBorderColor;
     box-sizing: border-box;
     .login_right_logo{
@@ -18,15 +18,15 @@
     }
     .login_right_logo{
         div:first-child{
-            height: 100px;
+            height: 80px;
         }
         div:first-child>img{
-            width: 100px;
+            width: 80px;
         }
         div:last-child{
             color: @baseColor;
+            margin: 10px 0 20px;
             font-size: 14px;
-            margin: 16px 0 20px;
         }
     }
     .login_right_hint{
@@ -48,7 +48,8 @@
         margin-bottom: 20px;
     }
     .login_right_pw{
-        margin-bottom: 16px;
+        margin-bottom: 10px;
+
     }
     .login_right_select{
         margin-bottom: 40px;
@@ -61,12 +62,15 @@
     }
     .login_right_log{
         background: @baseColor;
-        font-size:16px;
-        color: @buttonColor;
         text-align: center;
         height: 48px;
         line-height: 48px;
         border-radius: 24px;
+        >a{
+            font-size:16px;
+            color: @buttonColor;
+            text-decoration: none;
+        }
     }
 }
 .login-box{
