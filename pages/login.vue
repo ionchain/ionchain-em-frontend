@@ -1,15 +1,15 @@
 <template>
-  <div class="ly-main">
+  <div class="page-login">
       <div class="login_left">
         <img src="../static/login_img.png" alt="">
       </div>
       <div class="login_right login-box">
           <div class="login_right_logo">
-              <div><img src="../static/icon/logo.svg" alt=""></div>
+              <div><img src="/icon/logo.svg" alt=""></div>
               <div>IONChain</div>
           </div>
           <div class="login_right_hint">
-              <span><img src="../static/icon/error.svg" alt=""></span>
+              <span><img src="/icon/error.svg" alt=""></span>
               <span>账户名不存在，请重新输入</span>
           </div>
           <div class="login_right_name">
@@ -29,7 +29,7 @@
               </div>
               <div>注册 ION Chain ID</div>
           </div>
-          <div class="login_right_log">登录</div>
+          <div class="login_right_log"><a href="">登录</a></div>
       </div>
   </div>
 </template>

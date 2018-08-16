@@ -2,18 +2,18 @@
 .register_verify{
     display: flex;
     justify-content: center;
-    div{
+    >div{
         display: flex;
         color: @inputTextColor;
         align-items: center;
         font-weight: 700;
-        b{
+        >b{
             width: 60px;
             height: 2px;
             background: @inputTextColor;
             margin: 0 12px;
         }
-        span{
+        >span{
             width:22px;
             height:22px;
             line-height: 22px;
@@ -21,10 +21,75 @@
             border:2px solid @inputTextColor;
             text-align:center;
         }
+        >label{
+            padding-left: 10px;
+        }
         
     }
 }
-.register_number{
-    margin: 60px auto 20px;
-    text-align: center;
+.register_active{
+    >div:first-child{
+        color:@baseColor;
+        >b{
+            background: @baseColor;
+        }
+        >span{
+            border:2px solid @baseColor;
+        }
+    }
+   
+}
+// 手机验证 
+.register_cont_yz{
+    margin: 60px 0 330px;
+    text-align:center;
+    .register_cont_number{
+        input{
+            height: 40px;
+            width: 372px;
+            border: 1px solid @inputBorderColor;
+            border-radius: 6px;
+            font-size: 14px;
+            padding-left: 14px;
+            box-sizing: border-box;
+        }
+        input::-webkit-input-placeholder { /* WebKit browsers */  
+            color: @inputTextColor;  
+          }  
+          input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  
+            color: @inputTextColor;  
+          }  
+          input::-moz-placeholder { /* Mozilla Firefox 19+ */  
+            color: @inputTextColor;  
+          }  
+          input::-ms-input-placeholder { /* Internet Explorer 10+ */  
+            color: @inputTextColor;  
+          }  
+    }
+    .register_cont_click{
+        padding-top: 20px;
+        button{
+            height: 40px;
+            width: 372px;
+            border: 1px solid @baseColor;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 16px;
+            color: @baseColor;
+            outline: none;
+        }
+    }
+    .register_cont_next{
+        margin: 40px auto 0;
+        height: 40px;
+        width: 372px;
+        background: @baseColor;
+        border-radius:24px;
+        >a{
+            color: @buttonColor;
+            line-height: 40px;
+            text-decoration: none;
+        }
+    }
+    
 }

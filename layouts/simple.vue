@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="ly-root">
         <my-header />
-        <nuxt/>
+        <nuxt class="ly-main" />
     </div>
 </template>
 <script>
