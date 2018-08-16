@@ -1,10 +1,74 @@
 @import 'imports/variable.less';
-#footer_app{
-    display: none;
+.ly-footer{
+    padding: 43px 0 28px;
+    background: #373D42;
+    position: fixed;
+    z-index: 0;
+    bottom: 0;
+    width: 100%;
 }
-.main_footer{
-    z-index: auto;
+.copyrights {
+    margin-top: 140px;
+    border-top: 1px solid #808A9B;
+    padding-top: 14px;
 }
+.tb_img{
+    display: flex;
+}
+.tb_img a{
+    margin-right: 30px;
+    width: 40px;
+    height: 40px;
+    &:nth-child(1){
+        background:url("../assets/img/combined/Combined_Shape1.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(1):hover{
+        background:url("../assets/img/combined/combined_shape1.1_hover.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(2){
+        background:url("../assets/img/combined/Combined_Shape2.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(2):hover{
+        background:url("../assets/img/combined/Combined_Shape2_hover.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(3){
+        background:url("../assets/img/combined/Combined_Shape3.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(3):hover{
+        background:url("../assets/img/combined/combined_shape3.1_hover.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(4){
+        background:url("../assets/img/combined/Combined_Shape5.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(4):hover{
+        background:url("../assets/img/combined/combined_shape5.1_hover.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(5){
+        background:url("../assets/img/combined/Combined_Shape6.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(5):hover{
+        background:url("../assets/img/combined/combined_shape6.1_hover.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(6){
+        background:url("../assets/img/combined/Combined_Shape7.png") no-repeat;
+        background-size: contain;
+    }
+    &:nth-child(6):hover{
+        background:url("../assets/img/combined/combined_shape7.1.png") no-repeat;
+        background-size: contain;
+    }
+}
+
 @media (max-width: 768px) {
     // 头部
     .icon_app{
@@ -35,11 +99,6 @@
         margin-right:0;
     }
 
-    /*底部内容*/
-    .footer{
-        padding:0;
-        position: static;
-    }
     .main_footer {
         padding-bottom: 70vh;
     }
@@ -66,7 +125,7 @@
         position: fixed;
         bottom:0;
     }
-    .footer_nav>li>div{
+    .ly-footer_nav>li>div{
         font-size: 15rem/@ratio;
         display: flex;
         justify-content: space-between;
@@ -74,10 +133,10 @@
         margin: 0 20rem/@ratio;
         border-bottom:1px solid #3D3F4A;
     }
-    .footer_nav>li>div>.st_thin{
+    .ly-footer_nav>li>div>.st_thin{
         font-weight: 400;
     }
-    .footer_nav>li>div>span>img{
+    .ly-footer_nav>li>div>span>img{
         width: 7rem/@ratio;
     }
     li.img_xz>div>span{
@@ -344,7 +403,7 @@
     .p-t-45{
         padding-top: 45rem/@ratio;
     }
-    .footer_content{
+    .ly-footer_content{
         font-size: 12rem/@ratio;
         text-align: center;
         padding:21rem/@ratio 0 23rem/@ratio;
