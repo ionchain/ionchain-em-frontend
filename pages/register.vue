@@ -7,17 +7,27 @@
         </div>
         <!-- 手机验证 -->
         <div class="register_cont_yz">
+            <div class="login_right_hint login_right_w">
+              <span><img src="/icon/error.svg" alt=""></span>
+              <span>账户名不存在，请重新输入</span>
+            </div>
             <div class="register_cont_number">
                 <input type="text" placeholder="请输入手机号">
             </div>
             <div class="register_cont_click">
                     <button>点击按钮进行验证</button>
-                    <div>
-                        <div></div>
-                        <div></div>
+                    <div class="register_cont_click_yz">
+                        <div class="click_yz_yz click_yz_active">
+                            <div><input type="text" placeholder="手机验证码"></div>
+                            <div><button>120s后重新获取</button></div> 
+                        </div>
+                        <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                     </div>
             </div>
+            <!-- 输入密码 -->
+            <div class="register_cont_pw">
 
+            </div>
             <div class="register_cont_next">
                 <a href="">下一步</a>
             </div>
