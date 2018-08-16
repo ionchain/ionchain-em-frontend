@@ -16,7 +16,7 @@
                     <button @click="showCheckRobotBox">点击按钮进行验证</button>
                 </div>
                  <!-- 下一步按钮 -->
-                <div class="register_next">
+                <div  class="i-button">
                     <a href="javascript:;">下一步</a>
                 </div>
             </li>
@@ -37,7 +37,7 @@
                     <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                 </div>
                  <!-- 下一步按钮 -->
-                <div class="register_next">
+                <div  class="i-button">
                     <a href="javascript:;">下一步</a>
                 </div>
             </li>
@@ -48,14 +48,14 @@
                     <p><input type="text"  placeholder="确定密码"></p>
                 </div>
                 <!-- 下一步按钮 -->
-                <div class="register_next">
+                <div  class="i-button">
                     <a href="javascript:;">下一步</a>
                 </div>
              </li>
              <li class="retrieve-step4 register_cont_wc">
                     <div><img src="/icon/succeed.svg" alt=""></div>
                     <div>密码设置成功!</div>
-                    <div class="register_next">
+                    <div  class="i-button">
                         <a href="javascript:;">完成</a>
                     </div>
             </li>
