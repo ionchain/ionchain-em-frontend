@@ -37,7 +37,7 @@
 <script>
 import * as api from '@/api'
 export default {
-  layout: 'simple',
+  layout: 'default',
   asyncData({ req }) {
     return {
       name: req ? 'server' : 'client'

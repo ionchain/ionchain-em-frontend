@@ -15,7 +15,7 @@
                 <input type="text" placeholder="请输入手机号">
             </div>
             <div class="register_cont_click">
-                    <button>点击按钮进行验证</button>
+                    <button @click="showCheckRobotBox">点击按钮进行验证</button>
                     <div class="register_cont_click_yz">
                         <div class="click_yz_yz">
                             <div><input type="text" placeholder="手机验证码"></div>
@@ -23,7 +23,9 @@
                         </div>
                         <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                     </div>
+             
             </div>
+            <prevent-robot :isVisible="isVisible" @robot-check="robotCheck" />
             <!-- 输入密码 -->
             <div class="register_cont_pw">
                 <p><input type="text" placeholder="请输入密码"></p>
@@ -44,3 +46,44 @@
         </div>
     </div>
 </template>
+<script>
+import * as api from '@/api'
+import PreventRobot from '@/components/prevent-robot'
+export default {
+  layout: 'default',
+  components: {
+    PreventRobot
+  },
+  asyncData({ req }) {
+    return {
+      name: req ? 'server' : 'client'
+    }
+  },
+  data() {
+    return {
+      isVisible: false
+    }
+  },
+  head() {
+    return {
+      title: `About Page (${this.name}-side)`
+    }
+  },
+  methods: {
+    Login() {
+      api.Login().then((res) => {
+      })
+    },
+    robotCheck(test) {
+      console.log('robotCheck', test)
+    },
+    showCheckRobotBox() {
+      this.isVisible = true
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

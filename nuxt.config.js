@@ -58,5 +58,5 @@ module.exports = {
       }
     }
   },
-  plugins: ['~plugins/pretty-checkbox-vue']
+  plugins: ['~plugins/pretty-checkbox-vue','~plugins/plugins-all']
 }
