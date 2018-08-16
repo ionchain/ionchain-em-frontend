@@ -1,42 +1,5 @@
 @import 'imports/variable.less';
-.register_verify{
-    display: flex;
-    justify-content: center;
-    >div{
-        display: flex;
-        color: @inputTextColor;
-        align-items: center;
-        font-weight: 700;
-        >b{
-            width: 60px;
-            height: 2px;
-            background: @inputTextColor;
-            margin: 0 12px;
-        }
-        >span{
-            width:22px;
-            height:22px;
-            line-height: 22px;
-            border-radius: 50%;
-            border:2px solid @inputTextColor;
-            text-align:center;
-        }
-        >label{
-            padding-left: 10px;
-        }
-        
-    }
-}
-div.register_active{  //高亮
-        color:@baseColor;
-        >b{
-            background: @baseColor;
-        }
-        >span{
-            border:2px solid @baseColor;
-        }
-}
-   
+
 
 // 手机验证 
 .register_cont_yz{
@@ -91,16 +54,16 @@ div.register_active{  //高亮
                         border: 1px solid @inputBorderColor;
                         color: @inputBorderColor;
                         outline: none;
+                        font-size: 14px;
+                    }
+                    >.click_yz_cx{
+                        border: 1px solid @baseColor;
+                        color: @baseColor;
                     }
                 }
                
             }
-            div.click_yz_active{  //高亮部分
-                    >button{
-                        border: 1px solid @baseColor !important;
-                        color: @baseColor !important;
-                    } 
-            }
+           
             .click_yz_text{
                 font-size: 12px;
                 color:@inputBorderColor;
@@ -143,6 +106,7 @@ div.register_active{  //高亮
         textarea{
             width: 372px;
             box-sizing: border-box;
+
         }
     }
 }
@@ -158,5 +122,12 @@ div.register_active{  //高亮
         color: @buttonColor;
         line-height: 40px;
         text-decoration: none;
+    }
+}
+.page-register{
+    .register-form-box{
+        >div{
+            display: none;
+        }
     }
 }

@@ -60,5 +60,41 @@
 //     &:extend(.login_right_hint all);
 //     height: 400px;
 // }
-
+.i-step{
+    display: flex;
+    justify-content: center;
+    div.active{  //高亮
+        color:@baseColor;
+        >b{
+            background: @baseColor;
+        }
+        >span{
+            border:2px solid @baseColor;
+        }
+    }
+    >div{
+        display: flex;
+        color: @inputTextColor;
+        align-items: center;
+        font-weight: 700;
+        >b{
+            width: 60px;
+            height: 2px;
+            background: @inputTextColor;
+            margin: 0 12px;
+        }
+        >span{
+            width:22px;
+            height:22px;
+            line-height: 22px;
+            border-radius: 50%;
+            border:2px solid @inputTextColor;
+            text-align:center;
+        }
+        >label{
+            padding-left: 10px;
+        }
+        
+    }
+}
 @import "register.less";
