@@ -1,9 +1,9 @@
 <template>
     <div class="page-register">
         <div class="i-step">
-            <div class="active"><span>1</span><label>手机验证</label></div>
-            <div><b></b><span>2</span><label>填写企业信息</label></div>
-            <div><b></b><span>3</span><label>注册成功</label></div>
+            <div :class="{active:formStatus[0],finish:(step > 0)}"><span>1</span><label>手机验证</label></div>
+            <div :class="{active:formStatus[1],finish:(step > 1)}"><b></b><span>2</span><label>填写企业信息</label></div>
+            <div :class="{active:formStatus[2],finish:(step > 2)}"><b></b><span>3</span><label>注册成功</label></div>
         </div>
         <ul class="register-form-box">
             <!-- 手机验证 -->
@@ -47,7 +47,7 @@
                 </button>
             </li>
             <!-- 注册完成 -->
-            <li class="register-step3 register_cont_wc">
+            <li class="register-step3 register_cont_wc" :class="{active:formStatus[2]}">
                     <div><img src="/icon/succeed.svg" alt=""></div>
                     <div>恭喜您，注册成功！</div>
                     <div class="register_next">
@@ -97,7 +97,14 @@ export default {
     },
     nextStep() {
       if (this.step < this.stepMax) {
-        this.setp += 1
+        this.step += 1
+        for (let i = 0; i < this.formStatus.length; i++) {
+          if (i === this.step) {
+            this.$set(this.formStatus, i, true)
+          } else {
+            this.$set(this.formStatus, i, false)
+          }
+        }
       }
     }
   }

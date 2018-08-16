@@ -55,7 +55,6 @@
     height: 40px;
     width: 372px;
 }
-
 // .xxx{
 //     &:extend(.login_right_hint all);
 //     height: 400px;
@@ -63,7 +62,7 @@
 .i-step{
     display: flex;
     justify-content: center;
-    div.active{  //高亮
+    .active, .finish{  //高亮
         color:@baseColor;
         >b{
             background: @baseColor;
@@ -76,7 +75,6 @@
         display: flex;
         color: @inputTextColor;
         align-items: center;
-        font-weight: 700;
         >b{
             width: 60px;
             height: 2px;
