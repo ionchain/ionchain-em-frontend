@@ -65,12 +65,19 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(__dirname) {var merge = __webpack_require__(6);
+var path = __webpack_require__(4);
+
+function resolve(dir) {
+  return path.join(__dirname, '..', dir);
+}
 
 module.exports = {
   /*
@@ -106,17 +113,26 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         });
+        config = merge(config, {
+          resolve: {
+            extensions: ['.js', '.vue', '.json'],
+            alias: {
+              '@': resolve('./')
+            }
+          }
+        });
       }
     }
   },
   plugins: ['~plugins/pretty-checkbox-vue']
 };
+/* WEBPACK VAR INJECTION */}.call(exports, ""))
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(4);
+module.exports = __webpack_require__(5);
 
 
 /***/ },
@@ -135,10 +151,22 @@ module.exports = require("nuxt");
 /* 4 */
 /***/ function(module, exports) {
 
-module.exports = require("regenerator-runtime");
+module.exports = require("path");
 
 /***/ },
 /* 5 */
+/***/ function(module, exports) {
+
+module.exports = require("regenerator-runtime");
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+module.exports = require("webpack-merge");
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
