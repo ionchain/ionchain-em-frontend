@@ -7,7 +7,7 @@
         </div>
         <ul class="register-form-box">
             <!-- 手机验证 -->
-            <li class="register-step1 register_cont_yz">
+            <li class="register-step1 register_cont_yz" :class="{active:formStatus[0]}">
                 <div class="login_right_hint login_right_w">
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>账户名不存在，请重新输入</span>
@@ -32,19 +32,19 @@
                     <p><input type="text"  placeholder="确定密码"></p>
                 </div>
                 <!-- 下一步按钮 -->
-                <div class="register_next">
-                    <a href="">下一步</a>
-                </div>
+                <button class="i-button" @click="nextStep">
+                    下一步
+                </button>
             </li>
             <!-- 填写企业信息 -->
-            <li class="register-step2 register_cont_xx">
+            <li class="register-step2 register_cont_xx" :class="{active:formStatus[1]}">
                 <p><input type="text" placeholder="请输入企业名称"></p>
                 <p><input type="text" placeholder="请输入组织机构代码"></p>
                 <p><textarea name="" id="" cols="30" rows="10">请输入您的icon地址</textarea></p>
                 <!-- 下一步按钮 -->
-                <div class="register_next">
-                    <a href="">下一步</a>
-                </div>
+                <button class="i-button" @click="nextStep">
+                   下一步
+                </button>
             </li>
         </ul>
        
@@ -65,12 +65,15 @@ export default {
   },
   data() {
     return {
-      isVisible: false
+      isVisible: false,
+      step: 0, // 从0开始
+      stepMax: 2,
+      formStatus: [true, false, false]
     }
   },
   head() {
     return {
-      title: `About Page (${this.name}-side)`
+      title: `register - ${this.name}`
     }
   },
   methods: {
@@ -83,6 +86,11 @@ export default {
     },
     showCheckRobotBox() {
       this.isVisible = true
+    },
+    nextStep() {
+      if (this.step < this.stepMax) {
+        this.setp += 1
+      }
     }
   }
 }

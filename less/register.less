@@ -112,12 +112,17 @@
 }
 
 // 下一步按钮
-.register_next{
+.i-button{
     margin: 40px auto 0;
+    border:none;
+    color:#fff;
     .w-h();
     text-align: center;
     background: @baseColor;
     border-radius:24px;
+    &:active,&:focus{
+        outline: none;
+    }
     >a{
         color: @buttonColor;
         line-height: 40px;
@@ -126,8 +131,11 @@
 }
 .page-register{
     .register-form-box{
-        >div{
+        >li{
             display: none;
+            &.active{
+                display: block;
+            }
         }
     }
 }
