@@ -17,7 +17,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~assets/css/main.css',
+    // '~assets/css/main.css',
     { src: '~less/public.less', lang: 'less' },
     { src: '~less/login.less', lang: 'less' }
   ],
