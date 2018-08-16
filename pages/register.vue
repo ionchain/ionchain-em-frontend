@@ -14,7 +14,7 @@
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>{{ errors.first('mobile') }}</span>
                   </div>
-                  <div><input v-validate="'required'" name="mobile" type="text" v-model="mobile" placeholder="请输入手机号"></div>
+                  <div><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="mobile" placeholder="请输入手机号"></div>
                   <div><button class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
                 <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
