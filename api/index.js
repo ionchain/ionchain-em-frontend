@@ -53,3 +53,7 @@ export const getSmsCode = (data, params) => {
 export const verifySMScode = (data, params) => {
   return _axios.post('/users/verify_sms_code', data, {params: params})
 }
+// 创建用户
+export const createUser = (data, params) => {
+  return _axios.post('/users/create', data, {params: params})
+}

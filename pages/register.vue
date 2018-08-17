@@ -26,7 +26,7 @@
                   </div>
                   <div class="register_cont_click_yz">
                     <div class="click_yz_yz">
-                        <div><input v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
+                        <div><input  v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
                         <div><button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s后重新获取</button><button @click="getSmsCode" v-else class="click_yz_cx">重新获取</button></div> 
                     </div>
                     <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
@@ -35,8 +35,8 @@
                 </div>
                 <!-- 输入密码 -->
                 <div :class="{active:stepA==4,finish:stepA>4}" class="stepA-item register_cont_pw">
-                  <p><input type="text" placeholder="请输入密码"></p>
-                  <p><input type="text"  placeholder="确定密码"></p>
+                  <p><input v-validate="'required'" type="text" v-model="form.password" placeholder="请输入密码"></p>
+                  <p><input v-validate="'required'" type="text" v-model="form.password_confirmation" placeholder="确定密码"></p>
                   <!-- 下一步按钮 -->
                   <button class="i-button" @click="nextStep">
                       下一步
@@ -46,9 +46,9 @@
             </li>
             <!-- 填写企业信息 -->
             <li class="register-step2 register_cont_xx" :class="{active:formStatus[1]}">
-                <p><input type="text" placeholder="请输入企业名称"></p>
-                <p><input type="text" placeholder="请输入组织机构代码"></p>
-                <p><textarea name="" id="" cols="30" rows="6" placeholder="请输入您的icon地址"></textarea></p>
+                <p><input type="text" v-validate="'required'" v-model="form.company_name" placeholder="请输入企业名称"></p>
+                <p><input type="text" v-model="form.company_org_code" placeholder="请输入组织机构代码"></p>
+                <p><textarea name="" v-validate="'required'" v-model="form.eth_address" cols="30" rows="6" placeholder="请输入您的icon地址"></textarea></p>
                 <!-- 下一步按钮 -->
                 <button class="i-button" @click="nextStep">
                    下一步
@@ -63,7 +63,6 @@
                     </div>
             </li>
         </ul>
-       
     </div>
 </template>
 <script>
@@ -92,7 +91,12 @@ export default {
       stepA: 1,
       code: '', // 短信验证码
       form: {
-        mobile: ''
+        mobile: '',
+        password: '',
+        password_confirmation: '',
+        company_name: '',
+        company_org_code: '',
+        eth_address: ''
       },
       showErrorTip: false
     }
@@ -106,13 +110,21 @@ export default {
     this.secondsLeft = this.interval
   },
   mounted() {
+    this.$nextTick(() => {
+      this.$snotify.success('Example body content', {
+        timeout: 10000,
+        showProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true
+      })
+    })
   },
   methods: {
     Login() {
       api.Login().then((res) => {
       })
     },
-    // 滑动拼图
+    // 滑动拼图-高级生物验证
     robotCheck(test) {
       if (test) {
         this.getSmsCode()
@@ -128,8 +140,8 @@ export default {
     },
     // 注册步骤控制---3步
     nextStep() {
+      this.step += 1
       if (this.step < this.stepMax) {
-        this.step += 1
         for (let i = 0; i < this.formStatus.length; i++) {
           if (i === this.step) {
             this.$set(this.formStatus, i, true)
@@ -137,6 +149,8 @@ export default {
             this.$set(this.formStatus, i, false)
           }
         }
+      } else {
+        this.createUser()
       }
     },
     // 数秒
@@ -150,11 +164,19 @@ export default {
     },
     // 获取短信验证码
     getSmsCode() {
+      this.$snotify.error('请稍后...', {
+        timeout: 0,
+        id: 'getSmsCode',
+        type: 'async',
+        backdrop: 0.45
+      })
       api.getSmsCode({mobile: this.form.mobile}).then((res) => {
         if (res.success === 0) { // 短信发送成功
         } else {
         }
         this.stepA += 1 // 不管发送成功与否切换到下一界面
+      }).catch().then(() => {
+        this.$snotify.remove('getSmsCode')
       })
       this.reGetEnable = false
       var sentTime = moment().toString('YYYY-MM-DD HH:mm:ss')
@@ -163,6 +185,12 @@ export default {
     },
     // 校验验短信证码
     verifySMScode() {
+      this.$snotify.error('请稍后...', {
+        timeout: 0,
+        id: 'verifySMScode',
+        type: 'async',
+        backdrop: 0.45
+      })
       api.verifySMScode({
         mobile: this.form.mobile,
         code: this.code
@@ -171,12 +199,25 @@ export default {
           this.stepA += 1 // 切换到下一界面
         } else {
           console.log(this)
-          this.$vDialog.toast(res.message, function () {
-          }, {
-            position: 'topRight',
-            messageType: 'error',
-            language: 'cn',
-            closeTime: 3 // auto close dialog time(second)
+          this.$snotify.error(res.message, {
+            timeout: 2000
+          })
+        }
+      }).catch().then(() => {
+        this.$snotify.remove('verifySMScode')
+      })
+    },
+    // 创建用户
+    createUser() {
+      api.createUser(this.form).then((res) => {
+        if (res.success === 0) {
+          this.step += 1 // 切换到下一界面---主步骤
+          this.$snotify.success(res.message, {
+            timeout: 2000
+          })
+        } else {
+          this.$snotify.error(res.message, {
+            timeout: 2000
           })
         }
       })
