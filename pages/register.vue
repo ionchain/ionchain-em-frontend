@@ -35,10 +35,14 @@
                 </div>
                 <!-- 输入密码 -->
                 <div :class="{active:stepA==4,finish:stepA>4}" class="stepA-item register_cont_pw">
-                  <p><input v-validate="'required'" type="text" v-model="form.password" placeholder="请输入密码"></p>
-                  <p><input v-validate="'required'" type="text" v-model="form.password_confirmation" placeholder="确定密码"></p>
+                  <div class="login_right_hint login_right_w" v-show="errors.has('password')">
+                    <span><img src="/icon/error.svg" alt=""></span>
+                    <span>{{ errors.first('password') }}</span>
+                  </div>
+                  <p><input v-validate="'required|confirmed:pw_confirm'" name="password" data-vv-as="密码" type="password" v-model="form.password" placeholder="请输入密码"></p>
+                  <p><input name="pw_confirm" ref="pw_confirm" data-vv-as="确认密码" type="password" v-model="form.password_confirmation" placeholder="确定密码"></p>
                   <!-- 下一步按钮 -->
-                  <button class="i-button" @click="nextStep">
+                  <button class="i-button" @click="checkPwd">
                       下一步
                   </button>
                 </div>
@@ -50,17 +54,19 @@
                 <p><input type="text" v-model="form.company_org_code" placeholder="请输入组织机构代码"></p>
                 <p><textarea name="" v-validate="'required'" v-model="form.eth_address" cols="30" rows="6" placeholder="请输入您的icon地址"></textarea></p>
                 <!-- 下一步按钮 -->
-                <button class="i-button" @click="nextStep">
+                <button class="i-button" @click="createUser">
                    下一步
                 </button>
             </li>
             <!-- 注册完成 -->
             <li class="register-step3 register_cont_wc" :class="{active:formStatus[2]}">
-                    <div><img src="/icon/succeed.svg" alt=""></div>
-                    <div>恭喜您，注册成功！</div>
-                    <div class="register_next">
-                        <a href="javascript:;">完成</a>
-                    </div>
+              <div><img src="/icon/succeed.svg" alt=""></div>
+              <div>恭喜您，注册成功！</div>
+              <div class="register_next">
+                  <nuxt-link to="/article">
+                    <button class="i-button">完成</button>
+                  </nuxt-link>
+              </div>
             </li>
         </ul>
     </div>
@@ -88,7 +94,7 @@ export default {
       step: 0, // 从0开始
       stepMax: 2,
       formStatus: [true, false, false],
-      stepA: 1,
+      stepA: 1, // 从1开始
       code: '', // 短信验证码
       form: {
         mobile: '',
@@ -110,16 +116,15 @@ export default {
     this.secondsLeft = this.interval
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$snotify.success('Example body content', {
-        timeout: 10000,
-        showProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true
-      })
-    })
   },
   methods: {
+    checkPwd() {
+      this.$validator.validate('password', this.form.password).then((result) => {
+        if (result) {
+          this.nextStep()
+        }
+      })
+    },
     Login() {
       api.Login().then((res) => {
       })
@@ -132,7 +137,6 @@ export default {
     },
     showCheckRobotBox() {
       this.$validator.validate('mobile', this.form.mobile).then((result) => {
-        console.log(result)
         if (result) {
           this.stepA += 1
         }
@@ -140,8 +144,8 @@ export default {
     },
     // 注册步骤控制---3步
     nextStep() {
-      this.step += 1
       if (this.step < this.stepMax) {
+        this.step += 1
         for (let i = 0; i < this.formStatus.length; i++) {
           if (i === this.step) {
             this.$set(this.formStatus, i, true)
@@ -149,8 +153,6 @@ export default {
             this.$set(this.formStatus, i, false)
           }
         }
-      } else {
-        this.createUser()
       }
     },
     // 数秒
@@ -160,15 +162,14 @@ export default {
       setInterval(() => {
         this.secondsLeft -= 1
       }, 1000)
-      console.log('secondPast', secondsPast)
     },
     // 获取短信验证码
     getSmsCode() {
-      this.$snotify.error('请稍后...', {
-        timeout: 0,
-        id: 'getSmsCode',
+      this.$snotify.info('请稍后...', {
+        title: '',
         type: 'async',
-        backdrop: 0.45
+        backdrop: 0.3,
+        id: 'getSmsCode'
       })
       api.getSmsCode({mobile: this.form.mobile}).then((res) => {
         if (res.success === 0) { // 短信发送成功
@@ -185,23 +186,22 @@ export default {
     },
     // 校验验短信证码
     verifySMScode() {
-      this.$snotify.error('请稍后...', {
-        timeout: 0,
-        id: 'verifySMScode',
+      this.$snotify.info('请稍后...', {
+        title: '',
         type: 'async',
-        backdrop: 0.45
+        backdrop: 0.3,
+        id: 'verifySMScode'
       })
       api.verifySMScode({
         mobile: this.form.mobile,
         code: this.code
       }).then((res) => {
         if (res.success === 0) {
+          this.$snotify.success(res.message)
           this.stepA += 1 // 切换到下一界面
         } else {
           console.log(this)
-          this.$snotify.error(res.message, {
-            timeout: 2000
-          })
+          this.$snotify.error(res.message)
         }
       }).catch().then(() => {
         this.$snotify.remove('verifySMScode')
@@ -211,14 +211,10 @@ export default {
     createUser() {
       api.createUser(this.form).then((res) => {
         if (res.success === 0) {
-          this.step += 1 // 切换到下一界面---主步骤
-          this.$snotify.success(res.message, {
-            timeout: 2000
-          })
+          this.$snotify.success(res.message)
+          this.nextStep() // 切换到下一界面
         } else {
-          this.$snotify.error(res.message, {
-            timeout: 2000
-          })
+          this.$snotify.error(res.message)
         }
       })
     }

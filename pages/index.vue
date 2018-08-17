@@ -16,3 +16,11 @@
   margin: 50px 0;
 }
 </style>
+<script>
+export default {
+  layout: 'default',
+  created() {
+    this.$router.push('/article')
+  }
+}
+</script>

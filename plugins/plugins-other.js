@@ -15,7 +15,6 @@ const messages = {
   mobile: (field) => `手机号码不合法`
 }
 
-
 Object.assign(zh_CN.messages, messages)
 
 VeeValidate.Validator.extend('mobile', {
@@ -30,3 +29,15 @@ Vue.use(VeeValidate, {
   }
 })
 
+import Snotify, { SnotifyPosition } from 'vue-snotify'
+const options = {
+  toast: {
+    position: SnotifyPosition.rightTop
+  }
+}
+
+Vue.use(Snotify, options)
+import 'vue-snotify/styles/material.css'
+
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
