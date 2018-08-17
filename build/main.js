@@ -143,7 +143,10 @@ module.exports = {
   }], ['/mytest', {
     target: 'http://localhost:3000', // api主机
     pathRewrite: { '/mytest': '' }
-  }]]
+  }]],
+  router: {
+    routes: []
+  }
 };
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 

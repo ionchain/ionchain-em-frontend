@@ -63,7 +63,7 @@
               <div><img src="/icon/succeed.svg" alt=""></div>
               <div>恭喜您，注册成功！</div>
               <div class="register_next">
-                  <nuxt-link to="/article">
+                  <nuxt-link to="/">
                     <button class="i-button">完成</button>
                   </nuxt-link>
               </div>
