@@ -56,9 +56,10 @@ module.exports = {
           }        
         })
       }
-    }
+    },
+    vendor: ['axios', 'moment']
   },
-  plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-all'],
+  plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-other', {src: '~plugins/plugins-client', ssr: false}],
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy'
@@ -76,7 +77,7 @@ module.exports = {
     [
       '/api', 
       { 
-        target: 'http://192.168.21.146:3000' // api主机
+        target: 'http://sendrobot.ionchain.org' // api主机
         // pathRewrite: { '/api' : '' }
       }
     ],

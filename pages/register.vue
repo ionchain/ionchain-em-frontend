@@ -26,11 +26,12 @@
                   </div>
                   <div class="register_cont_click_yz">
                     <div class="click_yz_yz">
-                        <div><input type="text" placeholder="手机验证码"></div>
-                        <div ><button>120s后重新获取</button><button class="click_yz_cx">重新获取</button></div> 
+                        <div><input v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
+                        <div><button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s后重新获取</button><button @click="getSmsCode" v-else class="click_yz_cx">重新获取</button></div> 
                     </div>
                     <div class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                   </div>
+                  <button class="i-button" @click="verifySMScode">下一步</button>
                 </div>
                 <!-- 输入密码 -->
                 <div :class="{active:stepA==4,finish:stepA>4}" class="stepA-item register_cont_pw">
@@ -42,7 +43,6 @@
                   </button>
                 </div>
               </div>
-              
             </li>
             <!-- 填写企业信息 -->
             <li class="register-step2 register_cont_xx" :class="{active:formStatus[1]}">
@@ -69,6 +69,7 @@
 <script>
 import * as api from '@/api'
 import PreventRobot from '@/components/prevent-robot'
+import moment from 'moment'
 export default {
   layout: 'default',
   components: {
@@ -81,11 +82,15 @@ export default {
   },
   data() {
     return {
+      interval: 120, // 短信发送时间间隔
+      secondsLeft: 0, // 剩余读秒
+      reGetEnable: false,
       isVisible: false,
       step: 0, // 从0开始
       stepMax: 2,
       formStatus: [true, false, false],
       stepA: 1,
+      code: '', // 短信验证码
       form: {
         mobile: ''
       },
@@ -98,27 +103,30 @@ export default {
     }
   },
   created() {
-    api.DATA_TEST().then((res) => {
-    })
+    this.secondsLeft = this.interval
+  },
+  mounted() {
   },
   methods: {
     Login() {
       api.Login().then((res) => {
       })
     },
-    robotCheck(test) {     // 滑动拼图
+    // 滑动拼图
+    robotCheck(test) {
       if (test) {
-        this.getSmsCode(this.form.mobile)
-        this.stepA += 1
+        this.getSmsCode()
       }
     },
     showCheckRobotBox() {
-      this.$validator.validateAll().then((result) => {
+      this.$validator.validate('mobile', this.form.mobile).then((result) => {
+        console.log(result)
         if (result) {
           this.stepA += 1
         }
       })
     },
+    // 注册步骤控制---3步
     nextStep() {
       if (this.step < this.stepMax) {
         this.step += 1
@@ -131,10 +139,46 @@ export default {
         }
       }
     },
+    // 数秒
+    timerTick(timeOld) {
+      var secondsPast = moment().diff(moment('2018-08-17 12:15:00'), 'seconds')
+      this.secondsLeft = secondsPast > this.interval ? this.interval : secondsPast
+      setInterval(() => {
+        this.secondsLeft -= 1
+      }, 1000)
+      console.log('secondPast', secondsPast)
+    },
     // 获取短信验证码
-    getSmsCode(_mobile) {
-      api.getSmsCode({mobile: _mobile}).then((res) => {
-        //   clientInformation
+    getSmsCode() {
+      api.getSmsCode({mobile: this.form.mobile}).then((res) => {
+        if (res.success === 0) { // 短信发送成功
+        } else {
+        }
+        this.stepA += 1 // 不管发送成功与否切换到下一界面
+      })
+      this.reGetEnable = false
+      var sentTime = moment().toString('YYYY-MM-DD HH:mm:ss')
+      sessionStorage.setItem('sent-time', sentTime)
+      this.timerTick(sentTime)
+    },
+    // 校验验短信证码
+    verifySMScode() {
+      api.verifySMScode({
+        mobile: this.form.mobile,
+        code: this.code
+      }).then((res) => {
+        if (res.success === 0) {
+          this.stepA += 1 // 切换到下一界面
+        } else {
+          console.log(this)
+          this.$vDialog.toast(res.message, function () {
+          }, {
+            position: 'topRight',
+            messageType: 'error',
+            language: 'cn',
+            closeTime: 3 // auto close dialog time(second)
+          })
+        }
       })
     }
   }

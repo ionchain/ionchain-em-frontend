@@ -5,6 +5,7 @@ import VeeValidate from 'vee-validate'
 import zh_CN from 'vee-validate/dist/locale/zh_CN'
 import VueI18n from 'vue-i18n'
 
+// VeeValidate 汉化配置
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'zh_CN'
