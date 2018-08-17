@@ -215,6 +215,7 @@ export default {
           this.nextStep() // 切换到下一界面
         } else {
           this.$snotify.error(res.message)
+          
         }
       })
     }

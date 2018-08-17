@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import VeeValidate from 'vee-validate'
 import zh_CN from 'vee-validate/dist/locale/zh_CN'
 import VueI18n from 'vue-i18n'
+import Tabs from 'vue-tabs-component'
+Vue.use(Tabs);
 
 // VeeValidate 汉化配置
 Vue.use(VueI18n)
