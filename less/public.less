@@ -6,6 +6,27 @@
 @import "imports/form.less";
 @import "footer.less";
 
+// 头部
+.ly-header{
+    height:80px;
+    line-heght:80px;
+    .logo{
+        float:left;
+        padding: 14px 0;
+    }
+    .logo_gw{
+        float:right;
+        padding: 10px;
+        margin: 17px 0;
+        border:1px solid @baseColor;
+        color:@baseColor;
+    }
+    .h-info{
+        float:right;
+        padding: 30px;
+    }
+}
+
 //滑动拼图的修改
 .sliderMask{
     border:0 solid @baseColor !important;
@@ -42,9 +63,10 @@ img{
     .logo{
         height:80px;
         line-height: 80px;
+        display: inline-block;
         img{
             height:48px;
-            vertical-align: middle;
+            position: relative;
         }
     }
     .h-main{
@@ -240,3 +262,4 @@ img{
 }
 @import "register.less";
 @import "retrieve.less";
+@import "articles.less";

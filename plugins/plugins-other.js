@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import VeeValidate from 'vee-validate'
 import zh_CN from 'vee-validate/dist/locale/zh_CN'
 import VueI18n from 'vue-i18n'
+import Tabs from 'vue-tabs-component'
+Vue.use(Tabs);
 
 // VeeValidate 汉化配置
 Vue.use(VueI18n)
@@ -14,7 +16,6 @@ const i18n = new VueI18n({
 const messages = {
   mobile: (field) => `手机号码不合法`
 }
-
 
 Object.assign(zh_CN.messages, messages)
 
@@ -30,3 +31,15 @@ Vue.use(VeeValidate, {
   }
 })
 
+import Snotify, { SnotifyPosition } from 'vue-snotify'
+const options = {
+  toast: {
+    position: SnotifyPosition.rightTop
+  }
+}
+
+Vue.use(Snotify, options)
+import 'vue-snotify/styles/material.css'
+
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)

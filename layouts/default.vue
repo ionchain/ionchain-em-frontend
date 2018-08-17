@@ -1,5 +1,6 @@
 <template>
     <div class="ly-root">
+        <vue-snotify></vue-snotify>
         <my-header />
         <div class="ly-body">
           <nuxt class="ly-main" />
