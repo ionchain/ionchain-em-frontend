@@ -4,10 +4,11 @@
       <a class="logo" href="#">
         <img src="/icon/IONC_store_bule.svg" />
       </a>
-      <div class="h-info">
+     
+      <a class="logo_gw" href="http://www.ionchain.org/index_CN.html" target="_blank">离子链官网</a>
+       <div class="h-info">
         <span v-if="mobile_num">当前登录 </span><span>{{get(userinfo, 'mobile_num')}}</span>
       </div>
-      <a class="logo_gw" href="http://www.ionchain.org/index_CN.html" target="_blank">离子链官网</a>
       <!-- <nav></nav>
       <div></div> -->
     </section>
