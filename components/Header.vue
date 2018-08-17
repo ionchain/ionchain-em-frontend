@@ -24,15 +24,7 @@ export default {
     }
   },
   mounted() {
-    this.mobile_num = this.$cookies.get('mobile_num')
-    if (this.mobile_num) {
-      let userinfo = localStorage.getItem('userinfo')
-      if (userinfo && userinfo !== 'undefined' && userinfo !== 'null') {
-        userinfo = JSON.parse(userinfo)
-        this.$store.commit(types.SET_USERINFO, userinfo)
-      }
-    }
-    console.log('mobile_num', this.mobile_num)
+    this.setGlobalInfo()
   },
   computed: {
     userinfo() {
@@ -40,9 +32,24 @@ export default {
       return this.$store.state.userinfo
     }
   },
+  watch: {
+    $route(to, from) {
+      this.setGlobalInfo()
+    }
+  },
   methods: {
     get(obj, path) {
       return _.get(obj, path)
+    },
+    setGlobalInfo() {
+      this.mobile_num = this.$cookies.get('mobile_num')
+      if (this.mobile_num) {
+        let userinfo = localStorage.getItem('userinfo')
+        if (userinfo && userinfo !== 'undefined' && userinfo !== 'null') {
+          userinfo = JSON.parse(userinfo)
+          this.$store.commit(types.SET_USERINFO, userinfo)
+        }
+      }
     }
   }
 }
