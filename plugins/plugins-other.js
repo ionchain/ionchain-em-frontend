@@ -29,3 +29,4 @@ Vue.use(VeeValidate, {
     zh_CN
   }
 })
+
