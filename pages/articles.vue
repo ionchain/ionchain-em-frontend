@@ -35,7 +35,6 @@
     },
     methods: {
       remark_close() {
-        console.log(123)
         this.articlesRemark = false
       }
     }

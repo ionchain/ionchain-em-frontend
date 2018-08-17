@@ -88,6 +88,10 @@ module.exports = {
         pathRewrite: { '/mytest' : '' }
       }
     ]
-  ]
-}
+  ],
+  router: {
+    routes: [
 
+    ]
+  }
+}

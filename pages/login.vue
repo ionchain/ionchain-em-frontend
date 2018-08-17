@@ -74,9 +74,10 @@ export default {
           api.Login(this.form).then((res) => {
             if (res.success === 0) {
               this.$snotify.success('登录成功')
-              this.$router.push('/article')
+              this.$router.push('/')
               if (this.isLoginAuto) {
                 this.$cookies.set('mobile_num', res.data.mobile_num, 60 * 60 * 24 * 30)
+                localStorage.setItem('userinfo', JSON.stringify(res.data))
               }
             } else {
               this.$snotify.error(res.message)

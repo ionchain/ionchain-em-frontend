@@ -5,5 +5,9 @@ export default {
   },
   [types.LOADING_COUNT_MINUS](state) {
     state.loadingCount--
+  },
+  [types.SET_USERINFO](state, newdata) {
+    state.userinfo = newdata
+    console.log(state)
   }
 }
