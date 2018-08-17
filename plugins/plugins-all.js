@@ -14,7 +14,6 @@ const messages = {
   mobile: (field) => `手机号码不合法`
 }
 
-console.log(zh_CN)
 
 Object.assign(zh_CN.messages, messages)
 

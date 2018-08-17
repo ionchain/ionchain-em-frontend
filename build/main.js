@@ -138,6 +138,9 @@ module.exports = {
   proxy: [['/api', {
     target: 'http://192.168.21.146:3000' // api主机
     // pathRewrite: { '/api' : '' }
+  }], ['/mytest', {
+    target: 'http://localhost:3000', // api主机
+    pathRewrite: { '/mytest': '' }
   }]]
 };
 /* WEBPACK VAR INJECTION */}.call(exports, ""))

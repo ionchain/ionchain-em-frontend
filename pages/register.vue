@@ -93,6 +93,8 @@ export default {
     }
   },
   created() {
+    api.DATA_TEST().then((res) => {
+    })
   },
   methods: {
     Login() {

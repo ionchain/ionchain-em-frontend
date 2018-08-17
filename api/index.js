@@ -19,7 +19,7 @@ _axios.interceptors.request.use(
 
 _axios.interceptors.response.use(
   (response) => {
-    return response
+    return response.data
   },
   (error) => {
     if (error.response) {
@@ -35,7 +35,7 @@ _axios.interceptors.response.use(
 
 // 测试数据
 export const DATA_TEST = (data, params) => {
-  return _axios.post('/data-test', data, {params: params, baseURL: '/api'})
+  return _axios.post('/data-test', data, {params: params, baseURL: '/mytest'})
 }
 // 测试数据
 export const DATA_TEST2 = (params) => {
