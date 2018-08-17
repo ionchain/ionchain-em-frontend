@@ -8,6 +8,5 @@ export default {
   },
   [types.SET_USERINFO](state, newdata) {
     state.userinfo = newdata
-    console.log(state)
   }
 }

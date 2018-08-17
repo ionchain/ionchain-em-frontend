@@ -200,7 +200,6 @@ export default {
           this.$snotify.success(res.message)
           this.stepA += 1 // 切换到下一界面
         } else {
-          console.log(this)
           this.$snotify.error(res.message)
         }
       }).catch().then(() => {

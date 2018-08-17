@@ -29,7 +29,6 @@ export default {
   },
   computed: {
     userinfo() {
-      console.log(this.$store)
       return this.$store.state.userinfo
     }
   },
