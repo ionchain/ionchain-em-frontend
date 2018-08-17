@@ -14,13 +14,16 @@
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>{{ errors.first('mobile') }}</span>
                   </div>
-                  <div><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="mobile" placeholder="请输入手机号"></div>
+                  <div><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号"></div>
                   <div><button class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
                 <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
                   <prevent-robot :isVisible="true" @robot-check="robotCheck" />
                 </div>
                 <div :class="{active:stepA==3,finish:stepA>3}" class="stepA-item register_cont_click">
+                  <div class="register_cont_number">
+                        <input type="text" placeholder="请输入手机号" v-model="form.mobile">
+                  </div>
                   <div class="register_cont_click_yz">
                     <div class="click_yz_yz">
                         <div><input type="text" placeholder="手机验证码"></div>
@@ -83,7 +86,9 @@ export default {
       stepMax: 2,
       formStatus: [true, false, false],
       stepA: 1,
-      mobile: '',
+      form: {
+        mobile: ''
+      },
       showErrorTip: false
     }
   },
@@ -99,9 +104,10 @@ export default {
       api.Login().then((res) => {
       })
     },
-    robotCheck(test) {
+    robotCheck(test) {     // 滑动拼图
       if (test) {
-        this.getSmsCode(this.mobile)
+        this.getSmsCode(this.form.mobile)
+        this.stepA += 1
       }
     },
     showCheckRobotBox() {
@@ -123,8 +129,10 @@ export default {
         }
       }
     },
+    // 获取短信验证码
     getSmsCode(_mobile) {
       api.getSmsCode({mobile: _mobile}).then((res) => {
+        //   clientInformation
       })
     }
   }
