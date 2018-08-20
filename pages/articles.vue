@@ -33,6 +33,11 @@
         articlesRemark: true
       }
     },
+    head() {
+      return {
+        title: ` - IONC Store`
+      }
+    },
     methods: {
       remark_close() {
         this.articlesRemark = false

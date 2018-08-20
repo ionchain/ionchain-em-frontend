@@ -109,7 +109,7 @@ export default {
   },
   head() {
     return {
-      title: `register - ${this.name}`
+      title: `Login - IONC Store`
     }
   },
   created() {
