@@ -13,8 +13,8 @@
       <div class="h-have" v-if="!mobile_num">
       <!-- <nuxt-link to='/sldfs/sdfs'></nuxt-link> -->
         <!-- <a v-if="!mobile_num" href="">已有账号？<span>请登录</span></a> -->
-        <nuxt-link to="/register" class="z_d"><span>注册 </span></nuxt-link>
-        <nuxt-link to="/login" class="z_d">已有账号？<span>请登录</span></nuxt-link>
+       <nuxt-link to="/register" class="z_d"><span>注册</span></nuxt-link>&nbsp;&nbsp;
+        已有账号？<nuxt-link to="/login" class="z_d"><span>请登录</span></nuxt-link>
 
         
       </div>
