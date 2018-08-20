@@ -36,6 +36,7 @@
 </template>
 <script>
 import * as api from '@/api'
+import * as types from '@/store/mutation-types'
 export default {
   layout: 'default',
   asyncData({ req }) {
@@ -75,9 +76,12 @@ export default {
             if (res.success === 0) {
               this.$snotify.success('登录成功')
               this.$router.push('/')
+              this.$store.commit(types.SET_USERINFO, res.data)
+              // localStorage.setItem('userinfo', JSON.stringify(res.data))
               if (this.isLoginAuto) {
-                this.$cookies.set('mobile_num', res.data.mobile_num, 60 * 60 * 24 * 30)
-                localStorage.setItem('userinfo', JSON.stringify(res.data))
+                this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60 * 24 * 30) // 一个月
+              } else {
+                this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60)
               }
             } else {
               this.$snotify.error(res.message)
