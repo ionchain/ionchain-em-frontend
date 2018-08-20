@@ -3,7 +3,7 @@ const _config = {
     BASE_URL: '/api/v1'
   },
   'production': {
-    BASE_URL: '/api'
+    BASE_URL: '/api/v1'
   }
 }
 _config.testing = _config.development
