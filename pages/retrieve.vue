@@ -64,8 +64,10 @@
              <li class="retrieve-step4 register_cont_wc" v-if="step==4">
                     <div><img src="/icon/succeed.svg" alt=""></div>
                     <div>密码设置成功!</div>
-                    <div  class="i-button">
-                        <a href="javascript:;">完成</a>
+                    <div class="register_next">
+                      <nuxt-link to="/">
+                        <button class="i-button">完成</button>
+                      </nuxt-link>
                     </div>
             </li>
           </ul>
@@ -108,6 +110,7 @@ export default {
     robotCheck(test) {
       if (test) {
         this.getSmsCode()
+        this.step += 1 // 不管发送成功与否切换到下一界面
       }
     },
     // 获取短信验证码
@@ -122,7 +125,6 @@ export default {
         if (res.success === 0) { // 短信发送成功
         } else {
         }
-        this.step += 1 // 不管发送成功与否切换到下一界面
       }).catch().then(() => {
         this.$snotify.remove('getSmsCode')
       })
@@ -164,11 +166,23 @@ export default {
     },
     checkPwd() {
       this.$validator.validate('password', this.form.password).then((result) => {
-        // if (result === true) {
-        //   this.step += 1
-        // } else {
-        // }
+        if (result) {
+          this.nextStep()
+        }
       })
+    },
+    // 注册步骤控制---3步
+    nextStep() {
+      if (this.step < this.stepMax) {
+        this.step += 1
+        for (let i = 0; i < this.formStatus.length; i++) {
+          if (i === this.step) {
+            this.$set(this.formStatus, i, true)
+          } else {
+            this.$set(this.formStatus, i, false)
+          }
+        }
+      }
     }
   }
 }

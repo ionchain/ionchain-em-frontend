@@ -133,6 +133,7 @@ export default {
     robotCheck(test) {
       if (test) {
         this.getSmsCode()
+        this.stepA += 1 // 不管发送成功与否切换到下一界面
       }
     },
     showCheckRobotBox() {
@@ -175,7 +176,6 @@ export default {
         if (res.success === 0) { // 短信发送成功
         } else {
         }
-        this.stepA += 1 // 不管发送成功与否切换到下一界面
       }).catch().then(() => {
         this.$snotify.remove('getSmsCode')
       })
