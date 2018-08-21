@@ -1,5 +1,7 @@
 const merge = require('webpack-merge')
 const path = require('path')
+// import _ from 'lodash'
+import modifyResponse from 'node-http-proxy-json'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -77,8 +79,35 @@ module.exports = {
     [
       '/api', 
       { 
-        target: 'http://sendrobot.ionchain.org' // api主机
+        target: 'http://sendrobot.ionchain.org', // api主机
         // pathRewrite: { '/api' : '' }
+        cookieDomainRewrite: '',
+        onProxyRes(proxyRes, req, res) {
+          console.log('statusCode', proxyRes.statusCode)
+          // console.log('session:', req.ctx.session)
+
+
+          
+          /* proxyRes.on('data',async (data) => {
+            console.log(await getStream(data))
+          }) */
+          modifyResponse(res, proxyRes.headers['content-encoding'], function (body) {
+            if (body) {
+              console.log('body==>', body)
+              if (proxyRes.req.path.indexOf('/users/login')>-1 && body.success == 0) {
+                console.log('set session @@@@@@@@@@@@')
+                req.ctx.session.userinfo = body.data
+                proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
+              }
+            }
+            return body
+          })
+        },
+        onClose(res, socket, head) {
+          console.log('onCLose -->', res)
+        },
+        onProxyReq: function (proxyReq, req, res) {
+        }
       }
     ],
     [
@@ -91,7 +120,7 @@ module.exports = {
   ],
   router: {
     routes: [
-
     ]
+    // middleware: 'check-auth'
   }
 }

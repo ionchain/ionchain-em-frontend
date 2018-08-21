@@ -34,16 +34,21 @@ export default {
       return this.$store.state.userinfo
     }
   },
-  mounted() {
+  created() {
+    console.log('careated,', arguments)
+  },
+  beforeMount() {
+    console.log('@@===@@')
     var userinfo = this.$cookies.get('userinfo')
     userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
     userinfo = JSON.parse(userinfo)
-    console.log('userinfo', userinfo)
     this.$store.commit(types.SET_USERINFO, userinfo)
-    console.log('userinfo#', this.$store.state.userinfo)
+    if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
+      this.$router.push('/login')
+    }
   },
   watch: {
-    $route() {
+    $route(to, from) {
       // 每次router 变化都更新登录状态cookie
       try {
         this.$cookies.set('userinfo', JSON.stringify(this.$store.state.userinfo), 60 * 60)
