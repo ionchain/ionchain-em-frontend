@@ -8,5 +8,8 @@ export default {
   },
   [types.SET_USERINFO](state, newdata) {
     state.userinfo = newdata
+  },
+  [types.SET_IS_LOGING_PAGE](state, newdata) {
+    state.isLoginPage = newdata
   }
 }
