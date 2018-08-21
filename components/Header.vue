@@ -34,13 +34,15 @@ export default {
       return this.$store.state.userinfo
     }
   },
-  mounted() {
+  beforeMount() {
+    console.log('@@===@@')
     var userinfo = this.$cookies.get('userinfo')
     userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
     userinfo = JSON.parse(userinfo)
-    console.log('userinfo', userinfo)
     this.$store.commit(types.SET_USERINFO, userinfo)
-    console.log('userinfo#', this.$store.state.userinfo)
+    if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
+      this.$router.push('/login')
+    }
   },
   watch: {
     $route() {
