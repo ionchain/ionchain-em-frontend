@@ -1,13 +1,13 @@
 <template>
   <section class="container">
-    <img src="../assets/img/logo.png" alt="Nuxt.js Logo" />
+    <img src="/icon/IONC_store_bule.svg" style="height:120px;margin-top:100px;" />
     <h1 class="title">
       {{ error.statusCode }}
     </h1>
     <h2 class="info">
       {{ error.message }}
     </h2>
-    <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
+    <nuxt-link class="link" to="/" v-if="error.statusCode === 404">
       Homepage
     </nuxt-link>
   </section>

@@ -55,7 +55,7 @@ export default {
   },
   head() {
     return {
-      title: `登录 - 企业入驻`
+      title: `Login - IONC Store`
     }
   },
   mounted() {
