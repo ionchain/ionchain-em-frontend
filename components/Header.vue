@@ -34,10 +34,11 @@ export default {
     }
   },
   beforeMount() {
+    console.log('beforeMount', this.$store.state)
     var userinfo = this.$cookies.get('userinfo')
     userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
     userinfo = JSON.parse(userinfo)
-    this.$store.commit(types.SET_USERINFO, userinfo)
+    // this.$store.commit(types.SET_USERINFO, userinfo)
     if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
       this.$router.push('/login')
     }

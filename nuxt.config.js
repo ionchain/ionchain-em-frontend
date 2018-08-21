@@ -85,12 +85,6 @@ module.exports = {
         onProxyRes(proxyRes, req, res) {
           console.log('statusCode', proxyRes.statusCode)
           // console.log('session:', req.ctx.session)
-
-
-          
-          /* proxyRes.on('data',async (data) => {
-            console.log(await getStream(data))
-          }) */
           modifyResponse(res, proxyRes.headers['content-encoding'], function (body) {
             if (body) {
               console.log('body==>', body)

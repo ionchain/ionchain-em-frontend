@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,10 +74,10 @@ module.exports =
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__dirname) {Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__);
-var merge = __webpack_require__(6);
-var path = __webpack_require__(4);
+var merge = __webpack_require__(8);
+var path = __webpack_require__(6);
 // import _ from 'lodash'
 
 
@@ -151,11 +151,6 @@ module.exports = {
     onProxyRes: function onProxyRes(proxyRes, req, res) {
       console.log('statusCode', proxyRes.statusCode);
       // console.log('session:', req.ctx.session)
-
-
-      /* proxyRes.on('data',async (data) => {
-        console.log(await getStream(data))
-      }) */
       __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json___default()(res, proxyRes.headers['content-encoding'], function (body) {
         if (body) {
           console.log('body==>', body);
@@ -188,7 +183,7 @@ module.exports = {
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(7);
 
 
 /***/ },
@@ -201,28 +196,40 @@ module.exports = require("koa");
 /* 3 */
 /***/ function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("koa-session");
 
 /***/ },
 /* 4 */
 /***/ function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("nuxt");
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
-module.exports = require("regenerator-runtime");
+module.exports = require("node-http-proxy-json");
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-module.exports = require("webpack-merge");
+module.exports = require("path");
 
 /***/ },
 /* 7 */
+/***/ function(module, exports) {
+
+module.exports = require("regenerator-runtime");
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+module.exports = require("webpack-merge");
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -231,7 +238,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_nuxt__);
 
 
@@ -311,21 +318,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-var session = __webpack_require__(8);
+var session = __webpack_require__(3);
 
 start();
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-module.exports = require("koa-session");
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-module.exports = require("node-http-proxy-json");
 
 /***/ }
 /******/ ]);
