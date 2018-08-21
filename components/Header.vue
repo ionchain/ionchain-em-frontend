@@ -1,9 +1,9 @@
 <template>
   <header class="ly-header">
     <section class="h-main">
-      <a class="logo" href="#">
+      <nuxt-link class="logo" to="/">
         <img src="/icon/IONC_store_bule.svg" />
-      </a>
+      </nuxt-link>
       <a class="logo_gw" href="http://www.ionchain.org/index_CN.html" target="_blank">离子链官网</a>
       <div class="h-info" v-if="!isEmpty(userinfo)">
         <span>当前登录 </span><span>{{get(userinfo, 'mobile_num')}}</span>
@@ -34,13 +34,15 @@ export default {
       return this.$store.state.userinfo
     }
   },
-  mounted() {
+  beforeMount() {
+    console.log('@@===@@')
     var userinfo = this.$cookies.get('userinfo')
     userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
     userinfo = JSON.parse(userinfo)
-    console.log('userinfo', userinfo)
     this.$store.commit(types.SET_USERINFO, userinfo)
-    console.log('userinfo#', this.$store.state.userinfo)
+    if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
+      this.$router.push('/login')
+    }
   },
   watch: {
     $route() {

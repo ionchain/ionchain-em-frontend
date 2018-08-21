@@ -16,7 +16,6 @@
 // 头部
 .ly-header{
     height:80px;
-    line-heght:80px;
     .logo{
         float:left;
         padding: 14px 0;
@@ -131,6 +130,7 @@ img{
 .i-step{
     display: flex;
     justify-content: center;
+    width: 100%;
     .active, .finish{  //高亮
         color:@baseColor;
         >b{
@@ -266,13 +266,13 @@ img{
 }
 // 下一步按钮
 .i-button{
-    margin: 40px auto 0;
-    border:none;
-    color:#fff;
+    margin: 40px auto 0 !important;
+    border:none !important;
+    color:#fff !important;
     .w-h();
-    text-align: center;
-    background: @baseColor;
-    border-radius:24px;
+    text-align: center !important;
+    background: @baseColor !important;
+    border-radius:24px !important;
     &:active,&:focus{
         outline: none;
     }
