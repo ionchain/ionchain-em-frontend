@@ -73,7 +73,7 @@ module.exports = {
       }
     }
   } */
-  proxy: [
+  proxy: [ // 代理配置
     [
       '/api', 
       { 

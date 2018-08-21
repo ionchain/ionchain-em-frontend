@@ -137,7 +137,8 @@ module.exports = {
       }
     }
   } */
-  proxy: [['/api', {
+  proxy: [// 代理配置
+  ['/api', {
     target: 'http://sendrobot.ionchain.org' // api主机
     // pathRewrite: { '/api' : '' }
   }], ['/mytest', {
