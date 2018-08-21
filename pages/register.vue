@@ -14,8 +14,8 @@
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>{{ errors.first('mobile') }}</span>
                   </div>
-                  <div><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号"></div>
-                  <div><button class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
+                  <div class="register_cont_number"><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号"></div>
+                  <div class="register_cont_click"><button @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
                 <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
                   <prevent-robot :isVisible="true" @robot-check="robotCheck" />
@@ -133,6 +133,7 @@ export default {
     robotCheck(test) {
       if (test) {
         this.getSmsCode()
+        this.stepA += 1 // 不管发送成功与否切换到下一界面
       }
     },
     showCheckRobotBox() {
@@ -175,7 +176,6 @@ export default {
         if (res.success === 0) { // 短信发送成功
         } else {
         }
-        this.stepA += 1 // 不管发送成功与否切换到下一界面
       }).catch().then(() => {
         this.$snotify.remove('getSmsCode')
       })
