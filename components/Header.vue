@@ -22,7 +22,8 @@
 </template>
 <script>
 import _ from 'lodash'
-import * as types from '../store/mutation-types'
+import * as api from '@/api'
+// import * as types from '../store/mutation-types'
 
 export default {
   computed: {
@@ -34,22 +35,23 @@ export default {
     }
   },
   beforeMount() {
-    var userinfo = this.$cookies.get('userinfo')
-    userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
-    userinfo = JSON.parse(userinfo)
-    this.$store.commit(types.SET_USERINFO, userinfo)
-    if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
-      this.$router.push('/login')
-    }
+    console.log('beforeMount', this.$store.state)
+    // var userinfo = this.$cookies.get('userinfo')
+    // userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
+    // userinfo = JSON.parse(userinfo)
+    // this.$store.commit(types.SET_USERINFO, userinfo)
+    // if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
+    //   this.$router.push('/login')
+    // }
   },
   watch: {
-    $route() {
+    $route(to, from) {
       // 每次router 变化都更新登录状态cookie
-      try {
-        this.$cookies.set('userinfo', JSON.stringify(this.$store.state.userinfo), 60 * 60)
-      } catch (e) {
-        console.log(e)
-      }
+      // try {
+      //   this.$cookies.set('userinfo', JSON.stringify(this.$store.state.userinfo), 60 * 60)
+      // } catch (e) {
+      //   console.log(e)
+      // }
     }
   },
   methods: {
@@ -60,10 +62,16 @@ export default {
       return _.isEmpty(obj)
     },
     logOut() {
-      this.$cookies.remove('userinfo')
-      this.$store.commit(types.SET_USERINFO, {})
+      // this.$cookies.remove('userinfo')
+      // this.$store.commit(types.SET_USERINFO, {})
       // localStorage.setItem('userinfo', JSON.stringify({}))
-      this.$router.push('/login')
+      // this.$router.push('/login')
+      api.Logout().then((res) => {
+        this.$snotify.success(res.message)
+        setTimeout(() => {
+          this.$router.push('/login')
+        }, 200)
+      })
     }
   }
 }
