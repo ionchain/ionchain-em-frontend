@@ -57,3 +57,7 @@ export const verifySMScode = (data, params) => {
 export const createUser = (data, params) => {
   return _axios.post('/users/create', data, {params: params})
 }
+// 退出登录---来自渲染服务器
+export const Logout = (params) => {
+  return _axios.get('/logout', {params: params, baseURL: ''})
+}

@@ -1,7 +1,7 @@
 const merge = require('webpack-merge')
 const path = require('path')
 // import _ from 'lodash'
-import modifyResponse from 'node-http-proxy-json'
+// import modifyResponse from 'node-http-proxy-json'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -63,60 +63,11 @@ module.exports = {
   },
   plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-other', {src: '~plugins/plugins-client', ssr: false}],
   modules: [
-    // '@nuxtjs/axios',
-    // '@nuxtjs/proxy'
-  ],
-  /* proxy: {
-    '/api': {
-      target: 'http://192.168.1.124:3000', 
-      ws: false, 
-      pathRewrite: {
-        '^/api': ''
-      }
-    }
-  } */
-  proxy: [ // 代理配置
-    [
-      '/api', 
-      { 
-        target: 'http://sendrobot.ionchain.org', // api主机
-        // pathRewrite: { '/api' : '' }
-        // cookieDomainRewrite: '',
-        changeOrigin: true,
-        onProxyRes(proxyRes, req, res) {
-          console.log('statusCode', proxyRes.statusCode)
-          // console.log('session:', req.ctx.session)
-          modifyResponse(res, proxyRes.headers['content-encoding'], function (body) {
-            if (body) {
-              console.log('body==>', body)
-              if (proxyRes.req.path.indexOf('/users/login')>-1 && body.success == 0) {
-                console.log('set session @@@@@@@@@@@@')
-                req.ctx.session.userinfo = body.data
-                req.session = body.data
-                // proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
-              }
-            }
-            return body
-          })
-        },
-        onClose(res, socket, head) {
-          console.log('onCLose -->', res)
-        },
-        onProxyReq: function (proxyReq, req, res) {
-        }
-      }
-    ],
-    [
-      '/mytest',
-      { 
-        target: 'http://localhost:3000', // api主机
-        pathRewrite: { '/mytest' : '' }
-      }
-    ]
   ],
   router: {
     routes: [
-    ]
+    ],
+    middleware: 'auth-router'
   },
-  serverMiddleware: ['~/middleware/auth']
+  serverMiddleware: ['~/middleware/server-middleware']
 }

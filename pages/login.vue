@@ -65,7 +65,7 @@ export default {
     this.$store.commit(types.SET_IS_LOGING_PAGE, false)
   },
   mounted() {
-    this.$cookies.set('mobile_num')
+    // this.$cookies.set('mobile_num')
   },
   methods: {
     Login() {
@@ -85,9 +85,9 @@ export default {
               this.$store.commit(types.SET_USERINFO, res.data)
               // localStorage.setItem('userinfo', JSON.stringify(res.data))
               if (this.isLoginAuto) {
-                this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60 * 24 * 30) // 一个月
+                // this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60 * 24 * 30) // 一个月
               } else {
-                this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60)
+                // this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60)
               }
             } else {
               this.$snotify.error(res.message)

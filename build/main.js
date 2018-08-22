@@ -65,21 +65,17 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__);
-var merge = __webpack_require__(9);
-var path = __webpack_require__(7);
+/* WEBPACK VAR INJECTION */(function(__dirname) {var merge = __webpack_require__(12);
+var path = __webpack_require__(10);
 // import _ from 'lodash'
-
+// import modifyResponse from 'node-http-proxy-json'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -133,54 +129,12 @@ module.exports = {
     vendor: ['axios', 'moment']
   },
   plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-other', { src: '~plugins/plugins-client', ssr: false }],
-  modules: [
-    // '@nuxtjs/axios',
-    // '@nuxtjs/proxy'
-  ],
-  /* proxy: {
-    '/api': {
-      target: 'http://192.168.1.124:3000', 
-      ws: false, 
-      pathRewrite: {
-        '^/api': ''
-      }
-    }
-  } */
-  proxy: [// 代理配置
-  ['/api', {
-    target: 'http://sendrobot.ionchain.org', // api主机
-    // pathRewrite: { '/api' : '' }
-    // cookieDomainRewrite: '',
-    changeOrigin: true,
-    onProxyRes: function onProxyRes(proxyRes, req, res) {
-      console.log('statusCode', proxyRes.statusCode);
-      // console.log('session:', req.ctx.session)
-      __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json___default()(res, proxyRes.headers['content-encoding'], function (body) {
-        if (body) {
-          console.log('body==>', body);
-          if (proxyRes.req.path.indexOf('/users/login') > -1 && body.success == 0) {
-            console.log('set session @@@@@@@@@@@@');
-            req.ctx.session.userinfo = body.data;
-            req.session = body.data;
-            // proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
-          }
-        }
-        return body;
-      });
-    },
-    onClose: function onClose(res, socket, head) {
-      console.log('onCLose -->', res);
-    },
-
-    onProxyReq: function onProxyReq(proxyReq, req, res) {}
-  }], ['/mytest', {
-    target: 'http://localhost:3000', // api主机
-    pathRewrite: { '/mytest': '' }
-  }]],
+  modules: [],
   router: {
-    routes: []
+    routes: [],
+    middleware: 'auth-router'
   },
-  serverMiddleware: ['~/middleware/auth']
+  serverMiddleware: ['~/middleware/server-middleware']
 };
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 
@@ -188,77 +142,92 @@ module.exports = {
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(11);
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
-module.exports = require("koa");
+module.exports = require("axios");
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
-module.exports = require("koa-router");
+module.exports = require("http-proxy-middleware");
 
 /***/ },
 /* 4 */
 /***/ function(module, exports) {
 
-module.exports = require("koa-session");
+module.exports = require("koa");
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("koa-body");
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-module.exports = require("node-http-proxy-json");
+module.exports = require("koa-router");
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("koa-session");
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
+module.exports = require("nuxt");
+
+/***/ },
+/* 9 */,
+/* 10 */
+/***/ function(module, exports) {
+
+module.exports = require("path");
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
 module.exports = require("regenerator-runtime");
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports) {
 
 module.exports = require("webpack-merge");
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_nuxt__);
 
 
 var start = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-    var app, CONFIG, host, port, config, nuxt, builder, options, exampleProxy;
-    return __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+    var _this = this;
+
+    var app, CONFIG, host, port, config, nuxt, builder;
+    return __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             app = new __WEBPACK_IMPORTED_MODULE_1_koa___default.a();
 
@@ -292,44 +261,110 @@ var start = function () {
             // Build in development
 
             if (!config.dev) {
-              _context.next = 12;
+              _context3.next = 12;
               break;
             }
 
             builder = new __WEBPACK_IMPORTED_MODULE_2_nuxt__["Builder"](nuxt);
-            _context.next = 12;
+            _context3.next = 12;
             return builder.build();
 
           case 12:
 
-            router.get('/page-test', function (ctx, next) {
-              ctx.session.test = { msg: 'session test success!' };
-              ctx.body = "good";
-              // next()
-            });
-            router.get('/api/v1/users/login', function (ctx, next) {
-              console.log('login ===>');
-              // next()
-            });
+            router.get('/logout', function () {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+                return __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        ctx.session = null;
+                        ctx.body = {
+                          message: '退出成功',
+                          success: 0
+                        };
 
-            options = {
-              target: 'http://sendrobot.ionchain.org',
-              changeOrigin: true, // needed for virtual hosted sites
-              ws: true, // proxy websockets
-              // pathRewrite: {
-              //     '^/api/old-path' : '/api/new-path', 
-              //     '^/api/remove/path' : '/path'
-              // },
-              router: {
-                // when request.headers.host == 'dev.localhost:3000',
-                // override target 'http://www.example.org' to 'http://localhost:8000'
-                // 'dev.localhost:3000' : 'http://localhost:8000'
-              }
-            };
-            exampleProxy = proxy(options);
+                      case 2:
+                      case 'end':
+                        return _context.stop();
+                    }
+                  }
+                }, _callee, _this);
+              }));
+
+              return function (_x, _x2) {
+                return _ref2.apply(this, arguments);
+              };
+            }());
+            router.all(/^\/api/, function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
+                var url, custormHeaders, headersProps, target, options;
+                return __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        url = '';
+                        custormHeaders = {};
+                        headersProps = ['token'];
+                        target = 'http://sendrobot.ionchain.org';
 
 
-            app.use(session(CONFIG, app)).use(router.routes()).use('/api', exampleProxy).use(function (ctx) {
+                        headersProps.forEach(function (item) {
+                          if (ctx.req.headers.hasOwnProperty(item)) {
+                            custormHeaders[item] = ctx.req.headers.token;
+                          }
+                        });
+
+                        url = target + ctx.request.url;
+                        console.log('proxy@@', url, ctx.request.body);
+
+                        options = {
+                          url: url,
+                          method: ctx.req.method,
+                          headers: Object.assign({
+                            cookie: ctx.req.headers.cookie ? ctx.req.headers.cookie : '',
+                            'content-type': ctx.req.headers['content-type'],
+                            'connection': ctx.req.headers['connection']
+                          }, custormHeaders),
+                          params: ctx.request.params,
+                          data: ctx.request.body
+                        };
+                        _context2.next = 10;
+                        return axios(options).then(function (res) {
+                          if (res.headers.hasOwnProperty('set-cookie')) {
+                            ctx.response.set({ 'set-cookie': res.headers['set-cookie'] });
+                          }
+                          for (var prop in custormHeaders) {
+                            if (res.headers.hasOwnProperty(prop)) {
+                              ctx.response.set(_defineProperty({}, prop, res.headers[prop]));
+                            }
+                          }
+                          ctx.response.set({ 'content-type': res.headers['content-type'] });
+                          ctx.body = res.data;
+                          if (ctx.request.url.indexOf('/users/login' > -1 && ctx.body.success === 0)) {
+                            ctx.session.userinfo = res.data.data;
+                          }
+                        }).catch(function (err) {
+                          console.log('err===>', err);
+                          ctx.body = err.response.statusText;
+                          ctx.status = err.response.status;
+                        }).then(function () {});
+
+                      case 10:
+                      case 'end':
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2, _this);
+              }));
+
+              return function (_x3, _x4) {
+                return _ref3.apply(this, arguments);
+              };
+            }());
+
+            app.use(koaBody()).use(session(CONFIG, app)).use(router.routes())
+            // .use(router.allowedMethods())
+            .use(function (ctx) {
               ctx.status = 200;
               ctx.respond = false; // Mark request as handled for Koa
               ctx.req.ctx = ctx; // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
@@ -338,12 +373,12 @@ var start = function () {
 
             console.log('Server listening on ' + host + ':' + port); // eslint-disable-line no-console
 
-          case 18:
+          case 16:
           case 'end':
-            return _context.stop();
+            return _context3.stop();
         }
       }
-    }, _callee, this);
+    }, _callee3, this);
   }));
 
   return function start() {
@@ -351,22 +386,20 @@ var start = function () {
   };
 }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 
 
-var session = __webpack_require__(4);
-var Router = __webpack_require__(3);
+var session = __webpack_require__(7);
+var Router = __webpack_require__(6);
 var router = new Router();
-var proxy = __webpack_require__(11);
+var proxy = __webpack_require__(3);
+var axios = __webpack_require__(2);
+var koaBody = __webpack_require__(5);
 
 start();
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-module.exports = require("http-proxy-middleware");
 
 /***/ }
 /******/ ]);

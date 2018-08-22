@@ -7,7 +7,6 @@ var proxy = require('http-proxy-middleware')
 const axios = require('axios')
 const koaBody = require('koa-body')
 
-
 async function start () {
   const app = new Koa()
 
@@ -42,37 +41,68 @@ async function start () {
     await builder.build()
   }
 
-  router.get('/page-test', (ctx, next) => {
-    ctx.session.test = {msg: 'session test success!'}
-    ctx.body = "good"
-    // next()
-  })
-  router.get('/api/v1/users/login', (ctx, next) => {
-    console.log('login ===>')
-    // next()
-  })
-
-  var options = {
-    target: 'http://sendrobot.ionchain.org',
-    changeOrigin: true,               // needed for virtual hosted sites
-    ws: true,                         // proxy websockets
-    // pathRewrite: {
-    //     '^/api/old-path' : '/api/new-path', 
-    //     '^/api/remove/path' : '/path'
-    // },
-    router: {
-        // when request.headers.host == 'dev.localhost:3000',
-        // override target 'http://www.example.org' to 'http://localhost:8000'
-        // 'dev.localhost:3000' : 'http://localhost:8000'
+  router.get('/logout', async (ctx, next) => {
+    ctx.session = null
+    ctx.body = {
+      message: '退出成功',
+      success: 0
     }
-  }
-  var exampleProxy = proxy(options)
+  })
+  router.all(/^\/api/, async (ctx, next) => {
+    var url = ''
+    var custormHeaders = {}
+    var headersProps = ['token']
+    var target = 'http://sendrobot.ionchain.org'
+
+    headersProps.forEach((item) => {
+      if (ctx.req.headers.hasOwnProperty(item)) {
+        custormHeaders[item] = ctx.req.headers.token
+      }
+    })
+
+    url = target + ctx.request.url
+    console.log('proxy@@', url, ctx.request.body)
+
+    var options = {
+      url: url,
+      method: ctx.req.method,
+      headers: {
+        cookie: ctx.req.headers.cookie ? ctx.req.headers.cookie : '',
+        'content-type': ctx.req.headers['content-type'],
+        'connection': ctx.req.headers['connection'],
+        ...custormHeaders
+      },
+      params: ctx.request.params,
+      data: ctx.request.body
+    }
+    await axios(options).then((res) => {
+      if (res.headers.hasOwnProperty('set-cookie')) {
+        ctx.response.set({'set-cookie': res.headers['set-cookie']})
+      }
+      for (let prop in custormHeaders) {
+        if (res.headers.hasOwnProperty(prop)) {
+          ctx.response.set({[prop]: res.headers[prop]})
+        }
+      }
+      ctx.response.set({'content-type': res.headers['content-type']})
+      ctx.body = res.data
+      if (ctx.request.url.indexOf(('/users/login') > -1 && ctx.body.success === 0)) {
+        ctx.session.userinfo = res.data.data
+      }
+    }).catch((err) => {
+      console.log('err===>', err)
+      ctx.body = err.response.statusText
+      ctx.status = err.response.status
+    }).then(() => {
+    })
+  })
 
   app
+  .use(koaBody())
   .use(session(CONFIG, app))
   .use(router.routes())
-  .use('/api', exampleProxy)
-  .use( ctx => {
+  // .use(router.allowedMethods())
+  .use(ctx => {
     ctx.status = 200
     ctx.respond = false // Mark request as handled for Koa
     ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
