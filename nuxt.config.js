@@ -63,8 +63,8 @@ module.exports = {
   },
   plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-other', {src: '~plugins/plugins-client', ssr: false}],
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    // '@nuxtjs/axios',
+    // '@nuxtjs/proxy'
   ],
   /* proxy: {
     '/api': {
@@ -81,7 +81,8 @@ module.exports = {
       { 
         target: 'http://sendrobot.ionchain.org', // api主机
         // pathRewrite: { '/api' : '' }
-        cookieDomainRewrite: '',
+        // cookieDomainRewrite: '',
+        changeOrigin: true,
         onProxyRes(proxyRes, req, res) {
           console.log('statusCode', proxyRes.statusCode)
           // console.log('session:', req.ctx.session)
@@ -91,7 +92,8 @@ module.exports = {
               if (proxyRes.req.path.indexOf('/users/login')>-1 && body.success == 0) {
                 console.log('set session @@@@@@@@@@@@')
                 req.ctx.session.userinfo = body.data
-                proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
+                req.session = body.data
+                // proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
               }
             }
             return body
@@ -115,6 +117,6 @@ module.exports = {
   router: {
     routes: [
     ]
-    // middleware: 'check-auth'
-  }
+  },
+  serverMiddleware: ['~/middleware/auth']
 }

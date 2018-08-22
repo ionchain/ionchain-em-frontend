@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,10 +74,10 @@ module.exports =
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__dirname) {Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_node_http_proxy_json__);
-var merge = __webpack_require__(8);
-var path = __webpack_require__(6);
+var merge = __webpack_require__(9);
+var path = __webpack_require__(7);
 // import _ from 'lodash'
 
 
@@ -133,7 +133,10 @@ module.exports = {
     vendor: ['axios', 'moment']
   },
   plugins: ['~plugins/pretty-checkbox-vue', '~plugins/plugins-other', { src: '~plugins/plugins-client', ssr: false }],
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+  modules: [
+    // '@nuxtjs/axios',
+    // '@nuxtjs/proxy'
+  ],
   /* proxy: {
     '/api': {
       target: 'http://192.168.1.124:3000', 
@@ -147,7 +150,8 @@ module.exports = {
   ['/api', {
     target: 'http://sendrobot.ionchain.org', // api主机
     // pathRewrite: { '/api' : '' }
-    cookieDomainRewrite: '',
+    // cookieDomainRewrite: '',
+    changeOrigin: true,
     onProxyRes: function onProxyRes(proxyRes, req, res) {
       console.log('statusCode', proxyRes.statusCode);
       // console.log('session:', req.ctx.session)
@@ -157,7 +161,8 @@ module.exports = {
           if (proxyRes.req.path.indexOf('/users/login') > -1 && body.success == 0) {
             console.log('set session @@@@@@@@@@@@');
             req.ctx.session.userinfo = body.data;
-            proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx';
+            req.session = body.data;
+            // proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
           }
         }
         return body;
@@ -174,8 +179,8 @@ module.exports = {
   }]],
   router: {
     routes: []
-    // middleware: 'check-auth'
-  }
+  },
+  serverMiddleware: ['~/middleware/auth']
 };
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 
@@ -183,7 +188,7 @@ module.exports = {
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(7);
+module.exports = __webpack_require__(8);
 
 
 /***/ },
@@ -196,40 +201,46 @@ module.exports = require("koa");
 /* 3 */
 /***/ function(module, exports) {
 
-module.exports = require("koa-session");
+module.exports = require("koa-router");
 
 /***/ },
 /* 4 */
 /***/ function(module, exports) {
 
-module.exports = require("nuxt");
+module.exports = require("koa-session");
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
-module.exports = require("node-http-proxy-json");
+module.exports = require("nuxt");
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("node-http-proxy-json");
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-module.exports = require("regenerator-runtime");
+module.exports = require("path");
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
-module.exports = require("webpack-merge");
+module.exports = require("regenerator-runtime");
 
 /***/ },
 /* 9 */
+/***/ function(module, exports) {
+
+module.exports = require("webpack-merge");
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -238,13 +249,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_nuxt__);
 
 
 var start = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-    var app, CONFIG, host, port, config, nuxt, builder;
+    var app, CONFIG, host, port, config, nuxt, builder, options, exampleProxy;
     return __WEBPACK_IMPORTED_MODULE_0_E_workroom2018_ionchain_em_frontend_node_modules_babel_runtime_6_26_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -291,17 +302,43 @@ var start = function () {
 
           case 12:
 
-            app.use(session(CONFIG, app)).use(function (ctx) {
+            router.get('/page-test', function (ctx, next) {
+              ctx.session.test = { msg: 'session test success!' };
+              ctx.body = "good";
+              // next()
+            });
+            router.get('/api/v1/users/login', function (ctx, next) {
+              console.log('login ===>');
+              // next()
+            });
+
+            options = {
+              target: 'http://sendrobot.ionchain.org',
+              changeOrigin: true, // needed for virtual hosted sites
+              ws: true, // proxy websockets
+              // pathRewrite: {
+              //     '^/api/old-path' : '/api/new-path', 
+              //     '^/api/remove/path' : '/path'
+              // },
+              router: {
+                // when request.headers.host == 'dev.localhost:3000',
+                // override target 'http://www.example.org' to 'http://localhost:8000'
+                // 'dev.localhost:3000' : 'http://localhost:8000'
+              }
+            };
+            exampleProxy = proxy(options);
+
+
+            app.use(session(CONFIG, app)).use(router.routes()).use('/api', exampleProxy).use(function (ctx) {
               ctx.status = 200;
               ctx.respond = false; // Mark request as handled for Koa
               ctx.req.ctx = ctx; // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
               nuxt.render(ctx.req, ctx.res);
-            });
+            }).listen(port, host);
 
-            app.listen(port, host);
             console.log('Server listening on ' + host + ':' + port); // eslint-disable-line no-console
 
-          case 15:
+          case 18:
           case 'end':
             return _context.stop();
         }
@@ -318,9 +355,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-var session = __webpack_require__(3);
+var session = __webpack_require__(4);
+var Router = __webpack_require__(3);
+var router = new Router();
+var proxy = __webpack_require__(11);
 
 start();
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+module.exports = require("http-proxy-middleware");
 
 /***/ }
 /******/ ]);

@@ -16,7 +16,7 @@
             <input v-validate="'required'" data-vv-as="手机号" name="mobile" placeholder="请输入手机号" v-model="form.mobile" class="i-input-bg" type="text" />
           </div>
           <div class="login_right_pw">
-            <input v-validate="'required'" v-model="form.password" data-vv-as="密码" name="password" placeholder="请输入密码" class="i-input-bg" type="password" />
+            <input @keyup.enter="Login" v-validate="'required'" v-model="form.password" data-vv-as="密码" name="password" placeholder="请输入密码" class="i-input-bg" type="password" />
           </div>
           <div class="login_right_select">
               <div>

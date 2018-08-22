@@ -1,6 +1,12 @@
 import Koa from 'koa'
 import { Nuxt, Builder } from 'nuxt'
 const session = require('koa-session')
+var Router = require('koa-router')
+var router = new Router()
+var proxy = require('http-proxy-middleware')
+const axios = require('axios')
+const koaBody = require('koa-body')
+
 
 async function start () {
   const app = new Koa()
@@ -36,16 +42,44 @@ async function start () {
     await builder.build()
   }
 
+  router.get('/page-test', (ctx, next) => {
+    ctx.session.test = {msg: 'session test success!'}
+    ctx.body = "good"
+    // next()
+  })
+  router.get('/api/v1/users/login', (ctx, next) => {
+    console.log('login ===>')
+    // next()
+  })
+
+  var options = {
+    target: 'http://sendrobot.ionchain.org',
+    changeOrigin: true,               // needed for virtual hosted sites
+    ws: true,                         // proxy websockets
+    // pathRewrite: {
+    //     '^/api/old-path' : '/api/new-path', 
+    //     '^/api/remove/path' : '/path'
+    // },
+    router: {
+        // when request.headers.host == 'dev.localhost:3000',
+        // override target 'http://www.example.org' to 'http://localhost:8000'
+        // 'dev.localhost:3000' : 'http://localhost:8000'
+    }
+  }
+  var exampleProxy = proxy(options)
+
   app
   .use(session(CONFIG, app))
+  .use(router.routes())
+  .use('/api', exampleProxy)
   .use( ctx => {
     ctx.status = 200
     ctx.respond = false // Mark request as handled for Koa
     ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
     nuxt.render(ctx.req, ctx.res)
   })
+  .listen(port, host)
 
-  app.listen(port, host)
   console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
 }
 
