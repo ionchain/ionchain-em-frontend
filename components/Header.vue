@@ -5,11 +5,11 @@
         <img src="/icon/IONC_store_bule.svg" />
       </nuxt-link>
       <a class="logo_gw" href="http://www.ionchain.org/index_CN.html" target="_blank">离子链官网</a>
-      <div class="h-info" v-if="!isEmpty(userinfo)">
+      <div class="h-info" v-if="!isEmpty(userinfo) && !isLoginPage">
         <span>当前登录 </span><span>{{get(userinfo, 'mobile_num')}}</span>
         <span @click="logOut" class="quit"> 退出</span>
       </div>
-      <div class="h-have" v-if="isEmpty(userinfo)">
+      <div class="h-have" v-if="isEmpty(userinfo) && !isLoginPage">
       <!-- <nuxt-link to='/sldfs/sdfs'></nuxt-link> -->
         <!-- <a v-if="!mobile_num" href="">已有账号？<span>请登录</span></a> -->
         <nuxt-link to="/register" class="z_d"><span>注册</span></nuxt-link>&nbsp;&nbsp;
@@ -25,22 +25,22 @@ import _ from 'lodash'
 import * as types from '../store/mutation-types'
 
 export default {
-  data() {
-    return {
-    }
-  },
   computed: {
     userinfo() {
       return this.$store.state.userinfo
+    },
+    isLoginPage() {
+      return this.$store.state.isLoginPage
     }
   },
-  mounted() {
+  beforeMount() {
     var userinfo = this.$cookies.get('userinfo')
     userinfo = userinfo !== 'undefined' && userinfo !== 'null' ? userinfo : '{}'
     userinfo = JSON.parse(userinfo)
-    console.log('userinfo', userinfo)
     this.$store.commit(types.SET_USERINFO, userinfo)
-    console.log('userinfo#', this.$store.state.userinfo)
+    if ((this.$route.path === '/' || this.$route.path === '/login') && _.isEmpty(userinfo)) {
+      this.$router.push('/login')
+    }
   },
   watch: {
     $route() {
