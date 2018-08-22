@@ -58,6 +58,12 @@ export default {
       title: `Login - IONC Store`
     }
   },
+  beforeMount() {
+    this.$store.commit(types.SET_IS_LOGING_PAGE, true)
+  },
+  beforeDestroy() {
+    this.$store.commit(types.SET_IS_LOGING_PAGE, false)
+  },
   mounted() {
     this.$cookies.set('mobile_num')
   },
