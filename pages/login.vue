@@ -28,7 +28,7 @@
                     自动登录
                 </p-check>
               </div>
-              <div>注册 ION Chain ID</div>
+              <nuxt-link class="link" to="/register">注册 ION Chain ID</nuxt-link>
           </div>
           <div class="login_right_log cursor-hand"  @click="Login"><a href="javascript:;">登录</a></div>
       </div>
