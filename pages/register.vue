@@ -15,7 +15,7 @@
                     <span>{{ errors.first('mobile') }}</span>
                   </div>
                   <div class="register_cont_number"><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号"></div>
-                  <div class="register_cont_click"><button  class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
+                  <div class="register_cont_click"><button @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
                 <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
                   <prevent-robot :isVisible="true" @robot-check="robotCheck" />
@@ -26,7 +26,7 @@
                   </div>
                   <div class="register_cont_click_yz">
                     <div v-if="isShowSMScodeInput" class="click_yz_yz">
-                        <div><input  v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
+                        <div><input v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
                         <div><button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s后重新获取</button><button @click="getSmsCode" v-else class="click_yz_cx">重新获取</button></div> 
                     </div>
                     <div v-if="isShowMessage" class="login_right_hint login_right_w">
