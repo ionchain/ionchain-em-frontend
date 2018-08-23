@@ -49,7 +49,11 @@ export const Login = (data, params) => {
 export const getSmsCode = (data, params) => {
   return _axios.post('/users/sms_code', data, {params: params})
 }
-// 校验验证码
+// 重置密码
+export const resetSmsCode = (data, params) => {
+  return _axios.post('/users/reset_password', data, {params: params})
+}
+// 校验短信验证码
 export const verifySMScode = (data, params) => {
   return _axios.post('/users/verify_sms_code', data, {params: params})
 }

@@ -53,7 +53,7 @@
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>{{ errors.first('password') }}</span>
                   </div>
-                  <p><input v-validate="'required|confirmed:pw_confirm'" name="password" data-vv-as="密码" type="password" v-model="form.password" placeholder="请输入密码"></p>
+                  <p><input v-validate="'required|confirmed:pw_confirm|min:6'" name="password" data-vv-as="密码" type="password" v-model="form.password" placeholder="请输入密码"></p>
                   <p><input name="pw_confirm" ref="pw_confirm" data-vv-as="确认密码" type="password" v-model="form.password_confirmation" placeholder="确定密码"></p>
                 </div>
                 <!-- 下一步按钮 -->
@@ -65,9 +65,7 @@
                     <div><img src="/icon/succeed.svg" alt=""></div>
                     <div>密码设置成功!</div>
                     <div class="register_next">
-                      <nuxt-link to="/">
-                        <button class="i-button">完成</button>
-                      </nuxt-link>
+                      <button class="i-button" @click="logOut">完成</button>
                     </div>
             </li>
           </ul>
@@ -121,7 +119,7 @@ export default {
         backdrop: 0.3,
         id: 'getSmsCode'
       })
-      api.getSmsCode({mobile: this.form.mobile}).then((res) => {
+      api.getSmsCode({mobile: this.form.mobile, source: 'reset_password'}).then((res) => {
         if (res.success === 0) { // 短信发送成功
         } else {
         }
@@ -163,10 +161,23 @@ export default {
         this.$snotify.remove('verifySMScode')
       })
     },
+    // 检查两次输入的密码是否一致
     checkPwd() {
       this.$validator.validate('password', this.form.password).then((result) => {
         if (result) {
-          this.nextStep()
+          api.resetSmsCode({
+            mobile: this.form.mobile,
+            password: this.form.password,
+            password_confirmation: this.form.password_confirmation
+          }).then((res) => {
+            if (res.success === 0) {
+              this.$snotify.success(res.message)
+              this.step += 1
+              // this.nextStep()
+            } else {
+              this.$snotify.error(res.message)
+            }
+          })
         }
       })
     },
@@ -182,6 +193,14 @@ export default {
           }
         }
       }
+    },
+    logOut() {
+      api.Logout().then((res) => {
+        this.$snotify.success(res.message)
+        setTimeout(() => {
+          this.$router.push('/login')
+        }, 200)
+      })
     }
   }
 }

@@ -176,18 +176,23 @@ img{
         padding-left: 14px;
         box-sizing: border-box;
     }
-    .placeholder(@inputTextColor);
 }
 
 .register_cont_click{
     >button{
-        .w-h();
-        border: 1px solid @baseColor;
-        border-radius: 6px;
-        background: #fff;
-        font-size: 16px;
-        color: @baseColor;
-        outline: none;
+        &:extend(.i-button);
+        border-radius: 6px !important;
+        background: @buttonColor !important;
+        border: 1px solid @baseColor !important;
+        color: @baseColor !important;
+        margin:0 auto 0 !important;
+        // .w-h();
+        // border: 1px solid @baseColor;
+        // border-radius: 6px;
+        // background: #fff;
+        // font-size: 16px;
+        // color: @baseColor;
+        // outline: none;
     }
 }
 .register_cont_click_yz{
@@ -204,7 +209,6 @@ img{
                 font-size: 14px;
                 border: 1px solid @inputBorderColor;
             }
-            .placeholder(@inputTextColor);
         }
         >div:last-child{
             margin-left: 10px;
@@ -245,8 +249,6 @@ img{
             font-size: 14px;
             box-sizing: border-box;
         }
-        .placeholder(@inputTextColor);
-
     }
     
 }  
@@ -266,13 +268,15 @@ img{
 }
 // 下一步按钮
 .i-button{
-    margin: 40px auto 0 !important;
-    border:none !important;
-    color:#fff !important;
+    margin: 40px auto 0;
+    border:none;
+    color:#fff;
     .w-h();
-    text-align: center !important;
-    background: @baseColor !important;
-    border-radius:24px !important;
+    font-size: 16px;
+    text-align: center;
+    background: @baseColor;
+    border-radius:24px;
+    outline: none;
     &:active,&:focus{
         outline: none;
     }
