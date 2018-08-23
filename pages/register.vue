@@ -174,7 +174,9 @@ export default {
       })
       api.getSmsCode({mobile: this.form.mobile}).then((res) => {
         if (res.success === 0) { // 短信发送成功
+          this.$snotify.success(res.message)
         } else {
+          this.$snotify.error(res.message)
         }
       }).catch().then(() => {
         this.$snotify.remove('getSmsCode')

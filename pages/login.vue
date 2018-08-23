@@ -1,5 +1,6 @@
 <template>
   <div class="page-login">
+    <div class="page-main">
       <div class="login_left">
         <img src="../static/login_img.png" alt="">
       </div>
@@ -35,6 +36,7 @@
           </div>
           <div class="login_right_log cursor-hand"  @click="Login"><a href="javascript:;">登录</a></div>
       </div>
+    </div>
   </div>
 </template>
 <script>
