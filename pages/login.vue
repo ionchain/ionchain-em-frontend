@@ -71,6 +71,9 @@ export default {
   },
   mounted() {
     // this.$cookies.set('mobile_num')
+    if (process.client) {
+      window.router = this.$router
+    }
   },
   methods: {
     Login() {

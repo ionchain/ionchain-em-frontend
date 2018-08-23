@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     $route(to) {
-      if (_.isEmpty(this.$store.userinfo) && (to.path === '/' || to.path === '/index')) {
+      if (_.isEmpty(this.$store.state.userinfo) && (to.path === '/' || to.path === '/index')) {
         this.$router.push('/login')
       }
     }
