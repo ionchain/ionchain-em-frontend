@@ -117,7 +117,7 @@ export default {
   },
   head() {
     return {
-      title: `Login - IONC Store`
+      title: `Register - IONC Store`
     }
   },
   created() {

@@ -19,7 +19,7 @@
 <script>
 import _ from 'lodash'
 import * as api from '@/api'
-// import * as types from '../store/mutation-types'
+import * as types from '../store/mutation-types'
 
 export default {
   computed: {
@@ -46,10 +46,14 @@ export default {
     },
     logOut() {
       api.Logout().then((res) => {
-        this.$snotify.success(res.message)
-        setTimeout(() => {
-          this.$router.push('/login')
-        }, 200)
+        if (res.success === 0) {
+          this.$snotify.success(res.message)
+          this.$store.commit(types.SET_USERINFO, {})
+          setTimeout(() => {
+            this.$router.push('/login')
+            location.refresh()
+          }, 200)
+        }
       })
     }
   }
