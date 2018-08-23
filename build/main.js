@@ -305,7 +305,7 @@ var start = function () {
                         custormHeaders = {};
                         headersProps = ['token'];
                         target = 'http://sendrobot.ionchain.org';
-
+                        // var target = 'http://ionc_stoer.ionchain.org:8001'
 
                         headersProps.forEach(function (item) {
                           if (ctx.req.headers.hasOwnProperty(item)) {
@@ -314,7 +314,7 @@ var start = function () {
                         });
 
                         url = target + ctx.request.url;
-                        console.log('proxy@@', url, ctx.request.body);
+                        console.log('proxy url @@', url, ctx.request.body);
 
                         options = {
                           url: url,

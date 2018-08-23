@@ -53,7 +53,8 @@ async function start () {
     var custormHeaders = {}
     var headersProps = ['token']
     var target = 'http://sendrobot.ionchain.org'
-
+    // var target = 'http://ionc_stoer.ionchain.org:8001'
+    
     headersProps.forEach((item) => {
       if (ctx.req.headers.hasOwnProperty(item)) {
         custormHeaders[item] = ctx.req.headers.token
@@ -61,7 +62,7 @@ async function start () {
     })
 
     url = target + ctx.request.url
-    console.log('proxy@@', url, ctx.request.body)
+    console.log('proxy url @@', url, ctx.request.body)
 
     var options = {
       url: url,
