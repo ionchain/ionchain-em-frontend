@@ -30,6 +30,13 @@ export default {
       return this.$store.state.isLoginPage
     }
   },
+  watch: {
+    $route(to) {
+      if (_.isEmpty(this.$store.userinfo) && (to.path === '/' || to.path === '/index')) {
+        this.$router.push('/login')
+      }
+    }
+  },
   methods: {
     get(obj, path) {
       return _.get(obj, path)

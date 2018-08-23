@@ -15,7 +15,7 @@
                     <span>{{ errors.first('mobile') }}</span>
                   </div>
                   <div class="register_cont_number"><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号"></div>
-                  <div class="register_cont_click"><button @click="showCheckRobotBox">点击按钮进行验证</button></div>
+                  <div class="register_cont_click"><button  class="i-button" @click="showCheckRobotBox">点击按钮进行验证</button></div>
                 </div>
                 <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
                   <prevent-robot :isVisible="true" @robot-check="robotCheck" />
@@ -43,7 +43,7 @@
                     <span><img src="/icon/error.svg" alt=""></span>
                     <span>{{ errors.first('password') }}</span>
                   </div>
-                  <p><input v-validate="'required|confirmed:pw_confirm'" name="password" data-vv-as="密码" type="password" v-model="form.password" placeholder="请输入密码"></p>
+                  <p><input v-validate="'required|confirmed:pw_confirm|min:6'" name="password" data-vv-as="密码" type="password" v-model="form.password" placeholder="请输入密码"></p>
                   <p><input name="pw_confirm" ref="pw_confirm" data-vv-as="确认密码" type="password" v-model="form.password_confirmation" placeholder="确定密码"></p>
                   <!-- 下一步按钮 -->
                   <button class="i-button" @click="checkPwd">

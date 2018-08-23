@@ -7,7 +7,7 @@
       <div class="login_right login-box">
           <div class="login_right_logo">
               <div><img src="/icon/logo.svg" alt=""></div>
-              <div>IONChain</div>
+              <div>IONC Store</div>
           </div>
           <div class="login_right_hint" v-show="errors.has('mobile') || errors.has('password')">
               <span><img src="/icon/error.svg" alt=""></span>
@@ -18,6 +18,9 @@
           </div>
           <div class="login_right_pw">
             <input @keyup.enter="Login" v-validate="'required'" v-model="form.password" data-vv-as="密码" name="password" placeholder="请输入密码" class="i-input-bg" type="password" />
+            <div>
+              <nuxt-link to="/retrieve">忘记密码？</nuxt-link>
+            </div>
           </div>
           <div class="login_right_select">
               <div>

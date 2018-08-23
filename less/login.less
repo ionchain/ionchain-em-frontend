@@ -37,8 +37,8 @@
         }
         div:last-child{
             color: @baseColor;
-            margin: 10px 0 20px;
-            font-size: 14px;
+            margin: 10px 0 30px;
+            font-size: 22px;
         }
     }
     
@@ -47,7 +47,20 @@
     }
     .login_right_pw{
         margin-bottom: 10px;
-
+        position: relative;
+        >div{
+            position: absolute;
+            right: 5px;
+            top: 12px;
+            >a{
+                font-size: 14px;
+                color: @inputTextColor;
+            }
+            >a:hover{
+                color: @inputTextColor;
+            }
+            
+        }
     }
     .login_right_select{
         margin-bottom: 40px;
