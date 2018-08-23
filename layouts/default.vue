@@ -17,6 +17,11 @@ export default {
   components: {
     MyHeader,
     MyFooter
+  },
+  created() {
+    if (process.client) {
+      window.vm = this
+    }
   }
 }
 </script>

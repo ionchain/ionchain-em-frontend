@@ -133,10 +133,6 @@ export default {
         }
       })
     },
-    Login() {
-      api.Login().then((res) => {
-      })
-    },
     // 滑动拼图-高级生物验证
     robotCheck(test) {
       if (test) {

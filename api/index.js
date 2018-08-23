@@ -1,37 +1,4 @@
-import axios from 'axios'
-import { BASE_URL } from './config.js'
-
-var _axios = axios.create({
-  baseURL: BASE_URL
-})
-
-_axios.interceptors.request.use(
-  (config) => {
-    if (localStorage.token) {
-      config.headers.accessToken = localStorage.token
-    }
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
-
-_axios.interceptors.response.use(
-  (response) => {
-    return response.data
-  },
-  (error) => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 401:
-          localStorage.clear()
-          break
-      }
-    }
-    return Promise.reject(error)
-  }
-)
+import { _axios } from './config'
 
 // 测试数据
 export const DATA_TEST = (data, params) => {
@@ -43,7 +10,7 @@ export const DATA_TEST2 = (params) => {
 }
 // 登录
 export const Login = (data, params) => {
-  return _axios.post('/users/login', data, { params: params })
+  return _axios.post('/users/login-test', data, { params: params })
 }
 // 获取短信验证码
 export const getSmsCode = (data, params) => {
