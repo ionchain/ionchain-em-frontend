@@ -10,7 +10,7 @@ export const DATA_TEST2 = (params) => {
 }
 // 登录
 export const Login = (data, params) => {
-  return _axios.post('/users/login-test', data, { params: params })
+  return _axios.post('/users/login', data, { params: params })
 }
 // 获取短信验证码
 export const getSmsCode = (data, params) => {
