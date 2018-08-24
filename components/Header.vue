@@ -31,9 +31,14 @@ export default {
     }
   },
   watch: {
-    $route(to) {
-      if (_.isEmpty(this.$store.state.userinfo) && (to.path === '/' || to.path === '/index')) {
+    $route(to, from) {
+      if (_.isEmpty(this.$store.state.userinfo) && (to.name === 'index')) {
         this.$router.push('/login')
+      }
+      if (to.name === 'login') {
+        this.$store.commit(types.SET_IS_LOGING_PAGE, true)
+      } else {
+        this.$store.commit(types.SET_IS_LOGING_PAGE, false)
       }
     }
   },
