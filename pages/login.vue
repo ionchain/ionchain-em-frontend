@@ -42,6 +42,7 @@
 <script>
 import * as api from '@/api'
 import * as types from '@/store/mutation-types'
+// import { setTimeout } from 'timers'
 // import _ from 'lodash'
 export default {
   layout: 'default',
@@ -62,17 +63,6 @@ export default {
   head() {
     return {
       title: `Login - IONC Store`
-    }
-  },
-  beforeMount() {
-    this.$store.commit(types.SET_IS_LOGING_PAGE, true)
-  },
-  beforeDestroy() {
-    this.$store.commit(types.SET_IS_LOGING_PAGE, false)
-  },
-  mounted() {
-    if (process.client) {
-      window.router = this.$router
     }
   },
   methods: {
