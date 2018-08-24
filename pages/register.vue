@@ -33,6 +33,10 @@
                         <div><input v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
                         <div><button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s后重新获取</button><button @click="getSmsCode" v-else class="click_yz_cx">重新获取</button></div> 
                     </div>
+                    <div v-if="isShowErrorMsg" class="login_right_hint login_right_w">
+                      <span><img src="/icon/error.svg" alt=""></span>
+                      <span>{{ smsCodeFailMessage }}</span>
+                    </div>
                     <div v-if="isSmsSendSuccess" class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                   </div>
                   <button class="i-button" @click="verifySMScode">下一步</button>
@@ -91,7 +95,7 @@ export default {
   },
   data() {
     return {
-      isShowMessage: false,
+      isShowErrorMsg: false,
       isShowSMScodeInput: true,
       isSmsSendSuccess: false,
       smsCodeFailMessage: '',
@@ -179,11 +183,11 @@ export default {
       api.getSmsCode({mobile: this.form.mobile}).then((res) => {
         if (res.success === 0) { // 短信发送成功
           this.isSmsSendSuccess = true
-          this.isShowMessage = false
+          this.isShowErrorMsg = false
           // this.$snotify.success(res.message)
         } else {
           this.smsCodeFailMessage = res.message
-          this.isShowMessage = true
+          this.isShowErrorMsg = true
           if (res.success === 2001) {
             this.isShowSMScodeInput = false
           }

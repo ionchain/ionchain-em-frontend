@@ -27,21 +27,33 @@
     </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        articlesRemark: true
-      }
-    },
-    head() {
-      return {
-        title: `IONC Store`
-      }
-    },
-    methods: {
-      remark_close() {
-        this.articlesRemark = false
-      }
+import _ from 'lodash'
+export default {
+  data() {
+    return {
+      articlesRemark: true
+    }
+  },
+  head() {
+    return {
+      title: `IONC Store`
+    }
+  },
+  methods: {
+    remark_close() {
+      this.articlesRemark = false
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    if (process.server) {
+      next()
+      return
+    }
+    if (_.isEmpty(window.vm.$store.state.userinfo)) {
+      next({name: 'login'})
+    } else {
+      next()
     }
   }
+}
 </script>

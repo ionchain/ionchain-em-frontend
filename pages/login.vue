@@ -42,6 +42,7 @@
 <script>
 import * as api from '@/api'
 import * as types from '@/store/mutation-types'
+// import _ from 'lodash'
 export default {
   layout: 'default',
   asyncData({ req }) {
@@ -70,14 +71,12 @@ export default {
     this.$store.commit(types.SET_IS_LOGING_PAGE, false)
   },
   mounted() {
-    // this.$cookies.set('mobile_num')
     if (process.client) {
       window.router = this.$router
     }
   },
   methods: {
     Login() {
-      // let loadingkey = this.$vDialog.mask('请稍后...')
       this.$validator.validateAll().then((result) => {
         if (result) {
           this.$snotify.info('请稍后...', {
@@ -91,11 +90,7 @@ export default {
               this.$snotify.success('登录成功')
               this.$router.push('/')
               this.$store.commit(types.SET_USERINFO, res.data)
-              // localStorage.setItem('userinfo', JSON.stringify(res.data))
               if (this.isLoginAuto) {
-                // this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60 * 24 * 30) // 一个月
-              } else {
-                // this.$cookies.set('userinfo', JSON.stringify(res.data), 60 * 60)
               }
             } else {
               this.$snotify.error(res.message)

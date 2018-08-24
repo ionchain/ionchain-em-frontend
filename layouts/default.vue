@@ -12,6 +12,7 @@
 
 import MyHeader from '../components/Header.vue'
 import MyFooter from '../components/Footer.vue'
+// import _ from 'lodash'
 
 export default {
   components: {
