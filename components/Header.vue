@@ -56,7 +56,7 @@ export default {
           this.$store.commit(types.SET_USERINFO, {})
           setTimeout(() => {
             this.$router.push('/login')
-            location.refresh()
+            location.reload()
           }, 200)
         }
       })
