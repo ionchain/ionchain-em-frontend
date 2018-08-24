@@ -32,7 +32,7 @@
                 </div>
                  <!-- 请输入手机号 -->
                 <div class="register_cont_number">
-                    <input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号">
+                    <input v-validate="'required|mobile'" readonly name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号">
                 </div>
                 <div class="register_cont_click_yz">
                     <div class="click_yz_yz">
