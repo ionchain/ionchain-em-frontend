@@ -21,6 +21,10 @@
                   <prevent-robot :isVisible="true" @robot-check="robotCheck" />
                 </div>
                 <div :class="{active:stepA==3,finish:stepA>3}" class="stepA-item register_cont_click">
+                  <div v-if="isShowMessage" class="login_right_hint login_right_w">
+                      <span><img src="/icon/error.svg" alt=""></span>
+                      <span>{{ smsCodeFailMessage }}</span>
+                  </div>
                   <div class="register_cont_number">
                         <input type="text" placeholder="请输入手机号" readonly v-model="form.mobile">
                   </div>
@@ -28,10 +32,6 @@
                     <div v-if="isShowSMScodeInput" class="click_yz_yz">
                         <div><input v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
                         <div><button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s后重新获取</button><button @click="getSmsCode" v-else class="click_yz_cx">重新获取</button></div> 
-                    </div>
-                    <div v-if="isShowMessage" class="login_right_hint login_right_w">
-                      <span><img src="/icon/error.svg" alt=""></span>
-                      <span>{{ smsCodeFailMessage }}</span>
                     </div>
                     <div v-if="isSmsSendSuccess" class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
                   </div>
