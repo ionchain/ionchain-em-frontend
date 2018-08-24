@@ -54,7 +54,6 @@ async function start () {
     var headersProps = ['token']
     var target = 'http://sendrobot.ionchain.org'
     // var target = 'http://ionc_stoer.ionchain.org:8001'
-    
     headersProps.forEach((item) => {
       if (ctx.req.headers.hasOwnProperty(item)) {
         custormHeaders[item] = ctx.req.headers.token
@@ -62,7 +61,7 @@ async function start () {
     })
 
     url = target + ctx.request.url
-    console.log('proxy url @@', url, ctx.request.body)
+    // console.log('proxy url @@', url, ctx.request.body)
 
     var options = {
       url: url,
@@ -91,7 +90,7 @@ async function start () {
         ctx.session.userinfo = res.data.data
       }
     }).catch((err) => {
-      console.log('err===>', err)
+      // console.log('err===>', err)
       ctx.body = err.response.statusText
       ctx.status = err.response.status
     }).then(() => {
