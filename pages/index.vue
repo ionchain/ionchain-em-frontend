@@ -45,6 +45,10 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
+    if (process.server) {
+      next()
+      return
+    }
     if (_.isEmpty(window.vm.$store.state.userinfo)) {
       next({name: 'login'})
     } else {
