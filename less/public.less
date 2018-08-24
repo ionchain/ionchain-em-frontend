@@ -138,7 +138,7 @@ img{
             background: @baseColor;
         }
         >span{
-            border:2px solid @baseColor;
+            border:1px solid @baseColor;
         }
     }
     >div{
@@ -147,8 +147,7 @@ img{
         align-items: center;
         >b{
             width: 60px;
-            height: 2px;
-            background: @inputTextColor;
+            border-bottom: 1px dotted @inputBorderColor;
             margin: 0 12px;
         }
         >span{
@@ -156,7 +155,7 @@ img{
             height:22px;
             line-height: 18px;
             border-radius: 50%;
-            border:2px solid @inputTextColor;
+            border:1px solid @inputTextColor;
             text-align:center;
             box-sizing: border-box;
         }
