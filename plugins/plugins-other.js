@@ -34,7 +34,7 @@ Vue.use(VeeValidate, {
 import Snotify, { SnotifyPosition } from 'vue-snotify'
 const options = {
   toast: {
-    position: SnotifyPosition.rightTop
+    position: SnotifyPosition.centerTop
   }
 }
 
