@@ -7,7 +7,7 @@
       <div class="login_right login-box">
           <div class="login_right_logo">
               <div><img src="/icon/logo.svg" alt=""></div>
-              <div>IONC Store</div>
+              <div>IONPartnership</div>
           </div>
           <div class="login_right_hint" v-show="errors.has('mobile') || errors.has('password')">
               <span><img src="/icon/error.svg" alt=""></span>

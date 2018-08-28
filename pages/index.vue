@@ -22,16 +22,23 @@
                 </svg>
             </a>
             <div><b>备注：</b>以上持币数量以离子币法币价格0.1RMB计算，持币数量月初以上月的币价做动态调整，（例：上月离子币均价为0.2RMB时，厂商只需持有25万离子币即可申请入驻离子链，同理，要获得该月其他权益也仅需持有以上标准的半数离子币）</div>
-            
         </div>
     </div>
 </template>
 <script>
+import $ from 'jquery'
 export default {
   data() {
     return {
-      articlesRemark: true
+      articlesRemark: false
     }
+  },
+  // beforeMount() {
+
+  // }
+  mounted() {
+    $('.articles_remark').appendTo('body')
+    this.articlesRemark = true
   },
   head() {
     return {
