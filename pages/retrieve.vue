@@ -93,6 +93,11 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: `Retrieve - IONPartnership`
+    }
+  },
   created() {
     this.secondsLeft = this.interval
   },

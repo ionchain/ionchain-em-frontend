@@ -62,7 +62,7 @@ export default {
   },
   head() {
     return {
-      title: `Login - IONC Store`
+      title: `Login - IONPartnership`
     }
   },
   methods: {

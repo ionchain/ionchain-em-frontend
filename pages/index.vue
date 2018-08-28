@@ -33,16 +33,13 @@ export default {
       articlesRemark: false
     }
   },
-  // beforeMount() {
-
-  // }
   mounted() {
     $('.articles_remark').appendTo('body')
     this.articlesRemark = true
   },
   head() {
     return {
-      title: `IONC Store`
+      title: `Index - IONPartnership`
     }
   },
   methods: {

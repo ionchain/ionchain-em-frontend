@@ -117,7 +117,7 @@ export default {
   },
   head() {
     return {
-      title: `Register - IONC Store`
+      title: `Register - IONPartnership`
     }
   },
   created() {
