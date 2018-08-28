@@ -15,13 +15,28 @@ define(['jquery', 'lodash'], function ($, _) {
         processData: false
     })
     function Xajax(opt){
-        function Bullet(data = null) {
-            this.data = data
-            this.then = function(){}
-            this.catch = function(){}
+        function Bullet(_data, callback) {
+            this.data = _data ? _data : null;
+            this.error = null;
+            this.callback = callback;
+            this.then = function(){
+                try {
+                    return this.callback(this.data)
+                } catch (err){
+                    this.error = err
+                    return this.callback(this.data)
+                }
+                return this
+            }
+            this.catch = function(){
+                if (this.error) {
+                    return this.callback(this.error)
+                }
+                return this
+            }
         }
         var done = new Bullet()
-        var preSet = {
+        /* var preSet = {
             then: function(cb) {
                 done.then = cb;
                 var _done = new Bullet(done.data);
@@ -30,13 +45,15 @@ define(['jquery', 'lodash'], function ($, _) {
             catch: function(cb) {
                 done.catch = cb
             }
-        }
+        } */
         opt.data = JSON.stringify(opt.data)
         var _opt = _.merge({
             success: function(data) {
-                done.then(data)
+                done.data = data
+                done.then()
             },
-            err: function(data) {
+            err: function(error) {
+                done.error = error
                 done.catch(data)
             }
         }, opt)
@@ -46,7 +63,7 @@ define(['jquery', 'lodash'], function ($, _) {
         }
 
         init()
-        return preSet
+        return done
     }
     return {
         Login: function(data, params) {
