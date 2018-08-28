@@ -8,6 +8,7 @@
                     <a href="team_CN.html">团队</a>
                     <a href="pdfjs/web/viewer_CN.html">白皮书</a>
                     <a href="vision_CN.html">基金会</a>
+                    <a href="http://ionc_stoer.ionchain.org/">厂商生态</a>
                 </div>
 
             </div>
