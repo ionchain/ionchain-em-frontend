@@ -18,8 +18,9 @@ define(['jquery', 'lodash'], function ($, _) {
         function Bullet(_data, callback) {
             this.data = _data ? _data : null;
             this.error = null;
-            this.callback = callback;
-            this.then = function(){
+            this.callback = callback ? callback : function(){};
+            this.then = function(cb){
+                this.callback = cb
                 try {
                     return this.callback(this.data)
                 } catch (err){
@@ -28,7 +29,8 @@ define(['jquery', 'lodash'], function ($, _) {
                 }
                 return this
             }
-            this.catch = function(){
+            this.catch = function(cb){
+                this.callback = cb
                 if (this.error) {
                     return this.callback(this.error)
                 }
