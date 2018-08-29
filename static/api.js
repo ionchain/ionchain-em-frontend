@@ -18,45 +18,32 @@ define(['jquery', 'lodash'], function ($, _) {
         function Bullet(_data, callback) {
             this.data = _data ? _data : null;
             this.error = null;
-            this.callback = callback ? callback : function(){};
+            this.thenCallback = callback ? callback : function(){};
+            this.catchCallback = callback ? callback : function(){};
             this.then = function(cb){
-                this.callback = cb
-                try {
-                    return this.callback(this.data)
-                } catch (err){
-                    this.error = err
-                    return this.callback(this.data)
-                }
+                this.thenCallback = cb
                 return this
             }
             this.catch = function(cb){
-                this.callback = cb
-                if (this.error) {
-                    return this.callback(this.error)
-                }
+                this.catchCallback = cb
                 return this
             }
         }
-        var done = new Bullet()
-        /* var preSet = {
-            then: function(cb) {
-                done.then = cb;
-                var _done = new Bullet(done.data);
-                return _done
-            },
-            catch: function(cb) {
-                done.catch = cb
-            }
-        } */
+        var bullet = new Bullet()
         opt.data = JSON.stringify(opt.data)
         var _opt = _.merge({
             success: function(data) {
-                done.data = data
-                done.then()
+                bullet.data = data
+                try {
+                    bullet.thenCallback(data)
+                } catch (err){
+                    bullet.catchCallback(err)
+                }
             },
-            err: function(error) {
-                done.error = error
-                done.catch(data)
+            error: function(error) {
+                console.log("error");
+                bullet.error = error
+                bullet.catchCallback(error)
             }
         }, opt)
 
@@ -65,7 +52,7 @@ define(['jquery', 'lodash'], function ($, _) {
         }
 
         init()
-        return done
+        return bullet
     }
     return {
         Login: function(data, params) {
