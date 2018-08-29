@@ -45,7 +45,9 @@ gulp.task('build', async function () {
 		'bower_components/requirejs/require.js',
 		'bower_components/jquery/jquery.min.js',
 		'bower_components/lodash/lodash.min.js',
-		'bower_components/knockout/dist/knockout.js'
+		'bower_components/knockout/dist/*.js',
+		'bower_components/jquery-validation/dist/jquery.validate.min.js',
+		'bower_components/jquery-toast-plugin/dist/*.*'
 	])
 	.pipe(gulp.dest(`${DIST}/lib`));
 	gulp.src([
