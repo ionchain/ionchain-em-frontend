@@ -3,15 +3,16 @@
 	browserSync = require('browser-sync');
 const rollup = require('rollup');
 
-var DIST = './static'
+var DIST = './static/dist'
 gulp.task('less', function() {
-	gulp.src('less/*.less')
+	gulp.src('src/less/*.less')
 	.pipe(less())
 	.pipe(gulp.dest(`${DIST}/css`));
 });
 
 gulp.task('watch', function() {
-	gulp.watch('less/**/*.less', ['less']);
+	gulp.watch('src/less/**/*.less', ['less']);
+	gulp.watch('bower_components/*', ['build']);
 });
 
 gulp.task('browser-sync', function() {
@@ -43,10 +44,15 @@ gulp.task('build', async function () {
 	gulp.src([
 		'bower_components/requirejs/require.js',
 		'bower_components/jquery/jquery.min.js',
-		'bower_components/lodash/lodash.min.js'
+		'bower_components/lodash/lodash.min.js',
+		'bower_components/knockout/dist/knockout.js'
 	])
-	.pipe(gulp.dest(`${DIST}/dist`));
+	.pipe(gulp.dest(`${DIST}/lib`));
+	gulp.src([
+		'src/js/**/*.js',
+	],{base: 'src'})
+	.pipe(gulp.dest(`${DIST}`));
 });
 
-gulp.task('default',['watch', 'build'], function() {
+gulp.task('default',['watch', 'build', 'less'], function() {
 });

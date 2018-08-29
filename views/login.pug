@@ -1,8 +1,10 @@
 
 extends layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/login.css")
 block content
   script.
-    require(['/pages/login.js'])
+    require(['/dist/js/pages/login.js'])
   .page-login
     .page-main
       .login_left
@@ -29,3 +31,9 @@ block content
           //- nuxt-link.link(to='/register') 注册 ION Chain ID
         .login_right_log.cursor-hand(@click='Login')
           a(href='javascript:;') 登录
+
+  div
+    span(data-bind='text: numberOfClicks') &nbsp;
+  button(data-bind='click: registerClick, disable: hasClickedTooManyTimes') Click me
+  div(data-bind='visible: hasClickedTooManyTimes')
+    button(data-bind='click: resetClicks') Reset clicks

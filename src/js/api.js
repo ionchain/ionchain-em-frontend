@@ -20,30 +20,30 @@ define(['jquery', 'lodash'], function ($, _) {
             this.error = null;
             this.thenCallback = callback ? callback : function(){};
             this.catchCallback = callback ? callback : function(){};
-            this.then = function(cb){
-                this.thenCallback = cb
-                return this
+            this._then = function(cb){
+                this.thenCallback = cb;
+                return this;
             }
-            this.catch = function(cb){
-                this.catchCallback = cb
-                return this
+            this._catch = function(cb){
+                this.catchCallback = cb;
+                return this;
             }
         }
         var bullet = new Bullet()
         opt.data = JSON.stringify(opt.data)
-        var _opt = _.merge({
+        var _opt = _.assign({
             success: function(data) {
                 bullet.data = data
                 try {
-                    bullet.thenCallback(data)
+                    bullet.thenCallback(data);
                 } catch (err){
-                    bullet.catchCallback(err)
+                    bullet.catchCallback(err);
                 }
             },
             error: function(error) {
                 console.log("error");
-                bullet.error = error
-                bullet.catchCallback(error)
+                bullet.error = error;
+                bullet.catchCallback(error);
             }
         }, opt)
 
@@ -57,7 +57,7 @@ define(['jquery', 'lodash'], function ($, _) {
     return {
         Login: function(data, params) {
             return Xajax({
-                url: config.BASE_URL + '/users/login',
+                url: config.BASE_URL + '/users/loginm',
                 data: data
             })
         },

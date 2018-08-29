@@ -1,0 +1,23 @@
+@import 'variable.less';
+@import 'mixins.less';
+.i-input{
+    border:1px solid @inputBorderColor;
+    height:36px;
+    line-height: 36px;
+    box-sizing: border-box;
+    text-indent: 12px;
+    border-radius: 4px;
+    width:162px;
+    font-size: 14px;
+    &:focus,&:active,&.active{
+        border-color: @baseColor;
+    }
+}
+.i-input-bg{
+    &:extend(.i-input);
+    height: 46px;
+    line-height: 46px;
+}
+button{
+    cursor: pointer;
+}
