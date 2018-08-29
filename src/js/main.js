@@ -9,7 +9,7 @@
             lodash: LIBRARY + 'lodash.min',
             knockout: LIBRARY + 'knockout',
             'form-serialize': '/lib/form-serialize',
-            validate: LIBRARY + 'validate.min'
+            validate: LIBRARY + 'validate'
         },
         map: {
         },

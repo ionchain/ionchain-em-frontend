@@ -19,8 +19,11 @@ require(['jquery', 'api', 'lodash', 'knockout', 'form-serialize', 'validate'], f
             password: ''
         });
         this.login = function () {
-            var params = serialize($('#login-form')[0], { hash: true });
-            var valid = validate(params, {mobile: {presence: {message: "是必填的"}}});
+            var params = serialize($('#login-form')[0], { hash: true }, {format: "detailed"});
+            var valid = validate(params, {
+                mobile: {presence: {message: "是必填的"}},
+                password: {presence: {message: "是必填的"}}
+            });
             console.log(valid, 'valid');
             if(!valid) {return}
             
