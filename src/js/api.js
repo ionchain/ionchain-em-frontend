@@ -57,7 +57,7 @@ define(['jquery', 'lodash'], function ($, _) {
     return {
         Login: function(data, params) {
             return Xajax({
-                url: config.BASE_URL + '/users/loginm',
+                url: config.BASE_URL + '/users/login',
                 data: data
             })
         },

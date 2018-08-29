@@ -7,7 +7,9 @@
             jquery: LIBRARY + 'jquery.min',
             api: OTHER + 'api',
             lodash: LIBRARY + 'lodash.min',
-            knockout: LIBRARY + 'knockout'
+            knockout: LIBRARY + 'knockout',
+            'form-serialize': '/lib/form-serialize',
+            validate: LIBRARY + 'validate.min'
         },
         map: {
         },
