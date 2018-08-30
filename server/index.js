@@ -89,13 +89,14 @@ async function start () {
   })
 
   const pug = new Pug({
-    viewPath: './views'
+    viewPath: './views',
+    noCache: true
   })
   pug.use(app)
 
   app
   .use(logger)
-  .use(koaStatic('./static',{}))
+  .use(koaStatic('./static',{maxage: 0}))
   .use(koaBody())
   .use(session(CONFIG, app))
   .use(router.routes())

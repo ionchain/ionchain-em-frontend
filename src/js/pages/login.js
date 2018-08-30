@@ -1,9 +1,4 @@
-require(['api', 'lodash', 'knockout'], function(API, _, KO) {
-    API.Login({mobile: '18862349106', password: '123456'})._then(function(data) {
-        console.log( data);
-    })._catch(function(err){
-    });
-    
+require(['jquery', 'api', 'lodash', 'knockout', 'form-serialize', 'validate'], function($, API, _, KO, serialize, validate) {
     var ViewModel = function() {
         this.numberOfClicks = KO.observable(0);
      
@@ -18,6 +13,25 @@ require(['api', 'lodash', 'knockout'], function(API, _, KO) {
         this.hasClickedTooManyTimes = KO.pureComputed(function() {
             return this.numberOfClicks() >= 3;
         }, this);
+
+        this.loginForm = KO.observable({
+            mobile: '',
+            password: ''
+        });
+        this.login = function () {
+            var params = serialize($('#login-form')[0], { hash: true }, {format: "detailed"});
+            var valid = validate(params, {
+                mobile: {presence: {message: "是必填的"}},
+                password: {presence: {message: "是必填的"}}
+            });
+            console.log(valid, 'valid');
+            if(!valid) {return}
+            
+            API.Login(params)._then(function(data) {
+                console.log( data);
+            })._catch(function(err){
+            });
+        }
     };
      
     KO.applyBindings(new ViewModel());

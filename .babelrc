@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["> 0.02%"]
+      }
+    }]
+  ],
+  "plugins": [
+    "transform-es3-member-expression-literals",
+    "@babel/plugin-transform-reserved-words",
+    "transform-property-literals",
+    "transform-member-expression-literals"
+  ]
+}

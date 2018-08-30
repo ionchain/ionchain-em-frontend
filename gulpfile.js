@@ -2,6 +2,7 @@
 	less = require('gulp-less'),
 	browserSync = require('browser-sync');
 const rollup = require('rollup');
+const babel = require('rollup-plugin-babel');
 
 var DIST = './static/dist'
 gulp.task('less', function() {
@@ -12,12 +13,12 @@ gulp.task('less', function() {
 
 gulp.task('watch', function() {
 	gulp.watch('src/less/**/*.less', ['less']);
-	gulp.watch('bower_components/*', ['build']);
+	gulp.watch(['bower_components/*','src/**/*'], ['build']);
 });
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy:"http://localhost:3000",
+		proxy:"http://localhost:2018",
 		port:3001,
 		ui: {
 			port: 3002
@@ -29,25 +30,37 @@ gulp.task('browser-sync', function() {
 
 gulp.task('build', async function () {
 	/* const bundle = await rollup.rollup({
-	  input: './src/api.js',
+	  input: 'bower_components/validate/validate.js',
 	  plugins: [
+		babel()
 	  ]
 	});
   
 	await bundle.write({
-	  file: './static/api.js',
-	  format: 'umd',
-	  name: 'library',
-	  sourcemap: true
-	}); */
+	  file: `${DIST}/lib/validate.js`,
+	  format: 'amd',
+	  name: 'library'
+	});
+ */
+	/* gulp.src('bower_components/validate/validate.js')
+	.pipe(babel({
+		presets: ['es2015']
+	}))
+	.pipe(gulp.dest(`${DIST}/lib`)); */
 	
 	gulp.src([
 		'bower_components/requirejs/require.js',
 		'bower_components/jquery/jquery.min.js',
 		'bower_components/lodash/lodash.min.js',
-		'bower_components/knockout/dist/knockout.js'
+		'bower_components/knockout/dist/*.js',
+		//'bower_components/validate/validate.min.js',
+		'bower_components/jquery-toast-plugin/dist/*.*',
 	])
 	.pipe(gulp.dest(`${DIST}/lib`));
+
+	gulp.src('bower_components/form-serialize/index.js')
+	.pipe(gulp.dest(`${DIST}/lib/serialize`));
+
 	gulp.src([
 		'src/js/**/*.js',
 	],{base: 'src'})
