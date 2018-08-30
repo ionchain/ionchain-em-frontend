@@ -5,36 +5,29 @@ block previte-head
 block content
   script.
     require(['/dist/js/pages/login.js'])
-  .page-login
-    .ly-main
-      .login_left
-        img(src='/img/login_img.png', alt='')
-      .login_right.login-box
-        form#login-form
-          .login_right_logo
-            div
-              img(src='/img/icon/logo.svg', alt='')
-            div IONPartnership
-          .error-msg(data-bind="css: { show: !formValid()}")
-            span
-              img(src='/img/icon/error.svg', alt='')
-            span(data-bind="text: errorMessage")
-          .login_right_name
-            input.i-input-bg(required, name='mobile', placeholder='请输入手机号', type='text')
-          .login_right_pw
-            input.i-input-bg(required, name='password', placeholder='请输入密码', type='password')
-            div
-              a(to='/retrieve') 忘记密码？
-          .login-form-row
-            span.left
-              input(type="checkbox")
-              label 自动登录
-            a.link.right(to='/register') 注册 ION Chain ID
-          .login_right_log.cursor-hand(data-bind='click: login')
-            a(href='javascript:;') 登录
-
-  //- div
-  //-   span(data-bind='text: numberOfClicks') &nbsp;
-  //- button(data-bind='click: registerClick, disable: hasClickedTooManyTimes') Click me
-  //- div(data-bind='visible: hasClickedTooManyTimes')
-  //-   button(data-bind='click: resetClicks') Reset clicks
+  .page-login.ly-main
+    .login_left
+      img(src='/img/login_img.png', alt='')
+    .login_right.login-box
+      form#login-form
+        .login_right_logo
+          div
+            img(src='/img/icon/logo.svg', alt='')
+          div IONPartnership
+        .error-msg(data-bind="css: { show: !formValid()}")
+          span
+            img(src='/img/icon/error.svg', alt='')
+          span(data-bind="text: errorMessage")
+        .login_right_name
+          input.i-input-bg(required, name='mobile', placeholder='请输入手机号', type='text')
+        .login_right_pw
+          input.i-input-bg(required, name='password', placeholder='请输入密码', type='password')
+          div
+            a(to='/retrieve') 忘记密码？
+        .login-form-row
+          span.left
+            input(type="checkbox")
+            label 自动登录
+          a.link.right(to='/register') 注册 ION Chain ID
+        .login_right_log.cursor-hand(data-bind='click: login')
+          a(href='javascript:;') 登录
