@@ -5,27 +5,27 @@ const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
 
 var DIST = './static/dist'
-gulp.task('less', function() {
+gulp.task('less', function () {
 	gulp.src('src/less/*.less')
-	.pipe(less())
-	.pipe(gulp.dest(`${DIST}/css`));
+		.pipe(less())
+		.pipe(gulp.dest(`${DIST}/css`));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
 	gulp.watch('src/less/**/*.less', ['less']);
-	gulp.watch(['bower_components/*','src/**/*'], ['build']);
+	gulp.watch(['bower_components/*', 'src/**/*'], ['build']);
 });
 
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', function () {
 	browserSync.init({
-		proxy:"http://localhost:2018",
-		port:3001,
+		proxy: "http://localhost:2018",
+		port: 3001,
 		ui: {
 			port: 3002
 		}
-    });
-    //监听任何文件变化，实时刷新页面
-    gulp.watch(["./public/css/**/*.*",'views/**/*.*','public/js/*.*']).on('change', browserSync.reload);
+	});
+	//监听任何文件变化，实时刷新页面
+	gulp.watch(["./public/css/**/*.*", 'views/**/*.*', 'public/js/*.*']).on('change', browserSync.reload);
 });
 
 gulp.task('build', async function () {
@@ -47,7 +47,7 @@ gulp.task('build', async function () {
 		presets: ['es2015']
 	}))
 	.pipe(gulp.dest(`${DIST}/lib`)); */
-	
+
 	gulp.src([
 		'bower_components/requirejs/require.js',
 		'bower_components/jquery/jquery.min.js',
@@ -57,12 +57,22 @@ gulp.task('build', async function () {
 		'bower_components/babel-polyfill/browser-polyfill.js',
 		'bower_components/require-css/css.min.js'
 	])
-	.pipe(gulp.dest(`${DIST}/lib`));
+		.pipe(gulp.dest(`${DIST}/lib`));
 
 	gulp.src([
 		'src/lib/**/*.*',
-	],{base: 'src'})
-	.pipe(gulp.dest(`${DIST}`));
+	], { base: 'src' })
+		.pipe(gulp.dest(`${DIST}`));
+
+	gulp.src([
+		'bower_components/bootstrap/dist/**/*.*'
+	], { base: 'bower_components/bootstrap/dist' })
+		.pipe(gulp.dest(`${DIST}/plugins/bootstrap`));
+
+	gulp.src([
+		'src/plugins/**/*.*',
+	], { base: 'src' })
+		.pipe(gulp.dest(`${DIST}`));
 
 	gulp.src([
 		'src/plugins/**/*.*',
@@ -71,9 +81,9 @@ gulp.task('build', async function () {
 
 	gulp.src([
 		'src/js/**/*.js',
-	],{base: 'src'})
-	.pipe(gulp.dest(`${DIST}`));
+	], { base: 'src' })
+		.pipe(gulp.dest(`${DIST}`));
 });
 
-gulp.task('default',['watch', 'build', 'less'], function() {
+gulp.task('default', ['watch', 'build', 'less'], function () {
 });
