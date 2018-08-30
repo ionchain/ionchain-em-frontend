@@ -1,0 +1,82 @@
+extends layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/register.css")
+block content
+  .page-register
+    .i-step
+      .active
+        span 1
+        label 手机验证
+      div
+        b
+        span 2
+        label 填写企业信息
+      div
+        b
+        span 3
+        label 注册成功
+    ul.register-form-box
+      // 手机验证
+      li.register-step1.register_cont_yz
+        .stepA-box
+          .stepA-item.register_cont_number
+            .login_right_hint.login_right_w
+              span
+                img(src='/img/icon/error.svg', alt='')
+              span {{ errors.first('mobile') }}
+            .register_cont_number
+              input(placeholder='请输入手机号')
+            .register_cont_click
+              button 点击按钮进行验证
+          .stepA-item
+            | 图标滑动验证
+          .stepA-item.register_cont_click
+            .login_right_hint.login_right_w
+              span
+                img(src='/imga/icon/error.svg', alt='')
+              span {{ smsCodeFailMessage }}
+            .register_cont_number
+              input(type='text', placeholder='请输入手机号')
+            .register_cont_click_yz
+              .click_yz_yz
+                div
+                  input(type='text', placeholder='手机验证码')
+                div
+                  button {{secondsLeft}}s后重新获取
+                  button 重新获取
+              .click_yz_text 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
+            button.i-button 下一步
+          // 输入密码
+          .stepA-item.register_cont_pw
+            .login_right_hint.login_right_w
+              span
+                img(src='/img/icon/error.svg', alt='')
+              span {{ errors.first('password') }}
+            p
+              input(placeholder='请输入密码')
+            p
+              input(placeholder='确定密码')
+            // 下一步按钮
+            button.i-button
+              | 下一步
+      // 填写企业信息
+      li.register-step2.register_cont_xx
+        p
+          input(type='text', placeholder='请输入企业名称')
+        p
+          input(type='text', placeholder='请输入组织机构代码')
+        p
+          textarea(cols='30', rows='6', placeholder='请输入您的icon地址')
+        // 下一步按钮
+        button.i-button
+          | 下一步
+      // 注册完成
+      li.register-step3.register_cont_wc
+        div
+          img(src='/img/icon/succeed.svg', alt='')
+        div 恭喜您，注册成功！
+        .register_next
+          nuxt-link(to='/login')
+            button.i-button 完成
+
+
