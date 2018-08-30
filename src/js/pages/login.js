@@ -8,6 +8,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate','public'
             return msg.join(' ; ')
         }
         var ViewModel = function() {
+            this.mobile = KO.observable();
+            this.password = KO.observable();
             this.formValid = KO.observable(true);
             this.errorMessage = KO.observable();
             this.login = function () {
@@ -32,8 +34,15 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate','public'
                     }
                 })._catch(function(err){
                 });
-            }
+            };
         };
-        KO.applyBindings(new ViewModel());
+        var viewmodel = new ViewModel();
+        $('#inp-password').on('keyup', function(e) {
+            if(e.keyCode == 13) {
+                viewmodel.login()
+            }
+        })
+        
+        KO.applyBindings( viewmodel );
     }
 )
