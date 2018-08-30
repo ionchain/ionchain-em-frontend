@@ -1,0 +1,74 @@
+extends layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/retrieve.css")
+block content
+  .page-retrieve
+    .i-step
+      .active
+        span 1
+        label 填写账号
+      div
+        b
+        span 2
+        label 账号验证
+      div
+        b
+        span 3
+        label 设置新密码
+      div
+        b
+        span 4
+        label 完成
+    ul.retrieve-form-box
+      li.retrieve-step1.retrieve_cont_zh
+        div
+          .login_right_hint.login_right_w
+            span
+              img(src='/img/icon/error.svg', alt='')
+            span {{ errors.first('mobile') }}
+          // 请输入手机号
+          .register_cont_number
+            input(placeholder='请输入手机号')
+          .register_cont_click
+            button 点击按钮进行验证
+        .stepA-item
+          | 图标滑动验证
+      li.retrieve-step2.retrieve_cont_yz
+        .login_right_hint.login_right_w
+          span
+            img(src='/img/icon/error.svg', alt='')
+          span {{ errors.first('code') }}
+        // 请输入手机号
+        .register_cont_number
+          input(placeholder='请输入手机号')
+        .register_cont_click_yz
+          .click_yz_yz
+            div
+              input(v-validate="'required'", name='code', data-vv-as='手机验证码', type='text', v-model='code', placeholder='手机验证码')
+            div
+              button(v-if='!reGetEnable && secondsLeft>0') {{secondsLeft}}s后重新获取
+              button.click_yz_cx(@click='getSmsCode', v-else='') 重新获取
+          .click_yz_text 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
+        // 下一步按钮
+        button.i-button
+          | 下一步
+      li.retrieve-step3.retrieve_cont_sz
+        // 输入密码
+        .register_cont_pw
+          .login_right_hint.login_right_w
+            span
+              img(src='/img/icon/error.svg', alt='')
+            span {{ errors.first('password') }}
+          p
+            input(placeholder='请输入密码')
+          p
+            input(name='pw_confirm', ref='pw_confirm', data-vv-as='确认密码', type='password', placeholder='确定密码')
+        // 下一步按钮
+        button.i-button
+          | 下一步
+      li.retrieve-step4.register_cont_wc
+        div
+          img(src='/img/icon/succeed.svg', alt='')
+        div 密码设置成功!
+        .register_next
+          button.i-button 完成

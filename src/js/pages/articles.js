@@ -3,6 +3,10 @@ require(['jquery','tabs','lazyload'], function($,Tabs,lazyload){
         $(".tabs-component").Tabs({
             event:'click'
         });
+        $(".remark_close").click(function(){
+            $(".articles_remark").hide();
+        })
+
     })
     
 })

@@ -69,12 +69,13 @@ img{
     background: #fff;
     margin: 0 auto;
     .clearFix();
-    min-height: 550px;
+    // min-height: 550px;
+    position: relative;
 }
 .ly-body{
     position: relative;
     z-index: 1;
-    margin-bottom: 414px;
+    margin-bottom: 408px;
     min-height: ~"calc(100vh - 81px)";
     background: #fff;
 }
@@ -119,18 +120,26 @@ img{
         display: block;
     }
 }
-.login_right_hint,{
+.login_right_hint{
     height: 30px;
+    line-height: 30px;
     border:1px solid #FFBAB8;
     background:#FFE7E6; 
     margin-bottom: 10px;
     font-size: 14px;
     color: #FF5F58;
-    display: none;
+    // display: none;
+    span{
+      float: left;
+    }
     span:first-child{
         width: 20px;
         height: 20px;
-        margin: 0 7px 0 12px;
+        margin: 4px 7px 0 12px;
+        img{
+          width: 20px;
+          height: 20px;
+        }
     }
     &.show{
         display: block;
