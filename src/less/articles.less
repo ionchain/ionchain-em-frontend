@@ -31,36 +31,40 @@
     }
     // tabs样式
     .tabs-component{
-        display: flex !important;
         padding-top: 50px;
-        .tabs-component-tab{
-            >a{
+        .tab_menu{
+            float: left;
+            >li{
                 display:block;
                 width: 200px;
                 border-radius: 4px;
                 padding: 10px 20px;
                 color: @baseTextColor;
                 margin-bottom: 10px;   
-                font-size: 16px;  
+                font-size: 16px;
+                cursor: pointer;  
+                box-sizing: border-box;
             }
-            >a:hover{
+            >li:hover{
                 background: @baseColor;
                 color: @buttonColor;
                 text-decoration: none;
             }
         }
-        .is-active{
-            >a{
+        li.current{
                 background: @baseColor;
                 color: @buttonColor; 
-            }
         }
-        .tabs-component-panels{
+        .tab_box{
+            float: left;
             padding: 45px 30px 0;
             color: @fsColor;
             font-size: 16px;
             line-height: 26px;
             letter-spacing: 1px;  
+            .hide{
+                display:none;
+            }
         }
     }
 }

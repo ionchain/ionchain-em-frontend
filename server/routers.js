@@ -17,4 +17,10 @@ router.get('/login', async (ctx, next) => {
     })
 })
 
+router.get('/index', async (ctx, next) => {
+    ctx.render('index', {
+        BASE_URL: '/'
+    })
+})
+
 module.exports = router
