@@ -65,6 +65,11 @@ gulp.task('build', async function () {
 	.pipe(gulp.dest(`${DIST}`));
 
 	gulp.src([
+		'src/plugins/**/*.*',
+	],{base: 'src'})
+	.pipe(gulp.dest(`${DIST}`));
+
+	gulp.src([
 		'src/js/**/*.js',
 	],{base: 'src'})
 	.pipe(gulp.dest(`${DIST}`));

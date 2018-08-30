@@ -2,7 +2,7 @@
     var LIBRARY = '/dist/lib/';
     var PAGES = '/dist/js/pages/';
     var OTHER = '/dist/js/';
-    var PLUGINS = '/plugins/'
+    var PLUGINS = '/dist/plugins/'
     require.config({
         paths: {
             jquery: LIBRARY + 'jquery.min',
