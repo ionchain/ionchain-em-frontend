@@ -54,7 +54,7 @@ gulp.task('build', async function () {
 		'bower_components/lodash/lodash.min.js',
 		'bower_components/knockout/dist/*.js',
 		//'bower_components/validate/validate.min.js',
-		'bower_components/jquery-toast-plugin/dist/*.*',
+		'bower_components/jquery-toast-plugin/dist/*.*'
 	])
 	.pipe(gulp.dest(`${DIST}/lib`));
 
