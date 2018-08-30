@@ -1,15 +1,28 @@
 /*!
- * validate.js 0.12.0
- *
- * (c) 2013-2017 Nicklas Ansman, 2013 Wrapp
- * Validate.js may be freely distributed under the MIT license.
- * For all details and documentation:
- * http://validatejs.org/
- */
+* validate.js 0.12.0
+*
+* (c) 2013-2017 Nicklas Ansman, 2013 Wrapp
+* Validate.js may be freely distributed under the MIT license.
+* For all details and documentation:
+* http://validatejs.org/
+*/
 
-(function(exports, module, define) {
+(function(exports, module, define, lodash) {
   "use strict";
-
+  //----
+  var ss = {
+    some: function(arr, callback) {
+      var test = false;
+      for(var i in arr) {
+        if(callback(arr[i])){
+          test = true;
+          break;
+        }
+      }
+      return test;
+    }
+  }
+  //----
   // The main function that calls the validators specified by the constraints.
   // The options are the following:
   //   - format (string) - An option that controls how the returned value is formatted
@@ -26,7 +39,10 @@
       , attr
       , validator;
 
-    if (results.some(function(r) { return v.isPromise(r.error); })) {
+    /* if (results.some(function(r) { return v.isPromise(r.error); })) {
+      throw new Error("Use validate.async if you want support for promises");
+    } */
+    if(ss.some(results, function(r) { return v.isPromise(r.error); })) {
       throw new Error("Use validate.async if you want support for promises");
     }
     return validate.processValidationResults(results, options);
@@ -39,7 +55,7 @@
   // The first argument is the target object and the remaining arguments will be
   // used as sources.
   v.extend = function(obj) {
-   /*  [].slice.call(arguments, 1).forEach(function(source) {
+  /*  [].slice.call(arguments, 1).forEach(function(source) {
       for (var attr in source) {
         obj[attr] = source[attr];
       }
@@ -392,7 +408,8 @@
       }
 
       if (v.isArray(str)) {
-        return str.map(function(s) { return v.prettify(s); }).join(", ");
+        // return str.map(function(s) { return v.prettify(s); }).join(", ");
+        return lodash.map(str, function(s) { return v.prettify(s); }).join(", ");
       }
 
       if (v.isObject(str)) {
@@ -440,7 +457,8 @@
         return false;
       }
       if (v.isArray(obj)) {
-        return obj.indexOf(value) !== -1;
+        // return obj.indexOf(value) !== -1;
+        return lodash.indexOf(obj, value) !== -1;
       }
       return value in obj;
     },
@@ -449,8 +467,13 @@
       if (!v.isArray(array)) {
         return array;
       }
-      return array.filter(function(el, index, array) {
+      /* return array.filter(function(el, index, array) {
         return array.indexOf(el) == index;
+      }); */
+      //---
+      return lodash.filter(array, function(el, index, array) {
+        // return array.indexOf(el) == index;
+        return lodash.indexOf(array, el) == index;
       });
     },
 
@@ -570,7 +593,7 @@
           value = [];
           for (j in input.options) {
             option = input.options[j];
-             if (option && option.selected) {
+            if (option && option.selected) {
               value.push(v.sanitizeFormValue(option.value, options));
             }
           }
@@ -604,7 +627,10 @@
 
     // Remove all errors who's error attribute is empty (null or undefined)
     pruneEmptyErrors: function(errors) {
-      return errors.filter(function(error) {
+      /* return errors.filter(function(error) {
+        return !v.isEmpty(error.error);
+      }); */
+      return lodash.filter(errors, function(error) {
         return !v.isEmpty(error.error);
       });
     },
@@ -633,9 +659,15 @@
       for(var i in errors){
         error = errors[i]
         if (v.isArray(error.error)) {
-          error.error.forEach(function(msg) {
+        /*  error.error.forEach(function(msg) {
             ret.push(v.extend({}, error, {error: msg}));
-          });
+          }); */
+          //--
+          var msg = null;
+          for(var j in error.error) {
+            msg = [error.error][j]
+            ret.push(v.extend({}, error, {error: msg}));
+          }
         } else {
           ret.push(error);
         }
@@ -650,7 +682,7 @@
 
       var ret = []
         , prettify = options.prettify || v.prettify;
-      errors.forEach(function(errorInfo) {
+      /* errors.forEach(function(errorInfo) {
         var error = v.result(errorInfo.error,
             errorInfo.value,
             errorInfo.attribute,
@@ -673,7 +705,34 @@
           value: v.stringifyValue(errorInfo.value, options)
         });
         ret.push(v.extend({}, errorInfo, {error: error}));
-      });
+      }); */
+      //---
+      var errorInfo = null
+      for(var i in errors) {
+        errorInfo = errors[i]
+        var error = v.result(errorInfo.error,
+          errorInfo.value,
+          errorInfo.attribute,
+          errorInfo.options,
+          errorInfo.attributes,
+          errorInfo.globalOptions);
+
+        if (!v.isString(error)) {
+          ret.push(errorInfo);
+          return;
+        }
+
+        if (error[0] === '^') {
+          error = error.slice(1);
+        } else if (options.fullMessages !== false) {
+          error = v.capitalize(prettify(errorInfo.attribute)) + " " + error;
+        }
+        error = error.replace(/\\\^/g, "^");
+        error = v.format(error, {
+          value: v.stringifyValue(errorInfo.value, options)
+        });
+        ret.push(v.extend({}, errorInfo, {error: error}));
+      }
       return ret;
     },
 
@@ -683,14 +742,25 @@
     // {"<attributeName>": [{attribute: "<attributeName>", ...}]}
     groupErrorsByAttribute: function(errors) {
       var ret = {};
-      errors.forEach(function(error) {
+      /* errors.forEach(function(error) {
         var list = ret[error.attribute];
         if (list) {
           list.push(error);
         } else {
           ret[error.attribute] = [error];
         }
-      });
+      }); */
+      //--
+      var error = null;
+      for(var i in errors) {
+        error = errors[i]
+        var list = ret[error.attribute];
+        if (list) {
+          list.push(error);
+        } else {
+          ret[error.attribute] = [error];
+        }
+      }
       return ret;
     },
 
@@ -699,11 +769,17 @@
     // Out:
     // ["<message 1>", "<message 2>"]
     flattenErrorsToArray: function(errors) {
-      return errors
+      /* return errors
         .map(function(error) { return error.error; })
         .filter(function(value, index, self) {
           return self.indexOf(value) === index;
-        });
+        }); */
+        //---
+        var arr = lodash.map(errors, function(error) { return error.error; })
+        return lodash.filter(arr, function(value, index, self) {
+          // return self.indexOf(value) === index;
+          return lodash.indexOf(self, value) === index;
+        })
     },
 
     cleanAttributes: function(attributes, whitelist) {
@@ -1192,9 +1268,14 @@
       var attr;
       errors = v.groupErrorsByAttribute(errors);
       for (attr in errors) {
-        errors[attr] = errors[attr].map(function(result) {
+        /* errors[attr] = errors[attr].map(function(result) {
           return result.validator;
-        }).sort();
+        }).sort(); */
+        //---
+        var tem = lodash.map(errors[attr], function(result) {
+          return result.validator;
+        });
+        errors[attr] = lodash.sortBy(tem)
       }
       return errors;
     }
@@ -1204,4 +1285,6 @@
 }).call(this,
         typeof exports !== 'undefined' ? /* istanbul ignore next */ exports : null,
         typeof module !== 'undefined' ? /* istanbul ignore next */ module : null,
-        typeof define !== 'undefined' ? /* istanbul ignore next */ define : null);
+        typeof define !== 'undefined' ? /* istanbul ignore next */ define : null,
+        _
+    );

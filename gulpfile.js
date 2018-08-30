@@ -53,13 +53,16 @@ gulp.task('build', async function () {
 		'bower_components/jquery/jquery.min.js',
 		'bower_components/lodash/lodash.min.js',
 		'bower_components/knockout/dist/*.js',
-		//'bower_components/validate/validate.min.js',
-		'bower_components/jquery-toast-plugin/dist/*.*'
+		'bower_components/jquery-toast-plugin/dist/*.*',
+		'bower_components/babel-polyfill/browser-polyfill.js',
+		'bower_components/require-css/css.min.js'
 	])
 	.pipe(gulp.dest(`${DIST}/lib`));
 
-	gulp.src('bower_components/form-serialize/index.js')
-	.pipe(gulp.dest(`${DIST}/lib/serialize`));
+	gulp.src([
+		'src/lib/**/*.*',
+	],{base: 'src'})
+	.pipe(gulp.dest(`${DIST}`));
 
 	gulp.src([
 		'src/js/**/*.js',

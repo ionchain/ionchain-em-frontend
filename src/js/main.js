@@ -8,13 +8,18 @@
             api: OTHER + 'api',
             lodash: LIBRARY + 'lodash.min',
             knockout: LIBRARY + 'knockout',
-            'form-serialize': '/lib/form-serialize',
-            validate: LIBRARY + 'validate'
+            serialize: LIBRARY + 'form-serialize',
+            validate: LIBRARY + 'validate',
+            polyfill: LIBRARY + 'browser-polyfill'
         },
         map: {
+            '*': {
+                css: '/dist/lib/css.min.js'
+            }
         },
         shim: {
-            api: ['jquery']
+            api: ['jquery', 'lodash'],
+            validate: ['lodash']
         }
     })
 })(require);
