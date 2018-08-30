@@ -8,7 +8,6 @@ define(['jquery', 'lodash'], function ($, _) {
         }
     }
     var config = _config.development
-
     $.ajaxSetup({
         type: 'post',
         contentType: 'application/json;charset=UTF-8',

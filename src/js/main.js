@@ -12,14 +12,22 @@
             'form-serialize': '/lib/form-serialize',
             validate: LIBRARY + 'validate',
             tabs: PLUGINS + 'tabs/jquery.tabs',
-            lazyload: PLUGINS + 'tabs/jquery.lazyload'
+            lazyload: PLUGINS + 'tabs/jquery.lazyload',
+            serialize: LIBRARY + 'form-serialize',
+            validate: LIBRARY + 'validate',
+            polyfill: LIBRARY + 'browser-polyfill'
         },
         map: {
+            '*': {
+                css: '/dist/lib/css.min.js'
+            }
         },
         shim: {
             api: ['jquery'],
             tabs: ['jquery'],
-            lazyload: ['jquery']
+            lazyload: ['jquery'],
+            api: ['jquery', 'lodash'],
+            validate: ['lodash']
         }
     })
 })(require);
