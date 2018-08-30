@@ -8,17 +8,16 @@ block content
   .page-login
     .ly-main
       .login_left
-        img(src='../static/login_img.png', alt='')
+        img(src='/img/login_img.png', alt='')
       .login_right.login-box
         form#login-form
           .login_right_logo
             div
-              img(src='/icon/logo.svg', alt='')
-            div IONC Store
-              span(data-bind="text: formValid() ")
+              img(src='/img/icon/logo.svg', alt='')
+            div IONPartnership
           .error-msg(data-bind="css: { show: !formValid()}")
             span
-              img(src='/icon/error.svg', alt='')
+              img(src='/img/icon/error.svg', alt='')
             span(data-bind="text: errorMessage")
           .login_right_name
             input.i-input-bg(required, name='mobile', placeholder='请输入手机号', type='text')

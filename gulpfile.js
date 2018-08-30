@@ -55,7 +55,8 @@ gulp.task('build', async function () {
 		'bower_components/knockout/dist/*.js',
 		'bower_components/jquery-toast-plugin/dist/*.*',
 		'bower_components/babel-polyfill/browser-polyfill.js',
-		'bower_components/require-css/css.min.js'
+		'bower_components/require-css/css.min.js',
+		'bower_components/bootstrap/dist/**/*.*'
 	])
 	.pipe(gulp.dest(`${DIST}/lib`));
 
