@@ -2,6 +2,8 @@ extends layout/default.pug
 block previte-head
   link(rel="stylesheet" href="/dist/css/retrieve.css")
 block content
+  script.
+    require(['/dist/js/pages/retrieve.js'])
   .page-retrieve
     .i-step
       .active
