@@ -1,5 +1,5 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate','public', 'toast'],
-    function($, API, _, KO, serialize, validate, public, toast) {
+require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'],
+    function($, API, _, KO, serialize, validate, toast) {
         function getMessage(errors) {
             var msg = [];
             for(var prop in errors) {
@@ -28,9 +28,12 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate','public'
                 
                 API.Login(params)._then(function(data) {
                     if(data.success == 0) {
-                        $.toast({text: '登录成功'});
+                        $.toast({text: '登录成功', icon: 'success'});
+                        setTimeout(function() {
+                            location.replace('/')
+                        }, 350)
                     } else {
-                        $.toast({text: data.message});
+                        $.toast({text: data.message, icon: 'error'});
                     }
                 })._catch(function(err){
                 });

@@ -60,15 +60,13 @@ define(['jquery', 'lodash'], function ($, _) {
                 data: data
             })
         },
-        /* Login: function(data, success, err) {
-            $.ajax({
-                methods: 'post',
-                url: config.BASE_URL + '/users/login',
-                dat: data,
-                success: success,
-                err: err
+        Logout: function(data, params) {
+            return Xajax({
+                type: 'get',
+                url: '/local-api/logout',
+                data: data
             })
-        }, */
+        },
         getSmsCode: function(data, success, err) {
             $.ajax({
                 methods: 'post',
@@ -104,15 +102,7 @@ define(['jquery', 'lodash'], function ($, _) {
                 success: success,
                 err: err
             })
-        },
-        Logout: function(data, success, err) {
-            $.ajax({
-                methods: 'post',
-                url: config.BASE_URL + '/logout',
-                dat: data,
-                success: success,
-                err: err
-            })
         }
+      
     }
 });
