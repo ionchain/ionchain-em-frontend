@@ -1,5 +1,8 @@
-require(['jquery'], function(){
+require(['jquery','knockout'], function($, KO){
     var ViewModel = function(){
+        this.verify = function(){
+            console.log(123)
+        }
     };
-    KO.applyBindings(new ViewModel());
+    KO.applyBindings( ViewModel);
 })

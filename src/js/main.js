@@ -9,7 +9,6 @@
             api: OTHER + 'api',
             lodash: LIBRARY + 'lodash.min',
             knockout: LIBRARY + 'knockout',
-            'form-serialize': '/lib/form-serialize',
             validate: LIBRARY + 'validate',
             tabs: PLUGINS + 'tabs/jquery.tabs',
             lazyload: PLUGINS + 'tabs/jquery.lazyload',
