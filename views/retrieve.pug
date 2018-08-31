@@ -24,13 +24,13 @@ block content
     ul.retrieve-form-box
       li.retrieve-step1.retrieve_cont_zh
         div
-          .login_right_hint.login_right_w
+          .login_right_hint.login_right_w(data-bind="css: {show: !formValid()}")
             span
               img(src='/img/icon/error.svg', alt='')
-            span {{ errors.first('mobile') }}
+            span(data-bind='text: errorMessage')
           // 请输入手机号
           .register_cont_number
-            input(placeholder='请输入手机号')
+            input(placeholder='请输入手机号', type='text', required, name='mobile' data-bind="textInput:mobile")
           .register_cont_click
             button(data-bind='click: verify') 点击按钮进行验证
         .stepA-item
