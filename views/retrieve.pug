@@ -2,6 +2,8 @@ extends layout/default.pug
 block previte-head
   link(rel="stylesheet" href="/dist/css/retrieve.css")
 block content
+  script.
+    require(['/dist/js/pages/retrieve.js'])
   .page-retrieve
     .i-step
       .active
@@ -30,7 +32,7 @@ block content
           .register_cont_number
             input(placeholder='请输入手机号')
           .register_cont_click
-            button 点击按钮进行验证
+            button(data-bind='click: verify') 点击按钮进行验证
         .stepA-item
           | 图标滑动验证
       li.retrieve-step2.retrieve_cont_yz
