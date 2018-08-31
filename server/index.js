@@ -2,7 +2,6 @@ const Koa = require('koa')
 const session = require('koa-session')
 
 // var proxy = require('http-proxy-middleware')
-const axios = require('axios')
 const koaBody = require('koa-body')
 const Pug = require('koa-pug')
 const koaStatic = require('koa-static')
@@ -31,62 +30,6 @@ async function start () {
 
   const host = process.env.HOST || '127.0.0.1'
   const port = process.env.PORT || 2018
-
-  router.get('/local-api/logout', async (ctx, next) => {
-    ctx.session = null
-    ctx.body = {
-      message: '退出成功',
-      success: 0
-    }
-  })
-  router.all(/^\/api/, async (ctx, next) => {
-    var url = ''
-    var custormHeaders = {}
-    var headersProps = ['token']
-    var target = 'http://sendrobot.ionchain.org'
-    // var target = 'http://ionc_stoer.ionchain.org:8001'
-    headersProps.forEach((item) => {
-      if (ctx.req.headers.hasOwnProperty(item)) {
-        custormHeaders[item] = ctx.req.headers.token
-      }
-    })
-
-    url = target + ctx.request.url
-    // console.log('proxy url @@', url, ctx.request.body)
-
-    var options = {
-      url: url,
-      method: ctx.req.method,
-      headers: {
-        cookie: ctx.req.headers.cookie ? ctx.req.headers.cookie : '',
-        'content-type': ctx.req.headers['content-type'],
-        'connection': ctx.req.headers['connection'],
-        ...custormHeaders
-      },
-      params: ctx.request.params,
-      data: ctx.request.body
-    }
-    await axios(options).then((res) => {
-      if (res.headers.hasOwnProperty('set-cookie')) {
-        ctx.response.set({'set-cookie': res.headers['set-cookie']})
-      }
-      for (let prop in custormHeaders) {
-        if (res.headers.hasOwnProperty(prop)) {
-          ctx.response.set({[prop]: res.headers[prop]})
-        }
-      }
-      ctx.response.set({'content-type': res.headers['content-type']})
-      ctx.body = res.data
-      if (ctx.request.url.indexOf(('/users/login') > -1 && ctx.body.success === 0)) {
-        ctx.session.userinfo = res.data.data
-      }
-    }).catch((err) => {
-      // console.log('err===>', err)
-      ctx.body = err.response.statusText
-      ctx.status = err.response.status
-    }).then(() => {
-    })
-  })
 
   const pug = new Pug({
     viewPath: './views',
