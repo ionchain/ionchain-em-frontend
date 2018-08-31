@@ -1,7 +1,7 @@
 (function(require){
     var LIBRARY = '/dist/lib/';
-    var PAGES = '/dist/js/pages/';
-    var COMMON = '/dist/js/';
+    var PAGES = '/dist/customerjs/pages/';
+    var COMMON = '/dist/customerjs/';
     var PLUGINS = '/dist/plugins/';
     require.config({
         paths: {
@@ -16,7 +16,7 @@
             validate: LIBRARY + 'validate',
             polyfill: LIBRARY + 'browser-polyfill',
             toast: LIBRARY + 'jquery.toast.min',
-            public: COMMON + 'public'
+            common: COMMON + 'common'
         },
         map: {
             '*': {
