@@ -29,25 +29,6 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('build', async function () {
-	/* const bundle = await rollup.rollup({
-	  input: 'bower_components/validate/validate.js',
-	  plugins: [
-		babel()
-	  ]
-	});
-  
-	await bundle.write({
-	  file: `${DIST}/lib/validate.js`,
-	  format: 'amd',
-	  name: 'library'
-	});
- */
-	/* gulp.src('bower_components/validate/validate.js')
-	.pipe(babel({
-		presets: ['es2015']
-	}))
-	.pipe(gulp.dest(`${DIST}/lib`)); */
-
 	gulp.src([
 		'bower_components/requirejs/require.js',
 		'bower_components/jquery/jquery.min.js',

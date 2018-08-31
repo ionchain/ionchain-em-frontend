@@ -15,13 +15,14 @@ block content
             img(src='/img/icon/logo.svg', alt='')
           div IONPartnership
         .error-msg(data-bind="css: { show: !formValid()}")
-          span
+          span.icon
             img(src='/img/icon/error.svg', alt='')
           span(data-bind="text: errorMessage")
         .login_right_name
-          input.i-input-bg(required, name='mobile', placeholder='请输入手机号', type='text')
+          input.i-input-bg(required, name='mobile', placeholder='请输入手机号', type='text' data-bind="textInput: mobile")
+        .test(data-bind="form.mobile")
         .login_right_pw
-          input.i-input-bg(required, name='password', placeholder='请输入密码', type='password')
+          input.i-input-bg(required, name='password', placeholder='请输入密码', type='password' id="inp-password" data-bind="textInput: password")
           div
             a(to='/retrieve') 忘记密码？
         .login-form-row
