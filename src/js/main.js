@@ -14,7 +14,8 @@
             lazyload: PLUGINS + 'tabs/jquery.lazyload',
             serialize: LIBRARY + 'form-serialize',
             validate: LIBRARY + 'validate',
-            polyfill: LIBRARY + 'browser-polyfill'
+            polyfill: LIBRARY + 'browser-polyfill',
+            toast: LIBRARY + 'jquery.toast.min'
         },
         map: {
             '*': {
@@ -26,7 +27,8 @@
             tabs: ['jquery'],
             lazyload: ['jquery'],
             api: ['jquery', 'lodash'],
-            validate: ['lodash']
+            validate: ['lodash'],
+            toast: ['jquery','css!'+LIBRARY+'jquery.toast.min.css']
         }
     })
 })(require);

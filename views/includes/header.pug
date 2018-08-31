@@ -3,10 +3,11 @@ div.ly-header
         a.logo(href='/')
             img(src='/img/icon/IONC_store_bule.svg')
         a.logo_gw(href='http://www.ionchain.org/index_CN.html', target='_blank') 离子链官网
-        .h-info(v-if='!isEmpty(userinfo) && !isLoginPage')
-            span 当前登录 
-            span {{get(userinfo, 'mobile_num')}}
-            span.quit(@click='logOut')  退出
+        if userinfo && currentpage != 'login'
+            .h-info
+                span 当前登录 
+                span #{userinfo.mobile_num}
+                span.quit(@click='logOut')  退出
         .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
             a.z_d(href='/register')
                 span 注册
