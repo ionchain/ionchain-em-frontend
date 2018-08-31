@@ -70,6 +70,16 @@ router.all(/^\/api/, async (ctx, next) => {
 })
 /*--接口代理 end--*/
 
+// 用户权限
+function userAuth() {
+	return (ctx, next) => {
+		if(ctx.userinfo.userinfo) {
+			
+		}
+		return next()
+	}
+}
+
 /*--页面路由 start--*/
 router.get('/', async (ctx, next) => {
 	if (_.isEmpty(ctx.session.userinfo)) {
