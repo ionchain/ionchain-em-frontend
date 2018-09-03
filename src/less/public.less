@@ -107,6 +107,7 @@ img{
     font-size: 14px;
     color: #FF5F58;
     display: none;
+    text-align: left;
     .icon{
         width: 20px;
         height: 20px;
@@ -247,6 +248,12 @@ img{
                 color: @inputBorderColor;
                 outline: none;
                 font-size: 14px;
+                &:last-child{
+                    display: none;
+                }
+                &.show{
+                    display: block;
+                }
             }
             >.click_yz_cx{
                 border: 1px solid @baseColor;

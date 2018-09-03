@@ -30,8 +30,8 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
             }
         };
         validate.validators.required = function(value, options, key, attributes) {
-            var test = !value ? false : value.length > 0
-            if (!test) {
+            // var test = !value ? false : value.length > 0
+            if (!value) {
                 key = options.key ? options.key : key;
                 return options.message ? options.message : key + '是必填的';
             }
@@ -40,19 +40,30 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
 
         /*--公用utils start--*/
         return {
-            getMessage: function getMessage(errors) {
-                var msg = [];
-                for(var prop in errors) {
-                    var requireMsg = '', test = false;
-                    if (_.some(errors[prop], function(item) {
-                        test = item.indexOf('必填')>-1 || item.indexOf('is required')>-1
-                        if(test) requireMsg = item
-                        return test
-                    })) {
-                        msg.push( requireMsg )
+            groupMessage: function(errors) {
+                var group = {};
+                for(var i in errors) {
+                    if(_.has(group, errors[i].attribute)) {
+                        group[errors[i].attribute].push( errors[i] )
                     } else {
-                        msg.push(errors[prop].join(' '))
+                        group[errors[i].attribute] = [ errors[i] ]
                     }
+                }
+                return group
+            },
+            getMessage: function getMessage(errors) {
+                var groupMsg = this.groupMessage(errors);
+                var msg = [], groupItem=null;
+                for(var prop in groupMsg) {
+                    var msgL2 = [];
+                    groupItem = groupMsg[prop]
+                    for(var i in groupItem) {
+                        msgL2.push( groupItem[i].error )
+                        if (groupItem[i].validator == 'presence' || groupItem[i].validator == 'required'){
+                            break
+                        }
+                    }
+                    msg.push(msgL2.join(' '))
                 }
                 return msg.join(' ; ')
             }

@@ -16,7 +16,9 @@
             validate: LIBRARY + 'validate',
             polyfill: LIBRARY + 'browser-polyfill',
             toast: LIBRARY + 'jquery.toast.min',
-            common: COMMON + 'common'
+            common: COMMON + 'common',
+            moment: LIBRARY + 'moment',
+            preventRobot: PLUGINS + 'prevent-robot/jigsaw'
         },
         map: {
             '*': {
@@ -29,7 +31,8 @@
             lazyload: ['jquery'],
             api: ['jquery', 'lodash'],
             validate: ['lodash'],
-            toast: ['jquery','css!'+LIBRARY+'jquery.toast.min.css']
+            toast: ['jquery','css!'+LIBRARY+'jquery.toast.min.css'],
+            preventRobot: ['css!'+ PLUGINS + 'prevent-robot/jigsaw.css']
         }
     })
 })(require);

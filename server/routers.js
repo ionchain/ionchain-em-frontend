@@ -108,5 +108,9 @@ router.get('/register', async (ctx, next) => {
 		currentpage: 'register'
 	})
 })
+//注册
+router.post('/test/getSmsCode', async (ctx, next) => {
+	ctx.body = {"success":0,"message":"ok","data":{"msg":"success","code":0}}
+})
 /*--页面路由 end--*/
 module.exports = router

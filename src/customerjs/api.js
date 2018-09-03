@@ -1,4 +1,4 @@
-define(['jquery', 'lodash'], function ($, _) {
+define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
     var _config = {
         'development': {
             BASE_URL: '/api/v1'
@@ -24,8 +24,9 @@ define(['jquery', 'lodash'], function ($, _) {
                 return this;
             }
             this._catch = function(cb){
-                this.catchCallback = cb;
-                return this;
+                var bullet = new Bullet();
+                bullet.catchCallback = cb;
+                return bullet;
             }
         }
         var bullet = new Bullet()
@@ -40,9 +41,13 @@ define(['jquery', 'lodash'], function ($, _) {
                 }
             },
             error: function(error) {
-                console.log("error");
                 bullet.error = error;
-                bullet.catchCallback(error);
+                console.log(error, 'error');
+                if(error.status < 400){
+                    bullet.catchCallback(error);
+                } else {
+                    $.toast({text: error.status +' '+ error.statusText, icon: 'error'});
+                }
             }
         }, opt)
 
@@ -68,41 +73,40 @@ define(['jquery', 'lodash'], function ($, _) {
             })
         },
         getSmsCode: function(data, success, err) {
-            $.ajax({
-                methods: 'post',
+            return Xajax({
+                type: 'post',
                 url: config.BASE_URL + '/users/sms_code',
-                dat: data,
-                success: success,
-                err: err
+                data: data
             })
         },
         resetSmsCode: function(data, success, err) {
-            $.ajax({
-                methods: 'post',
+            return Xajax({
+                type: 'post',
                 url: config.BASE_URL + '/users/reset_password',
-                dat: data,
-                success: success,
-                err: err
+                data: data
             })
         },
         verifySMScode: function(data, success, err) {
-            $.ajax({
-                methods: 'post',
+            return Xajax({
+                type: 'post',
                 url: config.BASE_URL + '/users/verify_sms_code',
-                dat: data,
-                success: success,
-                err: err
+                data: data
             })
         },
         createUser: function(data, success, err) {
-            $.ajax({
-                methods: 'post',
+            return Xajax({
+                type: 'post',
                 url: config.BASE_URL + '/users/create',
-                dat: data,
-                success: success,
-                err: err
+                data: data
+            })
+        },
+        //----test---
+        testGetSmsCode: function(data, success, err) {
+            return Xajax({
+                type: 'post',
+                url: '/test/getSmsCode',
+                data: data
             })
         }
-      
     }
 });

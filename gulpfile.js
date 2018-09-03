@@ -38,7 +38,8 @@ gulp.task('build', async function () {
 		'bower_components/knockout/dist/*.js',
 		'bower_components/jquery-toast-plugin/dist/*.*',
 		'bower_components/babel-polyfill/browser-polyfill.js',
-		'bower_components/require-css/css.min.js'
+		'bower_components/require-css/css.min.js',
+		'bower_components/moment/moment.js'
 	])
 		.pipe(gulp.dest(`${DIST}/lib`));
 
@@ -61,7 +62,7 @@ gulp.task('build', async function () {
 		'src/customerjs/**/*.js',
 	], { base: 'src' })
 	.pipe(sourcemaps.init())
-	.pipe(uglify())
+	// .pipe(uglify())
 	.pipe(sourcemaps.write())
 	.pipe(gulp.dest(`${DIST}`));
 });
