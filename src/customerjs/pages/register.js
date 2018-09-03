@@ -16,7 +16,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.errorMsg1 = KO.observable();// 发送验证短信前，手机号码验证信息
             this.step = KO.observable(1);
             this.smsStep = KO.observable(1); // 发送验证码的步骤状态
-            this.mobile =  KO.observable(17621039206);
+            this.mobile =  KO.observable();
             this.password =  KO.observable();
             this.password_confirmation =  KO.observable();
             this.company_name =  KO.observable();
