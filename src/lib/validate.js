@@ -682,7 +682,7 @@
 
       var ret = []
         , prettify = options.prettify || v.prettify;
-      /* errors.forEach(function(errorInfo) {
+      lodash.forEach(errors, function(errorInfo) {
         var error = v.result(errorInfo.error,
             errorInfo.value,
             errorInfo.attribute,
@@ -705,34 +705,7 @@
           value: v.stringifyValue(errorInfo.value, options)
         });
         ret.push(v.extend({}, errorInfo, {error: error}));
-      }); */
-      //---
-      var errorInfo = null
-      for(var i in errors) {
-        errorInfo = errors[i]
-        var error = v.result(errorInfo.error,
-          errorInfo.value,
-          errorInfo.attribute,
-          errorInfo.options,
-          errorInfo.attributes,
-          errorInfo.globalOptions);
-
-        if (!v.isString(error)) {
-          ret.push(errorInfo);
-          return;
-        }
-
-        if (error[0] === '^') {
-          error = error.slice(1);
-        } else if (options.fullMessages !== false) {
-          error = v.capitalize(prettify(errorInfo.attribute)) + " " + error;
-        }
-        error = error.replace(/\\\^/g, "^");
-        error = v.format(error, {
-          value: v.stringifyValue(errorInfo.value, options)
-        });
-        ret.push(v.extend({}, errorInfo, {error: error}));
-      }
+      });
       return ret;
     },
 

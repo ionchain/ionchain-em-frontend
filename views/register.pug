@@ -30,7 +30,7 @@ block content
             .register_cont_number
               input(placeholder='请输入手机号' data-bind="textInput: mobile")
             .register_cont_click
-              button(data-bind="click: smsStepNext") 点击按钮进行验证
+              button(data-bind="click: smsNextStep") 点击按钮进行验证
           .sms-step-item(data-bind="css: {active: smsStep()=='2'}")
             .prevent-robot-wrapper
               #captcha(style='position: relative')
@@ -49,19 +49,19 @@ block content
                   button(data-bind="text: secondsLeft() + 's后重新获取',visible: !sendEnable()")
                   button.click_yz_cx(data-bind="css:{show: sendEnable}") 重新获取
               .click_yz_text(style="display:none" data-bind="visible: isSendSmsSuccess") 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
-            button.i-button(data-bind="click: smsStepNext") 下一步
+            button.i-button(data-bind="click: smsNextStep") 下一步
           //- 输入密码
-          .sms-step-item.register_cont_pw
-            .login_right_hint.login_right_w
-              span
+          .sms-step-item.register_cont_pw(data-bind="css: {active: smsStep()=='4'}")
+            .error-msg(data-bind="css: {show: !!passwordValidMsg()}")
+              span.icon
                 img(src='/img/icon/error.svg', alt='')
-              span {{ errors.first('password') }}
+              span(data-bind="text: passwordValidMsg")
             p
-              input(placeholder='请输入密码')
+              input(placeholder='请输入密码' type="password" data-bind="textInput: password")
             p
-              input(placeholder='确定密码')
+              input(placeholder='确定密码' type="password" data-bind="textInput: password_confirmation")
             // 下一步按钮
-            button.i-button
+            button.i-button(data-bind="click: smsNextStep")
               | 下一步
       //- 填写企业信息
       li.register-step2.register_cont_xx(data-bind="css: {active: step()=='2', finish: step()*1 > 2}")
@@ -76,7 +76,7 @@ block content
         p
           textarea(cols='30', rows='6', placeholder='请输入您的icon地址' data-bind="textInput: eth_address")
         //- 下一步按钮
-        button.i-button(data-bind="click: stepNext")
+        button.i-button(data-bind="click: nextStep")
           | 下一步
       //- 注册完成
       li.register-step3.register_cont_wc(data-bind="css: {active: step()=='3', finish: step()*1 == 3}")
