@@ -1,4 +1,4 @@
-div.ly-header
+div.ly-header#header
     div.h-main
         a.logo(href='/')
             img(src='/img/icon/IONC_store_bule.svg')
@@ -7,10 +7,11 @@ div.ly-header
             .h-info
                 span 当前登录 
                 span #{userinfo.mobile_num}
-                span.quit(@click='logOut')  退出
-        .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
-            a.z_d(href='/register')
-                span 注册
-            |         已有账号？
-            a.z_d(href='/login')
-                span 请登录
+                span.quit(data-bind='click: logout')  退出
+        if !userinfo && currentpage != 'login'
+            .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
+                a.z_d(href='/register')
+                    span 注册
+                |   已有账号？
+                a.z_d(href='/login')
+                    span 请登录

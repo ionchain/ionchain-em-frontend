@@ -1,4 +1,4 @@
-require(['jquery','tabs','lazyload'], function($,Tabs,lazyload){
+require(['jquery','tabs','lazyload','common'], function($,Tabs,lazyload, common){
     $(function(){
         $(".tabs-component").Tabs({
             event:'click'

@@ -1,12 +1,12 @@
 (function(require){
     var LIBRARY = '/dist/lib/';
-    var PAGES = '/dist/js/pages/';
-    var OTHER = '/dist/js/';
-    var PLUGINS = '/dist/plugins/'
+    var PAGES = '/dist/customerjs/pages/';
+    var COMMON = '/dist/customerjs/';
+    var PLUGINS = '/dist/plugins/';
     require.config({
         paths: {
             jquery: LIBRARY + 'jquery.min',
-            api: OTHER + 'api',
+            api: COMMON + 'api',
             lodash: LIBRARY + 'lodash.min',
             knockout: LIBRARY + 'knockout',
             validate: LIBRARY + 'validate',
@@ -15,7 +15,8 @@
             serialize: LIBRARY + 'form-serialize',
             validate: LIBRARY + 'validate',
             polyfill: LIBRARY + 'browser-polyfill',
-            toast: LIBRARY + 'jquery.toast.min'
+            toast: LIBRARY + 'jquery.toast.min',
+            common: COMMON + 'common'
         },
         map: {
             '*': {

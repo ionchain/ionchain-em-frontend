@@ -73,8 +73,8 @@ router.all(/^\/api/, async (ctx, next) => {
 // 用户权限
 function userAuth() {
 	return (ctx, next) => {
-		if(ctx.userinfo.userinfo) {
-			
+		if(!ctx.userinfo.userinfo) {
+			ctx.redirect('/login')
 		}
 		return next()
 	}
@@ -83,7 +83,7 @@ function userAuth() {
 /*--页面路由 start--*/
 router.get('/', async (ctx, next) => {
 	if (_.isEmpty(ctx.session.userinfo)) {
-		ctx.redirect('login')
+		ctx.redirect('/login')
 	}
 	ctx.render('index', {
 		currentpage: 'home'

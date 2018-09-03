@@ -3,6 +3,8 @@
 	browserSync = require('browser-sync');
 const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
+var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 
 var DIST = './static/dist'
 gulp.task('less', function () {
@@ -56,14 +58,12 @@ gulp.task('build', async function () {
 		.pipe(gulp.dest(`${DIST}`));
 
 	gulp.src([
-		'src/plugins/**/*.*',
-	],{base: 'src'})
-	.pipe(gulp.dest(`${DIST}`));
-
-	gulp.src([
-		'src/js/**/*.js',
+		'src/customerjs/**/*.js',
 	], { base: 'src' })
-		.pipe(gulp.dest(`${DIST}`));
+	.pipe(sourcemaps.init())
+	.pipe(uglify())
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest(`${DIST}`));
 });
 
 gulp.task('default', ['watch', 'build', 'less'], function () {
