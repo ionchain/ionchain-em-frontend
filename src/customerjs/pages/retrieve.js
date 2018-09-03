@@ -24,6 +24,8 @@ require(['jquery','knockout', 'serialize', 'validate', 'common'], function($, KO
                 return;
             }
             this.formValid(true);
+
+
         };
         this.checkMobile = function() {
           var errors = validate({mobile: this.mobile()}, {
@@ -39,6 +41,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common'], function($, KO
               this.formValid(true);
           }
         };
+        
     };
 
     KO.applyBindings( ViewModel);
