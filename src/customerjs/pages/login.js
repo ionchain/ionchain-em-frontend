@@ -60,7 +60,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 },{
                     format: "detailed"
                 })
-                console.log(this.password(),'--', errors)
                 if(errors) {
                     this.formValid(false);
                     this.errorMessage( common.getMessage(errors) )
