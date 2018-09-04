@@ -1,8 +1,8 @@
-require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'preventRobot', 'api'], function($, KO, serialize, validate,common, moment, preventRobot, API){
+require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'preventRobot', 'api', 'layer'], function($, KO, serialize, validate,common, moment, preventRobot, API, layer){
     var reqSmsCodeDisable = false; // 发送短信按钮，点击频率控制
     var interval = 120; // 短信发送时间间隔
     var ViewModel = function(){
-      this.step = KO.observable(1);
+      this.step = KO.observable(2);
       this.smsStep = KO.observable(1); // 发送验证码的步骤状态
       this.errorMsg1 = KO.observable();// 发送验证短信前，手机号码验证信息
       this.isSendSmsSuccess = KO.observable(false); // 是否成功发送短信
@@ -66,41 +66,44 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
 
         }, 1000)
       };
-      this.getSmsCode = function() {
+      // 获取短信验证码
+      this.getSmsCode = function(type) {
         var _this = this;
+        // 控制发送短信按钮，使用频率
         if(reqSmsCodeDisable){
             return
         }
         reqSmsCodeDisable = true
+        loadingIndex = layer.load(2);
         API.getSmsCode({ mobile: this.mobile(), source: 'reset_password'})._then(function (res) {
-          console.log(res);
-          try{
+            layer.close(loadingIndex);
+            reqSmsCodeDisable = false;
             if (res.success === 0) { // 短信发送成功
-              _this.step( _this.step() + 1 )
+              if(type===1){ // 切换
+                _this.step(_this.step() + 1);
+              }
               var sentTime = moment().format('YYYY-MM-DD HH:mm:ss');
               _this.isSendSmsSuccess(true);
               _this.sendSMSmessage(res.message);
+              // 记录短信发送时间
               _this.sentTime( sentTime );
+              // 数秒，倒计时
               _this.timerTick();
-              sessionStorage.setItem('sent-time', sentTime)
+              // sessionStorage.setItem('sent-time', sentTime)
               $.toast({text: res.message, icon: 'success'});
             } else {
-              console.log("errrrrr");
-              _this.isSendSmsSuccess(false)
-              _this.sendSMSmessage(res.message);
-              $.toast({text: res.message, icon: 'error'});
-              if (res.success === 2001) {
-                  _this.isShowSMScodeInput(false)
-              }
+                _this.isSendSmsSuccess(false)
+                _this.sendSMSmessage(res.message);
+                $.toast({text: res.message, icon: 'error'});
+                if (res.success === 2001) {
+                    _this.isShowSMScodeInput(false);
+                }
             }
-          }catch(e){
-              console.log(e);
-          }
-          
         })._catch(function(err){
-            console.log(err);
+            reqSmsCodeDisable = false;
+            layer.close(loadingIndex);
         })._then(function() {
-            reqSmsCodeDisable = false
+            layer.close(loadingIndex);
         })
       };
       this.smsNextStep = function() {
@@ -119,54 +122,8 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
                 }
                 break;
             case 2:
-                this.getSmsCode();
+                this.getSmsCode(1);
                 break;
-            // case 3:
-            //     var errors = validate(
-            //         {code:this.code()}
-            //     , {
-            //         code: {
-            //             required: {message: "^请输入验证码"},
-            //         }
-            //     },{format: "detailed"});
-            //     if(errors) {
-            //         this.smsCodeValidErrMsg((common.getMessage(errors)))
-            //         return;
-            //     }
-            //     this.verifySMScode()
-            //     return
-            //     break;
-            // case 4:
-            //     var errors = validate(
-            //         {
-            //             password: this.password(),
-            //             password_confirmation: this.password_confirmation() 
-            //         },
-            //         {
-            //             password: {
-            //                 required: {message: "^请输入密码"},
-            //                 length: {
-            //                     minimum: 6,
-            //                     message: "^密码长度要大于6"
-            //                 }
-            //             },
-            //             password_confirmation: {
-            //                 required: {message: "^请输入确认密码"},
-            //                 equality: {
-            //                     attribute: 'password',
-            //                     message: "^两次输入的密码不一致",
-            //                 }
-            //             }
-            //         },{format: 'flat'}
-            //     );
-            //     console.log('errors>>', common.getMessage(errors), errors)
-            //     if(errors) {
-            //         this.passwordValidMsg(errors.join(' ; '))
-            //         return;
-            //     }
-            //     this.nextStep();
-            //     return
-            //     break;
         }
         if(this.smsStep() >= 2) return
         this.smsStep( this.smsStep() + 1 )
@@ -186,7 +143,6 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
             return;
           }
           this.verifySMScode()
-          // this.step( this.step() + 1 )
         } else if (this.step() == 3) {
           var errors = validate(
             {
@@ -215,9 +171,12 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
               this.passwordValidMsg(errors.join(' ; '))
               return;
           }
-          this.nextStep();
+          this.step( this.step() + 1 )
         }
       };
+      this.gotoLogin = function() {
+        location.href = '/login'
+      }
     };
     var viewmodel = new ViewModel();
     preventRobot.init(
