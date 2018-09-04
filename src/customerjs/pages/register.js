@@ -41,6 +41,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     }
                 })
             };
+            // 注册大步骤控制，视图切换
             this.nextStep = function() {
                 if(this.step() == 2) {
                     var errors = validate({
@@ -81,6 +82,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
 
                 }, 1000)
             };
+            // 注册第一步（共3步）中的小步骤---下一步处理
             this.smsNextStep = function() {
                 switch(this.smsStep()) {
                     case 1:
@@ -148,8 +150,10 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 if(this.smsStep >= 4) return
                 this.smsStep( this.smsStep() + 1 )
             };
+            // 获取短信验证码
             this.getSmsCode = function() {
                 var _this = this;
+                // 控制发送短信按钮，使用频率
                 if(reqSmsCodeDisable){
                     return
                 }
@@ -161,9 +165,11 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         var sentTime = moment().format('YYYY-MM-DD HH:mm:ss');
                         _this.isSendSmsSuccess(true);
                         _this.sendSMSmessage(res.message);
+                        // 记录短信发送时间
                         _this.sentTime( sentTime );
+                        // 数秒，倒计时
                         _this.timerTick();
-                        sessionStorage.setItem('sent-time', sentTime)
+                        // sessionStorage.setItem('sent-time', sentTime)
                         $.toast({text: res.message, icon: 'success'});
                     } else {
                         console.log("errrrrr");
@@ -203,6 +209,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             };
         };
         var viewmodel = new ViewModel();
+        // 初始化滑动验证控件
         preventRobot.init(
             document.getElementById('captcha'),
             function() {
