@@ -47,7 +47,7 @@ block content
                   input(type='text', placeholder='手机验证码' data-bind="textInput: code")
                 div
                   button(data-bind="text: secondsLeft() + 's后重新获取',visible: !sendEnable()")
-                  button.click_yz_cx(data-bind="css:{show: sendEnable}") 重新获取
+                  button.click_yz_cx(data-bind="css:{show: sendEnable}, click: getSmsCode") 重新获取
               .click_yz_text(style="display:none" data-bind="visible: isSendSmsSuccess") 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
             button.i-button(data-bind="click: smsNextStep") 下一步
           //- 输入密码
@@ -85,6 +85,6 @@ block content
         div 恭喜您，注册成功！
         .register_next
           nuxt-link(to='/login')
-            button.i-button 完成
+            button.i-button(data-bind="click: gotoHome") 完成
 
 

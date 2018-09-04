@@ -1,3 +1,7 @@
 link(rel="stylesheet" href="/dist/plugins/bootstrap/css/bootstrap.css")
 link(rel="stylesheet" href="/dist/css/public.css")
 script(src='/dist/lib/require.js' data-main='/dist/customerjs/main.js')
+<!--[if lte IE 8]>
+    <script src="/polyfill/viewport-units-buggyfill.js"></script>
+    <script src="/polyfill/viewport-units-buggyfill.hacks.js"></script>
+<![endif]-->
