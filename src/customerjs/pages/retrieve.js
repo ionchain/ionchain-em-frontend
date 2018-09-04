@@ -2,7 +2,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
     var reqSmsCodeDisable = false; // 发送短信按钮，点击频率控制
     var interval = 120; // 短信发送时间间隔
     var ViewModel = function(){
-      this.step = KO.observable(2);
+      this.step = KO.observable(1);
       this.smsStep = KO.observable(1); // 发送验证码的步骤状态
       this.errorMsg1 = KO.observable();// 发送验证短信前，手机号码验证信息
       this.isSendSmsSuccess = KO.observable(false); // 是否成功发送短信
@@ -79,6 +79,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
             layer.close(loadingIndex);
             reqSmsCodeDisable = false;
             if (res.success === 0) { // 短信发送成功
+              _this.sendEnable(false);
               if(type===1){ // 切换
                 _this.step(_this.step() + 1);
               }
