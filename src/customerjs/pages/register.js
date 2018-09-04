@@ -61,7 +61,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         }
                     },{format: "detailed", fullMessages: false});
                     if(errors) {
-                        console.log(errors, 'errors');
                         this.errorMsg2(common.getMessage(errors))
                     }
                     this.createUser();
@@ -142,9 +141,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                                         message: "^两次输入的密码不一致",
                                     }
                                 }
-                            },{format: 'flat'}
+                            },{format: 'detailed'}
                         );
-                        console.log('errors>>', common.getMessage(errors), errors)
                         if(errors) {
                             this.passwordValidMsg(errors.join(' ; '))
                             return;
@@ -190,10 +188,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 })._catch(function(err){
                     reqSmsCodeDisable = false;
                     layer.close(loadingIndex);
-                    console.log(err);
                 })._then(function() {
                     layer.close(loadingIndex);
-                    console.log('then @@@');
                 })
             };
             // 校验验短信证码
@@ -220,7 +216,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             };
             this.gotoHome = function() {
                 location.href = '/'
-                console.log('777');
             }
         };
         var viewmodel = new ViewModel();
