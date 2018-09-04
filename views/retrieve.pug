@@ -1,10 +1,10 @@
 extends layout/default.pug
 block previte-head
   link(rel="stylesheet" href="/dist/css/retrieve.css")
-block content
   script.
     require(['/dist/customerjs/pages/retrieve.js'])
-  .page-retrieve
+block content
+  .page-retrieve#page-retrieve
     .i-step
       .active
         span 1
@@ -22,53 +22,56 @@ block content
         span 4
         label 完成
     ul.retrieve-form-box
-      li.retrieve-step1.retrieve_cont_zh
-        div
-          .login_right_hint.login_right_w(data-bind="css: {show: !formValid()}")
-            span
-              img(src='/img/icon/error.svg', alt='')
-            span(data-bind='text: errorMessage')
-          // 请输入手机号
-          .register_cont_number
-            input(placeholder='请输入手机号', type='text', required, name='mobile' data-bind="textInput:mobile, event: {blur: checkMobile}")
-          .register_cont_click
-            button(data-bind='click: verify') 点击按钮进行验证
-        .stepA-item
-          | 图标滑动验证
-      li.retrieve-step2.retrieve_cont_yz
+      li.retrieve-step1.retrieve_cont_zh(data-bind="css: {active: step()=='1', finish: step()*1 > 1}")
+        .sms-step
+          .sms-step-item.register_cont_number(data-bind="css: {active: smsStep()=='1'}")
+            .error-msg(data-bind="css: { show: errorMsg1()}")
+              span.icon
+                img(src='/img/icon/error.svg', alt='')
+              span(data-bind='text: errorMsg1')
+            //- 请输入手机号
+            .register_cont_number
+              input(placeholder='请输入手机号' data-bind="textInput: mobile")
+            .register_cont_click
+              button(data-bind='click: smsNextStep') 点击按钮进行验证
+          .sms-step-item(data-bind="css: {active: smsStep()=='2'}")
+            .prevent-robot-wrapper
+              #captcha(style='position: relative')
+      //- 手机验证码
+      li.retrieve-step2.retrieve_cont_yz(data-bind="css: {active: step()=='2', finish: step()*1 > 2}")
         .login_right_hint.login_right_w
           span
             img(src='/img/icon/error.svg', alt='')
           span {{ errors.first('code') }}
-        // 请输入手机号
+        //- 请输入手机号
         .register_cont_number
-          input(placeholder='请输入手机号')
+          input(placeholder='请输入手机号' data-bind="value: mobile")
         .register_cont_click_yz
-          .click_yz_yz
+          .click_yz_yz(data-bind="visible: isShowSMScodeInput()")
             div
-              input(v-validate="'required'", name='code', data-vv-as='手机验证码', type='text', v-model='code', placeholder='手机验证码')
+              input(type='text', placeholder='手机验证码' data-bind="textInput: code")
             div
-              button(v-if='!reGetEnable && secondsLeft>0') {{secondsLeft}}s后重新获取
-              button.click_yz_cx(@click='getSmsCode', v-else='') 重新获取
-          .click_yz_text 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
-        // 下一步按钮
-        button.i-button
-          | 下一步
-      li.retrieve-step3.retrieve_cont_sz
-        // 输入密码
+              button(data-bind="text: secondsLeft() + 's后重新获取',visible: !sendEnable()")
+              button.click_yz_cx(data-bind="css:{show: sendEnable}") 重新获取
+          .click_yz_text(style="display:none" data-bind="visible: isSendSmsSuccess") 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
+        //- 下一步按钮
+        button.i-button(data-bind="click: nextStep") 下一步
+      //- 设置密码
+      li.retrieve-step3.retrieve_cont_sz(data-bind="css: {active: step()=='3', finish: step()*1 > 3}")
+        //- 输入密码
         .register_cont_pw
-          .login_right_hint.login_right_w
-            span
+          .error-msg(data-bind="css: {show: !!passwordValidMsg()}")
+            span.icon
               img(src='/img/icon/error.svg', alt='')
-            span {{ errors.first('password') }}
+            span(data-bind="text: passwordValidMsg")
           p
-            input(placeholder='请输入密码')
+            input(placeholder='请输入密码' type="password" data-bind="textInput: password")
           p
-            input(name='pw_confirm', ref='pw_confirm', data-vv-as='确认密码', type='password', placeholder='确定密码')
-        // 下一步按钮
-        button.i-button
-          | 下一步
-      li.retrieve-step4.register_cont_wc
+            input(placeholder='确定密码' type="password" data-bind="textInput: password_confirmation")
+        //- 下一步按钮
+        button.i-button(data-bind="click: nextStep") 下一步
+      //- 设置完成
+      li.retrieve-step4.register_cont_wc(data-bind="css: {active: step()=='4', finish: step()*1 == 4}")
         div
           img(src='/img/icon/succeed.svg', alt='')
         div 密码设置成功!
