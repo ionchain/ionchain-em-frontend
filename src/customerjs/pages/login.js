@@ -13,6 +13,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         mobile: true
                     },
                     password: {presence: {message: "^密码是必填的"}}
+                },{
+                    format: "detailed"
                 });
                 
                 if(errors) {
@@ -40,6 +42,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         presence: {message: "^手机号码是必填的"},
                         mobile: true
                     }
+                },{
+                    format: "detailed"
                 })
                 if(errors) {
                     this.formValid(false);
@@ -53,6 +57,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     password: {
                         required: {message: "^密码是必填的"}
                     }
+                },{
+                    format: "detailed"
                 })
                 console.log(this.password(),'--', errors)
                 if(errors) {

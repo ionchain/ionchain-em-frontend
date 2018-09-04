@@ -48,11 +48,18 @@ gulp.task('build', async function () {
 	], { base: 'src' })
 		.pipe(gulp.dest(`${DIST}`));
 
+	// Bootstrap
 	gulp.src([
 		'bower_components/bootstrap/dist/**/*.*'
 	], { base: 'bower_components/bootstrap/dist' })
 		.pipe(gulp.dest(`${DIST}/plugins/bootstrap`));
 
+	// layer
+	gulp.src([
+			'bower_components/layer/dist/**/*.*'
+		], { base: 'bower_components/layer/dist' })
+			.pipe(gulp.dest(`${DIST}/plugins/layer`));
+	
 	gulp.src([
 		'src/plugins/**/*.*',
 	], { base: 'src' })

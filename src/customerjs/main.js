@@ -18,7 +18,8 @@
             toast: LIBRARY + 'jquery.toast.min',
             common: COMMON + 'common',
             moment: LIBRARY + 'moment',
-            preventRobot: PLUGINS + 'prevent-robot/jigsaw'
+            preventRobot: PLUGINS + 'prevent-robot/jigsaw',
+            layer: PLUGINS + 'layer/layer'
         },
         map: {
             '*': {
@@ -26,6 +27,7 @@
             }
         },
         shim: {
+            layer: ['css!' +  PLUGINS + 'layer/theme/default/layer.css'],
             api: ['jquery'],
             tabs: ['jquery'],
             lazyload: ['jquery'],

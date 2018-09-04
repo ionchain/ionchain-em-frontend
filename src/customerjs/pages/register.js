@@ -1,9 +1,9 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'moment', 'preventRobot'],
-    function($, API, _, KO, serialize, validate, toast, common, moment, preventRobot) {
-        
+require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'moment', 'preventRobot', 'layer'],
+    function($, API, _, KO, serialize, validate, toast, common, moment, preventRobot, layer) {
         var interval = 120; // 短信发送时间间隔
         var reqSmsCodeDisable = false; // 发送短信按钮，点击频率控制
         var ticker = null;
+        var loadingIndex= null;
        
         var ViewModel = function(){
             this.errorMsg2 = KO.observable();
@@ -26,6 +26,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.passwordValidMsg = KO.observable();
             // 创建用户
             this.createUser = function() {
+                loadingIndex = layer.load(2);
+                var _this = this;
                 API.createUser({
                     mobile: this.mobile(),
                     password: this.password(),
@@ -33,14 +35,18 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     company_name: this.company_name(),
                     company_org_code: this.company_org_code(),
                     eth_address: this.eth_address()
-                })._then((res) => {
+                })._then( function(res) {
+                    layer.close(loadingIndex)
                     if (res.success === 0) {
-                        this.nextStep() // 切换到下一界面
+                        _this.step( _this.step() + 1 ) // 切换到下一界面
                     } else {
-                        this.$snotify.error(res.message)
+                        $.toast({text: res.message, icon: 'error'});
                     }
+                })._catch(function(){
+                    layer.close(loadingIndex)
                 })
             };
+            // 注册大步骤控制，视图切换
             this.nextStep = function() {
                 if(this.step() == 2) {
                     var errors = validate({
@@ -55,7 +61,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         }
                     },{format: "detailed", fullMessages: false});
                     if(errors) {
-                        console.log(errors, 'errors');
                         this.errorMsg2(common.getMessage(errors))
                     }
                     this.createUser();
@@ -81,6 +86,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
 
                 }, 1000)
             };
+            // 注册第一步（共3步）中的小步骤---下一步处理
             this.smsNextStep = function() {
                 switch(this.smsStep()) {
                     case 1:
@@ -97,6 +103,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         break;
                     case 2:
                         this.getSmsCode();
+                        return
                         break;
                     case 3:
                         var errors = validate(
@@ -134,9 +141,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                                         message: "^两次输入的密码不一致",
                                     }
                                 }
-                            },{format: 'flat'}
+                            },{format: 'detailed'}
                         );
-                        console.log('errors>>', common.getMessage(errors), errors)
                         if(errors) {
                             this.passwordValidMsg(errors.join(' ; '))
                             return;
@@ -148,61 +154,72 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 if(this.smsStep >= 4) return
                 this.smsStep( this.smsStep() + 1 )
             };
+            // 获取短信验证码
             this.getSmsCode = function() {
                 var _this = this;
+                // 控制发送短信按钮，使用频率
                 if(reqSmsCodeDisable){
                     return
                 }
                 reqSmsCodeDisable = true
+                loadingIndex = layer.load(2);
                 API.getSmsCode({ mobile: this.mobile() })._then(function (res) {
-                  console.log(res);
-                  try{
+                    layer.close(loadingIndex);
+                    reqSmsCodeDisable = false;
                     if (res.success === 0) { // 短信发送成功
+                        _this.smsStep(_this.smsStep()+1);
                         var sentTime = moment().format('YYYY-MM-DD HH:mm:ss');
                         _this.isSendSmsSuccess(true);
                         _this.sendSMSmessage(res.message);
+                        // 记录短信发送时间
                         _this.sentTime( sentTime );
+                        // 数秒，倒计时
                         _this.timerTick();
-                        sessionStorage.setItem('sent-time', sentTime)
+                        // sessionStorage.setItem('sent-time', sentTime)
                         $.toast({text: res.message, icon: 'success'});
                     } else {
-                        console.log("errrrrr");
                         _this.isSendSmsSuccess(false)
                         _this.sendSMSmessage(res.message);
                         $.toast({text: res.message, icon: 'error'});
                         if (res.success === 2001) {
-                            _this.isShowSMScodeInput(false)
+                            _this.isShowSMScodeInput(false);
                         }
                     }
-                  }catch(e){
-                      console.log(e);
-                  }
-                  
                 })._catch(function(err){
-                    console.log(err);
+                    reqSmsCodeDisable = false;
+                    layer.close(loadingIndex);
                 })._then(function() {
-                    reqSmsCodeDisable = false
+                    layer.close(loadingIndex);
                 })
             };
             // 校验验短信证码
             this.verifySMScode = function() {
                 var _this = this;
+                loadingIndex = layer.load(2);
                 API.verifySMScode({
                     mobile: this.mobile(),
                     code: this.code()
                 })._then(function(res) {
-                if (res.success === 0) {
-                    $.toast({text: res.message, icon: 'success'});
-                    // 切换到下一界面
-                    _this.smsStep( _this.smsStep() + 1 )
-                } else {
-                    $.toast({text: res.message, icon: 'error'});
-                }
-                })._catch()._then(function() {
+                    layer.close(loadingIndex)
+                    if (res.success === 0) {
+                        $.toast({text: res.message, icon: 'success'});
+                        // 切换到下一界面
+                        _this.smsStep( _this.smsStep() + 1 )
+                    } else {
+                        $.toast({text: res.message, icon: 'error'});
+                    }
+                })._catch(function(){
+                    layer.close(loadingIndex)
+                })._then(function() {
+                    layer.close(loadingIndex)
                 })
             };
+            this.gotoHome = function() {
+                location.href = '/'
+            }
         };
         var viewmodel = new ViewModel();
+        // 初始化滑动验证控件
         preventRobot.init(
             document.getElementById('captcha'),
             function() {
