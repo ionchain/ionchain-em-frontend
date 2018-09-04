@@ -20,8 +20,9 @@ async function start () {
     /** (number || 'session') maxAge in ms (default is 1 days) */
     /** 'session' will result in a cookie that expires when session/browser is closed */
     /** Warning: If a session cookie is stolen, this cookie will never expire */
-    // maxAge: 86400000,
-    maxAge:2000,
+    // maxAge: 86400000, //24小时
+    maxAge:3600000, //一小时
+    // maxAge: 2000, // 2秒
     overwrite: true, /** (boolean) can overwrite or not (default true) */
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
     signed: true, /** (boolean) signed or not (default true) */

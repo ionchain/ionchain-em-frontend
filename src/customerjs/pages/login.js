@@ -5,6 +5,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.password = KO.observable();
             this.formValid = KO.observable(true);
             this.errorMessage = KO.observable();
+            this.loginLong = KO.observable(false);
             this.login = function () {
                 var params = serialize($('#login-form')[0], { hash: true }, {format: "detailed"});
                 var errors = validate(params, {
@@ -29,7 +30,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         $.toast({text: '登录成功', icon: 'success'});
                         setTimeout(function() {
                             location.replace('/')
-                        }, 150)
+                        }, 300)
                     } else {
                         $.toast({text: data.message, icon: 'error'});
                     }

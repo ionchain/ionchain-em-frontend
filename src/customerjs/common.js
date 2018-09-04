@@ -4,6 +4,7 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
             showHideTransition: 'slide',
             position: 'top-center'
         });
+        /*--header 模版绑定 start--*/
         var viewmodel = {
             logout: function() {
                 API.Logout()._then(function(data) {
@@ -12,7 +13,7 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
                         $.toast({text: data.message, icon: 'success'});
                         setTimeout(function() {
                             location.href = '/login'
-                        }, 150 )
+                        }, 300 )
                     } else {
                         $.toast({text: data.message, icon: 'error'});
                     }
@@ -22,6 +23,7 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
         $(function() {
             KO.applyBindings( viewmodel , $('#header')[0]);
         });
+        /*--header 模版绑定 end--*/
         /*--规则自定义start--*/
         validate.validators.mobile = function(value, options, key, attributes) {
             var test = /^[1][3,4,5,7,8][0-9]{9}$/.test(value)

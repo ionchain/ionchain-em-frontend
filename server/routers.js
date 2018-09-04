@@ -2,6 +2,8 @@ var Router = require('koa-router')
 var _ = require('lodash')
 var router = new Router()
 const axios = require('axios')
+const  SessionMaxAge = 3600000
+const  SessionMaxAgeLong = 86400000 * 30 // a month
 
 // 全局数据绑定
 router.all('*', (ctx, next) => {
@@ -34,7 +36,7 @@ router.all(/^\/api/, async (ctx, next) => {
 	})
 
 	url = target + ctx.request.url
-	// console.log('proxy url @@', url, ctx.request.body)
+	console.log('proxy url @@', url, ctx.request.body)
 
 	var options = {
 		url: url,
@@ -59,12 +61,22 @@ router.all(/^\/api/, async (ctx, next) => {
 		}
 		ctx.response.set({ 'content-type': res.headers['content-type'] })
 		ctx.body = res.data
-		if (ctx.request.url.indexOf(('/users/login') > -1 && ctx.body.success === 0)) {
+		if (ctx.request.url.indexOf(('/users/login') > -1 && res.data.success === 0)) {
 			ctx.session.userinfo = res.data.data
+			if(_.get(ctx.request.body, 'loginLong') == 'on' ) {
+				ctx.session.maxAge = SessionMaxAgeLong
+			}
 		}
 	}).catch((err) => {
-		ctx.body = err.response.statusText
-		ctx.status = err.response.status
+		try{
+			ctx.body = err.response.statusText
+			ctx.status = err.response.status
+		}catch(e){
+			for(let prop in err.response){
+				console.log('@@@>>', prop);
+			}
+		}
+		
 	}).then(() => {
 	})
 })
@@ -108,9 +120,11 @@ router.get('/register', async (ctx, next) => {
 		currentpage: 'register'
 	})
 })
-//注册
+/*--页面路由 end--*/
+
+//测试api
 router.post('/test/getSmsCode', async (ctx, next) => {
 	ctx.body = {"success":0,"message":"ok","data":{"msg":"success","code":0}}
 })
-/*--页面路由 end--*/
+
 module.exports = router

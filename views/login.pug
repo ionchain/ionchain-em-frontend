@@ -26,9 +26,11 @@ block content
           div
             a(to='/retrieve') 忘记密码？
         .login-form-row
-          //- span.left
-          //-   input(type="checkbox")
-          //-   label 自动登录
-          a.link.right(href='/register') 注册 ION Chain ID
+          span.left
+            s.s-input
+              input(type="checkbox" name='loginLong' id="auto-login")
+              i.skin
+            label.hover-hand.no-select(for="auto-login") 自动登录
+          a.low-link.right(href='/register' data-bind="checked: loginLong") 注册 ION Chain ID
         .login_right_log.cursor-hand(data-bind='click: login')
           a(href='javascript:;') 登录
