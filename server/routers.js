@@ -120,6 +120,12 @@ router.get('/register', async (ctx, next) => {
 		currentpage: 'register'
 	})
 })
+// 设备添加/发布设备
+router.get('/equipment-add', (ctx, next) => {
+	ctx.render('equipment-add', {
+		currentpage: 'equipment-add'
+	})
+})
 /*--页面路由 end--*/
 
 //测试api

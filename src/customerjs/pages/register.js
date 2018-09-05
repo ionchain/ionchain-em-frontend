@@ -214,7 +214,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     layer.close(loadingIndex)
                 })
             };
-            this.gotoHome = function() {
+            this.gotoLogin = function() {
                 location.href = '/'
             }
         };
