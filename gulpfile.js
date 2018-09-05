@@ -64,7 +64,7 @@ gulp.task('build', async function () {
 
 	// font
 	gulp.src([
-		'src/font/**/*.*'
+		'src/fonts/**/*.*'
 	], { base: 'src' })
 		.pipe(gulp.dest(`${DIST}/css`));
 	

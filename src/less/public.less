@@ -367,10 +367,47 @@ img{
 }
 .ly-thin{
     margin: auto;
-    width: 70rem;
-    min-height: 600pt;
-    background: #FFBAB8;
+    width: 830px;
+    .clearFix();
 }
+.page-title-I{
+    font-size: 24px;
+    margin: 39px 0;
+}
+.c-tool-bar{
+    >*{
+        margin-right: 30px;
+    }
+}
+.plus-btn{
+    width:160px;
+    height:160px;
+    border: 1px dashed #CACED7;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    &::before,&::after{
+        display: block;
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+    &::before{
+        width: 50px;
+        border-bottom: 2px solid @baseColor;
+        margin-top: -1px;
+        margin-left: -25px;
+    }
+    &::after{
+        height: 50px;
+        border-right: 2px solid @baseColor;
+        margin-top: -25px;
+        margin-left: -1px;
+       
+    }
+}
+
 @import "register.less";
 @import "retrieve.less";
 @import "articles.less";

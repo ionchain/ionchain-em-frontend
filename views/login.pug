@@ -19,10 +19,10 @@ block content
             img(src='/img/icon/error.svg', alt='') 
           span(data-bind="text: errorMessage")
         .login_right_name
-          input.i-input-bg(required, name='mobile', placeholder='请输入手机号', type='text' data-bind="textInput: mobile, event: {blur: checkMobile}")
+          input.ic-input-lg(required, name='mobile', placeholder='请输入手机号', type='text' data-bind="textInput: mobile, event: {blur: checkMobile}")
         .test(data-bind="form.mobile")
         .login_right_pw
-          input.i-input-bg(required, name='password', placeholder='请输入密码', type='password' id="inp-password" data-bind="textInput: password, event: {blur: checkPwd}")
+          input.ic-input-lg(required, name='password', placeholder='请输入密码', type='password' id="inp-password" data-bind="textInput: password, event: {blur: checkPwd}")
           div
             a(to='/retrieve') 忘记密码？
         .login-form-row
