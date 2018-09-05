@@ -2,7 +2,6 @@
 	less = require('gulp-less'),
 	browserSync = require('browser-sync');
 const rollup = require('rollup');
-const babel = require('rollup-plugin-babel');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 
@@ -39,9 +38,12 @@ gulp.task('build', async function () {
 		'bower_components/jquery-toast-plugin/dist/*.*',
 		'bower_components/babel-polyfill/browser-polyfill.js',
 		'bower_components/require-css/css.min.js',
-		'bower_components/moment/moment.js'
+		'bower_components/moment/moment.js',
+		'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js',
+		'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.hacks.js',
+		'bower_components/REM-unit-polyfill/js/rem.min.js'
 	])
-		.pipe(gulp.dest(`${DIST}/lib`));
+	.pipe(gulp.dest(`${DIST}/lib`));
 
 	gulp.src([
 		'src/lib/**/*.*',
@@ -59,6 +61,12 @@ gulp.task('build', async function () {
 			'bower_components/layer/dist/**/*.*'
 		], { base: 'bower_components/layer/dist' })
 			.pipe(gulp.dest(`${DIST}/plugins/layer`));
+
+	// font
+	gulp.src([
+		'src/font/**/*.*'
+	], { base: 'src' })
+		.pipe(gulp.dest(`${DIST}/css`));
 	
 	gulp.src([
 		'src/plugins/**/*.*',
@@ -68,9 +76,9 @@ gulp.task('build', async function () {
 	gulp.src([
 		'src/customerjs/**/*.js',
 	], { base: 'src' })
-	.pipe(sourcemaps.init())
+	// .pipe(sourcemaps.init())
 	// .pipe(uglify())
-	.pipe(sourcemaps.write())
+	// .pipe(sourcemaps.write())
 	.pipe(gulp.dest(`${DIST}`));
 });
 

@@ -1,11 +1,7 @@
 export default {
-  input: 'bower_components/validate/validate.js',
+  input: '',
   output: {
-    file: 'static/dist/lib/validate.js',
+    file: '',
     format: 'amd'
-  },
-  onwarn(warning, warn) {
-    if (warning.code === 'THIS_IS_UNDEFINED') return;
-    warn(warning); // this requires Rollup 0.46
   }
 };
