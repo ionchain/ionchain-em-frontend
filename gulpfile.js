@@ -55,6 +55,17 @@ gulp.task('build', async function () {
 		'bower_components/bootstrap/dist/**/*.*'
 	], { base: 'bower_components/bootstrap/dist' })
 		.pipe(gulp.dest(`${DIST}/plugins/bootstrap`));
+	
+	// tooltip
+	gulp.src([
+		'bower_components/tooltip.js/index.js'
+	])
+	.pipe(gulp.dest(`${DIST}/plugins/tooltip.js`));
+
+	gulp.src([
+		'bower_components/popper.js/dist/umd/popper.js'
+	])
+	.pipe(gulp.dest(`${DIST}/plugins`));
 
 	// layer
 	gulp.src([

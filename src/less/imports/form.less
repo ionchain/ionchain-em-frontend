@@ -15,6 +15,10 @@
         border-color: @baseColor;
     }
 }
+.ic-textarea{
+    &:extend(.ic-input all);
+    height: 112px;
+}
 .ic-input-big{
     &:extend(.ic-input all);
     height: 40px;
@@ -51,6 +55,11 @@ button{
     }
     .input-wrap{
         position: relative;
+        .tip-status{
+            font-size: 12px;
+            color: @grayText;
+            padding-right: 10px;
+        }
     }
     .input-append{
         position: absolute;
@@ -58,7 +67,20 @@ button{
         top: 0%;
         height: 100%;
         display: block;
-        line-height: 36px;
+        line-height: 40px;
+    }
+    .textarea-append{
+        position: absolute;
+        right: 12px;
+        display: block;
+        bottom: 12px;
+    }
+    .textarea-wrap{
+        position: relative;
+        .tip-status{
+            font-size: 12px;
+            color: @grayText;
+        }
     }
     .ic-input{
         width: 100%;
@@ -70,7 +92,6 @@ button{
 .ic-form{
     .ic-form-item{
         margin-bottom: 20px;
-        
     }
 }
 .ic-btn{
