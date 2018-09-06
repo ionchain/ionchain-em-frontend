@@ -23,7 +23,9 @@
             // tooltip: PLUGINS + 'tooltip.js/index',
             // popper: PLUGINS + 'popper'
             csPopUp: PLUGINS + 'jquery.csPopUp',
-            easing: PLUGINS + 'jquery.easing.1.3'
+            easing: PLUGINS + 'jquery.easing.1.3',
+            swiper: PLUGINS + 'swiper/js/swiper',
+            superlide: 'plugins/jquery.SuperSlide.2.1.1'
         },
         map: {
             '*': {
@@ -32,6 +34,8 @@
         },
         shim: {
             // tooltip: ['popper'],
+            superlide: ['jquery'],
+            swiper: ['jquery', 'css!' + PLUGINS + 'swiper/css/swiper.css'],
             easing: ['jquery'],
             csPopUp: ['jquery', 'easing'],
             layer: ['css!' +  PLUGINS + 'layer/theme/default/layer.css'],

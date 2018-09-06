@@ -6,6 +6,7 @@
 @import "imports/form.less";
 @import "imports/footer.less";
 @import "imports/toast-extend.less";
+
 #root-scope{
     .link{
         color: @baseColor;
@@ -104,8 +105,9 @@ img{
         }
     }
     .h-main{
-        width: 1200px;
+        width: @mainWidth;
         margin: auto;
+        .clearFix();
     }
 }
 .error-msg{
