@@ -1,0 +1,9 @@
+extends ../layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/user.css")
+block content
+    .user-main.ly-main
+        include includes/user-header.pug
+        .user-content
+            include includes/user-nav.pug
+            block user-content

@@ -214,8 +214,8 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     layer.close(loadingIndex)
                 })
             };
-            this.gotoHome = function() {
-                location.href = '/'
+            this.gotoLogin = function() {
+                location.href = '/login'
             }
         };
         var viewmodel = new ViewModel();

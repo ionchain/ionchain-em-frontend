@@ -19,7 +19,8 @@
             common: COMMON + 'common',
             moment: LIBRARY + 'moment',
             preventRobot: PLUGINS + 'prevent-robot/jigsaw',
-            layer: PLUGINS + 'layer/layer'
+            layer: PLUGINS + 'layer/layer',
+            progress: PLUGINS + 'progress/schedule'
         },
         map: {
             '*': {
@@ -27,6 +28,7 @@
             }
         },
         shim: {
+            progress: ['css!' + PLUGINS + 'progress/schedule.css'],
             layer: ['css!' +  PLUGINS + 'layer/theme/default/layer.css'],
             api: ['jquery'],
             tabs: ['jquery'],
