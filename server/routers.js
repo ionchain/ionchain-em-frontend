@@ -120,6 +120,39 @@ router.get('/register', async (ctx, next) => {
 		currentpage: 'register'
 	})
 })
+
+/*--个人中心页面 start--*/
+
+// 我的发布
+router.get("/user/release", async (ctx, next) => {
+	ctx.render('user/release', {
+		currentpage: 'release'
+	})
+})
+
+// 我的收藏
+router.get("/user/collect", async (ctx, next) => {
+	ctx.render('user/collect', {
+		currentpage: 'collect'
+	})
+})
+
+// 消息中心
+router.get("/user/message", async (ctx, next) => {
+	ctx.render('user/message', {
+		currentpage: 'message'
+	})
+})
+
+// 投诉与反馈
+router.get("/user/comp", async (ctx, next) => {
+	ctx.render('user/comp', {
+		currentpage: 'comp'
+	})
+})
+
+/*--个人中心页面 end*/
+
 // 设备添加/发布设备
 router.get('/equipment-add', (ctx, next) => {
 	ctx.render('equipment-add', {
