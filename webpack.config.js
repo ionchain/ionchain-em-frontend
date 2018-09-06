@@ -11,7 +11,6 @@ module.exports = {
     },
     module: {
         rules: [
-            // 模块规则（配置 loader、解析器等选项）
             {
               test: /\.js?$/,
               loader: ["babel-loader",'es3ify-loader']

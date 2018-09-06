@@ -20,7 +20,11 @@
             moment: LIBRARY + 'moment',
             preventRobot: PLUGINS + 'prevent-robot/jigsaw',
             layer: PLUGINS + 'layer/layer',
-            progress: PLUGINS + 'progress/schedule'
+            progress: PLUGINS + 'progress/schedule',
+            // tooltip: PLUGINS + 'tooltip.js/index',
+            // popper: PLUGINS + 'popper'
+            csPopUp: PLUGINS + 'jquery.csPopUp',
+            easing: PLUGINS + 'jquery.easing.1.3'
         },
         map: {
             '*': {
@@ -29,6 +33,9 @@
         },
         shim: {
             progress: ['css!' + PLUGINS + 'progress/schedule.css'],
+            // tooltip: ['popper'],
+            easing: ['jquery'],
+            csPopUp: ['jquery', 'easing'],
             layer: ['css!' +  PLUGINS + 'layer/theme/default/layer.css'],
             api: ['jquery'],
             tabs: ['jquery'],

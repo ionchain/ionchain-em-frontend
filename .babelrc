@@ -1,9 +1,8 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": ["> 0.02%"]
+    ["latest", {
+      "es2015": {
+        "modules": false
       }
     }]
   ],

@@ -1,0 +1,68 @@
+extends layout/default.pug
+block content
+    script.
+        require(['/dist/customerjs/pages/equipment-add.js'])
+    .ly-thin
+        h2.page-title-I 发布设备
+        .page-content
+            form.ic-form.of-hide
+                .ic-form-item
+                    label 设备名称 
+                        span.tip-words (如：小米红米5A)
+                    .input-wrap
+                        input.ic-input-big(placeholder="请输入设备名称")
+                        span.input-append.tip-status 0/38
+                .ic-form-item
+                    label 设备数量 
+                    .input-wrap
+                        input.ic-input-big(placeholder="请输入设备数量")
+                .ic-form-item
+                    label 设备说明书
+                    .input-wrap
+                        input.ic-input-big(placeholder="请输入设备说明书")
+                .ic-form-item
+                    label 设备组描述 
+                        span.tip-words (描述例子 下载)
+                    .textarea-wrap
+                        textarea.ic-textarea(row="5" style="height:226px;resize:none" placeholder="请输入设备组描述")
+                        span.textarea-append.tip-status 0/1000
+                .ic-form-item
+                    label 设备类目
+                    .row
+                        .col
+                            .input-wrap
+                                select.ic-input-big(placeholder="一级类目")
+                        .col
+                            .input-wrap
+                                select.ic-input-big(placeholder="二级类目")
+                .ic-form-item
+                    label 设备图片
+                    ul.equ-gallery
+                        li.plus-btn
+                        li.ga-item
+                .ic-form-item
+                    label 设备说明书上传
+                    div
+                        input.ic-input-big.wid-col2-A(placeholder="")
+                        button.right.ic-btn-big.i-outline-primary.wid-col2-B 上传
+                        //- input(type="file")
+                .ic-form-item
+                    label 数据样例上传
+                    div
+                        input.ic-input-big.wid-col2-A(placeholder="")
+                        button.right.ic-btn-big.i-outline-primary.wid-col2-B 上传
+            .c-tool-bar
+                button.ic-btn.i-primary 提交
+                button.ic-btn.i-outline 取消
+        #tipBoxA.tip-box-A(data-options='{"trigger":".plus-btn","x_align":"rl","y_align":"cc","x_offset":48}')
+            .arrow-left
+            .tip-text
+                span.l-tit.f-16 示例:
+                img(src="")
+                span.l-tip-words 建议尺寸：不小于 400×400px，并且为正方形
+                    br
+                    | 建议格式：JPG, JPEG, PNG
+
+
+    script.
+        

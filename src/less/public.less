@@ -369,6 +369,100 @@ img{
         background-image: url("@{imgBase}img/icon/selected.svg");
     }
 }
+.ly-thin{
+    margin: auto;
+    width: 830px;
+    .clearFix();
+    padding-bottom: 72px;
+}
+.page-title-I{
+    font-size: 24px;
+    margin: 39px 0;
+}
+.c-tool-bar{
+    margin-top: 20px;
+    >*{
+        margin-right: 30px;
+    }
+}
+.plus-btn{
+    width:160px;
+    height:160px;
+    border: 1px dashed #CACED7;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    &:before,&:after{
+        display: block;
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+    &:before{
+        width: 50px;
+        border-bottom: 2px solid @baseColor;
+        margin-top: -1px;
+        margin-left: -25px;
+    }
+    &:after{
+        height: 50px;
+        border-right: 2px solid @baseColor;
+        margin-top: -25px;
+        margin-left: -1px;
+       
+    }
+}
+.arrow-left {
+    width:0; 
+    height:0; 
+    border-top:30px solid transparent;
+    border-bottom:30px solid transparent; 
+    border-right:30px solid #CCCFD8;
+    position: relative;
+    &:before{
+        display: block;
+        content:"";
+        width:0; 
+        height:0; 
+        border-top:30px solid transparent;
+        border-bottom:30px solid transparent; 
+        border-right:30px solid #fff;
+        position: absolute;
+        top:-30px;
+        left:1px;
+    }
+
+}
+.tip-box-A{
+    position: absolute;
+    display: none;
+    .arrow-left{
+        position: relative;
+        top: 16px;
+        display: inline-block;
+    }
+    .tip-text{
+        display: inline-block;
+        padding: 35px;
+        color: @grayText;
+        border-radius: 5px;
+        border: 1px solid #CCCFD8;
+        .l-tit{
+            margin-right: 42px;
+            position: relative;
+            top: -10px;
+        }
+        img{
+            margin-right: 30px;
+        }
+        .l-tip-words{
+            padding: 25px 0;
+            font-size: 12px;
+            display: inline-block;
+        }
+    }
+}
 @import "register.less";
 @import "retrieve.less";
 @import "articles.less";

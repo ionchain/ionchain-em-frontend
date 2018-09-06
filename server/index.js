@@ -30,7 +30,7 @@ async function start () {
     renew: false /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
   }
 
-  const host = process.env.HOST || '127.0.0.1'
+  const host = process.env.HOST || 'localhost'
   const port = process.env.PORT || 2018
 
   const pug = new Pug({

@@ -151,8 +151,14 @@ router.get("/user/comp", async (ctx, next) => {
 	})
 })
 
-/*--个人中心页面 end/*--
+/*--个人中心页面 end*/
 
+// 设备添加/发布设备
+router.get('/equipment-add', (ctx, next) => {
+	ctx.render('equipment-add', {
+		currentpage: 'equipment-add'
+	})
+})
 /*--页面路由 end--*/
 
 //测试api

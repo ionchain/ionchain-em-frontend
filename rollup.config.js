@@ -1,11 +1,15 @@
+import resolve from 'rollup-plugin-node-resolve';
+import babel from 'rollup-plugin-babel';
 export default {
-  input: 'bower_components/validate/validate.js',
+  input: '',
   output: {
-    file: 'static/dist/lib/validate.js',
+    file: '',
     format: 'amd'
   },
-  onwarn(warning, warn) {
-    if (warning.code === 'THIS_IS_UNDEFINED') return;
-    warn(warning); // this requires Rollup 0.46
-  }
+  plugins: [
+    resolve(),
+    babel({
+      exclude: 'node_modules/**' // 只编译我们的源代码
+    })
+  ]
 };
