@@ -1,0 +1,6 @@
+extends ./layout.pug
+block user-content
+    script.
+        require(['/dist/customerjs/pages/user.js'])
+    .comp 
+        textarea(name="", cols="30", rows="15")

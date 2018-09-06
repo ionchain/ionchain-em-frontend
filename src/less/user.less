@@ -1,0 +1,272 @@
+@import 'imports/variable.less';
+@import 'imports/mixins.less';
+// 头部
+.user-header{
+    height:118px;
+    padding-top: 30px;
+    .header-photo, .header-name{
+        float: left
+    }
+    .header-photo{
+        width: 88px;
+        height: 88px;
+        font-size: 88px;
+    }
+    .header-name{
+        margin-left: 20px;
+        font-size: 12px;
+        div:first-child{
+            margin-bottom: 10px;
+            b{
+                font-size: 24px;
+                color: @fsColor;
+            }
+            a{
+                display:inline-block;
+                width: 85px;
+                height: 18px;
+                margin-left: 8px;
+                background: @inputBorderColor;
+                border-radius: 9px;
+                text-align: center;
+                line-height: 18px;
+                color: @buttonColor;
+            }
+            a:hover{
+                text-decoration: none;
+            }
+        }
+        div:nth-child(2){
+            margin-bottom: 6px;
+        }
+        div:nth-child(2), div:nth-child(3){
+            >label{
+                color: @inputTextColor;
+            }
+            >span{
+                color:@baseTextColor;
+            }
+        }
+    }
+} 
+.user-content{
+    .clearFix();
+    padding: 20px 0 60px;
+    font-size: 16px;
+    .user-nav,.release{
+        float: left
+    }
+    //  侧边导航栏
+    .user-nav{
+        width: 206px;
+        margin-right: 20px;
+        a{
+            width: 206px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            display: block;
+            box-sizing: border-box;
+            color: @fsColor;
+            border: 1px solid @borderColor;
+            border-bottom: 1px solid transparent;
+            padding-right: 1px;
+        }
+        li:last-child>a{
+            border-bottom: 1px solid  @borderColor;
+        }
+        a:hover{
+            border-right: 2px solid @baseColor;
+            padding-right:0;
+            background: #F4F7FC;
+            color: @baseColor;
+            text-decoration: none;
+        }
+        // 选中
+        .active{
+            border-right: 2px solid @baseColor;
+            padding-right:0;
+            background: #F4F7FC;
+            color: @baseColor;
+            text-decoration: none;
+        }
+    }
+    // 内容
+    // 我的发布
+    .release{
+        width: 974px;
+        .release_nav{
+            height: 60px;
+            border: 1px solid @borderColor;
+            >a{
+                height: 59px;
+                padding: 0 10px;
+                line-height: 60px;
+                margin-left: 26px;
+                text-align: center;
+                box-sizing: border-box;
+                float: left;
+                color: @fsColor;
+            }
+            >a:hover{
+                text-decoration: none;
+            }
+            .active{
+                color: @baseColor;
+                border-bottom: 2px solid @baseColor;
+            }
+        }
+        .release_content{
+            .clearFix();
+            li{
+                height: 404px;
+                margin-top: 20px;
+                padding:30px 20px;
+                float: left;
+                width: 477px;
+                box-sizing: border-box;
+                border: 1px solid  @borderColor; 
+                .cont_f1{
+                    .clearFix();
+                    >div{
+                        float: left;
+                    }
+                    >div:first-child{
+                        margin-right: 20px;
+                        width: 158px;
+                        height: 158px;
+                        border: 1px solid  @borderColor; 
+                    }
+                    >div:last-child{
+                        >.f1_name{
+                            color:@fsColor;
+                            font-weight: bold;
+                            padding-bottom: 20px;
+                            font-size: 16px;
+                        }
+                        >p{
+                            margin-bottom: 10px;
+                            font-size: 12px;
+                            label{
+                                color:@inputTextColor;
+                            }
+                            span{
+                                color: @baseTextColor;
+                            }
+                        }
+                    }
+                }
+                .cont_f2{
+                    color: @baseTextColor;
+                    font-size: 14px;
+                    margin: 35px 0 10px;
+                }
+                .cont_f4{
+                    margin: 14px 0 30px;
+                    font-size: 0;
+                    span{
+                        display: inline-block;
+                        width: 79px;
+                        height: 28px;
+                        font-size:12px;
+                        line-height: 28px;
+                        color: @baseColor;
+                        border-radius: 15px;
+                        background: #F2FBFB;
+                        text-align: center;
+                    }
+                    span:first-child{
+                        margin-right: 10px;
+                    }
+                }
+                .cont_f5{
+                    .clearFix();
+                    font-size: 0;
+                    >div{
+                        display: inline-block;
+                    }
+                    >.good{
+                        >i{
+                            font-size: 19px; 
+                            padding-right: 4px;
+                        }
+                        >i:last-child{
+                            padding-right: 0;
+                        }
+                    }
+                    .down,.look{
+                        font-size: 12px; 
+                        margin-left: 20px;
+                        >span{
+                            padding-left: 5px;
+                        }
+                    }
+                    .look{
+                        i{
+                            font-size: 17px; 
+                        }
+                    }
+                    .compile,.del{
+                        font-size: 14px;
+                        float: right;
+                    }
+                    .compile{
+                        color:#2977FF;
+                    }
+                    .del{
+                        margin-left: 20px;
+                        
+                        >a{
+                            color: @grayText;
+                        }
+                    } 
+                }
+            }
+            .plus{
+                border: 1px dotted @inputBorderColor;
+                text-align: center;
+                color: @baseColor;
+                position: relative;
+                i,span{
+                    position: absolute;
+                    background: @baseColor;
+                    top:0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
+                i{
+                    width: 50px;
+                    height: 2px;
+                }
+                span{
+                    width: 2px;
+                    height: 50px;
+                }
+            }
+            .plus:hover{
+                border-color: @baseColor;
+            }
+        }
+    }
+    // 我的收藏
+    .collect_down,.collect_look{
+        float: right;
+    }
+    // 消息中心
+    .message_content{
+        li{
+            height: auto !important;
+        }
+    }
+    // 投诉与反馈
+    .comp{
+        textarea{
+            width: 974px;
+            border-color:@inputBorderColor;
+        }
+    } 
+        
+
+}

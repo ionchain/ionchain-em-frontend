@@ -1,0 +1,45 @@
+extends ./layout.pug
+block user-content
+    script.
+        require(['/dist/customerjs/pages/user.js'])
+    .release 
+        .release_nav 
+            a(href="#").active 设备
+        ul.release_content
+            li 
+                .cont_f1
+                    div 图片
+                    div 
+                        .f1_name 荣耀手环3 标准版
+                        p
+                            label 系统：
+                            span Android 6.23
+                        p
+                            label 设备编号：
+                            span 1578698
+                        p
+                            label 数量：
+                            span 157
+                        p
+                            label 提交日期：
+                            span 2018.04.03
+                .cont_f2 样例完整度
+                .cont_f3 
+                   #scheduleX
+                .cont_f4
+                    span 智能穿戴
+                    span IT科技
+                .cont_f5
+                    .good
+                        i.icon--1x1
+                        i.icon--1x
+                        i.icon--1x
+                        i.icon--1x
+                        i.icon--1x
+                    .look.collect_look
+                        i.icon-1x4
+                        span 20
+                    .down.collect_down
+                        i.icon-1x2
+                        span 20
+                    

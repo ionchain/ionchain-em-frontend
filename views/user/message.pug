@@ -1,0 +1,27 @@
+extends ./layout.pug
+block user-content
+    script.
+        require(['/dist/customerjs/pages/user.js'])
+    .release 
+        .release_nav.message_nav
+            a(href="#").active 被下载
+            a(href="#") 系统消息
+        ul.release_content.message_content
+            li 
+                .cont_f1
+                    div 图片
+                    div 
+                        .f1_name 荣耀手环3 标准版
+                        p
+                            label 系统：
+                            span Android 6.23
+                        p
+                            label 设备编号：
+                            span 1578698
+                        p
+                            label 数量：
+                            span 157
+                        p
+                            label 被下载：
+                            span 30
+                    

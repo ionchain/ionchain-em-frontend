@@ -215,7 +215,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 })
             };
             this.gotoLogin = function() {
-                location.href = '/'
+                location.href = '/login'
             }
         };
         var viewmodel = new ViewModel();
