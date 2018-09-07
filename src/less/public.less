@@ -7,6 +7,7 @@
 @import "imports/footer.less";
 @import "imports/toast-extend.less";
 @import "iconfont.less";
+
 body{
     font-family: PingFangSC-Regular, sans-serif !important;
 }
@@ -108,8 +109,9 @@ img{
         }
     }
     .h-main{
-        width: 1200px;
+        width: @mainWidth;
         margin: auto;
+        .clearFix();
     }
 }
 .error-msg{

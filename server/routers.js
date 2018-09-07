@@ -98,7 +98,7 @@ router.get('/', async (ctx, next) => {
 		ctx.redirect('/login')
 	}
 	ctx.render('index', {
-		currentpage: 'home'
+		currentpage: 'index'
 	})
 })
 // 登录
@@ -164,6 +164,12 @@ router.get("/user/account", async (ctx, next) => {
 router.get('/equipment-add', (ctx, next) => {
 	ctx.render('equipment-add', {
 		currentpage: 'equipment-add'
+	})
+})
+// 首页
+router.get('/home', (ctx, next) => {
+	ctx.render('home', {
+		currentpage: 'home'
 	})
 })
 /*--页面路由 end--*/

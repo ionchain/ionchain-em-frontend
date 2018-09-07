@@ -1,0 +1,71 @@
+
+extends layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/home.css")
+block content
+  script.
+    require(['/dist/customerjs/pages/home.js'])
+  .page-home
+    //- 大 banner
+    .section-banner
+      #banner.section-main
+        .viewer-box
+          ul.slide-wrap
+            li
+              a(href="")
+                img(src="/img/banner/test1.png")
+                .l-upper
+                  .l-tool-bar
+                    .l-main
+                      span.item
+                        i.icon-1x2
+                        s 20
+                      span.item.item2
+                        i.icon-1x4
+                        s 20
+                      button.ic-btn-big.i-outline-primary 收藏
+            li
+              a(href="")
+                img(src="/img/banner/test2.png")
+                .l-upper
+                  .l-tool-bar
+                    .l-main
+                      span.item
+                        i.icon-1x2
+                        s 20
+                      span.item.item2
+                        i.icon-1x4
+                        s 20
+                      button.ic-btn-big.i-outline-primary 收藏
+            li
+              a(href="")
+                img(src="/img/banner/test3.png")
+                .l-upper
+                  .l-tool-bar
+                    .l-main
+                      span.item
+                        i.icon-1x2
+                        s 20
+                      span.item.item2
+                        i.icon-1x4
+                        s 20
+                      button.ic-btn-big.i-outline-primary 收藏
+        ul.panel
+          li
+            img(src="/img/banner/test1.png")
+          li
+             img(src="/img/banner/test2.png")
+          li
+             img(src="/img/banner/test3.png")
+
+    //- 公告
+    .section-notice
+    //- 设备
+    .section-equipment
+    //- 数据图表
+    .section-chart
+    //- 广告位
+    .section-adv
+    //- 设备，卡片列表
+    .section-equipment-card
+
