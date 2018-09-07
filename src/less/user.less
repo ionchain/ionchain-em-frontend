@@ -32,6 +32,10 @@
                 line-height: 18px;
                 color: @buttonColor;
             }
+            .high_rz{
+                background: @baseColor;
+                display: none;
+            }
             a:hover{
                 text-decoration: none;
             }
@@ -60,6 +64,11 @@
     .user-nav{
         width: 206px;
         margin-right: 20px;
+        border:1px solid @borderColor;
+        -moz-transition: height 2s;
+        -webkit-transition: height 2s;
+        -o-transition: height 2s;
+        transition: height 2s;
         a{
             width: 206px;
             height: 60px;
@@ -68,8 +77,7 @@
             display: block;
             box-sizing: border-box;
             color: @fsColor;
-            border: 1px solid @borderColor;
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid @borderColor;
             padding-right: 1px;
         }
         li:last-child>a{
@@ -90,9 +98,13 @@
             color: @baseColor;
             text-decoration: none;
         }
+        .a_border{
+            border:none !important;
+            transition: all 2s;
+        }
     }
     // 内容
-    // 我的发布
+    // 我的发布(通用)
     .release{
         width: 974px;
         .release_nav{
@@ -246,7 +258,7 @@
                 }
             }
             .plus:hover{
-                border-color: @baseColor;
+                border-color: @baseColor;    
             }
         }
     }
@@ -267,6 +279,37 @@
             border-color:@inputBorderColor;
         }
     } 
-        
+    // 账户设置
+    .account{
+        .account_photo{
+            width: 160px;
+            height: 160px;
+            background: @grayText;
+        }
+        .account_select{
+            margin: 20px 0 20px 20px;
+            background: none;
+            border: 1px solid #169194;
+            color: #169194;
+            outline: none;
+        }
+        .account_text{
+            color: @grayText;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .account_form{
+            label{
+                padding-left: 12px;
+            }
+            label::before{
+                content:" ";
+            }
+            .input-wrap{
+                width: 830px;
+            }
+        }
+    } 
+    
 
 }

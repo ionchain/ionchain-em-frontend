@@ -151,6 +151,13 @@ router.get("/user/comp", async (ctx, next) => {
 	})
 })
 
+// 账号设置
+router.get("/user/account", async (ctx, next) => {
+	ctx.render('user/account', {
+		currentpage: 'account'
+	})
+})
+
 /*--个人中心页面 end*/
 
 // 设备添加/发布设备
