@@ -151,6 +151,13 @@ router.get("/user/comp", async (ctx, next) => {
 	})
 })
 
+// 账号设置
+router.get("/user/account", async (ctx, next) => {
+	ctx.render('user/account', {
+		currentpage: 'account'
+	})
+})
+
 /*--个人中心页面 end*/
 
 // 设备添加/发布设备
@@ -163,6 +170,12 @@ router.get('/equipment-add', (ctx, next) => {
 router.get('/home', (ctx, next) => {
 	ctx.render('home', {
 		currentpage: 'home'
+	})
+})
+//下载调用
+router.get('/download_can', (ctx, next) => {
+	ctx.render('download_can', {
+		currentpage: 'download_can'
 	})
 })
 /*--页面路由 end--*/

@@ -1,6 +1,12 @@
 require(['jquery','knockout','validate', 'common', 'api', 'progress'], function($, KO, validate, common, API, progress){
     $(function () {
-        console.log(progress, 'progress######')
+        var heightDiv1 = $(".release").height();
+        var heightDiv2 = $(".user-nav").height();
+        if(heightDiv1 > heightDiv2){
+            $(".user-nav").height(heightDiv1 + "px");
+        }else{
+            $(".user-nav li:last-child>a").addClass("a_border");
+        }
         /*横向进度条*/
         progress.scheduleX({
             fulfill: 90,   //选择数

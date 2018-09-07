@@ -1,6 +1,8 @@
 extends ../layout/default.pug
 block previte-head
-  link(rel="stylesheet" href="/dist/css/user.css")
+    link(rel="stylesheet" href="/dist/css/user.css")
+    script.
+            require(['/dist/customerjs/pages/user.js'])
 block content
     .user-main.ly-main
         include includes/user-header.pug
