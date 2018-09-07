@@ -1,0 +1,172 @@
+@import 'imports/variable.less';
+@import 'imports/mixins.less';
+.download_can{
+    .download_can_f1{
+        .clearFix();
+        padding:34px 0 32px;
+        border-bottom: 1px dotted @inputTextColor; 
+        .f1_left{
+            float: left;
+            .clearFix();
+            .f1_left_l,.f1_left_r{
+                float: left;
+            }
+            .f1_left_l{
+                width: 158px;
+                height: 158px;
+                border: 1px solid @borderColor;
+                >img{
+                    width: 100%;
+                }
+            }
+            .f1_left_r{
+                margin-left: 20px; 
+                >b{
+                    font-size: 24px;
+                    color: @fsColor;
+                }
+                >div:nth-child(2){
+                    margin-top: 14px;
+                    font-size: 12px;
+                    >label{
+                        color: @inputTextColor;
+                    }
+                    >b{
+                        color:@baseTextColor;
+                    }
+                }
+                >div:nth-child(3){
+                    margin-top: 8px;
+                }
+                >div:last-child{
+                    font-size: 0;
+                    margin-top: 24px;
+                    span{
+                        display: inline-block;
+                        width: 79px;
+                        height: 28px;
+                        font-size:12px;
+                        line-height: 28px;
+                        color: @baseColor;
+                        border-radius: 15px;
+                        background: #F2FBFB;
+                        text-align: center;
+                    }
+                    span:first-child{
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        .f1_right{
+            float: right;
+            >div:first-child{
+                font-size: 0;
+                >div{
+                    display: inline-block;
+                    font-size: 12px;
+                }
+                >div:nth-child(1){
+                    >span{
+                        padding-left: 5px;
+                    }
+                }
+                >div:nth-child(2){
+                    margin-left: 20px;
+                    i{
+                        font-size: 15px; 
+                    }
+                    >span{
+                        padding-left: 5px;
+                    } 
+                }
+                >div:last-child{
+                    margin-left: 30px;
+                    >button{
+                        width: 123px;
+                        height: 40px;
+                        border-radius: 20px;
+                        font-size: 14px;
+                        background: none;
+                        outline: none;
+                        border:1px solid @inputTextColor;
+                        color: #808A9B;
+
+                    }
+                }
+            }
+            >div:last-child{
+                margin-top: 70px;
+                >button{
+                    float: right;
+                    font-size: 14px;
+                    color: @buttonColor;
+                    width: 180px;
+                    height: 48px;
+                    border-radius: 24px;
+                    background: @baseColor;
+                    outline: none;
+                    border: none;
+                }
+            }
+        }
+    }
+    .download_can_f2{
+         padding:37px 0 4px; 
+         >.f2_name{
+             color: @fsColor;
+         }
+         >.f3_xs{
+             margin: 12px 0 8px;
+         }
+         >.f3_xs,>.f3_st {
+            .clearFix();
+            >div:last-child{
+                margin-left: 118px;
+            }
+             >div{
+                 float: left;
+                 font-size: 12px;
+                 >label{
+                    color: @inputTextColor;
+                }
+                >span{
+                    color:@baseTextColor;
+                }
+             }
+         }
+    }
+    .download_can_f3{
+        margin-top: 41px;  
+        >div{
+            color: @fsColor;
+        }
+        >ul{
+            .clearFix();
+            li{
+                margin-top: 12px;
+                float: left;
+                width: 386px;
+                height: 386px;
+                box-sizing: border-box;
+                border: 1px solid @borderColor;
+                img{
+                    width: 100%;
+                }
+            }
+        }     
+    }
+    .download_can_f4{
+        padding: 40px 0 60px;
+        >div:first-child{
+            color: @fsColor;
+            margin-bottom: 12px;
+        }
+        >div:last-child{
+            font-size: 12px;
+            color: @baseTextColor;
+            line-height: 21px;
+        }
+    }
+   
+}

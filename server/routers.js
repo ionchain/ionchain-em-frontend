@@ -172,6 +172,12 @@ router.get('/home', (ctx, next) => {
 		currentpage: 'home'
 	})
 })
+//下载调用
+router.get('/download_can', (ctx, next) => {
+	ctx.render('download_can', {
+		currentpage: 'download_can'
+	})
+})
 /*--页面路由 end--*/
 
 //测试api

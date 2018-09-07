@@ -64,6 +64,7 @@
     .user-nav{
         width: 206px;
         margin-right: 20px;
+        box-sizing: border-box;
         border:1px solid @borderColor;
         -moz-transition: height 2s;
         -webkit-transition: height 2s;
@@ -148,6 +149,9 @@
                         width: 158px;
                         height: 158px;
                         border: 1px solid  @borderColor; 
+                        >img{
+                            width: 100%;
+                        }
                     }
                     >div:last-child{
                         >.f1_name{
@@ -215,7 +219,7 @@
                     }
                     .look{
                         i{
-                            font-size: 17px; 
+                            font-size: 15px; 
                         }
                     }
                     .compile,.del{
@@ -284,7 +288,9 @@
         .account_photo{
             width: 160px;
             height: 160px;
-            background: @grayText;
+            >img{
+                width: 100%;
+            }
         }
         .account_select{
             margin: 20px 0 20px 20px;

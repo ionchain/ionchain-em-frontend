@@ -3,7 +3,8 @@ block user-content
     script.
         require(['/dist/customerjs/pages/user.js'])
     .account.release 
-        .account_photo 头像
+        .account_photo 
+            img(src="/img/product/product_1.jpg")
         button.account_select.ic-btn-big 选择图片
         .account_text 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
         form.ic-form.of-hide.account_form
