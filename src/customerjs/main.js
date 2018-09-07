@@ -24,7 +24,11 @@
             // tooltip: PLUGINS + 'tooltip.js/index',
             // popper: PLUGINS + 'popper'
             csPopUp: PLUGINS + 'jquery.csPopUp',
-            easing: PLUGINS + 'jquery.easing.1.3'
+            easing: PLUGINS + 'jquery.easing.1.3',
+            superSlide: 'plugins/jquery.SuperSlide.2.1.1',
+            knob: '/plugins/jquery.knob.min',
+            circleChart: '/plugins/circleChart.es5.min',
+            radialIndicator: '/plugins/radialIndicator',
         },
         map: {
             '*': {
@@ -32,6 +36,8 @@
             }
         },
         shim: {
+            knob: ['jquery'],
+            superSlide: ['jquery'],
             progress: ['css!' + PLUGINS + 'progress/schedule.css'],
             // tooltip: ['popper'],
             easing: ['jquery'],
