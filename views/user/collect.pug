@@ -6,8 +6,7 @@ block user-content
         .release_nav 
             a(href="#").active 设备
         ul.release_content(data-bind="foreach: userList")
-            li(style="display:none;"  data-bind="css: {fourth: $(index + 1}%2 == 0}, visible: name")
-                //- (data-bind="css: { xxx: ($index+1)%2 == 0}")
+            li(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
                 .cont_f1
                     div 
                         img(src="/img/product/product_1.jpg")
@@ -33,15 +32,15 @@ block user-content
                     span IT科技
                 .cont_f5
                     .good
-                        i.icon--1x1
-                        i.icon--1x
-                        i.icon--1x
-                        i.icon--1x
-                        i.icon--1x
+                        i.icon-light-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                        i.icon-gray-star
                     .look.collect_look
-                        i.icon-1x4
+                        i.icon-eye
                         span 20
                     .down.collect_down
-                        i.icon-1x2
+                        i.icon-download
                         span 20
                     

@@ -2,6 +2,8 @@ extends layout/default.pug
 block previte-head
   link(rel="stylesheet" href="/dist/css/download_can.css")
 block content
+    script.
+        require(['/dist/customerjs/pages/download_can.js'])
     .download_can.ly-main 
         .download_can_f1  
             .f1_left 
@@ -13,21 +15,21 @@ block content
                         label 作者：
                         b 坏品位
                     div
-                        i.icon--1x1
-                        i.icon--1x
-                        i.icon--1x
-                        i.icon--1x
-                        i.icon--1x
+                        i.icon-light-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                        i.icon-gray-star
                     div
                         span 智能穿戴
                         span IT科技
             .f1_right  
                 div
                     div
-                        i.icon-1x2
+                        i.icon-download
                         span 20
                     div
-                        i.icon-1x4
+                        i.icon-eye
                         span 20  
                     div  
                         button 收藏  
@@ -51,14 +53,8 @@ block content
                     span 2018.04.03
         .download_can_f3
             div 设备图片
-            ul
-                li 
-                    img(src="/img/product/product_1.jpg")
-                li 
-                    img(src="/img/product/product_1.jpg")
-                li 
-                    img(src="/img/product/product_1.jpg")
-                li 
+            ul(data-bind="foreach: downList")
+                li(style="display:none;" data-bind="css: {fourths: $index()%3 == 2}, visible: name")
                     img(src="/img/product/product_1.jpg")
         .download_can_f4
             div 信息样例
