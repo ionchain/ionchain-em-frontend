@@ -281,10 +281,21 @@
     }
     // 投诉与反馈
     .comp{
-        textarea{
+        .comp_text{
+            position: relative;
             width: 974px;
-            border-color:@inputBorderColor;
-        }
+            textarea{
+                width: 100%;
+                border-color:@inputBorderColor;
+            }
+            span{
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                font-size:14px;
+                color: @inputBorderColor;
+            }
+        }  
     } 
     // 账户设置
     .account{
