@@ -63,7 +63,7 @@ block content
         span.f-32.bold 45,882.9812
         span  IONChain
     //- 设备
-    .section-equipment
+    .section-equipment-data
       .section-main(data-bind="foreach: equList")
         .card-H(style="display:none;" data-bind="css: {fourth: ($index() +1)%4 == 0}, visible: name")
           .card-hd 荣耀P20 Pro手机
@@ -95,5 +95,13 @@ block content
         p 让你的设备加入全球物联网
         a.ic-btn-normal.i-primary 发布设备
     //- 设备，卡片列表
-    .section-equipment-card
-
+    .section-equipment
+      .section-main
+        .sec-hd
+          span.l-title
+            i.v-line
+            em 现有设备
+          .l-search
+            .search-input
+              input()
+              i.search-btn.icon-search
