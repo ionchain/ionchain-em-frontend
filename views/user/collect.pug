@@ -5,8 +5,9 @@ block user-content
     .release 
         .release_nav 
             a(href="#").active 设备
-        ul.release_content
-            li 
+        ul.release_content(data-bind="foreach: userList")
+            li(style="display:none;"  data-bind="css: {fourth: $(index + 1}%2 == 0}, visible: name")
+                //- (data-bind="css: { xxx: ($index+1)%2 == 0}")
                 .cont_f1
                     div 
                         img(src="/img/product/product_1.jpg")
