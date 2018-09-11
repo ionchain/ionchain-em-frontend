@@ -1,5 +1,67 @@
 require(['jquery', 'api', 'lodash', 'knockout', 'superSlide', 'knob','echarts'],
 function ($, API, _, KO, superSlide, knob, echarts) {
+    
+    function hour24(){
+        var result = []
+        for(var i=1;i<24;i++){
+            result.push(i + '')
+        }
+        return result
+    }
+    function years(current){
+        var len = 3;
+        var result = [];
+        for(var i=current;i<current+ len;i++){
+            result.push(i + '')
+        }
+        return result
+    }
+
+    var _hour24 = hour24();
+    var _years = years(new Date().getFullYear())
+    var period = { //横坐标种类
+        '24h': _hour24,
+        week: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        month: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+        year: _years
+    }
+
+    var chart1,chart2;
+    var chartsOpt1 = {
+        color: '#08AEB2',
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: _hour24
+        },
+        grid: chartGrid,
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+            areaStyle: {},
+            smooth: true
+        }]
+    };
+  
+    var chartsOpt2 = {
+        color: '#08AEB2',
+        xAxis: {
+            type: 'category',
+            data:  period['24h']
+        },
+        grid: chartGrid,
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [10, 52, 200, 334, 390, 330, 220],
+            type: 'bar'
+        }]
+    };
+    
     function AppViewModel() {
         this.isinit = KO.observable(true);
         this.equList = KO.observableArray([
@@ -16,66 +78,29 @@ function ($, API, _, KO, superSlide, knob, echarts) {
             { name: 'Denise' },
             { name: 'Denise' }
         ]);
+        this.changePeriod = function(_period, Model, event){
+            chartsOpt1.xAxis.data = period[_period]
+            chart1.setOption(chartsOpt1);
+            $(event.target).addClass('active').siblings().removeClass('active')
+        },
+        this.changePeriod2 = function(_period, Model, event){
+            chartsOpt2.xAxis.data = period[_period];
+            chart2.setOption(chartsOpt2);
+            $(event.target).addClass('active').siblings().removeClass('active')
+            console.log(chart2,_period);
+        }
     }
-    var chartsOpt1 = {
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line',
-            areaStyle: {},
-            smooth: true
-        }]
-    };
-    var chartsOpt2 = {
-        color: ['#3398DB'],
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis : [
-            {
-                type : 'category',
-                data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                axisTick: {
-                    alignWithLabel: true
-                }
-            }
-        ],
-        yAxis : [
-            {
-                type : 'value'
-            }
-        ],
-        series : [
-            {
-                name:'直接访问',
-                type:'bar',
-                barWidth: '60%',
-                data:[10, 52, 200, 334, 390, 330, 220]
-            }
-        ]
+   
+    var chartGrid = {
+        top: '3%',
+        left: '3%',
+        right: '4%',
+        bottom: '11%',
+        containLabel: true
     };
     
-    
-
     $(function() {
-        var appviewmodel1 = new AppViewModel();
-        KO.applyBindings(appviewmodel1, $(".page-home")[0]);
+       
 
         $(".dial").knob({
             lineCap: 'rounded',
@@ -91,10 +116,13 @@ function ($, API, _, KO, superSlide, knob, echarts) {
             effect: "leftLoop"
         });
 
-        var chart1 = echarts.init(document.getElementById('chart1'));
+        chart1 = echarts.init(document.getElementById('chart1'));
         chart1.setOption(chartsOpt1);
-        var chart2 = echarts.init(document.getElementById('chart2'));
+        chart2 = echarts.init(document.getElementById('chart2'));
         chart2.setOption(chartsOpt2);
+
+        var appviewmodel1 = new AppViewModel();
+        KO.applyBindings(appviewmodel1, $(".page-home")[0]);
 
     });
 })

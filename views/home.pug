@@ -87,17 +87,25 @@ block content
     //- 数据图表
     .section-chart
       .section-main
-        .box-two.box1.box-C
-          .chart-hd 
+        .box-chart.l-boxL
+          .chart-hd
             span.l-tit 贡献曲线
             ul.l-panel
-              li.active 24h
-              li 周
-              li 月
-              li 年
+              li.active(data-bind="click: changePeriod.bind($data,'24h')") 24h
+              li(data-bind="click: changePeriod.bind($data, 'week')") 周
+              li(data-bind="click: changePeriod.bind($data, 'month')") 月
+              li(data-bind="click: changePeriod.bind($data, 'year')") 年
+          .chart-bd.chart1#chart1
+        .box-chart.l-boxR
+          .chart-hd
+              span.l-tit 类型增长比
+              ul.l-panel
+                li.active(data-bind="click: changePeriod2.bind($data,'24h')") 24h
+                li(data-bind="click: changePeriod2.bind($data, 'week')") 周
+                li(data-bind="click: changePeriod2.bind($data, 'month')") 月
+                li(data-bind="click: changePeriod2.bind($data, 'year')") 年
+          .chart-bd.chart2#chart2
 
-          .chart-bd#chart1
-        .box-two.box2#chart2
     //- 广告位
     .section-adv
       img(src="/img/home/adv-bg.png")

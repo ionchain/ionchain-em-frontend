@@ -4,16 +4,6 @@
     width: @mainWidth;
     margin: auto;
     .clearFix();
-    .box-two{
-        width: 590px;
-        border:1px solid #EEEEEE;
-        &.box1{
-            float: left;
-        }
-        &.box2{
-            float: right;
-        }
-    }
 }
 .section-banner{
     background:url("@{imgUrl}img/banner/banner_bg.png") #000 no-repeat center;
@@ -146,9 +136,58 @@
     }
     
 }
+.box-chart{
+    height: 382px;
+    width: 590px;
+    border:1px solid #EEEEEE;
+    &.box1{
+        float: left;
+    }
+    &.box2{
+        float: right;
+    }
+    .chart-hd{
+        padding:20px;
+        .clearFix();
+        .l-tit{
+            font-size: 16px;
+            margin-right: 33px;
+            float: left;
+        }
+        .l-panel{
+            float: left;
+            li{
+                float: left;
+                padding:0 10px;
+                min-width: 50px;
+                margin-right: 12px;
+                text-align: center;
+                &.active,
+                &:hover{
+                    background: @baseColor;
+                    color: #fff;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
 .section-chart{
     margin-bottom: 50px;
-    .box-two{
-        height: 382px;
+    .box-chart{
+        float: left;
+    }
+    .l-boxL{
+        float: left;
+    }
+    .l-boxR{
+        float: right;
+    }
+    .chart1{
+        height: 330px;
+    }
+    .chart2{
+        height: 330px;
     }
 }
