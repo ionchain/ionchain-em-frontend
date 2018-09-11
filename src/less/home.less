@@ -4,6 +4,16 @@
     width: @mainWidth;
     margin: auto;
     .clearFix();
+    .box-two{
+        width: 590px;
+        border:1px solid #EEEEEE;
+        &.box1{
+            float: left;
+        }
+        &.box2{
+            float: right;
+        }
+    }
 }
 .section-banner{
     background:url("@{imgUrl}img/banner/banner_bg.png") #000 no-repeat center;
@@ -135,4 +145,10 @@
         }
     }
     
+}
+.section-chart{
+    margin-bottom: 50px;
+    .box-two{
+        height: 382px;
+    }
 }
