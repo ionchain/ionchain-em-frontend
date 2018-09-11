@@ -18,7 +18,7 @@
     .header-name{
         margin-left: 20px;
         font-size: 12px;
-        div:first-child{
+        .header-name_o{
             margin-bottom: 10px;
             b{
                 font-size: 24px;
@@ -43,10 +43,10 @@
                 text-decoration: none;
             }
         }
-        div:nth-child(2){
+        .header-name_t{
             margin-bottom: 6px;
         }
-        div:nth-child(2), div:nth-child(3){
+        .header-name_t, .header-name_h{
             >label{
                 color: @inputTextColor;
             }
@@ -141,6 +141,12 @@
                 margin-left: 20px !important;
             }
             .plus{
+                height: 404px;
+                margin-top: 20px;
+                padding:30px 20px;
+                float: left;
+                width: 477px;
+                box-sizing: border-box;
                 border: 1px dotted @inputBorderColor;
                 text-align: center;
                 color: @baseColor;

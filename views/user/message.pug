@@ -7,11 +7,11 @@ block user-content
             a(href="#").active 被下载
             a(href="#") 系统消息
         ul.release_content.message_content(data-bind="foreach: userList")
-            li(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
+            li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
                 .cont_f1
-                    div 
+                    .cont_f1_img
                         img(src="/img/product/product_1.jpg")
-                    div 
+                    .cont_f1_text 
                         .f1_name 荣耀手环3 标准版
                         p
                             label 系统：
