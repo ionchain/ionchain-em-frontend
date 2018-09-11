@@ -6,8 +6,8 @@ block user-content
         .release_nav.message_nav
             a(href="#").active 被下载
             a(href="#") 系统消息
-        ul.release_content.message_content
-            li 
+        ul.release_content.message_content(data-bind="foreach: userList")
+            li(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
                 .cont_f1
                     div 
                         img(src="/img/product/product_1.jpg")

@@ -1,5 +1,17 @@
 require(['jquery','knockout','validate', 'common', 'api', 'progress'], function($, KO, validate, common, API, progress){
+    function AppViewModel() {
+        this.userList = KO.observableArray([
+            { name: 'Bert' },
+            { name: 'Charles' },
+            { name: 'Denise' }
+        ]);
+    }
+
+    // 获取高度设置左侧导航的border
     $(function () {
+        var appviewmodel1 = new AppViewModel();
+        KO.applyBindings(appviewmodel1, $(".release")[0]);
+
         var heightDiv1 = $(".release").height();
         var heightDiv2 = $(".user-nav").height();
         if(heightDiv1 > heightDiv2){
@@ -7,6 +19,7 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress'], function(
         }else{
             $(".user-nav li:last-child>a").addClass("a_border");
         }
+
         /*横向进度条*/
         progress.scheduleX({
             fulfill: 90,   //选择数

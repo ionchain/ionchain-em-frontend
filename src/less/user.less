@@ -131,112 +131,8 @@
         }
         .release_content{
             .clearFix();
-            li{
-                height: 404px;
-                margin-top: 20px;
-                padding:30px 20px;
-                float: left;
-                width: 477px;
-                box-sizing: border-box;
-                border: 1px solid  @borderColor; 
-                .cont_f1{
-                    .clearFix();
-                    >div{
-                        float: left;
-                    }
-                    >div:first-child{
-                        margin-right: 20px;
-                        width: 158px;
-                        height: 158px;
-                        border: 1px solid  @borderColor; 
-                        >img{
-                            width: 100%;
-                        }
-                    }
-                    >div:last-child{
-                        >.f1_name{
-                            color:@fsColor;
-                            font-weight: bold;
-                            padding-bottom: 20px;
-                            font-size: 16px;
-                        }
-                        >p{
-                            margin-bottom: 10px;
-                            font-size: 12px;
-                            label{
-                                color:@inputTextColor;
-                            }
-                            span{
-                                color: @baseTextColor;
-                            }
-                        }
-                    }
-                }
-                .cont_f2{
-                    color: @baseTextColor;
-                    font-size: 14px;
-                    margin: 35px 0 10px;
-                }
-                .cont_f4{
-                    margin: 14px 0 30px;
-                    font-size: 0;
-                    span{
-                        display: inline-block;
-                        width: 79px;
-                        height: 28px;
-                        font-size:12px;
-                        line-height: 28px;
-                        color: @baseColor;
-                        border-radius: 15px;
-                        background: #F2FBFB;
-                        text-align: center;
-                    }
-                    span:first-child{
-                        margin-right: 10px;
-                    }
-                }
-                .cont_f5{
-                    .clearFix();
-                    font-size: 0;
-                    >div{
-                        display: inline-block;
-                    }
-                    >.good{
-                        >i{
-                            font-size: 19px; 
-                            padding-right: 4px;
-                        }
-                        >i:last-child{
-                            padding-right: 0;
-                        }
-                    }
-                    .down,.look{
-                        font-size: 12px; 
-                        margin-left: 20px;
-                        >span{
-                            padding-left: 5px;
-                        }
-                    }
-                    .look{
-                        i{
-                            font-size: 15px; 
-                        }
-                    }
-                    .compile,.del{
-                        font-size: 14px;
-                        float: right;
-                    }
-                    .compile{
-                        color:#2977FF;
-                    }
-                    .del{
-                        margin-left: 20px;
-                        
-                        >a{
-                            color: @grayText;
-                        }
-                    } 
-                }
+            .second{
+                margin-left: 20px !important;
             }
             .plus{
                 border: 1px dotted @inputBorderColor;
@@ -278,10 +174,21 @@
     }
     // 投诉与反馈
     .comp{
-        textarea{
+        .comp_text{
+            position: relative;
             width: 974px;
-            border-color:@inputBorderColor;
-        }
+            textarea{
+                width: 100%;
+                border-color:@inputBorderColor;
+            }
+            span{
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                font-size:14px;
+                color: @inputBorderColor;
+            }
+        }  
     } 
     // 账户设置
     .account{

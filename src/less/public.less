@@ -97,11 +97,6 @@ img{
     min-height: ~"calc(100vh - 81px)";
     background: #fff;
     .clearFix();
-    > div{
-        width: 100%;
-        float: left;
-        .clearFix();
-    }
 }
 .ly-header{
     border-bottom: 1px solid #F1F1F1;
@@ -577,6 +572,113 @@ img{
         &::before{
             color: #A5A7AE;
         }
+    }
+}
+.card-I{
+    height: 404px;
+    margin-top: 20px;
+    padding:30px 20px;
+    float: left;
+    width: 477px;
+    box-sizing: border-box;
+    border: 1px solid  @borderColor; 
+    .cont_f1{
+        .clearFix();
+        >div{
+            float: left;
+        }
+        >div:first-child{
+            margin-right: 20px;
+            width: 158px;
+            height: 158px;
+            border: 1px solid  @borderColor; 
+            >img{
+                width: 100%;
+            }
+        }
+        >div:last-child{
+            >.f1_name{
+                color:@fsColor;
+                font-weight: bold;
+                padding-bottom: 20px;
+                font-size: 16px;
+            }
+            >p{
+                margin-bottom: 10px;
+                font-size: 12px;
+                label{
+                    color:@inputTextColor;
+                }
+                span{
+                    color: @baseTextColor;
+                }
+            }
+        }
+    }
+    .cont_f2{
+        color: @baseTextColor;
+        font-size: 14px;
+        margin: 35px 0 10px;
+    }
+    .cont_f4{
+        margin: 14px 0 30px;
+        font-size: 0;
+        span{
+            display: inline-block;
+            width: 79px;
+            height: 28px;
+            font-size:12px;
+            line-height: 28px;
+            color: @baseColor;
+            border-radius: 15px;
+            background: #F2FBFB;
+            text-align: center;
+        }
+        span:first-child{
+            margin-right: 10px;
+        }
+    }
+    .cont_f5{
+        .clearFix();
+        font-size: 0;
+        >div{
+            display: inline-block;
+        }
+        >.good{
+            >i{
+                font-size: 19px; 
+                padding-right: 4px;
+            }
+            >i:last-child{
+                padding-right: 0;
+            }
+        }
+        .down,.look{
+            font-size: 12px; 
+            margin-left: 20px;
+            >span{
+                padding-left: 5px;
+            }
+        }
+        .look{
+            i{
+                font-size: 15px; 
+            }
+        }
+        .compile,.del{
+            font-size: 14px;
+            float: right;
+        }
+        .compile{
+            color:#2977FF;
+        }
+        .del{
+            margin-left: 20px;
+            
+            >a{
+                color: @grayText;
+            }
+        } 
     }
 }
 @import "register.less";

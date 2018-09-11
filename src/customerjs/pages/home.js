@@ -8,6 +8,14 @@ function ($, API, _, KO, superSlide, knob) {
             { name: 'Denise' },
             { name: 'Denise' }
         ]);
+        this.equList2 = KO.observableArray([
+            { name: 'Bert' },
+            { name: 'Charles' },
+            { name: 'Denise' },
+            { name: 'Denise' },
+            { name: 'Denise' },
+            { name: 'Denise' }
+        ]);
     }
 
     $(function() {
