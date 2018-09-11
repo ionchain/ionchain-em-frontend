@@ -3,13 +3,13 @@ block user-content
     .release 
         .release_nav 
             a(href="#").active 设备
-        ul.release_content()
+        ul.release_content
             <!-- ko foreach: userList -->
-            li(style="display:none;" data-bind="css: {second: $index() % 2 == 1 }, visible: name")
+            li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 1 }, visible: name")
                 .cont_f1
-                    div 
+                    .cont_f1_img 
                         img(src="/img/product/product_1.jpg")
-                    div 
+                    .cont_f1_text
                         .f1_name 荣耀手环3 标准版
                         p
                             label 系统：
@@ -27,7 +27,7 @@ block user-content
                 .cont_f3 
                    #scheduleX
                 .cont_f4
-                    span 智能穿戴
+                    span.cont_f4_o 智能穿戴
                     span IT科技
                 .cont_f5
                     .good
@@ -48,6 +48,5 @@ block user-content
                         a(href="#") 编辑
             <!-- /ko -->
             li.plus(data-bind="css: {second: userList().length % 2 ==  1}")
-                div
-                    i
-                    span
+                i
+                span
