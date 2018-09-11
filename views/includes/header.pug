@@ -15,3 +15,11 @@ div.ly-header#header
                 |   已有账号？
                 a.z_d(href='/login')
                     span 请登录
+        if  !userinfo && currentpage != 'login' && currentpage != 'register'
+            ul.navitems
+                li 
+                    a(href="#") 贡献统计
+                li.navitems_t 
+                    a(href="#") 现有设备
+                li 
+                    a(href="#") 参与投票

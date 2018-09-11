@@ -35,6 +35,29 @@ body{
 .ly-header{
     height:80px;
     background: @buttonColor;
+    .navitems{
+        float: left;
+        margin-left: 90px;
+        >.navitems_t{
+            margin: 0 46px;
+        }
+        >li{
+            float: left;
+            >a{
+                display: block;
+                height: 80px;
+                line-height: 80px;
+                padding: 0 12px;
+                color: @inputTextColor;
+                box-sizing: border-box;
+                border-bottom: 2px solid transparent;
+            }
+            >a:hover{
+                color: @baseColor;
+                border-bottom: 2px solid @baseColor;
+            }
+        }
+    }
     .logo{
         float:left;
         padding: 14px 0;
@@ -675,7 +698,9 @@ img{
             float: right;
         }
         .compile{
-            color:#2977FF;
+            >a{
+                color:#2977FF;
+            }
         }
         .del{
             margin-left: 20px;
