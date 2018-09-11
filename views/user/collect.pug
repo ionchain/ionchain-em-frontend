@@ -6,7 +6,7 @@ block user-content
         .release_nav 
             a(href="#").active 设备
         ul.release_content(data-bind="foreach: userList")
-            li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
+            li(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
                 .cont_f1
                     div 
                         img(src="/img/product/product_1.jpg")

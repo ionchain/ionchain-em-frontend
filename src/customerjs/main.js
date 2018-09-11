@@ -29,6 +29,7 @@
             knob: '/plugins/jquery.knob.min',
             circleChart: '/plugins/circleChart.es5.min',
             radialIndicator: '/plugins/radialIndicator',
+            echarts: '/plugins/echarts.simple.min'
         },
         map: {
             '*': {
