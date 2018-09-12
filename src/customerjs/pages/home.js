@@ -68,6 +68,8 @@ function ($, API, _, KO, superSlide, knob, echarts) {
             { name: 'Bert' },
             { name: 'Charles' },
             { name: 'Denise' },
+            { name: 'Denise' },
+            { name: 'Denise' },
             { name: 'Denise' }
         ]);
         this.equList2 = KO.observableArray([
@@ -101,7 +103,6 @@ function ($, API, _, KO, superSlide, knob, echarts) {
     
     $(function() {
        
-
         $(".dial").knob({
             lineCap: 'rounded',
             readonly: true,
@@ -123,6 +124,8 @@ function ($, API, _, KO, superSlide, knob, echarts) {
 
         var appviewmodel1 = new AppViewModel();
         KO.applyBindings(appviewmodel1, $(".page-home")[0]);
+
+        $(".section-equipment-data").slide({ mainCell:".slide-wrap",vis:4,prevCell:".eq_prev",nextCell:".eq_next",effect:"leftLoop",delayTime:500});
 
     });
 })

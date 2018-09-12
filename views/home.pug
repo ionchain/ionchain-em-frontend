@@ -64,26 +64,29 @@ block content
         span  IONChain
     //- 设备
     .section-equipment-data
-      .section-main(data-bind="foreach: equList")
-        .card-H(style="display:none;" data-bind="css: {fourth: ($index() +1)%4 == 0}, visible: name")
-          .card-hd 荣耀P20 Pro手机
-          .card-bd
-            .l-progess
-              input.dial.hide-tem(type='text' data-readOnly=true value='75' data-linecap="round" data-thickness="0.12" data-width="86" data-fgColor="#26E3E7")
-              .l-num.them-em1
-                span 85
-                s %
-            .l-info
-              p.info1
-                span.tip-color 贡献度：
-                span.bold.them-em1.font-nm 8981
-                span.them-em2   IONC
-              p
-                span.tip-color 数量：
-                span 50 K
-              p
-                span.tip-color 在线时长：
-                span 9,099.00 h
+      .eq_prev.icon-left-arrow
+      .section-main
+        .slide-wrap(data-bind="foreach: equList")
+          .card-H(style="display:none;" data-bind="visible: name")
+            .card-hd 荣耀P20 Pro手机
+            .card-bd
+              .l-progess
+                input.dial.hide-tem(type='text' data-readOnly=true value='75' data-linecap="round" data-thickness="0.12" data-width="86" data-fgColor="#26E3E7")
+                .l-num.them-em1
+                  span 85
+                  s %
+              .l-info
+                p.info1
+                  span.tip-color 贡献度：
+                  span.bold.them-em1.font-nm 8981
+                  span.them-em2   IONC
+                p
+                  span.tip-color 数量：
+                  span 50 K
+                p
+                  span.tip-color 在线时长：
+                  span 9,099.00 h
+      .eq_next.icon-right-arrow
     //- 数据图表
     .section-chart
       .section-main
@@ -108,7 +111,7 @@ block content
 
     //- 广告位
     .section-adv
-      img(src="/img/home/adv-bg.png")
+      img.wid-max(src="/img/home/adv-bg.png")
       .l-upper
         p 让你的设备加入全球物联网
         a.ic-btn-normal.i-primary 发布设备
