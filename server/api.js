@@ -7,7 +7,6 @@ var _axios = axios.create({
 })
 _axios.interceptors.request.use(
     (config) => {
-        console.log(config.headers.url)
         return config
     }, (error) => {
         return Promise.reject(error)
@@ -23,9 +22,12 @@ _axios.interceptors.response.use(
 )
 
 module.exports = {
-    getDevice ({userId} = {}) {
+    getDeviceList ({userId} = {}) {
         return _axios.get(`/users/${userId}/devices`);
-    },    
+    },
+    getDeviceDesc ({deviceId} = {}) {
+        return _axios.get(`/devices/${deviceId}`);
+    },
     // sendMsg (data, params) {
     //     return _axios.post('/sms/sendMsg', data, {params: params});
     // }
