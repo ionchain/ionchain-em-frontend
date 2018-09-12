@@ -1,5 +1,5 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'superSlide', 'knob','echarts'],
-function ($, API, _, KO, superSlide, knob, echarts) {
+require(['jquery', 'api', 'lodash', 'knockout', 'superSlide', 'knob','echarts',"common"],
+function ($, API, _, KO, superSlide, knob, echarts,common) {
     
     function hour24(){
         var result = []
