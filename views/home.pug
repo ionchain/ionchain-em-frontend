@@ -96,6 +96,8 @@ block content
               li(data-bind="click: changePeriod.bind($data, 'month')") 月
               li(data-bind="click: changePeriod.bind($data, 'year')") 年
           .chart-bd.chart1#chart1
+            .error-tip-gray(style="display:none;" data-bind="visible: canvasError()")
+              | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firfox 等，以显示完整内容
         .box-chart.l-boxR
           .chart-hd
               span.l-tit 类型增长比
@@ -105,7 +107,8 @@ block content
                 li(data-bind="click: changePeriod2.bind($data, 'month')") 月
                 li(data-bind="click: changePeriod2.bind($data, 'year')") 年
           .chart-bd.chart2#chart2
-
+            .error-tip-gray(style="display:none;" data-bind="visible: canvasError()")
+              | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firfox 等，以显示完整内容
     //- 广告位
     .section-adv
       img(src="/img/home/adv-bg.png")

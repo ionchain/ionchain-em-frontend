@@ -63,6 +63,7 @@ function ($, API, _, KO, superSlide, knob, echarts) {
     };
     
     function AppViewModel() {
+        this.canvasError = KO.observable(false);
         this.isinit = KO.observable(true);
         this.equList = KO.observableArray([
             { name: 'Bert' },
@@ -79,15 +80,19 @@ function ($, API, _, KO, superSlide, knob, echarts) {
             { name: 'Denise' }
         ]);
         this.changePeriod = function(_period, Model, event){
-            chartsOpt1.xAxis.data = period[_period]
-            chart1.setOption(chartsOpt1);
-            $(event.target).addClass('active').siblings().removeClass('active')
+            if (Modernizr.canvas) {// 判断是否支持canvas
+                chartsOpt1.xAxis.data = period[_period]
+                chart1.setOption(chartsOpt1);
+                $(event.target).addClass('active').siblings().removeClass('active')
+            }
         },
         this.changePeriod2 = function(_period, Model, event){
-            chartsOpt2.xAxis.data = period[_period];
-            chart2.setOption(chartsOpt2);
-            $(event.target).addClass('active').siblings().removeClass('active')
-            console.log(chart2,_period);
+            if (Modernizr.canvas) {// 判断是否支持canvas
+                chartsOpt2.xAxis.data = period[_period];
+                chart2.setOption(chartsOpt2);
+                $(event.target).addClass('active').siblings().removeClass('active')
+                console.log(chart2,_period);
+            }
         }
     }
    
@@ -100,7 +105,8 @@ function ($, API, _, KO, superSlide, knob, echarts) {
     };
     
     $(function() {
-       
+        var appviewmodel1 = new AppViewModel();
+        KO.applyBindings(appviewmodel1, $(".page-home")[0]);
 
         $(".dial").knob({
             lineCap: 'rounded',
@@ -116,13 +122,14 @@ function ($, API, _, KO, superSlide, knob, echarts) {
             effect: "leftLoop"
         });
 
-        chart1 = echarts.init(document.getElementById('chart1'));
-        chart1.setOption(chartsOpt1);
-        chart2 = echarts.init(document.getElementById('chart2'));
-        chart2.setOption(chartsOpt2);
-
-        var appviewmodel1 = new AppViewModel();
-        KO.applyBindings(appviewmodel1, $(".page-home")[0]);
+        if (Modernizr.canvas) {// 判断是否支持canvas
+            chart1 = echarts.init(document.getElementById('chart1'));
+            chart1.setOption(chartsOpt1);
+            chart2 = echarts.init(document.getElementById('chart2'));
+            chart2.setOption(chartsOpt2);
+        } else {
+            appviewmodel1.canvasError(true);
+        }
 
     });
 })
