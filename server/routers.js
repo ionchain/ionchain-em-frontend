@@ -2,6 +2,8 @@ var Router = require('koa-router')
 var _ = require('lodash')
 var router = new Router()
 const axios = require('axios')
+var config = require('./config.js')
+var service = require('./service.js')
 const  SessionMaxAge = 3600000
 const  SessionMaxAgeLong = 86400000 * 30 // a month
 
@@ -27,7 +29,7 @@ router.all(/^\/api/, async (ctx, next) => {
 	var url = ''
 	var custormHeaders = {}
 	var headersProps = ['token']
-	var target = 'http://sendrobot.ionchain.org'
+	var target = config.target
 	// var target = 'http://ionc_stoer.ionchain.org:8001'
 	headersProps.forEach((item) => {
 		if (ctx.req.headers.hasOwnProperty(item)) {
@@ -167,7 +169,10 @@ router.get('/equipment-add', (ctx, next) => {
 	})
 })
 // 首页
-router.get('/home', (ctx, next) => {
+router.get('/home', async (ctx, next) => {
+	var deviceList = []
+	// await (deviceList = service.getDevice({userId: 1}))
+	console.log('deviceList:', deviceList)
 	ctx.render('home', {
 		currentpage: 'home'
 	})

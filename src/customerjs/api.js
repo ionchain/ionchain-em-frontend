@@ -7,7 +7,7 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
             BASE_URL: '/api/v1'
         }
     }
-    var config = _config.development
+    var config = _config.production
     $.ajaxSetup({
         type: 'post',
         contentType: 'application/json;charset=UTF-8',
