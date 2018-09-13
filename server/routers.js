@@ -171,8 +171,13 @@ router.get('/equipment-add', (ctx, next) => {
 // 首页
 router.get('/home', async (ctx, next) => {
 	var deviceList = []
-	// await (deviceList = service.getDevice({userId: 1}))
-	console.log('deviceList:', deviceList)
+	await service.getDeviceDesc({deviceId: 8}).then((data)=>{
+		console.log('deviceDesc', data);
+	})
+
+	await service.getDeviceList({userId: 1}).then((data)=>{
+		console.log('getDeviceList', data);
+	})
 	ctx.render('home', {
 		currentpage: 'home'
 	})
