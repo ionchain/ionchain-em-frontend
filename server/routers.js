@@ -170,16 +170,23 @@ router.get('/equipment-add', (ctx, next) => {
 })
 // 首页
 router.get('/home', async (ctx, next) => {
-	var deviceList = []
-	await service.getDeviceDesc({deviceId: 8}).then((data)=>{
-		console.log('deviceDesc', data);
-	})
+	var deviceList = [],
+	totalIncome;
+	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
+	// 	console.log('deviceDesc', data);
+	// })
 
-	await service.getDeviceList({userId: 1}).then((data)=>{
-		console.log('getDeviceList', data);
+	// await service.getDeviceList({userId: 1}).then((data)=>{
+	// 	console.log('getDeviceList', data);
+	// })
+	await service.getHisProfit({}).then((data)=>{
+		console.log('getHisProfit#', data)
+		totalIncome = data
 	})
+	
 	ctx.render('home', {
-		currentpage: 'home'
+		currentpage: 'home',
+		totalIncome: 22222222
 	})
 })
 //下载调用
