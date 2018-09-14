@@ -29,7 +29,8 @@
             knob: '/plugins/jquery.knob.min',
             circleChart: '/plugins/circleChart.es5.min',
             radialIndicator: '/plugins/radialIndicator',
-            echarts: '/plugins/echarts.simple.min'
+            echarts: '/plugins/echarts.simple.min',
+            selection: '/plugins/selection/jquery.dd'
         },
         map: {
             '*': {
@@ -51,7 +52,8 @@
             api: ['jquery', 'lodash'],
             validate: ['lodash'],
             toast: ['jquery','css!'+LIBRARY+'jquery.toast.min.css'],
-            preventRobot: ['css!'+ PLUGINS + 'prevent-robot/jigsaw.css']
+            preventRobot: ['css!'+ PLUGINS + 'prevent-robot/jigsaw.css'],
+            selection: ['css!' + '/plugins/selection/dd.css']
         }
     })
 })(require);
