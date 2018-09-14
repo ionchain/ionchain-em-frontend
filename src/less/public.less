@@ -10,6 +10,9 @@
 *{
     box-sizing: border-box;
 }
+a:hover{
+    text-decoration: none;
+}
 body{
     font-family: PingFangSC-Regular, sans-serif !important;
     color: @fsColor;
@@ -35,6 +38,7 @@ body{
 .ly-header{
     height:80px;
     background: @buttonColor;
+
     .navitems{
         float: left;
         margin-left: 90px;
@@ -83,6 +87,9 @@ body{
     .nav-search{
         float: right;
         margin: 20px 20px 0 0;
+        .search-btn{
+            top: 8px;
+        }
     }
     .logo{
         float:left;
@@ -626,7 +633,7 @@ img{
         cursor: pointer;
         position: absolute;
         right: 18px;
-        top: 10px;
+        top:10px;
         z-index: 2;
         font-size: 20px;
         &:before{

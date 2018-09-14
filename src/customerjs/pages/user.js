@@ -9,9 +9,8 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress'], function(
         this.feedback = KO.observable(); 
         this.feedbackClick= function(){
             var feedback = this.feedback();
-            // console.log(feedback);
-            if(feedback == ""){
-                this.feedback("投诉内容不能为空");
+            if(feedback == "" || feedback == undefined || feedback == "反馈不能为空"){
+                this.feedback("反馈不能为空");
             }else{
                 API.feedbackCode({content: feedback})._then(function(data){
                     if(data.success == 0){
