@@ -5,6 +5,23 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress'], function(
             { name: 'Charles' },
             { name: 'Denise' }
         ]);
+        // 投诉与反馈
+        this.feedback = KO.observable(); 
+        this.feedbackClick= function(){
+            var feedback = this.feedback();
+            // console.log(feedback);
+            if(feedback == ""){
+                this.feedback("投诉内容不能为空");
+            }else{
+                API.feedbackCode({content: feedback})._then(function(data){
+                    if(data.success == 0){
+                        $.toast({text: '提交成功', icon: 'success'});
+                    }else{
+                        $.toast({text: data.message, icon: 'error'});
+                    }
+                })
+            }
+        }
     }
 
     // 获取高度设置左侧导航的border

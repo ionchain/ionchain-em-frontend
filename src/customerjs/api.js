@@ -61,7 +61,7 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
     return {
         Login: function(data, params) {
             return Xajax({
-                url: config.BASE_URL + '/users/login',
+                url: config.BASE_URL + '/users/login', 
                 data: data
             })
         },
@@ -107,6 +107,15 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
                 url: '/test/getSmsCode',
                 data: data
             })
+        },
+        // 个人中心(投诉与反馈)
+        feedbackCode: function(data, success, err) {
+            return Xajax({
+                type: 'post',
+                url: config.BASE_URL + '/feedbacks/create',
+                data: data
+            })
         }
+
     }
 });
