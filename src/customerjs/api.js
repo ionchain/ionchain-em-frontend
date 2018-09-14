@@ -37,6 +37,7 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
                 try {
                     bullet.thenCallback(data);
                 } catch (err){
+                    console.log(err)
                     bullet.catchCallback(err);
                 }
             },

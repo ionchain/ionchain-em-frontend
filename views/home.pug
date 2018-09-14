@@ -60,12 +60,10 @@ block content
     //- 公告
     .section-notice.home-section
         span IONChain币总数：
-        span.f-32.bold 
-          :thousandth
-            - #{totalIncome.totalIncome}
+        span.f-32.bold #{totalIncome}
         span  IONChain
     //- 设备
-    .section-equipment-data
+    .section-equipment-data#section-equipment-data
       .eq_prev.icon-left-arrow
       .section-main
         .slide-wrap(data-bind="foreach: equList")

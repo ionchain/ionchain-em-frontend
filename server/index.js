@@ -39,12 +39,7 @@ async function start () {
   })
 
   pug.options.filters = {
-    thousandth: function(num, options){
-      num = num * 1
-      let [sInt, sFloat] = (Number.isInteger(num) && options.point ? `${num}` : num.toFixed(options.point)).split('.')
-      sInt = sInt.replace(/\d(?=(\d{3})+$)/g, '$&,')
-      return sFloat ? `${sInt}.${sFloat}` : `${sInt}`
-    }
+   
   };
 
   pug.use(app)

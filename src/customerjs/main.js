@@ -25,7 +25,7 @@
             // popper: PLUGINS + 'popper'
             csPopUp: PLUGINS + 'jquery.csPopUp',
             easing: PLUGINS + 'jquery.easing.1.3',
-            superSlide: 'plugins/jquery.SuperSlide.2.1.1',
+            superSlide: 'plugins/jquery.SuperSlide.2.1.1.source',
             knob: '/plugins/jquery.knob.min',
             circleChart: '/plugins/circleChart.es5.min',
             radialIndicator: '/plugins/radialIndicator',
@@ -37,6 +37,7 @@
             }
         },
         shim: {
+            circleChart: ['jquery'],
             knob: ['jquery'],
             superSlide: ['jquery'],
             progress: ['css!' + PLUGINS + 'progress/schedule.css'],

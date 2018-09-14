@@ -4,6 +4,7 @@ var router = new Router()
 const axios = require('axios')
 var config = require('./config.js')
 var service = require('./service.js')
+const utils = require('./utils.js')
 const  SessionMaxAge = 3600000
 const  SessionMaxAgeLong = 86400000 * 30 // a month
 
@@ -180,13 +181,13 @@ router.get('/home', async (ctx, next) => {
 	// 	console.log('getDeviceList', data);
 	// })
 	await service.getHisProfit({}).then((data)=>{
-		console.log('getHisProfit#', data)
+		console.log('getHisProfit', data);
 		totalIncome = data
 	})
 	
 	ctx.render('home', {
 		currentpage: 'home',
-		totalIncome: 22222222
+		totalIncome: utils.thousandth(totalIncome.totalIncomeIonc)
 	})
 })
 //下载调用

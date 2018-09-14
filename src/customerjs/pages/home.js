@@ -1,5 +1,5 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'superSlide', 'knob','echarts',"common"],
-function ($, API, _, KO, superSlide, knob, echarts,common) {
+require(['jquery', 'api', 'lodash', 'knockout', 'superSlide', 'knob','echarts',"common",'circleChart'],
+function ($, API, _, KO, superSlide, knob, echarts,common, circleChart) {
     
     function hour24(){
         var result = []
@@ -110,19 +110,37 @@ function ($, API, _, KO, superSlide, knob, echarts,common) {
         var appviewmodel1 = new AppViewModel();
         KO.applyBindings(appviewmodel1, $(".page-home")[0]);
 
-        $(".dial").knob({
-            lineCap: 'rounded',
-            readonly: true,
-            displayInput: false
-        });
+
+        // if(Modernizr.es5object) {
+        //     $(".circleChart").circleChart({
+        //         color: "#26e3e7",
+        //         widthRatio: 0.1,
+        //         size: 86
+        //     });
+        // }
+
         $('.dial').removeClass('hide-tem');
         $("#banner").slide({
             autoPlay: false,
             delayTime: 500,
             titCell: ".panel li",
             mainCell: ".slide-wrap",
-            effect: "leftLoop"
+            effect: "leftLoop",
+            endFun: function(){
+                $('#section-equipment-data .card-H.clone canvas').remove()
+                initCircleChart('#section-equipment-data .card-H.clone .dial')
+            }
         });
+
+        initCircleChart("#section-equipment-data .dial");
+        //初始化圆形进度条
+        function initCircleChart(cls){
+            $(cls).knob({
+                lineCap: 'rounded',
+                readonly: true,
+                displayInput: false
+            });    
+        }
 
         if (Modernizr.canvas) {// 判断是否支持canvas
             chart1 = echarts.init(document.getElementById('chart1'));
