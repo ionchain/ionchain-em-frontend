@@ -123,6 +123,7 @@
                 box-sizing: border-box;
                 float: left;
                 color: @fsColor;
+                text-decoration: none;
             }
             >a:hover{
                 text-decoration: none;
@@ -176,11 +177,20 @@
         float: right;
     }
     // 消息中心
-    .message_content{
-        li{
-            height: auto !important;
+    .page-message{
+        .message_down{
+            li{
+                height: auto !important;
+            }
+        }
+        ul{
+            display: none;
+        }
+        .message_on{
+            display: block !important;
         }
     }
+    
     // 投诉与反馈
     .comp{
         .comp_text{

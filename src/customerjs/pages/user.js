@@ -27,7 +27,7 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress'], function(
     $(function () {
         var appviewmodel1 = new AppViewModel();
         KO.applyBindings(appviewmodel1, $(".release")[0]);
-
+        //自动获取侧边导航的高度
         var heightDiv1 = $(".release").height();
         var heightDiv2 = $(".user-nav").height();
         if(heightDiv1 > heightDiv2){
@@ -53,6 +53,11 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress'], function(
             });
         })
        
+        // 消息中心的tabs
+        $(".message_nav>a").click(function(){
+            $(".message_nav>a").eq($(this).index()).addClass("active").siblings().removeClass("active");
+            $(".message_content>ul").eq($(".message_nav>a").index(this)).addClass("message_on").siblings().removeClass('message_on'); 
+        })
 
     });
 })

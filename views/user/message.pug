@@ -2,27 +2,32 @@ extends ./layout.pug
 block user-content
     script.
         require(['/dist/customerjs/pages/user.js'])
-    .release 
+    .release.page-message 
         .release_nav.message_nav
-            a(href="#").active 被下载
-            a(href="#") 系统消息
-        ul.release_content.message_content(data-bind="foreach: userList")
-            li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
-                .cont_f1
-                    .cont_f1_img
-                        img(src="/img/product/product_1.jpg")
-                    .cont_f1_text 
-                        .f1_name 荣耀手环3 标准版
-                        p
-                            label 系统：
-                            span Android 6.23
-                        p
-                            label 设备编号：
-                            span 1578698
-                        p
-                            label 数量：
-                            span 157
-                        p
-                            label 被下载：
-                            span 30
+            a(href="javascript:;").active 被下载
+            a(href="javascript:;") 系统消息
+        .message_content
+            //- 被下载    
+            ul.release_content.message_down.message_on(data-bind="foreach: userList")
+                li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
+                    .cont_f1
+                        .cont_f1_img
+                            img(src="/img/product/product_1.jpg")
+                        .cont_f1_text 
+                            .f1_name 荣耀手环3 标准版
+                            p
+                                label 系统：
+                                span Android 6.23
+                            p
+                                label 设备编号：
+                                span 1578698
+                            p
+                                label 数量：
+                                span 157
+                            p
+                                label 被下载：
+                                span 30
+            //- 系统消息
+            ul 
+                li(style="margin-top:20px;") 正在开发中请等待!
                     
