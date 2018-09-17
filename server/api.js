@@ -31,7 +31,7 @@ module.exports = {
     // 历史总收益接口
     getHisProfit ({txTo} = {}) {
         var txTo = '0x1ac505f02e6a6aa7abb1b8b99c7c43bc53dba2de'
-        return _axios.get(`/equipment/totalIncome?txTo=${txTo}`,{baseURL: 'http://192.168.23.164:3001/v1'})
+        return _axios.get(`/equipment/totalIncome?txTo=${txTo}`,{baseURL: 'http://192.168.23.149:3001/v1'})
     }
     // sendMsg (data, params) {
     //     return _axios.post('/sms/sendMsg', data, {params: params});
