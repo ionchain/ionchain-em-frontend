@@ -38,7 +38,28 @@ body{
 .ly-header{
     height:80px;
     background: @buttonColor;
-
+    border-bottom: 1px solid #F1F1F1;
+    // box-shadow: 0 0 20px 2px #F1F1F1;
+    position: relative;
+    z-index: 3;
+    .logo{
+        height:80px;
+        line-height: 80px;
+        float: left;
+        img{
+            height:48px;
+            position: relative;
+        }
+        i{
+            font-size: 48px;
+            vertical-align: middle;
+        }
+    }
+    .h-main{
+        width: @mainWidth;
+        margin: auto;
+        .clearFix();
+    }
     .navitems{
         float: left;
         margin-left: 90px;
@@ -90,10 +111,6 @@ body{
         .search-btn{
             top: 8px;
         }
-    }
-    .logo{
-        float:left;
-        padding: 14px 0;
     }
     .logo_gw{
         float:right;
@@ -154,7 +171,7 @@ img{
     position: relative;
     z-index: 1;
     margin-bottom: 400px;
-    min-height: ~"calc(100vh - 81px)";
+    min-height: ~"calc(100vh - 80px)";
     background: #fff;
     .clearFix();
     // > div{
@@ -162,26 +179,6 @@ img{
     //     float: left;
     //     .clearFix();
     // }
-}
-.ly-header{
-    border-bottom: 1px solid #F1F1F1;
-    // box-shadow: 0 0 20px 2px #F1F1F1;
-    position: relative;
-    z-index: 3;
-    .logo{
-        height:80px;
-        line-height: 80px;
-        display: inline-block;
-        img{
-            height:48px;
-            position: relative;
-        }
-    }
-    .h-main{
-        width: @mainWidth;
-        margin: auto;
-        .clearFix();
-    }
 }
 .error-msg{
     padding: 5px 10px;

@@ -77,5 +77,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
         })
         
         KO.applyBindings( viewmodel );
+        
     }
 )
