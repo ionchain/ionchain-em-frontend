@@ -1,5 +1,5 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'csPopUp', 'selection', 'jquery_fileupload'],
-    function($, API, _, KO, serialize, validate, toast, common, csPopUp, selection, jquery_fileupload) {
+require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'csPopUp', 'selection', 'jquery_fileupload','jquery_validate'],
+    function($, API, _, KO, serialize, validate, toast, common, csPopUp, selection, jquery_fileupload,jquery_validate) {
         $("#tipBoxA").csPopUp();
         $(function () {
            var oDropdown ;

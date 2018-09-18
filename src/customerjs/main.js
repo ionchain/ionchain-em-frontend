@@ -13,7 +13,6 @@
             tabs: PLUGINS + 'tabs/jquery.tabs',
             lazyload: PLUGINS + 'tabs/jquery.lazyload',
             serialize: LIBRARY + 'form-serialize',
-            validate: LIBRARY + 'validate',
             polyfill: LIBRARY + 'browser-polyfill',
             toast: LIBRARY + 'jquery.toast.min',
             common: COMMON + 'common',
@@ -33,7 +32,9 @@
             selection: '/plugins/selection/jquery.dd',
             // fileupload_ui_widget: '/plugins/jquery.fileupload/jquery.ui.widget',
             fileupload_iframe_transport: '/plugins/jquery.fileupload/jquery.iframe-transport',
-            jquery_fileupload: '/plugins/jquery.fileupload/jquery.fileupload'
+            jquery_fileupload: '/plugins/jquery.fileupload/jquery.fileupload',
+            jquery_validate: '/plugins/jquery.validate/jquery.validate',
+            jquery_validate_cn: '/plugins/jquery.validate/messages_zh'
         },
         map: {
             '*': {
@@ -41,6 +42,8 @@
             }
         },
         shim: {
+            jquery_validate: ['jquery'],
+            jquery_validate_cn: ['jquery_validate'],
             jquery_fileupload: ['fileupload_iframe_transport'],
             circleChart: ['jquery'],
             knob: ['jquery'],
