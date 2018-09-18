@@ -22,12 +22,15 @@ _axios.interceptors.response.use(
 )
 
 module.exports = {
+    // 设备列表
     getDeviceList ({userId} = {}) {
         return _axios.get(`/users/${userId}/devices`)
     },
+    // 设备详情
     getDeviceDesc ({deviceId} = {}) {
         return _axios.get(`/devices/${deviceId}`)
     },
+    // 收藏列表
     // 历史总收益接口
     getHisProfit ({txTo} = {}) {
         var txTo = '0x1ac505f02e6a6aa7abb1b8b99c7c43bc53dba2de'
