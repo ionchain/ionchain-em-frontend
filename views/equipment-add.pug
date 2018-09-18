@@ -56,18 +56,20 @@ block content
                     label 设备图片
                     ul.equ-gallery
                         li.plus-btn
+                            input(name='' id='equipment-pic-upload' type="file" data-url="http://localhost/jQuery-File-Upload/server/php/")
                         li.ga-item
                 .ic-form-item
                     label 设备说明书上传
                     div
-                        input.ic-input-big.wid-col2-A(placeholder="")
-                        button.right.ic-btn-big.i-outline-primary.wid-col2-B 上传
-                        //- input(type="file")
+                        input.ic-input-big.wid-col2-A(placeholder="" readonly="readonly")
+                        button.right.ic-btn-big.i-outline-primary.wid-col2-B.btn-upload(id="notice-book-upload") 上传
+                            input(type="file")
                 .ic-form-item
                     label 数据样例上传
                     div
-                        input.ic-input-big.wid-col2-A(placeholder="")
-                        button.right.ic-btn-big.i-outline-primary.wid-col2-B 上传
+                        input.ic-input-big.wid-col2-A(placeholder="" readonly="readonly" )
+                        button.right.ic-btn-big.i-outline-primary.wid-col2-B.btn-upload(id="data-sample-upload" data-url="http://localhost/jQuery-File-Upload/server/php/") 上传
+                            input(type="file")
             .c-tool-bar
                 button.ic-btn.i-primary 提交
                 button.ic-btn.i-outline 取消

@@ -2,11 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
     mode: "production",
-    entry: ["./bower_components/validate/validate.js"],
+    entry: ["./src/plugins/prevent-robot/jigsaw.js"],
     output: {
         // webpack 如何输出结果的相关选项
-        path: path.resolve(__dirname, "static/dist/lib"), // string
-        filename: "validate.js",
+        path: path.resolve(__dirname, "test"), // string
+        filename: "jigsaw.js",
         libraryTarget:'amd'
     },
     module: {
