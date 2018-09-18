@@ -23,5 +23,17 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 console.log('done', data);
             }
         });
+        // $('#equipment-form').
+        
+        var ViewModel = function() {
+            this.submit = function(){
+                var formData = serialize($('#equipment-form')[0], { hash: true });
+                API.deviceAdd(formData)._then(function(data){
+                    console.log(data);
+                })
+            }
+        }
+        var viewmodel = new ViewModel();
+        KO.applyBindings( viewmodel ,$("#page-equ-add")[0]);
     }
 );
