@@ -105,6 +105,20 @@ button{
     padding: 0;
     display: inline-block;
     outline: none;
+    &.btn-upload {
+        position: relative;
+        overflow: hidden;
+        input{
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            opacity: 0;
+            right: -1px;
+            top: -1px;
+            box-sizing: content-box;
+            cursor: pointer;
+        }
+    }
     &.i-primary{
         background: @baseColor;
     }

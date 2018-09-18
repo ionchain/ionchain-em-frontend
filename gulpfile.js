@@ -4,6 +4,7 @@
 const rollup = require('rollup');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
+const babel = require('gulp-babel');
 
 var DIST = './static/dist'
 gulp.task('less', function () {
@@ -86,7 +87,28 @@ gulp.task('build', async function () {
 	// .pipe(uglify())
 	// .pipe(sourcemaps.write())
 	.pipe(gulp.dest(`${DIST}`));
+
 });
+// gulp.task('es5', function () {
+// 	gulp.src('src/plugins/prevent-robot/jigsaw.js')
+// 	.pipe(babel({
+// 		"presets": [
+// 		  ["latest", {
+// 			"es2015": {
+// 			  "modules": false
+// 			}
+// 		  }]
+// 		],
+// 		"plugins": [
+// 		//   "transform-es3-member-expression-literals",
+// 		//   "@babel/plugin-transform-reserved-words",
+// 		//   "transform-property-literals",
+// 		//   "transform-member-expression-literals"
+// 		]
+// 	  }
+// 	  ))
+// 	.pipe(gulp.dest('test'))
+// });
 
 gulp.task('default', ['watch', 'build', 'less'], function () {
 });
