@@ -9,7 +9,7 @@ block user-content
         .message_content
             //- 被下载    
             ul.release_content.message_down.message_on(data-bind="foreach: userList")
-                li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 1}, visible: name")
+                li.card-I(style="display:none;" data-bind="css: {second: $index() % 2 == 0}, visible: name")
                     .cont_f1
                         .cont_f1_img
                             img(src="/img/product/product_1.jpg")

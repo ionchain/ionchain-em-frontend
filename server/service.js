@@ -42,5 +42,19 @@ module.exports = {
         } catch (err) {
             return data
         }
+    },
+    async getCollectList({collectId} = {}){
+        var data = []
+        try{
+            await API.getCollectList({collectId}).then((res)=>{
+                if(res.data.success == 0){
+                    data = res.data.data
+                }
+            })
+        }catch (err){
+            console.log(err)
+            return data
+        } 
+        return data
     }
 }

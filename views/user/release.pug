@@ -8,21 +8,21 @@ block user-content
                 li.card-I(class = index % 2 == 0 ? 'second' : '')
                     .cont_f1
                         .cont_f1_img 
-                            img(src="/img/product/product_1.jpg")
+                            img(src=item.image_url)
                         .cont_f1_text
                             .f1_name=item.name
                             p
                                 label 系统：
-                                span Android 6.23
+                                span=item.system
                             p
                                 label 设备编号：
                                 span 1578698
                             p
                                 label 数量：
-                                span 157
+                                span=item.counts
                             p
                                 label 提交日期：
-                                span 2018.04.03
+                                span=item.created_at
                     .cont_f2 样例完整度
                     .cont_f3
                     .scheduleX(data-progress="90")
@@ -46,6 +46,7 @@ block user-content
                             a(href="#") 删除    
                         .compile
                             a(href="#") 编辑
-            li.plus
-                i
-                span
+            a(href="/equipment-add")                
+                li.plus
+                    i
+                    span

@@ -22,11 +22,17 @@ _axios.interceptors.response.use(
 )
 
 module.exports = {
+    // 设备列表
     getDeviceList ({userId} = {}) {
         return _axios.get(`/users/${userId}/devices`)
     },
+    // 设备详情
     getDeviceDesc ({deviceId} = {}) {
         return _axios.get(`/devices/${deviceId}`)
+    },
+    // 收藏列表
+    getCollectList ({collectId} = {}) {
+        return _axios.get(`/users/${collectId}/favorites`)
     },
     // 历史总收益接口
     getHisProfit ({txTo} = {}) {

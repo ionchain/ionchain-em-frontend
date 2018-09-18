@@ -128,18 +128,9 @@ router.get('/register', async (ctx, next) => {
 
 // 我的发布
 router.get("/user/release", async (ctx, next) => {
-	var deviceList = [
-		{name:"荣耀手环",wind:"android",xh:1344},
-		{name:"小米手环",wind:"android",xh:1324},
-		{name:"苹果手环",wind:"android",xh:1324},
-		{name:"华为",wind:"android",xh:1324}
-	]
-	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
-	// 	console.log("deviceDesc",data);
-	// 	// deviceList = data;
-	// })
-	await service.getDeviceList({userId: 1}).then((data)=>{
-		console.log("getDeviceList",data);
+	var deviceList = [];
+	await service.getDeviceList({userId: 2}).then((data)=>{
+		deviceList = data;
 	})
 	ctx.render('user/release', {
 		currentpage: 'release',
@@ -149,8 +140,13 @@ router.get("/user/release", async (ctx, next) => {
 
 // 我的收藏
 router.get("/user/collect", async (ctx, next) => {
+	var collectList = [];
+	await service.getCollectList({collectId: 2}).then((data)=>{
+		collectList = data;
+	})
 	ctx.render('user/collect', {
-		currentpage: 'collect'
+		currentpage: 'collect',
+		collectLists: collectList
 	})
 })
 
