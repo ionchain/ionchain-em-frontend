@@ -31,7 +31,7 @@
             radialIndicator: '/plugins/radialIndicator',
             echarts: '/plugins/echarts.simple.min',
             selection: '/plugins/selection/jquery.dd',
-            // fileupload_ui_widget: '/plugins/jquery.fileupload/jquery.ui.widget',
+            fileupload_ui_widget: '/plugins/jquery.fileupload/jquery.ui.widget',
             fileupload_iframe_transport: '/plugins/jquery.fileupload/jquery.iframe-transport',
             jquery_fileupload: '/plugins/jquery.fileupload/jquery.fileupload'
         },
@@ -41,7 +41,7 @@
             }
         },
         shim: {
-            jquery_fileupload: ['fileupload_iframe_transport'],
+            jquery_fileupload: ['fileupload_iframe_transport','fileupload_ui_widget'],
             circleChart: ['jquery'],
             knob: ['jquery'],
             superSlide: ['jquery'],

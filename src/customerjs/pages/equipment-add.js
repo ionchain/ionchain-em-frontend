@@ -13,6 +13,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     }
                     $("#websites1").html(html);
                     oDropdown=$("#websites1").msDropDown().data('dd');
+                    console.log(oDropdown);
                     $.get("/api/v1/categories/1/sub_categories",function(data){
                         if(data.success == 0){
                             var data = data.data;
@@ -48,7 +49,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 console.log('done', data);
             }
         });
-        $('#equipment-pic-upload').fileupload({
+        $('#notice-book-upload').fileupload({
             dataType: 'json',
             done: function (e, data) {
                 console.log('done', data);
