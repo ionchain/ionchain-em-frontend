@@ -17,8 +17,8 @@
     if (typeof define === 'function' && define.amd) {
         // Register as an anonymous AMD module:
         define([
-            'jquery',
-            'jquery-ui/ui/widget'
+            'jquery'
+            // 'jquery.fileupload/jquery.ui.widget'
         ], factory);
     } else if (typeof exports === 'object') {
         // Node/CommonJS:

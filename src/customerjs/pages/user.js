@@ -1,4 +1,4 @@
-require(['jquery','knockout','validate', 'common', 'api', 'progress'], function($, KO, validate, common, API, progress){
+require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload'], function($, KO, validate, common, API, progress,jquery_fileupload){
     function AppViewModel() {
         this.userList = KO.observableArray([
             { name: 'Bert' },
@@ -57,6 +57,17 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress'], function(
         $(".message_nav>a").click(function(){
             $(".message_nav>a").eq($(this).index()).addClass("active").siblings().removeClass("active");
             $(".message_content>ul").eq($(".message_nav>a").index(this)).addClass("message_on").siblings().removeClass('message_on'); 
+        });
+        // 账号设置
+        $('#equipment-pic-photo').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                console.log('done', data);
+            }
+        });
+
+        $('#data-sample-photo').click(function(){
+            $('#equipment-pic-photo').click()
         })
 
     });
