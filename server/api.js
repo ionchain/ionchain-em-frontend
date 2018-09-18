@@ -31,6 +31,9 @@ module.exports = {
         return _axios.get(`/devices/${deviceId}`)
     },
     // 收藏列表
+    getCollectList ({collectId} = {}) {
+        return _axios.get(`/users/${collectId}/favorites`)
+    },
     // 历史总收益接口
     getHisProfit ({txTo} = {}) {
         var txTo = '0x1ac505f02e6a6aa7abb1b8b99c7c43bc53dba2de'
