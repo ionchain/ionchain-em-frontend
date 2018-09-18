@@ -187,9 +187,9 @@ router.get('/home', async (ctx, next) => {
 	// 	console.log('deviceDesc', data);
 	// })
 
-	// await service.getDeviceList({userId: 1}).then((data)=>{
-	// 	console.log('getDeviceList', data);
-	// })
+	await service.getDeviceList({userId: 2}).then((data)=>{
+		deviceList = data;
+	})
 	await service.getHisProfit({}).then((data)=>{
 		console.log('getHisProfit', data);
 		totalIncome = data
@@ -197,7 +197,8 @@ router.get('/home', async (ctx, next) => {
 	
 	ctx.render('home', {
 		currentpage: 'home',
-		totalIncome: utils.thousandth(totalIncome.totalIncomeIonc)
+		totalIncome: utils.thousandth(totalIncome.totalIncomeIonc),
+		deviceLists: deviceList
 	})
 })
 //下载调用
