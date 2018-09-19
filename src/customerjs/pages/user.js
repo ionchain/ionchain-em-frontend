@@ -1,4 +1,8 @@
-require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload','serialize'], function($, KO, validate, common, API, progress,jquery_fileupload,serialize){
+require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload','serialize','jquery_validate','jquery_validate_cn'], function($, KO, validate, common, API, progress,jquery_fileupload,serialize,jquery_validate,jquery_validate_cn){
+    //表单验证
+    var validator = $("#account_from").validate({
+        debug:true
+    });
     function AppViewModel() {
         this.userList = KO.observableArray([
             { name: 'Bert' },
@@ -24,16 +28,23 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fil
         this.ac_submit = function(){
             var formData = serialize($('#account_from')[0], { hash: true });
             formData.user_id = 2
-            API.accountAdd(formData)._then(function(data){
-                console.log(data);
-            })
+            if(validator.form()){
+                API.accountAdd(formData)._then(function(data){
+                    if(data.success == 0){
+                        $.toast({text: data.message, icon: 'success'});
+                    } else {
+                        $.toast({text: data.message, icon: 'error'});
+                    }
+                })
+            }
         }
     }
-
+    
     // 获取高度设置左侧导航的border
     $(function () {
         var appviewmodel1 = new AppViewModel();
         KO.applyBindings(appviewmodel1, $(".release")[0]);
+        
         //自动获取侧边导航的高度
         var heightDiv1 = $(".release").height();
         var heightDiv2 = $(".user-nav").height();
