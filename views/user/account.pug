@@ -9,30 +9,30 @@ block user-content
         //- button.account_select.ic-btn-big(id="data-sample-photo" data-url="http://localhost/jQuery-File-Upload/server/php/")  选择图片
         //- .account_text 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
         form.ic-form.of-hide.account_form#account_from
-            //- .account_photo 
-            //-     img(src="/img/product/product_1.jpg")
-            //-     input.hide(name='' id='equipment-pic-photo' type="file" data-url="http://localhost/jQuery-File-Upload/server/php/")
-            //- button.account_select.ic-btn-big(id="data-sample-photo")  选择图片
-            //- .account_text 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
+            .account_photo 
+                img(src="/img/product/product_1.jpg")
+                input.hide(name='' id='equipment-pic-photo' type="file" data-url="http://localhost/jQuery-File-Upload/server/php/")
+            button.account_select.ic-btn-big(id="data-sample-photo")  选择图片
+            .account_text 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
             .ic-form-item
                 label 姓名 
                 .input-wrap
-                    input.ic-input-big(placeholder="请输入您的姓名" name="nickname")
+                    input.ic-input-big(placeholder="请输入您的姓名" name="nickname" required)
                     span.input-append.tip-status 0/10
             .ic-form-item
                 label 公司 
                 .input-wrap
-                    input.ic-input-big(placeholder="请输入您所在的公司" name="company_name")
+                    input.ic-input-big(placeholder="请输入您所在的公司" name="company_name" required)
                     span.input-append.tip-status 0/80
             .ic-form-item
                 label 公司组织代码 
                 .input-wrap
-                    input.ic-input-big(placeholder="请输入您的公司组织代码" name="company_org_code")
+                    input.ic-input-big(placeholder="请输入您的公司组织代码" name="company_org_code" required)
                     span.input-append.tip-status 0/80
             .ic-form-item
                 label 职位 
                 .input-wrap
-                    input.ic-input-big(placeholder="请输入您的职位" name="position")
+                    input.ic-input-big(placeholder="请输入您的职位" name="position" required)
                     span.input-append.tip-status 0/80
         .c-tool-bar
             button.ic-btn.i-primary(data-bind="click: ac_submit") 提交
