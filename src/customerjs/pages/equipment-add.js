@@ -45,7 +45,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
         $('#equipment-pic-upload').fileupload({
             dataType: 'json',
             done: function (e, data) {
-                console.log('done', data);
+                console.log('done', arguments);
             }
         });
         $('#notice-book-upload').fileupload({
@@ -67,7 +67,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
         var ViewModel = function() {
             this.submit = function(){
                 var formData = serialize($('#equipment-form')[0], { hash: true });
-                formData.user_id = 2
                 $.extend(formData,{
                     user_id: 2,
                     specification_file: '@',
