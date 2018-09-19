@@ -109,6 +109,14 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
                 data: data
             })
         },
+        // 个人中心(账号设置)
+        accountAdd: function(data){
+            return Xajax({
+                type: 'post',
+                url: config.BASE_URL + '/companies/update',
+                data: data
+            })
+        },
         deviceAdd: function(data) {
             return Xajax({
                 type: 'post',

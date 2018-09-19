@@ -13,7 +13,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     }
                     $("#websites1").html(html);
                     oDropdown=$("#websites1").msDropDown().data('dd');
-                    console.log(oDropdown);
+                    // console.log(oDropdown);
                     $.get("/api/v1/categories/1/sub_categories",function(data){
                         if(data.success == 0){
                             var data = data.data;
