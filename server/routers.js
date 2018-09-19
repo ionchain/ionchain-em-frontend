@@ -97,12 +97,10 @@ function userAuth() {
 
 /*--页面路由 start--*/
 router.get('/', async (ctx, next) => {
-	if (_.isEmpty(ctx.session.userinfo)) {
-		ctx.redirect('/login')
-	}
-	ctx.render('index', {
-		currentpage: 'index'
-	})
+	// if (_.isEmpty(ctx.session.userinfo)) {
+	// 	ctx.redirect('/login')
+	// }
+	ctx.redirect('/home')
 })
 // 登录
 router.get('/login', async (ctx, next) => {
@@ -115,6 +113,12 @@ router.get('/login', async (ctx, next) => {
 router.get('/retrieve', async (ctx, next) => {
 	ctx.render('retrieve', {
 		currentpage: 'retrieve'
+	})
+})
+// 
+router.get("/article", async (ctx, next) => {
+	ctx.render('article', {
+		currentpage: 'article'
 	})
 })
 //注册
@@ -166,8 +170,13 @@ router.get("/user/comp", async (ctx, next) => {
 
 // 账号设置
 router.get("/user/account", async (ctx, next) => {
+	var userinfo = {}
+	await service.userInfo({userId: 2}).then((data)=>{
+		userinfo = data
+	})
 	ctx.render('user/account', {
-		currentpage: 'account'
+		currentpage: 'account',
+		userinfo: userinfo
 	})
 })
 

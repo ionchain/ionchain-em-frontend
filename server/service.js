@@ -56,5 +56,21 @@ module.exports = {
             return data
         } 
         return data
-    }
+    },
+    // userInfo
+    async userInfo({userId} = {}){
+        var data = {}
+        try{
+            await API.userInfo({userId}).then((res)=>{
+                if(res.data.success == 0){
+                    data = res.data.data
+                }
+            })
+        }catch (err){
+            console.log(err)
+            return data
+        } 
+        return data
+    },
+    
 }

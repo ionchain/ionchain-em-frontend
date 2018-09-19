@@ -22,6 +22,10 @@ _axios.interceptors.response.use(
 )
 
 module.exports = {
+    // 用户信息 
+    userInfo ({userId} = {}) {
+        return _axios.get(`/companies/detail?user_id=${userId}`)
+    },
     // 设备列表
     getDeviceList ({userId} = {}) {
         return _axios.get(`/users/${userId}/devices`)
