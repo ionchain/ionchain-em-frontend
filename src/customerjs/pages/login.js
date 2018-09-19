@@ -7,7 +7,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.errorMessage = KO.observable();
             this.loginLong = KO.observable(false);
             this.login = function () {
-                var params = serialize($('#login-form')[0], { hash: true }, {format: "detailed"});
+                var params = serialize($('#login-form')[0], { hash: true });
                 var errors = validate(params, {
                     mobile: {
                         presence: {message: "^手机号码是必填的"},

@@ -1,4 +1,4 @@
-require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload'], function($, KO, validate, common, API, progress,jquery_fileupload){
+require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload','serialize'], function($, KO, validate, common, API, progress,jquery_fileupload,serialize){
     function AppViewModel() {
         this.userList = KO.observableArray([
             { name: 'Bert' },
@@ -20,6 +20,13 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fil
                     }
                 })
             }
+        }
+        this.ac_submit = function(){
+            var formData = serialize($('#account_from')[0], { hash: true });
+            formData.user_id = 2
+            API.accountAdd(formData)._then(function(data){
+                console.log(data);
+            })
         }
     }
 
