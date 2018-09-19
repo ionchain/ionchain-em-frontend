@@ -42,13 +42,9 @@
             }
         },
         shim: {
-<<<<<<< HEAD
             jquery_validate: ['jquery'],
             jquery_validate_cn: ['jquery_validate'],
-            jquery_fileupload: ['fileupload_iframe_transport'],
-=======
             jquery_fileupload: ['fileupload_iframe_transport','fileupload_ui_widget'],
->>>>>>> 1caff3633a224dfd95836a8b18f675961792c4fc
             circleChart: ['jquery'],
             knob: ['jquery'],
             superSlide: ['jquery'],

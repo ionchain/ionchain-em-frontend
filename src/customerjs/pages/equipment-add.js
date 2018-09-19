@@ -1,5 +1,5 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'csPopUp', 'selection', 'jquery_fileupload','jquery_validate'],
-    function($, API, _, KO, serialize, validate, toast, common, csPopUp, selection, jquery_fileupload,jquery_validate) {
+require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'csPopUp', 'selection', 'jquery_fileupload','jquery_validate','jquery_validate_cn'],
+    function($, API, _, KO, serialize, validate, toast, common, csPopUp, selection, jquery_fileupload,jquery_validate,jquery_validate_cn) {
         $("#tipBoxA").csPopUp();
         $(function () {
            var oDropdown ;
@@ -13,7 +13,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     }
                     $("#websites1").html(html);
                     oDropdown=$("#websites1").msDropDown().data('dd');
-                    console.log(oDropdown);
                     $.get("/api/v1/categories/1/sub_categories",function(data){
                         if(data.success == 0){
                             var data = data.data;
@@ -61,15 +60,32 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 console.log('done', data);
             }
         });
-        // $('#equipment-form').
-        
+        //表单验证
+        var validator = $("#equipment-form").validate({
+            debug:true
+        });
         var ViewModel = function() {
             this.submit = function(){
                 var formData = serialize($('#equipment-form')[0], { hash: true });
-                API.deviceAdd(formData)._then(function(data){
-                    console.log(data);
+                formData.user_id = 2
+                $.extend(formData,{
+                    user_id: 2,
+                    specification_file: '@',
+                    data_demo_file: '@'
                 })
-            }
+                console.log(validator.form());
+                if(validator.form()){
+                    API.deviceAdd(formData)._then(function(data){
+                        if(data.success == 0){
+                            $.toast({text: data.message, icon: 'success'});
+                        } else {
+                            $.toast({text: data.message, icon: 'error'});
+                        }
+                    })
+                }
+               
+            };
+            this.equPic = KO.observable("");
         }
         var viewmodel = new ViewModel();
         KO.applyBindings( viewmodel ,$("#page-equ-add")[0]);
