@@ -46,6 +46,7 @@
     ]
   },
   "scripts": {
+    "start": "node server/index.js",
     "dev": "concurrently \"npm run server\" \"gulp\"",
     "server": "nodemon  server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
