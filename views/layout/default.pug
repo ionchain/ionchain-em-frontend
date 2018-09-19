@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title IONPartnership
+    include ../includes/head-insert.pug
+    block previte-head
+  body.root-scope#root-scope
+    include ../includes/header.pug
+    .ly-body
+      block content
+    include ../includes/footer.pug
+    include ../includes/body-append.pug

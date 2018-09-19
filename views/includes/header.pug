@@ -1,0 +1,42 @@
+div.ly-header#header
+    div.h-main
+        a.logo(href='/')
+            //- img(src='/img/icon/IONC_store_bule.svg')
+            i.icon-site-logo
+        //- a.logo_gw(href='http://www.ionchain.org/index_CN.html', target='_blank') 离子链官网
+        //- if userinfo && currentpage != 'login'
+        //-     .h-info
+        //-         span 当前登录 
+        //-         span #{userinfo.mobile_num}
+        //-         span.quit(data-bind='click: logout')  退出
+        //- if !userinfo && currentpage != 'login'
+        //-     .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
+        //-         a.z_d(href='/register')
+        //-             span 注册
+        //-         |   已有账号？
+        //-         a.z_d(href='/login')
+        //-             span 请登录
+        if userinfo && currentpage != 'login'
+            .h-info
+                span 当前登录 
+                a.dis-normal(href="/user/release") #{userinfo.mobile_num}
+                span.quit(data-bind='click: logout')  退出
+        if !userinfo && currentpage != 'login'
+            .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
+                a.z_d(href='/register')
+                    span 注册
+                span.xc_x |
+                a.z_d(href='/login')
+                    span 登录
+        if  !userinfo && currentpage != 'login' && currentpage != 'register'
+            ul.navitems
+                li
+                    a.active(href="#") 贡献统计
+                li.navitems_t 
+                    a(href="#") 现有设备
+                li 
+                    a(href="#") 参与投票
+            .nav-search
+                .search-input
+                    input()
+                    i.search-btn.icon-search

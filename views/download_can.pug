@@ -1,0 +1,62 @@
+extends layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/download_can.css")
+block content
+    script.
+        require(['/dist/customerjs/pages/download_can.js'])
+    .download_can.ly-main 
+        .download_can_f1  
+            .f1_left 
+                .f1_left_l 
+                    img(src="/img/product/product_1.jpg")
+                .f1_left_r
+                    b 荣耀手环3 标准版
+                    .r_first
+                        label 作者：
+                        b 坏品位
+                    .r_second
+                        i.icon-light-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                        i.icon-gray-star
+                    .r_third
+                        span.third_one 智能穿戴
+                        span IT科技
+            .f1_right  
+                .f1_right_t
+                    .t_first
+                        i.icon-download
+                        span 20
+                    .t_second
+                        i.icon-eye
+                        span 20  
+                    .t_third 
+                        button 收藏  
+                .f1_right_b
+                    button 下载调用
+        .download_can_f2
+            .f2_name 设备信息
+            .f3_xs 
+                div
+                    label 系统：
+                    span Android 6.23
+                .xs_st_t
+                    label 数量：
+                    span 6888
+            .f3_st 
+                div
+                    label 设备编号：
+                    span 1578698
+                .xs_st_t
+                    label 提交日期：
+                    span 2018.04.03
+        .download_can_f3
+            div 设备图片
+            ul(data-bind="foreach: downList")
+                li(style="display:none;" data-bind="css: {fourths: $index()%3 == 2}, visible: name")
+                    img(src="/img/product/product_1.jpg")
+        .download_can_f4
+            .f4_t 信息样例
+            .f4_b Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。
+                        

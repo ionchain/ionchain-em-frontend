@@ -1,0 +1,45 @@
+
+extends layout/default.pug
+block previte-head
+  link(rel="stylesheet" href="/dist/css/login.css")
+block content
+  script.
+    require(['/dist/customerjs/pages/login.js'])
+  .page-login.ly-main
+    .login_left
+      img(src='/img/login_img.png', alt='')
+    .login_right.login-box
+      form#login-form
+        .login_right_logo
+          div
+            //- img(src='/img/icon/logo.svg', alt='')
+            i.icon-logo
+              span.path1
+              span.path2
+              span.path3
+              span.path4
+              span.path5
+              span.path6
+              span.path7
+              span.path8
+          div.l-tit IONPartnership
+        .error-msg(data-bind="css: { show: !formValid()}")
+          span.icon
+            img(src='/img/icon/error.svg', alt='') 
+          span(data-bind="text: errorMessage")
+        .login_right_name
+          input.ic-input-lg(required, name='mobile', placeholder='请输入手机号', type='text' data-bind="textInput: mobile, event: {blur: checkMobile}")
+        .test(data-bind="form.mobile")
+        .login_right_pw
+          input.ic-input-lg(required, name='password', placeholder='请输入密码', type='password' id="inp-password" data-bind="textInput: password, event: {blur: checkPwd}")
+          div
+            a(to='/retrieve') 忘记密码？
+        .login-form-row
+          span.left
+            s.s-input
+              input(type="checkbox" name='loginLong' id="auto-login")
+              i.skin
+            label.hover-hand.no-select(for="auto-login") 自动登录
+          a.low-link.right(href='/register' data-bind="checked: loginLong") 注册 ION Chain ID
+        .login_right_log.cursor-hand(data-bind='click: login')
+          a(href='javascript:;') 登录

@@ -1,0 +1,15 @@
+{
+  "presets": [
+    ["latest", {
+      "es2015": {
+        "modules": false
+      }
+    }]
+  ],
+  "plugins": [
+    "transform-es3-member-expression-literals",
+    "@babel/plugin-transform-reserved-words",
+    "transform-property-literals",
+    "transform-member-expression-literals"
+  ]
+}

@@ -1,0 +1,95 @@
+@import 'imports/variable.less';
+@import 'imports/mixins.less';
+.page-articles{
+    .articles_text{
+        font-size:32px;
+        position: absolute;
+        left: 230px;
+        top: 45px;
+        margin-bottom: 0;
+    }
+<<<<<<< HEAD:less/articles.less
+=======
+    .articles_remark{
+        position: absolute;
+        bottom:0;
+        background: #333;
+        color: @inputTextColor;
+        font-size: 16px;  
+        font-size: 14px;
+        width:100%;
+        left: 0;
+        >div{
+            padding:10px 45px;
+        }
+        .remark_close{
+            display:block;
+            width: 20px;
+            height: 20px;
+            float: right;
+            margin-right: 5px;
+            margin-top: 2px;
+        }
+    }
+>>>>>>> give-up-vue:src/less/articles.less
+    // tabs样式
+    .tabs-component{
+        padding-top: 50px;
+        .tab_menu{
+            float: left;
+            >li{
+                display:block;
+                width: 200px;
+                border-radius: 4px;
+                padding: 10px 20px;
+                color: @baseTextColor;
+                margin-bottom: 10px;   
+                font-size: 16px;
+                cursor: pointer;  
+                box-sizing: border-box;
+            }
+            >li:hover{
+                background: @baseColor;
+                color: @buttonColor;
+                text-decoration: none;
+            }
+        }
+        li.current{
+                background: @baseColor;
+                color: @buttonColor; 
+        }
+        .tab_box{
+            float: left;
+            padding: 48px 30px 0;
+            color: @fsColor;
+            font-size: 16px;
+            line-height: 26px;
+            letter-spacing: 1px; 
+            width: 550px; 
+            .hide{
+                display:none;
+            }
+        }
+    }
+}
+.articles_remark{
+    position: absolute;
+    z-index: 1;
+    bottom:0;
+    left: 0;
+    background: #333333;
+    color: @inputTextColor;
+    font-size: 16px;  
+    font-size: 14px;
+    width:100%;
+    >div{
+        padding:10px 45px;
+    }
+    .remark_close{
+        display:block;
+        width: 20px;
+        float: right;
+        margin-right: 5px;
+        margin-top: 2px;
+    }
+}
