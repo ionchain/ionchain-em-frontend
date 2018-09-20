@@ -111,26 +111,26 @@ function userAuth() {
 // 登录
 router.get('/login', async (ctx, next) => {
 	ctx.render('login', {
-		currentpage: 'login'
+		currentPage: 'login'
 	})
 })
 
 //找回密码页面
 router.get('/retrieve', async (ctx, next) => {
 	ctx.render('retrieve', {
-		currentpage: 'retrieve'
+		currentPage: 'retrieve'
 	})
 })
 // 
 router.get("/article", async (ctx, next) => {
 	ctx.render('article', {
-		currentpage: 'article'
+		currentPage: 'article'
 	})
 })
 //注册
 router.get('/register', async (ctx, next) => {
 	ctx.render('register', {
-		currentpage: 'register'
+		currentPage: 'register'
 	})
 })
 
@@ -143,7 +143,7 @@ router.get("/user/release", async (ctx, next) => {
 		deviceList = data;
 	})
 	ctx.render('user/release', {
-		currentpage: 'release',
+		currentPage: 'release',
 		deviceLists: deviceList
 	})
 })
@@ -155,7 +155,7 @@ router.get("/user/collect", async (ctx, next) => {
 		collectList = data;
 	})
 	ctx.render('user/collect', {
-		currentpage: 'collect',
+		currentPage: 'collect',
 		collectLists: collectList
 	})
 })
@@ -163,14 +163,14 @@ router.get("/user/collect", async (ctx, next) => {
 // 消息中心
 router.get("/user/message", async (ctx, next) => {
 	ctx.render('user/message', {
-		currentpage: 'message'
+		currentPage: 'message'
 	})
 })
 
 // 投诉与反馈
 router.get("/user/comp", async (ctx, next) => {
 	ctx.render('user/comp', {
-		currentpage: 'comp'
+		currentPage: 'comp'
 	})
 })
 
@@ -181,7 +181,7 @@ router.get("/user/account", async (ctx, next) => {
 		userinfo = data
 	})
 	ctx.render('user/account', {
-		currentpage: 'account',
+		currentPage: 'account',
 		userinfo: userinfo
 	})
 })
@@ -191,7 +191,7 @@ router.get("/user/account", async (ctx, next) => {
 // 设备添加/发布设备
 router.get('/equipment-add', (ctx, next) => {
 	ctx.render('equipment-add', {
-		currentpage: 'equipment-add'
+		currentPage: 'equipment-add'
 	})
 })
 // 首页
@@ -211,7 +211,7 @@ router.get('/', async (ctx, next) => {
 	})
 	
 	ctx.render('home', {
-		currentpage: 'home',
+		currentPage: 'home',
 		totalIncome: utils.thousandth(totalIncome.totalIncomeIonc),
 		deviceLists: deviceList
 	})
@@ -219,7 +219,7 @@ router.get('/', async (ctx, next) => {
 //下载调用
 router.get('/download_can', (ctx, next) => {
 	ctx.render('download_can', {
-		currentpage: 'download_can'
+		currentPage: 'download_can'
 	})
 })
 /*--页面路由 end--*/
