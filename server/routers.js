@@ -149,7 +149,7 @@ router.get("/user/release", async (ctx, next) => {
 // 我的收藏
 router.get("/user/collect", async (ctx, next) => {
 	var collectList = [];
-	await service.getCollectList({collectId: 2}).then((data)=>{
+	await service.getCollectList({userId: _.get(ctx.session, 'userinfo.id')}).then((data)=>{
 		collectList = data;
 	})
 	ctx.render('user/collect', {
