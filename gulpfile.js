@@ -71,8 +71,8 @@ gulp.task('build', async function () {
 
 	// font
 	gulp.src([
-		'src/fonts/**/*.*'
-	], { base: 'src' })
+		'src/less/fonts/**/*.*'
+	], { base: 'src/less' })
 		.pipe(gulp.dest(`${DIST}/css`));
 	
 	gulp.src([
