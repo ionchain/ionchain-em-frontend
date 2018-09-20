@@ -60,7 +60,7 @@
             validate: ['lodash'],
             toast: ['jquery','css!'+LIBRARY+'jquery.toast.min.css'],
             preventRobot: ['css!'+ PLUGINS + 'prevent-robot/jigsaw.css'],
-            selection: ['css!' + '/plugins/selection/dd.css']
+            selection: ['css!' + '/plugins/selection/dd.css','jquery']
         }
     })
 })(require);
