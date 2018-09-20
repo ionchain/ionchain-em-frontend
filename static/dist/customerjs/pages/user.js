@@ -27,7 +27,7 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fil
         }
         this.ac_submit = function(){
             var formData = serialize($('#account_from')[0], { hash: true });
-            formData.user_id = 2
+            formData.user_id = userinfo.id
             if(validator.form()){
                 API.accountAdd(formData)._then(function(data){
                     if(data.success == 0){
