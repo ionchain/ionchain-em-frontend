@@ -29,7 +29,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     if(data.success == 0) {
                         $.toast({text: '登录成功', icon: 'success'});
                         setTimeout(function() {
-                            location.replace('/')
+                            location.replace('/user/account')
                         }, 300)
                     } else {
                         $.toast({text: data.message, icon: 'error'});
