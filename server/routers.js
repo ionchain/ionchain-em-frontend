@@ -195,7 +195,7 @@ router.get('/equipment-add', (ctx, next) => {
 	})
 })
 // 首页
-router.get(['','/home'], async (ctx, next) => {
+router.get('/home', async (ctx, next) => {
 	var deviceList = [],
 	totalIncome;
 	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
