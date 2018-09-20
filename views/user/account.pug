@@ -4,20 +4,20 @@ block user-content
         require(['/dist/customerjs/pages/user.js'])
     .account.release 
         form.ic-form.of-hide.account_form#account_from
-            .account_photo 
+            .account_photo.hide
                 img(src="/img/product/product_1.jpg")
                 input.hide(name='' id='equipment-pic-photo' type="file" data-url="http://localhost/jQuery-File-Upload/server/php/")
-            button.account_select.ic-btn-big(id="data-sample-photo")  选择图片
-            .account_text 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
+            button.hide.account_select.ic-btn-big(id="data-sample-photo")  选择图片
+            .account_text.hide 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
             .ic-form-item
                 label 姓名 
                 .input-wrap
-                    input.ic-input-big(placeholder="请输入您的姓名" name="nickname" required value=userinfo.nickname)
+                    input.ic-input-big(placeholder="请输入您的姓名" name="nickname" required value=userinfo.name)
                     span.input-append.tip-status 0/10
             .ic-form-item
                 label 公司 
                 .input-wrap
-                    input.ic-input-big(placeholder="请输入您所在的公司" name="company_name" required value=userinfo.name)
+                    input.ic-input-big(placeholder="请输入您所在的公司" name="company_name" required value=userinfo.company_name)
                     span.input-append.tip-status 0/80
             .ic-form-item
                 label 公司组织代码 
