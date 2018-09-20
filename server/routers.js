@@ -23,7 +23,7 @@ router.all('*', (ctx, next) => {
 router.all(/^\/user.*/, userAuth());
 
 router.get('/local-api/logout', async (ctx, next) => {
-	ctx.session = null
+	ctx.session.userinfo = null
 	ctx.body = {
 		message: '退出成功',
 		success: 0
@@ -68,7 +68,7 @@ router.all(/^\/api/, async (ctx, next) => {
 		}
 		ctx.response.set({ 'content-type': res.headers['content-type'] })
 		ctx.body = res.data
-		if (ctx.request.url.indexOf('/users/login') > -1 && res.data.success === 0) {
+		if (ctx.request.url.indexOf('/users/login') > -1 && res.data.success == 0) {
 			console.log("@@@@@@@@@@@@ login", ctx.request.url);
 			ctx.session.userinfo = res.data.data
 			if(_.get(ctx.request.body, 'loginLong') == 'on' ) {
