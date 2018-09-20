@@ -110,7 +110,7 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
             })
         },
         // 个人中心(账号设置)
-        accountAdd: function(data){
+        accountUpdate: function(data){
             return Xajax({
                 type: 'post',
                 url: config.BASE_URL + '/companies/update',

@@ -14,4 +14,10 @@ script(src='/plugins/modernizr.js')
         require(['/dist/customerjs/forIE8.js'])
 <![endif]-->
 script.
-    var userinfo = JSON.parse('!{JSON.stringify(userinfo)}')
+    try{
+        var userinfo = JSON.parse('!{JSON.stringify(userinfo)}')
+    }catch(e){
+        console.log(e)
+        userinfo = {}
+    }
+    

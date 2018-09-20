@@ -29,7 +29,7 @@ require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fil
             var formData = serialize($('#account_from')[0], { hash: true });
             formData.user_id = userinfo.id
             if(validator.form()){
-                API.accountAdd(formData)._then(function(data){
+                API.accountUpdate(formData)._then(function(data){
                     if(data.success == 0){
                         $.toast({text: data.message, icon: 'success'});
                     } else {
