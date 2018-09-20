@@ -102,12 +102,12 @@ function userAuth() {
 }
 
 /*--页面路由 start--*/
-router.get('/home', async (ctx, next) => {
-	// if (_.isEmpty(ctx.session.userinfo)) {
-	// 	ctx.redirect('/login')
-	// }
-	ctx.redirect('/')
-})
+// router.get('/home', async (ctx, next) => {
+// 	// if (_.isEmpty(ctx.session.userinfo)) {
+// 	// 	ctx.redirect('/login')
+// 	// }
+// 	ctx.redirect('/')
+// })
 // 登录
 router.get('/login', async (ctx, next) => {
 	ctx.render('login', {
