@@ -88,7 +88,8 @@ router.all(/^\/api/, async (ctx, next) => {
 // 用户权限
 function userAuth() {
 	return (ctx, next) => {
-		if(!ctx.userinfo.userinfo) {
+		console.log('userAuth@@@@@@')
+		if(!ctx.session.userinfo) {
 			ctx.redirect('/login')
 		}
 		return next()
@@ -131,7 +132,7 @@ router.get('/register', async (ctx, next) => {
 /*--个人中心页面 start--*/
 
 // 我的发布
-router.get("/user/release", async (ctx, next) => {
+router.get("/user/release", userAuth(), async (ctx, next) => {
 	var deviceList = [];
 	await service.getDeviceList({userId: 2}).then((data)=>{
 		deviceList = data;
@@ -143,7 +144,7 @@ router.get("/user/release", async (ctx, next) => {
 })
 
 // 我的收藏
-router.get("/user/collect", async (ctx, next) => {
+router.get("/user/collect", userAuth(), async (ctx, next) => {
 	var collectList = [];
 	await service.getCollectList({collectId: 2}).then((data)=>{
 		collectList = data;
@@ -155,21 +156,21 @@ router.get("/user/collect", async (ctx, next) => {
 })
 
 // 消息中心
-router.get("/user/message", async (ctx, next) => {
+router.get("/user/message", userAuth(), async (ctx, next) => {
 	ctx.render('user/message', {
 		currentpage: 'message'
 	})
 })
 
 // 投诉与反馈
-router.get("/user/comp", async (ctx, next) => {
+router.get("/user/comp", userAuth(), async (ctx, next) => {
 	ctx.render('user/comp', {
 		currentpage: 'comp'
 	})
 })
 
 // 账号设置
-router.get("/user/account", async (ctx, next) => {
+router.get("/user/account", userAuth(), async (ctx, next) => {
 	var userinfo = {}
 	await service.userInfo({userId: 2}).then((data)=>{
 		userinfo = data
@@ -222,5 +223,8 @@ router.get('/download_can', (ctx, next) => {
 router.post('/test/getSmsCode', async (ctx, next) => {
 	ctx.body = {"success":0,"message":"ok","data":{"msg":"success","code":0}}
 })
+
+
+// router.all(/^\/user/, userAuth());
 
 module.exports = router
