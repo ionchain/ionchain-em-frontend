@@ -77,6 +77,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     API.deviceAdd(formData)._then(function(data){
                         if(data.success == 0){
                             $.toast({text: data.message, icon: 'success'});
+                            location.href= '/user/release'
                         } else {
                             $.toast({text: data.message, icon: 'error'});
                         }

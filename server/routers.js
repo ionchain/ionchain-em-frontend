@@ -137,7 +137,7 @@ router.get('/register', async (ctx, next) => {
 // 我的发布
 router.get("/user/release", async (ctx, next) => {
 	var deviceList = [];
-	await service.getDeviceList({userId: 2}).then((data)=>{
+	await service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
 		deviceList = data;
 	})
 	ctx.render('user/release', {
@@ -175,7 +175,7 @@ router.get("/user/comp", async (ctx, next) => {
 // 账号设置
 router.get("/user/account", async (ctx, next) => {
 	var userinfo = {}
-	await service.userInfo({userId: 2}).then((data)=>{
+	await service.userInfo({userId: _.get(ctx.session, 'userinfo.id')}).then((data)=>{
 		userinfo = data
 	})
 	ctx.render('user/account', {
@@ -200,7 +200,7 @@ router.get('/', async (ctx, next) => {
 	// 	console.log('deviceDesc', data);
 	// })
 
-	await service.getDeviceList({userId: 2}).then((data)=>{
+	await service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
 		deviceList = data;
 	})
 	await service.getHisProfit({}).then((data)=>{
