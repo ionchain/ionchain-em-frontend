@@ -1,0 +1,93 @@
+.flex-column {
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+.page-articles .articles_text {
+  font-size: 32px;
+  position: absolute;
+  left: 230px;
+  top: 45px;
+  margin-bottom: 0;
+}
+.page-articles .articles_remark {
+  position: absolute;
+  bottom: 0;
+  background: #333;
+  color: #A5A7AE;
+  font-size: 16px;
+  font-size: 14px;
+  width: 100%;
+  left: 0;
+}
+.page-articles .articles_remark > div {
+  padding: 10px 45px;
+}
+.page-articles .articles_remark .remark_close {
+  display: block;
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+.page-articles .tabs-component {
+  padding-top: 50px;
+}
+.page-articles .tabs-component .tab_menu {
+  float: left;
+}
+.page-articles .tabs-component .tab_menu > li {
+  display: block;
+  width: 200px;
+  border-radius: 4px;
+  padding: 10px 20px;
+  color: #4C4F5D;
+  margin-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.page-articles .tabs-component .tab_menu > li:hover {
+  background: #08AEB2;
+  color: #fff;
+  text-decoration: none;
+}
+.page-articles .tabs-component li.current {
+  background: #08AEB2;
+  color: #fff;
+}
+.page-articles .tabs-component .tab_box {
+  float: left;
+  padding: 48px 30px 0;
+  color: #2D2F37;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 1px;
+  width: 550px;
+}
+.page-articles .tabs-component .tab_box .hide {
+  display: none;
+}
+.articles_remark {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  background: #333333;
+  color: #A5A7AE;
+  font-size: 16px;
+  font-size: 14px;
+  width: 100%;
+}
+.articles_remark > div {
+  padding: 10px 45px;
+}
+.articles_remark .remark_close {
+  display: block;
+  width: 20px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 2px;
+}

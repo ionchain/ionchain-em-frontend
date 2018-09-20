@@ -1,0 +1,196 @@
+.flex-column {
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+.download_can .download_can_f1 {
+  padding: 34px 0 32px;
+  border-bottom: 1px dotted #A5A7AE;
+}
+.download_can .download_can_f1:after {
+  content: "";
+  display: block;
+  clear: both;
+  *zoom: 1;
+}
+.download_can .download_can_f1 .f1_left {
+  float: left;
+}
+.download_can .download_can_f1 .f1_left:after {
+  content: "";
+  display: block;
+  clear: both;
+  *zoom: 1;
+}
+.download_can .download_can_f1 .f1_left .f1_left_l,
+.download_can .download_can_f1 .f1_left .f1_left_r {
+  float: left;
+}
+.download_can .download_can_f1 .f1_left .f1_left_l {
+  width: 158px;
+  height: 158px;
+  border: 1px solid #EEEEEE;
+}
+.download_can .download_can_f1 .f1_left .f1_left_l > img {
+  width: 100%;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r {
+  margin-left: 20px;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > b {
+  font-size: 24px;
+  color: #2D2F37;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_first {
+  margin-top: 14px;
+  font-size: 12px;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_first > label {
+  color: #A5A7AE;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_first > b {
+  color: #4C4F5D;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_second {
+  margin-top: 8px;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_third {
+  font-size: 0;
+  margin-top: 24px;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_third span {
+  display: inline-block;
+  width: 79px;
+  height: 28px;
+  font-size: 12px;
+  line-height: 28px;
+  color: #08AEB2;
+  border-radius: 15px;
+  background: #F2FBFB;
+  text-align: center;
+}
+.download_can .download_can_f1 .f1_left .f1_left_r > .r_third .third_one {
+  margin-right: 10px;
+}
+.download_can .download_can_f1 .f1_right {
+  float: right;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t {
+  font-size: 0;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > div {
+  display: inline-block;
+  font-size: 12px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > .t_first > span {
+  padding-left: 5px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > .t_second {
+  margin-left: 20px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > .t_second i {
+  font-size: 15px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > .t_second > span {
+  padding-left: 5px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > .t_third {
+  margin-left: 30px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t > .t_third > button {
+  width: 123px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 14px;
+  background: none;
+  outline: none;
+  border: 1px solid #A5A7AE;
+  color: #808A9B;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_b {
+  margin-top: 70px;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_b > button {
+  float: right;
+  font-size: 14px;
+  color: #fff;
+  width: 180px;
+  height: 48px;
+  border-radius: 24px;
+  background: #08AEB2;
+  outline: none;
+  border: none;
+}
+.download_can .download_can_f2 {
+  padding: 37px 0 4px;
+}
+.download_can .download_can_f2 > .f2_name {
+  color: #2D2F37;
+}
+.download_can .download_can_f2 > .f3_xs {
+  margin: 12px 0 8px;
+}
+.download_can .download_can_f2 > .f3_xs:after,
+.download_can .download_can_f2 > .f3_st:after {
+  content: "";
+  display: block;
+  clear: both;
+  *zoom: 1;
+}
+.download_can .download_can_f2 > .f3_xs > .xs_st_t,
+.download_can .download_can_f2 > .f3_st > .xs_st_t {
+  margin-left: 118px;
+}
+.download_can .download_can_f2 > .f3_xs > div,
+.download_can .download_can_f2 > .f3_st > div {
+  float: left;
+  font-size: 12px;
+}
+.download_can .download_can_f2 > .f3_xs > div > label,
+.download_can .download_can_f2 > .f3_st > div > label {
+  color: #A5A7AE;
+}
+.download_can .download_can_f2 > .f3_xs > div > span,
+.download_can .download_can_f2 > .f3_st > div > span {
+  color: #4C4F5D;
+}
+.download_can .download_can_f3 {
+  margin-top: 41px;
+}
+.download_can .download_can_f3 > div {
+  color: #2D2F37;
+}
+.download_can .download_can_f3 > ul:after {
+  content: "";
+  display: block;
+  clear: both;
+  *zoom: 1;
+}
+.download_can .download_can_f3 > ul li {
+  margin-right: 20px;
+  margin-top: 12px;
+  float: left;
+  width: 386px;
+  height: 386px;
+  box-sizing: border-box;
+  border: 1px solid #EEEEEE;
+}
+.download_can .download_can_f3 > ul li img {
+  width: 100%;
+}
+.download_can .download_can_f3 > ul .fourths {
+  margin-right: 0;
+}
+.download_can .download_can_f4 {
+  padding: 40px 0 60px;
+}
+.download_can .download_can_f4 > .f4_t {
+  color: #2D2F37;
+  margin-bottom: 12px;
+}
+.download_can .download_can_f4 > .f4_b {
+  font-size: 12px;
+  color: #4C4F5D;
+  line-height: 21px;
+}

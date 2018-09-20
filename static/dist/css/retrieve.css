@@ -1,0 +1,29 @@
+.flex-column {
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+.page-retrieve {
+  padding: 50px 0;
+}
+.page-retrieve .retrieve-form-box > li {
+  display: none;
+}
+.page-retrieve .retrieve-form-box > li.active {
+  display: block;
+}
+.page-retrieve .prevent-robot-wrapper {
+  margin: auto;
+}
+.retrieve_cont_zh,
+.retrieve_cont_yz,
+.retrieve_cont_sz,
+.register_cont_wc {
+  margin-top: 60px;
+  text-align: center;
+}
+.retrieve-form-box {
+  width: 372px;
+  margin: auto;
+}

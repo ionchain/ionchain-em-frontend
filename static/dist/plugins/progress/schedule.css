@@ -1,0 +1,33 @@
+body {
+	background-color: #1F1F1F;
+}
+.content {
+  margin: 70px 100px;
+}
+.scheduleX {
+  width: 437px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: #7d8e91;
+}
+.scheduleX .xList {
+  background-color: #08AEB2;
+  border-radius: 5px;
+  width: 0%;
+  height: 100%;
+  position: relative;
+}
+.scheduleX .xList .xNum {
+  font-size: 10px;
+  position: absolute;
+  top: -280%;
+  right: 1%;
+  color: #08AEB2;
+  -webkit-transform: translate(0%, -50%);
+  -moz-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  -o-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+  z-index: 10;
+}
+

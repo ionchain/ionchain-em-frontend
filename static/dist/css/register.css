@@ -1,0 +1,62 @@
+.flex-column {
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+.register_cont_yz {
+  margin-top: 60px;
+  text-align: center;
+}
+.register_cont_xx {
+  margin-top: 60px;
+  text-align: center;
+}
+.register_cont_xx > p {
+  margin-bottom: 20px;
+}
+.register_cont_xx > p input {
+  height: 40px;
+  width: 372px;
+  border-radius: 6px;
+  border: 1px solid #CACED7;
+  padding-left: 14px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.register_cont_xx > p textarea {
+  width: 372px;
+  box-sizing: border-box;
+  border: 1px solid #CACED7;
+  padding-left: 14px;
+  border-radius: 6px;
+}
+.page-register {
+  padding: 50px 0;
+}
+.page-register .register-form-box > li {
+  display: none;
+}
+.page-register .register-form-box > li.active {
+  display: block;
+}
+.sms-step {
+  position: relative;
+}
+.sms-step .sms-step-item {
+  display: none;
+  position: absolute;
+  left: 100%;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  transition: all 0.35s ease-in-out;
+}
+.sms-step .sms-step-item.active {
+  display: block;
+  opacity: 1;
+  left: 50%;
+}
+.sms-step .sms-step-item.finish {
+  left: -100%;
+  opacity: 0;
+}
