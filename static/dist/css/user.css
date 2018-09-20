@@ -218,6 +218,7 @@
 .user-content .account .account_photo {
   width: 160px;
   height: 160px;
+  font-size: 160px;
 }
 .user-content .account .account_photo > img {
   width: 100%;
