@@ -18,6 +18,9 @@ router.all('*', (ctx, next) => {
 	}
 	return next()
 })
+
+router.all(/^\/user.*/, userAuth());
+
 router.get('/local-api/logout', async (ctx, next) => {
 	ctx.session = null
 	ctx.body = {
@@ -97,11 +100,11 @@ function userAuth() {
 }
 
 /*--页面路由 start--*/
-router.get('/', async (ctx, next) => {
+router.get('/home', async (ctx, next) => {
 	// if (_.isEmpty(ctx.session.userinfo)) {
 	// 	ctx.redirect('/login')
 	// }
-	ctx.redirect('/home')
+	ctx.redirect('/')
 })
 // 登录
 router.get('/login', async (ctx, next) => {
@@ -132,7 +135,7 @@ router.get('/register', async (ctx, next) => {
 /*--个人中心页面 start--*/
 
 // 我的发布
-router.get("/user/release", userAuth(), async (ctx, next) => {
+router.get("/user/release", async (ctx, next) => {
 	var deviceList = [];
 	await service.getDeviceList({userId: 2}).then((data)=>{
 		deviceList = data;
@@ -144,7 +147,7 @@ router.get("/user/release", userAuth(), async (ctx, next) => {
 })
 
 // 我的收藏
-router.get("/user/collect", userAuth(), async (ctx, next) => {
+router.get("/user/collect", async (ctx, next) => {
 	var collectList = [];
 	await service.getCollectList({collectId: 2}).then((data)=>{
 		collectList = data;
@@ -156,21 +159,21 @@ router.get("/user/collect", userAuth(), async (ctx, next) => {
 })
 
 // 消息中心
-router.get("/user/message", userAuth(), async (ctx, next) => {
+router.get("/user/message", async (ctx, next) => {
 	ctx.render('user/message', {
 		currentpage: 'message'
 	})
 })
 
 // 投诉与反馈
-router.get("/user/comp", userAuth(), async (ctx, next) => {
+router.get("/user/comp", async (ctx, next) => {
 	ctx.render('user/comp', {
 		currentpage: 'comp'
 	})
 })
 
 // 账号设置
-router.get("/user/account", userAuth(), async (ctx, next) => {
+router.get("/user/account", async (ctx, next) => {
 	var userinfo = {}
 	await service.userInfo({userId: 2}).then((data)=>{
 		userinfo = data
@@ -190,7 +193,7 @@ router.get('/equipment-add', (ctx, next) => {
 	})
 })
 // 首页
-router.get('/home', async (ctx, next) => {
+router.get('/', async (ctx, next) => {
 	var deviceList = [],
 	totalIncome;
 	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
@@ -225,6 +228,5 @@ router.post('/test/getSmsCode', async (ctx, next) => {
 })
 
 
-// router.all(/^\/user/, userAuth());
 
 module.exports = router

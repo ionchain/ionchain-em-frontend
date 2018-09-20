@@ -18,8 +18,8 @@ div.ly-header#header
         //-             span 请登录
         if userinfo && currentpage != 'login'
             .h-info
-                span 当前登录 
-                a.dis-normal(href="/user/release") #{userinfo.mobile_num}
+                span 当前登录
+                a.dis-normal(href="/user/account") #{userinfo.mobile_num}
                 span.quit(data-bind='click: logout')  退出
         if !userinfo && currentpage != 'login'
             .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
