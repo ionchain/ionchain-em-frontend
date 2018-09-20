@@ -1682,6 +1682,7 @@ img {
 }
 .card-I .cont_f1 > .cont_f1_img > img {
   width: 100%;
+  height: 100%;
 }
 .card-I .cont_f1 > .cont_f1_text > .f1_name {
   color: #2D2F37;
