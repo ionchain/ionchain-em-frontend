@@ -67,6 +67,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
         var ViewModel = function() {
             this.submit = function(){
                 var formData = serialize($('#equipment-form')[0], { hash: true });
+                console.log("formData", formData);
                 $.extend(formData,{
                     user_id: userinfo.id,
                     specification_file: '@',
