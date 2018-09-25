@@ -217,9 +217,14 @@ router.get('/', async (ctx, next) => {
 	})
 })
 //下载调用
-router.get('/download_can', (ctx, next) => {
+router.get('/download_can/:id', async(ctx, next) => {
+	var desc = []; 
+	await service.getDeviceDesc({deviceId: ctx.params.id}).then((data)=>{
+		desc = data;
+	})
 	ctx.render('download_can', {
-		currentPage: 'download_can'
+		currentPage: 'download_can',
+		desc: desc
 	})
 })
 /*--页面路由 end--*/

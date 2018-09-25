@@ -1747,11 +1747,16 @@ img {
 }
 .card-I .cont_f5 .down,
 .card-I .cont_f5 .look {
+  color: #A5A7AE;
   font-size: 12px;
   margin-left: 20px;
 }
-.card-I .cont_f5 .down > span,
-.card-I .cont_f5 .look > span {
+.card-I .cont_f5 .down a,
+.card-I .cont_f5 .look a {
+  color: #A5A7AE;
+}
+.card-I .cont_f5 .down span,
+.card-I .cont_f5 .look span {
   padding-left: 5px;
 }
 .card-I .cont_f5 .look i {

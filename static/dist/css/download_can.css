@@ -108,6 +108,14 @@
   border: 1px solid #A5A7AE;
   color: #808A9B;
 }
+.download_can .download_can_f1 .f1_right > .f1_right_t .active button {
+  border: 1px solid #08AEB2;
+  color: #08AEB2;
+}
+.download_can .download_can_f1 .f1_right > .f1_right_t .t_third:hover button {
+  border: 1px solid #08AEB2;
+  color: #08AEB2;
+}
 .download_can .download_can_f1 .f1_right > .f1_right_b {
   margin-top: 70px;
 }
@@ -179,7 +187,7 @@
 .download_can .download_can_f3 > ul li img {
   width: 100%;
 }
-.download_can .download_can_f3 > ul .fourths {
+.download_can .download_can_f3 > ul .thethird {
   margin-right: 0;
 }
 .download_can .download_can_f4 {

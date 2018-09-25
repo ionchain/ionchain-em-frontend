@@ -1,10 +1,8 @@
 require(['jquery','knockout','validate', 'api'], function($, KO, validate, API){
     function AppViewModel() {
-        this.downList = KO.observableArray([
-            { name: 'Bert' },
-            { name: 'Charles' },
-            { name: 'Denise' }
-        ]);
+        this.collectClick = function(){
+           
+        }
     }
 
     // 获取高度设置左侧导航的border
