@@ -101,12 +101,14 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
                 data: data
             })
         },
-        // 收藏
-        // collectCode: function(){
-        //     return Xajax({
-        //         type:'get'
-        //     })
-        // },
+        //点击 收藏
+        collectCode: function(data){
+            return Xajax({
+                type:'post',
+                url: config.BASE_URL + '/favorites/create',
+                data:data
+            })
+        },
         // 个人中心(投诉与反馈)
         feedbackCode: function(data) {
             return Xajax({
