@@ -1775,6 +1775,7 @@ img {
 .card-I .cont_f5 .del {
   font-size: 14px;
   float: right;
+  padding-top: 3px;
 }
 .card-I .cont_f5 .compile > a {
   color: #2977FF;

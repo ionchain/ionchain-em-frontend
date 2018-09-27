@@ -163,11 +163,17 @@ block content
                           i.icon-gray-star
                           i.icon-gray-star
                           i.icon-gray-star
-                      .look.collect_look
+                      .down
+                        a(href="/download_can/" + item.id)
+                            i.icon-download
+                            span 20
+                      .look
                           i.icon-eye
                           span 20
-                      .down.collect_down
-                          i.icon-download
-                          span 20
+                      .del 
+                            a(href="#") 删除    
+                      .compile
+                            a(href="#") 编辑
+                      
         .l-toolbar
           button.ic-btn-big.i-outline-primary(style="width: 180px;") 加载更多

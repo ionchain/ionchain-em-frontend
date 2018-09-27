@@ -35,10 +35,11 @@ block content
                         .t_third 
                             button(data-bind="click: collectClick" data-param=`{"user_id":"${userinfo.id}","device_id":"${desc.id}"}`) 收藏  
                     else
-                        .t_third.active 
+                        .t_third.active(data-bind="click: cancelClik") 
                             button 收藏 
                 .f1_right_b
                     button 下载调用
+                //- div=JSON.stringify(desc)
         .download_can_f2
             .f2_name 设备信息
             div  

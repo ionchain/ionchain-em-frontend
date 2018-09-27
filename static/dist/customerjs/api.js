@@ -106,7 +106,15 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
             return Xajax({
                 type:'post',
                 url: config.BASE_URL + '/favorites/create',
-                data:data
+                data: data
+            })
+        },
+        //取消收藏
+        cancelCode: function(data){
+            return Xajax({
+                type: 'post',
+                url: config.BASE_URL + '/favorites/destroy',
+                data: data
             })
         },
         // 个人中心(投诉与反馈)

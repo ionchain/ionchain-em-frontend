@@ -12,6 +12,9 @@ require(['jquery','knockout','validate', 'api', 'common'], function($, KO, valid
                 }
             }) 
         }
+        this.cancelClik = function(m, event){
+            // API.cancelCode()
+        }
     }
 
     // 获取高度设置左侧导航的border
