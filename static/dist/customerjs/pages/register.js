@@ -1,5 +1,5 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'moment', 'preventRobot', 'layer'],
-    function($, API, _, KO, serialize, validate, toast, common, moment, preventRobot, layer) {
+require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'moment', 'layer','jquery_Slider'],
+    function($, API, _, KO, serialize, validate, toast, common, moment, layer,jquery_Slider) {
         var interval = 120; // 短信发送时间间隔
         var reqSmsCodeDisable = false; // 发送短信按钮，点击频率控制
         var ticker = null;
@@ -220,14 +220,32 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
         };
         var viewmodel = new ViewModel();
         // 初始化滑动验证控件
-        preventRobot.init(
-            document.getElementById('captcha'),
-            function() {
-                viewmodel.smsNextStep();
-            },
-            function() {
-            }
-        );
+        if(Modernizr.es6object){
+            require(['preventRobot'],function (preventRobot) {
+                preventRobot.init(
+                    document.getElementById('captcha'),
+                    function() {
+                        viewmodel.smsNextStep();
+                    },
+                    function() {
+                    }
+                );
+            })
+        }else{
+            $(function(){
+                $("#slider").slider({
+                    callback: function(result) {
+                        $("#result1").text(result); 
+                       if(result == true){
+                        viewmodel.smsNextStep();
+                       }
+                    }
+                });
+                $("#slider").show();
+                $("#captcha").hide();
+            })
+        }
+       
         $('.next-btn').on('keyup', function(e) {
             if(e.keyCode == 13) {
             }

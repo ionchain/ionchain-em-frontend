@@ -132,13 +132,10 @@
   border: none;
 }
 .download_can .download_can_f2 {
-  padding: 37px 0 0;
+  padding: 37px 0 4px;
 }
 .download_can .download_can_f2 > .f2_name {
   color: #2D2F37;
-}
-.download_can .download_can_f2 > div {
-  padding-top: 13px;
 }
 .download_can .download_can_f2 > div:after {
   content: "";
@@ -146,16 +143,10 @@
   clear: both;
   *zoom: 1;
 }
-.download_can .download_can_f2 > div .f3_st {
-  margin-left: 118px;
-}
 .download_can .download_can_f2 > div .f3_xs,
 .download_can .download_can_f2 > div .f3_st {
   float: left;
-}
-.download_can .download_can_f2 > div .f3_xs .f3_mt,
-.download_can .download_can_f2 > div .f3_st .f3_mt {
-  padding-top: 10px;
+  margin: 12px 0 8px;
 }
 .download_can .download_can_f2 > div .f3_xs > div,
 .download_can .download_can_f2 > div .f3_st > div {

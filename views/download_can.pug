@@ -13,7 +13,7 @@ block content
                     b=desc.name
                     .r_first
                         label 作者：
-                        b 坏品位
+                        b #{userinfo.nickname}
                     .r_second
                         i.icon-light-star
                         i.icon-gray-star
@@ -30,27 +30,34 @@ block content
                         span 20
                     .t_second
                         i.icon-eye
-                        span 20  
-                    .t_third 
-                        button(data-bind="click: collectClick") 收藏  
+                        span 20 
+                    if  desc.has_favorite != true
+                        .t_third 
+                            button(data-bind="click: collectClick" data-param=`{"user_id":"${userinfo.id}","device_id":"${desc.id}"}`) 收藏  
+                    else
+                        .t_third.active(data-bind="click: cancelClik") 
+                            button 收藏 
                 .f1_right_b
                     button 下载调用
+                //- div=JSON.stringify(desc)
         .download_can_f2
             .f2_name 设备信息
-            .f3_xs 
-                div
-                    label 系统：
-                    span=desc.system
-                .xs_st_t
-                    label 数量：
-                    span=desc.counts
-            .f3_st 
-                div
-                    label 设备编号：
-                    span 1578698
-                .xs_st_t
-                    label 提交日期：
-                    span=desc.created_at
+            div  
+                .f3_xs 
+                    div
+                        label 系统：
+                        span=desc.system
+                    .f3_mt
+                        label 设备编号：
+                        span 1578698
+                   
+                .f3_st 
+                    div
+                        label 数量：
+                        span=desc.counts   
+                    .f3_mt
+                        label 提交日期：
+                        span=desc.created_at
         .download_can_f3
             div 设备图片
             ul

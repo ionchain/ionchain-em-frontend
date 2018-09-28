@@ -33,6 +33,7 @@ block content
           .sms-step-item(data-bind="css: {active: smsStep()=='2'}")
             .prevent-robot-wrapper
               #captcha(style='position: relative')
+              #slider.slider(style='display:none')
           .sms-step-item.register_cont_click(data-bind="css: {active: smsStep()=='3'}")
             .error-msg(data-bind="css: {show: !!smsCodeValidErrMsg()}")
               span.icon

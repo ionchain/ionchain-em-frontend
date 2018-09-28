@@ -34,7 +34,8 @@
             fileupload_iframe_transport: '/plugins/jquery.fileupload/jquery.iframe-transport',
             jquery_fileupload: '/plugins/jquery.fileupload/jquery.fileupload',
             jquery_validate: '/plugins/jquery.validate/jquery.validate',
-            jquery_validate_cn: '/plugins/jquery.validate/messages_zh'
+            jquery_validate_cn: '/plugins/jquery.validate/messages_zh',
+            jquery_Slider: '/plugins/jquerySlider/js/jquery.slider.min'
         },
         map: {
             '*': {
@@ -42,6 +43,7 @@
             }
         },
         shim: {
+            jquery_Slider: ['jquery', 'css!' + '/plugins/jquerySlider/css/jquery.slider.css'],
             jquery_validate: ['jquery'],
             jquery_validate_cn: ['jquery_validate'],
             jquery_fileupload: ['fileupload_iframe_transport','fileupload_ui_widget'],

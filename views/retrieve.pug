@@ -37,6 +37,7 @@ block content
           .sms-step-item(data-bind="css: {active: smsStep()=='2'}")
             .prevent-robot-wrapper
               #captcha(style='position: relative')
+              #slider.slider(style='display:none')
       //- 手机验证码
       li.retrieve-step2.retrieve_cont_yz(data-bind="css: {active: step()=='2'}")
         .login_right_hint.login_right_w
