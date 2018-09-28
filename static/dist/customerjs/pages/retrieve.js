@@ -1,4 +1,4 @@
-require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'preventRobot', 'api', 'layer'], function($, KO, serialize, validate,common, moment, preventRobot, API, layer){
+require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api', 'layer', 'jquery_Slider'], function($, KO, serialize, validate,common, moment, API, layer,jquery_Slider){
     var reqSmsCodeDisable = false; // 发送短信按钮，点击频率控制
     var interval = 120; // 短信发送时间间隔
     var ViewModel = function(){
@@ -26,7 +26,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
             company_name: this.company_name(),
             company_org_code: this.company_org_code(),
             eth_address: this.eth_address()
-        })._then((res) => {
+        })._then( function(res) {
             if (res.success === 0) {
                 this.nextStep() // 切换到下一界面
             } else {
@@ -180,14 +180,33 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'prev
       }
     };
     var viewmodel = new ViewModel();
-    preventRobot.init(
-        document.getElementById('captcha'),
-        function() {
-          viewmodel.smsNextStep();
-          console.log(0)
-        },
-        function() {
-        }
-    );
+    if(Modernizr.es6object){
+        require(['preventRobot'],function (preventRobot) {
+            preventRobot.init(
+                document.getElementById('captcha'),
+                function() {
+                    viewmodel.smsNextStep();
+                    console.log(0)
+                },
+                function() {
+                }
+            );
+        })   
+        
+    }else{
+        $(function(){
+            $("#slider").slider({
+                callback: function(result) {
+                    $("#result1").text(result); 
+                   if(result == true){
+                    viewmodel.smsNextStep();
+                   }
+                }
+            });
+            $("#slider").show();
+            $("#captcha").hide();
+        })
+       
+    }
     KO.applyBindings( viewmodel, $("#page-retrieve")[0]);
 })
