@@ -1,3 +1,36 @@
 {
-    "cool": "COOL"
+    //登录页面
+    "Enter your mobile no.",
+    "Invalid mobile number",
+    "Enter your password",
+    "Forgot your password?",
+    "Password is required",
+    "Keep me logged in",
+    "Register IONChain ID",
+    "Log in",
+    "Log in successfully",
+    "Log out",
+    "Log out successfully",
+    "Incorrect password",
+    "Log in",
+    "Register",
+    "Current login status",
+    //修改密码页面
+    "Enter account name",
+    "Verify account name",
+    "Reset password",
+    "Complete",
+    "Click button for verification",
+    "Slide the block to the right to complete the image",
+    "Slide the block to the right",
+    "This phone number has been registered",
+    "Get verification code",
+    "Get verification code again",
+    "Wrong verification code",
+    "A text containing a verification code has been sent to your mobile number, valid for 10 minutes. ",
+    "Next",
+    "Enter your password",
+    "Enter your password again",
+    "Password set successfully!",
+    "Complete"
 }

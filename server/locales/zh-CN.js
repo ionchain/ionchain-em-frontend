@@ -1,3 +1,36 @@
 {
-    "cool": "酷"
+    //登录页面
+    "Enter your mobile no.":"请输入手机号",
+    "Invalid mobile number":"手机号码不合法",
+    "Enter your password":"请输入密码",
+    "Forgot your password?":"忘记密码？",
+    "Password is required":"密码是必填的",
+    "Keep me logged in":"自动登录",
+    "Register IONChain ID":"注册 ION Chain ID",
+    "Log in":"登录",
+    "Log in successfully":"登录成功",
+    "Log out":"退出",
+    "Log out successfully":"退出成功",
+    "Incorrect password":"密码不正确",
+    "Log in":"登录",
+    "Register":"注册",
+    "Current login status":"当前登录",
+    //找回密码页面
+    "Enter account name"："填写账号",
+    "Verify account name":"账号验证",
+    "Reset password":"设置新密码",
+    "Complete":"完成",
+    "Click button for verification":"点击按钮进行验证",
+    "Slide the block to the right to complete the image":"向右滑动滑块填充拼图",
+    "Slide the block to the right":"请按住滑块，拖动到最右边",
+    "This phone number has been registered":"手机号码已注册",
+    "Get verification code":"手机验证码",
+    "Get verification code again":"后重新获取?",
+    "Wrong verification code":"从新获取?",
+    "A text containing a verification code has been sent to your mobile number, valid for 10 minutes.":"校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。",
+    "Next":"下一步",
+    "Enter your password":"确定入密码",
+    "Enter your password again":"请输入确认密码",
+    "Password set successfully!":"密码设置成功!",
+    "Complete":"完成"
 }
