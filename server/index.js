@@ -15,7 +15,7 @@ const logger = createLogger({})
 
 async function start () {
   const app = new Koa()
-  locale(app)
+  locale(app, 'language')
   app.keys = ['some_secret_hurr']
 
   const CONFIG = {
@@ -59,7 +59,6 @@ async function start () {
       'url',                  //  optional detect url         - `/en`
       'tld',                  //  optional detect tld(the last domain) - `koajs.cn`
       function() {
-        console.log(arguments, "i18n********************")
       }           //  optional custom function (will be bound to the koa context)
     ]
   }))

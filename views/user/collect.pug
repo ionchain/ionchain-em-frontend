@@ -4,7 +4,7 @@ block user-content
         require(['/dist/customerjs/pages/user.js'])
     .release 
         .release_nav 
-            a(href="#").active 设备
+            a(href="#").active #{i18n.__("Device")}
         ul.release_content
             each item,index in collectLists
                 li.card-I(class = index % 2 == 0 ? 'second' : '')

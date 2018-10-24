@@ -11,6 +11,7 @@ const  SessionMaxAgeLong = 86400000 * 30 // a month
 // 全局数据绑定
 router.all('*', (ctx, next) => {
 	var state = {}
+	console.log("locale>>>", ctx.i18n.locale, ctx.query)
 	if (ctx.session.userinfo) {		
 		Object.assign(ctx.state, {
 			userinfo: ctx.session.userinfo,
