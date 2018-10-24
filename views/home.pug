@@ -6,7 +6,8 @@ block content
   script.
     require(['/dist/customerjs/pages/home.js'])
   .page-home
-    //- 大 banner
+    //- span.test #{i18n.__('cool')}
+    //- 大 banner    
     .section-banner
       #banner.section-main
         .viewer-box
@@ -23,7 +24,7 @@ block content
                       span.item.item2
                         i.icon-eye
                         s 20
-                      button.ic-btn-big.i-outline-primary 收藏
+                      button.ic-btn-big.i-outline-primary #{i18n.__("Save")}
             li
               a(href="")
                 img(src="/img/banner/test2.png")
@@ -36,7 +37,7 @@ block content
                       span.item.item2
                         i.icon-eye
                         s 20
-                      button.ic-btn-big.i-outline-primary 收藏
+                      button.ic-btn-big.i-outline-primary #{i18n.__("Save")}
             li
               a(href="")
                 img(src="/img/banner/test3.png")
@@ -49,7 +50,7 @@ block content
                       span.item.item2
                         i.icon-eye
                         s 20
-                      button.ic-btn-big.i-outline-primary 收藏
+                      button.ic-btn-big.i-outline-primary #{i18n.__("Save")}
         ul.panel
           li
             img(src="/img/banner/test1.png")
@@ -59,7 +60,7 @@ block content
              img(src="/img/banner/test3.png")
     //- 公告
     .section-notice.home-section
-        span IONChain币总数：
+        span #{i18n.__("IONC token total number")}：
         span.f-32.bold #{totalIncome}
         span  IONChain
     //- 设备
@@ -77,14 +78,14 @@ block content
                   s %
               .l-info
                 p.info1
-                  span.tip-color 贡献度：
+                  span.tip-color #{i18n.__("Contribution degree")}：
                   span.bold.them-em1.font-nm 8981
                   span.them-em2   IONC
                 p
-                  span.tip-color 数量：
+                  span.tip-color #{i18n.__("Number")}：
                   span 50 K
                 p
-                  span.tip-color 在线时长：
+                  span.tip-color #{i18n.__("Online time")}：
                   span 9,099.00 h
       .eq_next.icon-right-arrow
     //- 数据图表
@@ -92,39 +93,39 @@ block content
       .section-main
         .box-chart.l-boxL
           .chart-hd
-            span.l-tit 贡献曲线
+            span.l-tit #{i18n.__("Contribution chart/curve")}
             ul.l-panel
               li.active(data-bind="click: changePeriod.bind($data,'24h')") 24h
-              li(data-bind="click: changePeriod.bind($data, 'week')") 周
-              li(data-bind="click: changePeriod.bind($data, 'month')") 月
-              li(data-bind="click: changePeriod.bind($data, 'year')") 年
+              li(data-bind="click: changePeriod.bind($data, 'week')") #{i18n.__("Weekly")}
+              li(data-bind="click: changePeriod.bind($data, 'month')") #{i18n.__("Monthly")}
+              li(data-bind="click: changePeriod.bind($data, 'year')") #{i18n.__("Annually")}
           .chart-bd.chart1#chart1
             .error-tip-gray(style="display:none;" data-bind="visible: canvasError()")
-              | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firfox 等，以显示完整内容
+              | #{i18n.__("browser version tip")}
         .box-chart.l-boxR
           .chart-hd
-              span.l-tit 类型增长比
+              span.l-tit #{i18n.__("Category increase proportion")}
               ul.l-panel
                 li.active(data-bind="click: changePeriod2.bind($data,'24h')") 24h
-                li(data-bind="click: changePeriod2.bind($data, 'week')") 周
-                li(data-bind="click: changePeriod2.bind($data, 'month')") 月
-                li(data-bind="click: changePeriod2.bind($data, 'year')") 年
+                li(data-bind="click: changePeriod2.bind($data, 'week')") #{i18n.__("Weekly")}
+                li(data-bind="click: changePeriod2.bind($data, 'month')") #{i18n.__("Monthly")}
+                li(data-bind="click: changePeriod2.bind($data, 'year')") #{i18n.__("Annually")}
           .chart-bd.chart2#chart2
             .error-tip-gray(style="display:none;" data-bind="visible: canvasError()")
-              | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firfox 等，以显示完整内容
+              | #{i18n.__("browser version tip")}
     //- 广告位
     .section-adv
       img.wid-max(src="/img/home/adv-bg.png")
       .l-upper
-        p 让你的设备加入全球物联网
-        a.ic-btn-normal.i-primary 发布设备
+        p #{i18n.__("Launch a device")}
+        a.ic-btn-normal.i-primary #{i18n.__("Launched devices")}
     //- 设备，卡片列表
     .section-equipment
       .section-main
         .sec-hd
           span.l-title
             i.v-line
-            em 现有设备
+            em #{i18n.__("Active devices")}
           .l-search
             .search-input
               input()
@@ -139,23 +140,23 @@ block content
                       .cont_f1_text 
                           .f1_name=item.name
                           p
-                              label 系统：
+                              label #{i18n.__("System")}：
                               span=item.system
                           p
-                              label 设备编号：
+                              label #{i18n.__("Device ID")}：
                               span 1578698
                           p
-                              label 数量：
+                              label #{i18n.__("Number")}：
                               span=item.counts
                           p
-                              label 提交日期：
+                              label #{i18n.__("Submission date")}：
                               span=item.created_at
-                  .cont_f2 样例完整度
+                  .cont_f2 #{i18n.__("Sample completion")}
                   .cont_f3 
                     #scheduleX
                   .cont_f4
-                      span.cont_f4_o 智能穿戴
-                      span IT科技
+                      span.cont_f4_o #{i18n.__("Smart wear")}
+                      span #{i18n.__("IT Technology")}
                   .cont_f5
                       .good
                           i.icon-light-star
@@ -171,9 +172,9 @@ block content
                           i.icon-eye
                           span 20
                       .del 
-                            a(href="#") 删除    
+                            a(href="#") #{i18n.__("Delete")}
                       .compile
-                            a(href="#") 编辑
+                            a(href="#") #{i18n.__("Edit")}
                       
         .l-toolbar
-          button.ic-btn-big.i-outline-primary(style="width: 180px;") 加载更多
+          button.ic-btn-big.i-outline-primary(style="width: 180px;") #{i18n.__("Load more")}

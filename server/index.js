@@ -7,12 +7,15 @@ const Pug = require('koa-pug')
 const koaStatic = require('koa-static')
 const router = require('./routers.js')
 var createLogger = require('concurrency-logger').default
+const locale = require('koa-locale')
+const i18n = require('koa-i18n')
+
 
 const logger = createLogger({})
 
 async function start () {
   const app = new Koa()
-
+  locale(app, 'language')
   app.keys = ['some_secret_hurr']
 
   const CONFIG = {
@@ -39,18 +42,35 @@ async function start () {
   })
 
   pug.options.filters = {
-   
+    
   };
 
   pug.use(app)
 
   app
+  .use(i18n(app, {
+    directory: __dirname + '/locales',
+    locales: ['zh-CN', 'en'], //  `zh-CN` defualtLocale, must match the locales to the filenames
+    modes: [
+      'query',                //  optional detect querystring - `/?locale=en-US`
+      'subdomain',            //  optional detect subdomain   - `zh-CN.koajs.com`
+      'cookie',               //  optional detect cookie      - `Cookie: locale=zh-TW`
+      'header',               //  optional detect header      - `Accept-Language: zh-CN,zh;q=0.5`
+      'url',                  //  optional detect url         - `/en`
+      'tld',                  //  optional detect tld(the last domain) - `koajs.cn`
+      function() {
+      }           //  optional custom function (will be bound to the koa context)
+    ]
+  }))
   .use(logger)
   .use(koaStatic('./static',{maxage: 0}))
   .use(koaBody())
   .use(session(CONFIG, app))
   .use(router.routes())
   .use(router.allowedMethods())
+  .use(function(ctx){
+    console.log("i18n>>>>>>>>>>>>>>", ctx.i18n)
+  })
   .listen(port, host)
 
   console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console

@@ -29,18 +29,18 @@ block content
               img(src='/img/icon/error.svg', alt='') 
             span(data-bind="text: errorMessage")
           .login_right_name
-            input.ic-input-lg(required, name='mobile', placeholder='请输入手机号', type='text' data-bind="textInput: mobile, event: {blur: checkMobile}")
+            input.ic-input-lg(required, name='mobile', placeholder=i18n.__("Enter your mobile no") type='text' data-bind="textInput: mobile, event: {blur: checkMobile}")
           .test(data-bind="form.mobile")
           .login_right_pw
-            input.ic-input-lg(required, name='password', placeholder='请输入密码', type='password' id="inp-password" data-bind="textInput: password, event: {blur: checkPwd}")
+            input.ic-input-lg(required, name='password', placeholder=i18n.__("Enter your password"), type='password' id="inp-password" data-bind="textInput: password, event: {blur: checkPwd}")
             div
-              a(href='/retrieve') 忘记密码？
+              a(href='/retrieve') #{i18n.__("Forgot your password?")}
           .login-form-row
             span.left
               s.s-input
                 input(type="checkbox" name='loginLong' id="auto-login")
                 i.skin
-              label.hover-hand.no-select(for="auto-login") 自动登录
-            a.low-link.right(href='/register' data-bind="checked: loginLong") 注册 ION Chain ID
+              label.hover-hand.no-select(for="auto-login") #{i18n.__("Keep me logged in")}
+            a.low-link.right(href='/register' data-bind="checked: loginLong") #{i18n.__("Register IONChain ID")}
           .login_right_log.cursor-hand(data-bind='click: login')
-            a(href='javascript:;') 登录
+            a(href='javascript:;') #{i18n.__("Log in")}

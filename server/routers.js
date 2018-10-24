@@ -11,10 +11,11 @@ const  SessionMaxAgeLong = 86400000 * 30 // a month
 // 全局数据绑定
 router.all('*', (ctx, next) => {
 	var state = {}
-	if (ctx.session.userinfo) {
-		console.log('ctx.session.userinfo@', ctx.session.userinfo);
+	console.log("locale>>>", ctx.i18n.locale, ctx.query)
+	if (ctx.session.userinfo) {		
 		Object.assign(ctx.state, {
-			userinfo: ctx.session.userinfo
+			userinfo: ctx.session.userinfo,
+			i18n: ctx.i18n
 		})
 	}
 	return next()
@@ -68,8 +69,7 @@ router.all(/^\/api/, async (ctx, next) => {
 		}
 		ctx.response.set({ 'content-type': res.headers['content-type'] })
 		ctx.body = res.data
-		if (ctx.request.url.indexOf('/users/login') > -1 && res.data.success === 0) {
-			console.log("@@@@@@@@@@@@ login", ctx.request.url);
+		if (ctx.request.url.indexOf('/users/login') > -1 && res.data.success === 0) {			
 			ctx.session.userinfo = res.data.data
 			if(_.get(ctx.request.body, 'loginLong') == 'on' ) {
 				ctx.session.maxAge = SessionMaxAgeLong

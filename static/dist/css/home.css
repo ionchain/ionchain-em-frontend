@@ -229,7 +229,7 @@
 }
 .box-chart .chart-hd .l-tit {
   font-size: 16px;
-  margin-right: 33px;
+  margin-right: 14px;
   float: left;
 }
 .box-chart .chart-hd .l-panel {
@@ -237,9 +237,9 @@
 }
 .box-chart .chart-hd .l-panel li {
   float: left;
-  padding: 0 10px;
+  padding: 0 8px;
   min-width: 50px;
-  margin-right: 12px;
+  margin-right: 4px;
   text-align: center;
 }
 .box-chart .chart-hd .l-panel li.active,

@@ -1027,6 +1027,8 @@ body {
 }
 a:hover {
   text-decoration: none;
+  color: #fff;
+  cursor: pointer;
 }
 a:visited {
   text-decoration: none;
@@ -1836,6 +1838,10 @@ img {
 }
 .page-register {
   padding: 50px 0;
+}
+.page-register .register-form-box {
+  width: 372px;
+  margin: auto;
 }
 .page-register .register-form-box > li {
   display: none;

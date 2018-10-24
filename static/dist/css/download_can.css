@@ -109,11 +109,11 @@
   border: 1px solid #A5A7AE;
   color: #808A9B;
 }
-.download_can .download_can_f1 .f1_right > .f1_right_t .active button {
-  border: 1px solid #08AEB2;
-  color: #08AEB2;
+.download_can .download_can_f1 .f1_right > .f1_right_t .active {
+  border: 1px solid #08AEB2 !important;
+  color: #08AEB2 !important;
 }
-.download_can .download_can_f1 .f1_right > .f1_right_t .t_third:hover button {
+.download_can .download_can_f1 .f1_right > .f1_right_t button:hover {
   border: 1px solid #08AEB2;
   color: #08AEB2;
 }

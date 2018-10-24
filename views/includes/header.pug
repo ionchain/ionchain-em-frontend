@@ -18,24 +18,24 @@ div.ly-header#header
         //-             span 请登录
         if userinfo && currentPage != 'login'
             .h-info
-                span 当前登录
+                span #{i18n.__("Current login status")}
                 a.dis-normal(href="/user/account") #{userinfo.mobile_num}
-                span.quit(data-bind='click: logout')  退出
+                span.quit(data-bind='click: logout')  #{i18n.__("Log out")}
         if !userinfo && currentPage != 'login'
             .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
                 a.z_d(href='/register')
-                    span 注册
+                    span #{i18n.__("Register")}
                 span.xc_x |
                 a.z_d(href='/login')
-                    span 登录
-        if  !userinfo && currentPage != 'login' && currentPage != 'register'
+                    span #{i18n.__("Log in")}
+        if  !userinfo && currentPage != 'login' && currentPage != 'register' && currentPage != 'retrieve'
             ul.navitems
                 li
-                    a.active(href="#") 贡献统计
+                    a.active(href="#") #{i18n.__("Contribution Statistics")}
                 li.navitems_t 
-                    a(href="#") 现有设备
+                    a(href="#") #{i18n.__("Active devices")}
                 li 
-                    a(href="#") 参与投票
+                    a(href="#") #{i18n.__("Vote on IONChain")}
             .nav-search
                 .search-input
                     input()
