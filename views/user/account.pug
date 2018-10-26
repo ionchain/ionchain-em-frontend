@@ -15,20 +15,20 @@ block user-content
                     input.ic-input-big(placeholder=i18n.__("Please enter your name") name="nickname" required value=userinfo.name)
                     //- span.input-append.tip-status 0/10
             .ic-form-item
-                label #{i18n.__("Company")}
+                label #{i18n.__("公司")}
                 .input-wrap
                     input.ic-input-big(placeholder=i18n.__("Please enter your company") name="company_name" required value=userinfo.company_name)
                     //- span.input-append.tip-status 0/80
             .ic-form-item
-                label #{i18n.__("Company code")}
+                label #{i18n.__("公司组织代码")}
                 .input-wrap
                     input.ic-input-big(placeholder=i18n.__("Please enter your Company code") name="company_org_code" required value=userinfo.org_code)
                     //- span.input-append.tip-status 0/80
             .ic-form-item
-                label #{i18n.__("Position")}
+                label #{i18n.__("职位")}
                 .input-wrap
                     input.ic-input-big(placeholder=i18n.__("Please enter your position") name="position" required value=userinfo.position)
                     //- span.input-append.tip-status 0/80
         .c-tool-bar
-            button.ic-btn.i-primary(data-bind="click: ac_submit") #{i18n.__("Submit")}
-            button.ic-btn.i-outline #{i18n.__("Cancel")}
+            button.ic-btn.i-primary(data-bind="click: ac_submit") #{i18n.__("提交")}
+            button.ic-btn.i-outline #{i18n.__("取消")}

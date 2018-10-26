@@ -3,7 +3,7 @@ block content
     script.
         require(['/dist/customerjs/pages/equipment-add.js'])
     .ly-thin#page-equ-add
-        h2.page-title-I #{i18n.__("Launched devices")}
+        h2.page-title-I #{i18n.__("发布设备")}
         .page-content
             form.ic-form.of-hide#equipment-form
                 .ic-form-item
@@ -66,8 +66,8 @@ block content
                         button.right.ic-btn-big.i-outline-primary.wid-col2-B.btn-upload(id="data-sample-upload" data-url="http://localhost/jQuery-File-Upload/server/php/") 上传
                             input(type="file")
             .c-tool-bar
-                button.ic-btn.i-primary(data-bind="click: submit") #{i18n.__('Submit')}
-                button.ic-btn.i-outline #{i18n.__('Cancel')}
+                button.ic-btn.i-primary(data-bind="click: submit") #{i18n.__('提交')}
+                button.ic-btn.i-outline #{i18n.__('取消')}
         #tipBoxA.tip-box-A(data-options='{"trigger":".plus-btn","x_align":"rl","y_align":"cc","x_offset":48}')
             .arrow-left
             .tip-text

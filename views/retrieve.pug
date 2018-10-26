@@ -31,9 +31,9 @@ block content
               span(data-bind='text: errorMsg1')
             //- 请输入手机号
             .register_cont_number
-              input(placeholder=i18n.__('Enter your mobile no') data-bind="textInput: mobile")
+              input(placeholder=i18n.__('请输入手机号') data-bind="textInput: mobile")
             .register_cont_click
-              button(data-bind='click: smsNextStep') #{i18n.__('Click button for verification')}
+              button(data-bind='click: smsNextStep') #{i18n.__('点击按钮进行验证')}
           .sms-step-item(data-bind="css: {active: smsStep()=='2'}")
             .prevent-robot-wrapper
               #captcha(style='position: relative')
@@ -46,7 +46,7 @@ block content
           span {{ errors.first('code') }}
         //- 请输入手机号
         .register_cont_number
-          input(placeholder=i18n.__('Enter your mobile no') data-bind="value: mobile")
+          input(placeholder=i18n.__('请输入手机号') data-bind="value: mobile")
         .register_cont_click_yz
           .click_yz_yz(data-bind="visible: isShowSMScodeInput()")
             div
@@ -57,7 +57,7 @@ block content
               button.click_yz_cx(data-bind="css:{show: sendEnable}, click:getSmsCode") #{i18n.__('重新获取')}
           .click_yz_text(style="display:none" data-bind="visible: isSendSmsSuccess") #{i18n.__('校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。')}
         //- 下一步按钮
-        button.i-button(data-bind="click: nextStep") #{i18n.__('Next')}
+        button.i-button(data-bind="click: nextStep") #{i18n.__('下一步')}
       //- 设置密码
       li.retrieve-step3.retrieve_cont_sz(data-bind="css: {active: step()=='3'}")
         //- 输入密码
@@ -67,11 +67,11 @@ block content
               img(src='/img/icon/error.svg', alt='')
             span(data-bind="text: passwordValidMsg")
           p
-            input(placeholder=i18n.__('Enter your password') type="password" data-bind="textInput: password")
+            input(placeholder=i18n.__('请输入密码') type="password" data-bind="textInput: password")
           p
             input(placeholder=i18n.__('请重复输入密码') type="password" data-bind="textInput: password_confirmation")
         //- 下一步按钮
-        button.i-button(data-bind="click: nextStep") #{i18n.__('Next')}
+        button.i-button(data-bind="click: nextStep") #{i18n.__('下一步')}
       //- 设置完成
       li.retrieve-step4.register_cont_wc(data-bind="css: {active: step()=='4'}")
         div
