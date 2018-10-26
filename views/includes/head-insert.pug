@@ -24,7 +24,11 @@ script.
     try{
         var userinfo = JSON.parse('!{JSON.stringify(userinfo)}')
     }catch(e){
-        //- console.log(e)
-        userinfo = {}
+        var userinfo = {}
+    }
+    try{
+        var language = '#{i18n.locale}'
+    }catch(e){
+        var language = ''
     }
     

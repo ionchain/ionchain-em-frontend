@@ -17,6 +17,21 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
       this.passwordValidMsg = KO.observable();
       this.password =  KO.observable();
       this.password_confirmation =  KO.observable();
+      //按钮文字
+      this.tip_reget = function(){
+        var text = ''
+        switch(language){
+            case 'en':
+                text = 'Re get after '+ this.secondsLeft()+'s'
+                break;
+            case 'zh-CN':
+                text = this.secondsLeft() + 's后重新获取'
+                break;
+            default:
+                break;
+        }
+        return text
+      }
       // 创建用户
       this.createUser = function() {
         API.createUser({
@@ -113,7 +128,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
             case 1:
                 var errors = validate({mobile: this.mobile()}, {
                     mobile: {
-                        required: {message: "^手机号码是必填的"},
+                        required: {message: "^" + common.translate('手机号码是必填的')},
                         mobile: true
                     }
                 },{format: "detailed", fullMessages: false});
@@ -136,7 +151,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
             {code:this.code()}
           , {
               code: {
-                  required: {message: "^请输入验证码"},
+                  required: {message: "^" + common.translate('请输入验证码')}
               }
           },{format: "detailed"});
           if(errors) {
@@ -152,22 +167,21 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
             },
             {
                 password: {
-                    required: {message: "^请输入密码"},
+                    required: {message: "^" + common.translate('请输入密码')},
                     length: {
                         minimum: 6,
-                        message: "^密码长度要大于6"
+                        message: "^" + common.translate('密码长度要大于6')
                     }
                 },
                 password_confirmation: {
-                    required: {message: "^请输入确认密码"},
+                    required: {message: "^" + common.translate('请输入确认密码')},
                     equality: {
                         attribute: 'password',
-                        message: "^两次输入的密码不一致",
+                        message: "^" + common.translate('两次输入的密码不一致')
                     }
                 }
             },{format: 'flat'}
           );
-          console.log('errors>>', common.getMessage(errors), errors)
           if(errors) {
               this.passwordValidMsg(errors.join(' ; '))
               return;

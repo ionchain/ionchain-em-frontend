@@ -42,7 +42,6 @@ async function start () {
   })
 
   pug.options.filters = {
-    
   };
 
   pug.use(app)

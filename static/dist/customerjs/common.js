@@ -1,9 +1,16 @@
-define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
-    function( toast, _, KO, API, $, validate) {
+define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales'],    
+    function( toast, _, KO, API, $, validate, locales) {
         _.assign($.toast.options, {
             showHideTransition: 'slide',
             position: 'top-center'
         });
+        function _translate(text){
+            try{ 
+                return locales[language][text]
+            }catch(e){
+                return text
+            }
+        }
         /*--header 模版绑定 start--*/
         var viewmodel = {
             logout: function() {
@@ -28,14 +35,14 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
         validate.validators.mobile = function(value, options, key, attributes) {
             var test = /^[1][3,4,5,7,8][0-9]{9}$/.test(value)
             if (!test) {
-                return options.message ? options.message : "^手机号码不合法";
+                return options.message ? options.message : "^" + _translate('手机号码不合法');
             }
         };
         validate.validators.required = function(value, options, key, attributes) {
             // var test = !value ? false : value.length > 0
             if (!value) {
                 key = options.key ? options.key : key;
-                return options.message ? options.message : key + '是必填的';
+                return options.message ? options.message : key +  _translate('是必填的');
             }
         };
         /*--规则自定义end--*/
@@ -53,7 +60,7 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
                 }
                 return group
             },
-            getMessage: function getMessage(errors) {
+            getMessage: function (errors) {
                 var groupMsg = this.groupMessage(errors);
                 var msg = [], groupItem=null;
                 for(var prop in groupMsg) {
@@ -68,7 +75,8 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate'],
                     msg.push(msgL2.join(' '))
                 }
                 return msg.join(' ; ')
-            }
+            },
+            translate: _translate
         }
         /*--公用utils start--*/
     }

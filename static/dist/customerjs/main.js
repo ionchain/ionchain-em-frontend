@@ -35,7 +35,8 @@
             jquery_fileupload: '/plugins/jquery.fileupload/jquery.fileupload',
             jquery_validate: '/plugins/jquery.validate/jquery.validate',
             jquery_validate_cn: '/plugins/jquery.validate/messages_zh',
-            jquery_Slider: '/plugins/jquerySlider/js/jquery.slider.min'
+            jquery_Slider: '/plugins/jquerySlider/js/jquery.slider.min',
+            locales: '/locales'
         },
         map: {
             '*': {

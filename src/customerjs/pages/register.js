@@ -24,6 +24,21 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.eth_address =  KO.observable();
             this.isShowSMScodeInput = KO.observable(true);
             this.passwordValidMsg = KO.observable();
+            //按钮文字
+            this.tip_reget = function(){
+                var text = ''
+                switch(language){
+                    case 'en':
+                        text = 'Re get after '+ this.secondsLeft()+'s'
+                        break;
+                    case 'zh-CN':
+                        text = this.secondsLeft() + 's后重新获取'
+                        break;
+                    default:
+                        break;
+                }
+                return text
+            }
             // 创建用户
             this.createUser = function() {
                 loadingIndex = layer.load(2);
@@ -54,10 +69,10 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         eth_address: this.eth_address()
                     }, {
                         company_name: {
-                            required: {message: "^企业名称是必填的"}
+                            required: {message: "^"+common.translate('企业名称是必填的')}
                         },
                         eth_address: {
-                            required: {message: "^icon地址是必填的"}
+                            required: {message: "^"+common.translate('icon地址是必填的')}
                         }
                     },{format: "detailed", fullMessages: false});
                     if(errors) {
@@ -92,7 +107,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     case 1:
                         var errors = validate({mobile: this.mobile()}, {
                             mobile: {
-                                required: {message: "^手机号码是必填的"},
+                                required: {message: "^"+common.translate('手机号码是必填的')},
                                 mobile: true
                             }
                         },{format: "detailed", fullMessages: false});
@@ -110,9 +125,10 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                             {code:this.code()}
                         , {
                             code: {
-                                required: {message: "^请输入验证码"},
+                                required: {message: "^"+common.translate('请输入验证码')},
                             }
                         },{format: "detailed"});
+                        console.log(errors, "@@@@@@@@@@@")
                         if(errors) {
                             this.smsCodeValidErrMsg((common.getMessage(errors)))
                             return;
@@ -128,17 +144,17 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                             },
                             {
                                 password: {
-                                    required: {message: "^请输入密码"},
+                                    required: {message: "^"+common.translate('请输入密码')},
                                     length: {
                                         minimum: 6,
-                                        message: "^密码长度要大于6"
+                                        message: "^"+common.translate('密码长度要大于6')
                                     }
                                 },
                                 password_confirmation: {
-                                    required: {message: "^请输入确认密码"},
+                                    required: {message: "^"+common.translate('请输入确认密码')},
                                     equality: {
                                         attribute: 'password',
-                                        message: "^两次输入的密码不一致",
+                                        message: "^"+common.translate('两次输入的密码不一致'),
                                     }
                                 }
                             },{format: 'detailed'}

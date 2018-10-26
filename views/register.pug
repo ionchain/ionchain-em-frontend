@@ -8,15 +8,15 @@ block content
     .i-step
       div(data-bind="css: {active: step()=='1', finish: step()*1 >1}")
         span 1
-        label 手机验证
+        label #{i18n.__('手机验证')}
       div(data-bind="css: {active: step()=='2', finish: step()*1 >2}")
         b
         span 2
-        label 填写企业信息
+        label #{i18n.__('填写企业信息')}
       div(data-bind="css: {active: step()=='3', finish: step()*1 ==3}")
         b
         span 3
-        label 注册成功
+        label #{i18n.__('注册成功')}
     ul.register-form-box
       //- 手机验证
       li.register-step1.register_cont_yz(data-bind="css: {active: step()=='1'}")
@@ -27,9 +27,9 @@ block content
                 img(src='/img/icon/error.svg', alt='')
               span(data-bind="text: errorMsg1")
             .register_cont_number
-              input(placeholder='请输入手机号' data-bind="textInput: mobile")
+              input(placeholder=i18n.__('Enter your mobile no') data-bind="textInput: mobile")
             .register_cont_click
-              button(data-bind="click: smsNextStep") 点击按钮进行验证
+              button(data-bind="click: smsNextStep") #{i18n.__('点击按钮进行验证')}
           .sms-step-item(data-bind="css: {active: smsStep()=='2'}")
             .prevent-robot-wrapper
               #captcha(style='position: relative')
@@ -40,16 +40,16 @@ block content
                 img(src='/img/icon/error.svg', alt='')
               span(data-bind="text: smsCodeValidErrMsg")
             .register_cont_number
-              input(type='text' readonly placeholder='请输入手机号' data-bind="value: mobile")
+              input(type='text' readonly placeholder=i18n.__('Enter your mobile no') data-bind="value: mobile")
             .register_cont_click_yz
               .click_yz_yz(data-bind="visible: isShowSMScodeInput()")
                 div
-                  input(type='text', placeholder='手机验证码' data-bind="textInput: code")
+                  input(type='text', placeholder=i18n.__('手机验证码') data-bind="textInput: code")
                 div
-                  button(data-bind="text: secondsLeft() + 's后重新获取',visible: !sendEnable()")
-                  button.click_yz_cx(data-bind="css:{show: sendEnable}, click: getSmsCode") 重新获取
-              .click_yz_text(style="display:none" data-bind="visible: isSendSmsSuccess") 校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。
-            button.i-button(data-bind="click: smsNextStep") 下一步
+                  button(data-bind="text: tip_reget(),visible: !sendEnable()")
+                  button.click_yz_cx(data-bind="css:{show: sendEnable}, click: getSmsCode") #{i18n.__('重新获取')}
+              .click_yz_text(style="display:none" data-bind="visible: isSendSmsSuccess") #{i18n.__('校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。')}
+            button.i-button(data-bind="click: smsNextStep") #{i18n.__('Next')}
           //- 输入密码
           .sms-step-item.register_cont_pw(data-bind="css: {active: smsStep()=='4'}")
             .error-msg(data-bind="css: {show: !!passwordValidMsg()}")
@@ -57,12 +57,12 @@ block content
                 img(src='/img/icon/error.svg', alt='')
               span(data-bind="text: passwordValidMsg")
             p
-              input(placeholder='请输入密码' type="password" data-bind="textInput: password")
+              input(placeholder=i18n.__('Enter your password') type="password" data-bind="textInput: password")
             p
-              input(placeholder='确定密码' type="password" data-bind="textInput: password_confirmation")
+              input(placeholder=i18n.__('请重复输入密码') type="password" data-bind="textInput: password_confirmation")
             // 下一步按钮
             button.i-button(data-bind="click: smsNextStep")
-              | 下一步
+              | #{i18n.__('Next')}
       //- 填写企业信息
       li.register-step2.register_cont_xx(data-bind="css: {active: step()=='2'}")
         .error-msg(style="width:372px; margin:0 auto 20px;" data-bind="css: { show: errorMsg2()}")
@@ -70,20 +70,20 @@ block content
                 img(src='/img/icon/error.svg', alt='')
               span(data-bind="text: errorMsg2")
         p
-          input(type='text' placeholder='请输入企业名称' data-bind="textInput: company_name")
+          input(type='text' placeholder=i18n.__('Company name') data-bind="textInput: company_name")
         p
-          input(type='text', placeholder='请输入组织机构代码' data-bind="textInput: company_org_code")
+          input(type='text', placeholder=i18n.__('Company registration code') data-bind="textInput: company_org_code")
         p
-          textarea(cols='30', rows='6', placeholder='请输入您的icon地址' data-bind="textInput: eth_address")
+          textarea(cols='30', rows='6', placeholder=i18n.__('Enter your IONC wallet address') data-bind="textInput: eth_address")
         //- 下一步按钮
         button.i-button(data-bind="click: nextStep")
-          | 下一步
+          | #{i18n.__('Next')}
       //- 注册完成
       li.register-step3.register_cont_wc(data-bind="css: {active: step()=='3'}")
         div
           img(src='/img/icon/succeed.svg', alt='')
-        div 恭喜您，注册成功！
+        div #{i18n.__('恭喜您，注册成功！')}
         .register_next
-          button.i-button(data-bind="click: gotoLogin") 完成
+          button.i-button(data-bind="click: gotoLogin") #{i18n.__('完成')}
 
 
