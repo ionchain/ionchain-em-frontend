@@ -200,10 +200,13 @@ router.get('/', async (ctx, next) => {
 	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
 	// 	console.log('deviceDesc', data);
 	// })
-
-	await service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
-		deviceList = data;
-	})
+	let userId = _.get(ctx.session, 'userinfo.id')
+	if(userId){
+		await service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
+			deviceList = data;
+		})	
+	}
+	
 	await service.getHisProfit({}).then((data)=>{
 		console.log('getHisProfit', data);
 		totalIncome = data

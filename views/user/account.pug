@@ -12,22 +12,22 @@ block user-content
             .ic-form-item
                 label #{i18n.__("Name")}
                 .input-wrap
-                    input.ic-input-big(placeholder=i18n.__("Please enter your name") name="nickname" required value=userinfo.name)
+                    input.ic-input-big(placeholder=i18n.__("请输入您的姓名") name="nickname" required value=userinfo.name)
                     //- span.input-append.tip-status 0/10
             .ic-form-item
                 label #{i18n.__("公司")}
                 .input-wrap
-                    input.ic-input-big(placeholder=i18n.__("Please enter your company") name="company_name" required value=userinfo.company_name)
+                    input.ic-input-big(placeholder=i18n.__("请输入您所在的公司") name="company_name" required value=userinfo.company_name)
                     //- span.input-append.tip-status 0/80
             .ic-form-item
                 label #{i18n.__("公司组织代码")}
                 .input-wrap
-                    input.ic-input-big(placeholder=i18n.__("Please enter your Company code") name="company_org_code" required value=userinfo.org_code)
+                    input.ic-input-big(placeholder=i18n.__("请输入您的公司组织代码") name="company_org_code" required value=userinfo.org_code)
                     //- span.input-append.tip-status 0/80
             .ic-form-item
                 label #{i18n.__("职位")}
                 .input-wrap
-                    input.ic-input-big(placeholder=i18n.__("Please enter your position") name="position" required value=userinfo.position)
+                    input.ic-input-big(placeholder=i18n.__("请输入您的职位") name="position" required value=userinfo.position)
                     //- span.input-append.tip-status 0/80
         .c-tool-bar
             button.ic-btn.i-primary(data-bind="click: ac_submit") #{i18n.__("提交")}

@@ -1,6 +1,6 @@
 define(function(){
     var en  = {
-        "向右滑动滑块填充拼图":"Slide the slider to the right to fill the puzzle.",
+        "向右滑动滑块填充拼图":"Slide to to fill the puzzle",
         "手机号码不合法": "Illegal mobile",
         "手机号码是必填的": "Mobile is required",
         "请输入验证码": "Enter your verification code",

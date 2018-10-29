@@ -4,7 +4,7 @@ block user-content
         require(['/dist/customerjs/pages/user.js'])
     .release.page-message 
         .release_nav.message_nav
-            a(href="javascript:;").active #{i18n.__("Downloaded")}
+            a(href="javascript:;").active #{i18n.__("被下载")}
             a(href="javascript:;") #{i18n.__("系统消息")}
         .message_content
             //- 被下载    
@@ -16,13 +16,13 @@ block user-content
                         .cont_f1_text 
                             .f1_name 荣耀手环3 标准版
                             p
-                                label #{i18n.__('System version')}：
+                                label #{i18n.__('系统')}：
                                 span Android 6.23
                             p
-                                label #{i18n.__('Device number')}：
+                                label #{i18n.__('设备编号')}：
                                 span 1578698
                             p
-                                label #{i18n.__('Amount')}：
+                                label #{i18n.__('数量')}：
                                 span 157
                             p
                                 label #{i18n.__('下载次数')}：

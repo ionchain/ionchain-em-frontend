@@ -7,42 +7,42 @@ block content
         .page-content
             form.ic-form.of-hide#equipment-form
                 .ic-form-item
-                    label #{i18n.__("Device name")}
+                    label #{i18n.__("设备名称")}
                         span.tip-words (#{i18n.__('like：iphone 8')}) 
                     .input-wrap
-                        input.ic-input-big(placeholder=i18n.__('Please enter device number') name="name" required)
+                        input.ic-input-big(placeholder=i18n.__('请输入设备编号') name="name" required)
                         //- span.input-append.tip-status 0/38
                 .ic-form-item
-                    label #{i18n.__('System version')}
+                    label #{i18n.__('系统')}
                         span.tip-words
                     .input-wrap
-                        input.ic-input-big(placeholder=i18n.__('Please enter system version') name="system" required)
+                        input.ic-input-big(placeholder=i18n.__('请输入设备系统版本') name="system" required)
                 .ic-form-item
-                    label #{i18n.__('Device amount')}
+                    label #{i18n.__('设备数量')}
                     .input-wrap
-                        input.ic-input-big(placeholder=i18n.__('Please enter device amount') name="counts" required)
+                        input.ic-input-big(placeholder=i18n.__('请输入设备数量') name="counts" required)
                 //- .ic-form-item
                 //-     label 设备说明书
                 //-     .input-wrap
                 //-         input.ic-input-big(placeholder="请输入设备说明书" name="specification_name" required)
                 .ic-form-item
-                    label #{i18n.__('Device description')}
+                    label #{i18n.__('设备组描述')}
                         span.tip-words
                         //-  | (描述例子 下载)
                     .textarea-wrap
                         textarea.ic-textarea(row="5" style="height:226px;resize:none" placeholder=i18n.__('Please enter device description') name="description" required)
                         span.textarea-append.tip-status 0/1000
                 .ic-form-item
-                    label #{i18n.__('Device category')}
+                    label #{i18n.__('设备类目')}
                     .row
                         .col-lg-6
                             .input-wrap
-                                select.ic-input-big#websites1(placeholder=i18n.__('First category') name="cat_L1")
+                                select.ic-input-big#websites1(placeholder=i18n.__('一级类目') name="cat_L1")
                         .col-lg-6
                             .input-wrap
-                                 select.ic-input-big#websites2(name="device_category_id", placeholder=i18n.__('Second category') required)
+                                 select.ic-input-big#websites2(name="device_category_id", placeholder=i18n.__('二级类目') required)
                 .ic-form-item
-                    label #{i18n.__('Device picture')}
+                    label #{i18n.__('设备图片')}
                     ul.gallery-E.hide
                         li.plus-btn
                             input(name='device_photo' id='equipment-pic-upload' type="file" data-url="http://localhost/jQuery-File-Upload/server/php/")
@@ -54,13 +54,13 @@ block content
                         li.ga-item(style="display:none;" data-bind="visible: equPic()")
                             img(data-bind="attr:{src: equPic}")
                 .ic-form-item.hide
-                    label #{i18n.__('Equipment instructions Uploaded')}
+                    label #{i18n.__('设备说明书上传')}
                     div
                         input.ic-input-big.wid-col2-A(placeholder="" readonly="readonly")
                         button.right.ic-btn-big.i-outline-primary.wid-col2-B.btn-upload(id="notice-book-upload") 上传
                             input(type="file")
                 .ic-form-item.hide
-                    label #{i18n.__('Data sample upload')}
+                    label #{i18n.__('设备说明书上传')}
                     div
                         input.ic-input-big.wid-col2-A(placeholder="" readonly="readonly" )
                         button.right.ic-btn-big.i-outline-primary.wid-col2-B.btn-upload(id="data-sample-upload" data-url="http://localhost/jQuery-File-Upload/server/php/") 上传
@@ -71,10 +71,10 @@ block content
         #tipBoxA.tip-box-A(data-options='{"trigger":".plus-btn","x_align":"rl","y_align":"cc","x_offset":48}')
             .arrow-left
             .tip-text
-                span.l-tit.f-16 #{i18n.__('Example')}:
+                span.l-tit.f-16 #{i18n.__('示例')}:
                 img(src="")
-                span.l-tip-words #{i18n.__('Recommended size')}：#{i18n.__('Not less than 400 x 400px, and square.')}
+                span.l-tip-words #{i18n.__('建议尺寸')}：#{i18n.__('不小于 400×400px，并且为正方形')}
                     br
-                    | #{i18n.__('Recommended format')}：JPG, JPEG, PNG
+                    | #{i18n.__('建议格式')}：JPG, JPEG, PNG
     script.
         
