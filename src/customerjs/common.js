@@ -62,6 +62,7 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales'],
             },
             getMessage: function (errors) {
                 var groupMsg = this.groupMessage(errors);
+                console.log('getMessage>>>', groupMsg)
                 var msg = [], groupItem=null;
                 for(var prop in groupMsg) {
                     var msgL2 = [];

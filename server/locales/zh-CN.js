@@ -119,6 +119,7 @@
 	"建议格式": "建议格式",
 	"重新获取": "重新获取",
 	"请重复输入密码": "请重复输入密码",
+	"请输入确认密码": "请输入确认密码",
 	"手机验证": "手机验证",
 	"填写企业信息": "填写企业信息",
 	"注册成功": "注册成功",
@@ -127,5 +128,6 @@
 	"公司名称": "公司名称",
 	"like：iphone 8": "like：iphone 8",
 	"Please enter device description": "Please enter device description",
-	"Online time": "Online time"
+	"Online time": "Online time",
+	"Company name": "Company name"
 }

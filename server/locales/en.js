@@ -119,6 +119,7 @@
 	"建议格式": "Recommended format",
 	"重新获取": "re get",
 	"请重复输入密码": "Entry password again",
+	"请输入确认密码": "Entry password again",
 	"手机验证": "Mobile verification",
 	"填写企业信息": "Enter the enterprise information",
 	"注册成功": "register complete",
@@ -130,5 +131,6 @@
 	"样例完整度:": "样例完整度:",
 	"Number": "Number",
 	"like：iphone 8": "like：iphone 8",
-	"Please enter device description": "Please enter device description"
+	"Please enter device description": "Please enter device description",
+	"Company name": "Company name"
 }
