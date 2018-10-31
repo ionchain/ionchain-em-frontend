@@ -1,7 +1,7 @@
 extends ./layout.pug
 block user-content
     script.
-        require(['/dist/customerjs/pages/user.js'])
+        require(['/js/pages/user.js'])
     .release.page-message 
         .release_nav.message_nav
             a(href="javascript:;").active #{i18n.__("被下载")}

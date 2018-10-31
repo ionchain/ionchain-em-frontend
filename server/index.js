@@ -67,9 +67,6 @@ async function start () {
   .use(session(CONFIG, app))
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(function(ctx){
-    console.log("i18n>>>>>>>>>>>>>>", ctx.i18n)
-  })
   .listen(port, host)
 
   console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
