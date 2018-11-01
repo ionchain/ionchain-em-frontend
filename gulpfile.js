@@ -26,7 +26,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('watch', function () {
-	gulp.watch('src/less/**/*.less', ['less']);
+	// gulp.watch('src/less/**/*.less', ['less']);
 	gulp.watch(['bower_components/*', 'src/**/*'], ['build']);
 });
 
@@ -124,7 +124,7 @@ gulp.task('build-other', function () {
 	// // .pipe(sourcemaps.write())
 	// .pipe(gulp.dest(`${DIST}`));
 })
-gulp.task('build', runSequence('clean', ['less', 'rbower'],'build-other'));
+gulp.task('build',['less', 'rbower','build-other']);
 
 // gulp.task('es5', function () {
 // 	gulp.src('src/plugins/prevent-robot/jigsaw.js')

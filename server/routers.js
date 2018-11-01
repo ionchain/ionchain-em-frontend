@@ -8,6 +8,7 @@ const utils = require('./utils.js')
 const  SessionMaxAge = 3600000
 const  SessionMaxAgeLong = 86400000 * 30 // a month
 
+
 // 全局数据绑定
 router.all('*', (ctx, next) => {
 	var state = {}
@@ -24,6 +25,8 @@ router.all('*', (ctx, next) => {
 	
 	return next()
 })
+
+
 
 router.all(/^\/user.*/, userAuth());
 
@@ -199,7 +202,7 @@ router.get('/equipment-add', (ctx, next) => {
 	})
 })
 // 首页
-router.get('/', async (ctx, next) => {
+router.get('/', (ctx, next) => {
 	var deviceList = [],
 	totalIncome;
 	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
@@ -207,19 +210,19 @@ router.get('/', async (ctx, next) => {
 	// })
 	let userId = _.get(ctx.session, 'userinfo.id')
 	if(userId){
-		await service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
+		service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
 			deviceList = data;
-		})	
+		})
 	}
 	
-	await service.getHisProfit({}).then((data)=>{
+	service.getHisProfit({}).then((data)=>{
 		console.log('getHisProfit', data);
 		totalIncome = data
 	})
 	
 	ctx.render('home', {
 		currentPage: 'home',
-		totalIncome: utils.thousandth(totalIncome.totalIncomeIonc),
+		totalIncome: "",
 		deviceLists: deviceList
 	})
 })

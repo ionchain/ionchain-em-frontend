@@ -1670,6 +1670,14 @@ img {
 .search-input .search-btn:before {
   color: #A5A7AE;
 }
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
 .card-I {
   height: 404px;
   margin-top: 20px;
@@ -1678,6 +1686,21 @@ img {
   width: 477px;
   box-sizing: border-box;
   border: 1px solid #EEEEEE;
+}
+.card-I.loading {
+  background: #f3f3f3;
+  font-size: 150px;
+  text-align: center;
+  padding: 0;
+}
+.card-I.loading i {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 404px;
+  animation: rotate 3s linear infinite;
+}
+.card-I.loading i .path1::before {
+  color: #d1d1d1;
 }
 .card-I .cont_f1:after {
   content: "";
@@ -1689,7 +1712,7 @@ img {
   float: left;
 }
 .card-I .cont_f1 .cont_f1_img {
-  margin-right: 20px;
+  margin-right: 17px;
   width: 158px;
   height: 158px;
   border: 1px solid #EEEEEE;

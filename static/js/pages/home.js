@@ -61,8 +61,16 @@ function ($, API, _, KO, superSlide, knob, echarts,common, circleChart) {
             type: 'bar'
         }]
     };
-    
+
     function AppViewModel() {
+        this.deviceList = KO.observableArray([
+            {loading: true},
+            {loading: true},
+            {loading: true},
+            {loading: true},
+            {loading: true},
+            {loading: true}
+        ]);
         this.canvasError = KO.observable(false);
         this.isinit = KO.observable(true);
         this.equList = KO.observableArray([
@@ -110,6 +118,24 @@ function ($, API, _, KO, superSlide, knob, echarts,common, circleChart) {
         var appviewmodel1 = new AppViewModel();
         KO.applyBindings(appviewmodel1, $(".page-home")[0]);
 
+        var userId = _.get(userinfo, 'id')
+        if(userId){
+            API.getDeviceList(userId)._then(function(res){
+                console.log("getDeviceList", res)
+                if(res.success==0){
+                    appviewmodel1.deviceList(res.data)
+                }
+                // deviceList
+            })._catch(function(err){
+                console.log(err)
+            })
+        }
+        API.getHisProfit()._then(function(res){
+            console.log(res, 22222222222)
+            if(res.success==0){
+                
+            }
+        })
 
         // if(Modernizr.es5object) {
         //     $(".circleChart").circleChart({

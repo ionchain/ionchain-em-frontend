@@ -60,6 +60,15 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
         return bullet
     }
     return {
+        //----test start---
+        testGetSmsCode: function(data, success, err) {
+            return Xajax({
+                type: 'post',
+                url: '/test/getSmsCode',
+                data: data
+            })
+        },
+        //----test end---
         Login: function(data, params) {
             return Xajax({
                 url: config.BASE_URL + '/users/login', 
@@ -140,15 +149,29 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
                 data: data
             })
         },
-        //----test---
-        testGetSmsCode: function(data, success, err) {
+        // 设备列表
+        getDeviceList (userId) {
             return Xajax({
-                type: 'post',
-                url: '/test/getSmsCode',
-                data: data
+                type: 'get',
+                url: [config.BASE_URL,'/users/',userId,'/devices'].join('')
             })
+            // return _axios.get(`/users/${userId}/devices`)
         },
-       
-
+        // 设备详情
+        getDeviceDesc (deviceId) {
+            return Xajax({
+                type: 'get',
+                url: [config.BASE_URL,'/devices/',deviceId].join('')
+            })
+            // return _axios.get(`/devices/${deviceId}`)
+        },
+        // 历史总收益接口
+        getHisProfit () {
+            var txTo = '0x1ac505f02e6a6aa7abb1b8b99c7c43bc53dba2de'
+            return Xajax({
+                type: 'get',
+                url: ['/browser-api/v1','/equipment/totalIncome?txTo=',txTo].join('')
+            })
+        }
     }
 });

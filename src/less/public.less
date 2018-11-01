@@ -664,6 +664,10 @@ img{
         }
     }
 }
+@keyframes rotate{
+    from{transform: rotate(0deg)}
+    to{transform: rotate(359deg)}
+}
 .card-I{
     height: 404px;
     margin-top: 20px;
@@ -671,14 +675,30 @@ img{
     float: left;
     width: 477px;
     box-sizing: border-box;
-    border: 1px solid  @borderColor; 
+    border: 1px solid  @borderColor;
+    &.loading{
+       background: @loadingBg;
+       font-size: 150px;
+       text-align: center;
+       padding: 0;
+       i{
+           display: inline-block;
+           animation: rotate 3s linear infinite;
+           vertical-align: middle;
+           line-height:404px;
+           animation: rotate 3s linear infinite;
+           .path1::before{
+               color: #d1d1d1;
+           }
+       }
+    }
     .cont_f1{
         .clearFix();
         >div{
             float: left;
         }
         .cont_f1_img{
-            margin-right: 20px;
+            margin-right: 17px;
             width: 158px;
             height: 158px;
             border: 1px solid  @borderColor; 

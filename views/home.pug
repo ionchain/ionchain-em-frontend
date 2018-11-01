@@ -130,51 +130,64 @@ block content
             .search-input
               input()
               i.search-btn.icon-search
-        ul.sec-bd
-          each item,index in deviceLists
-            li.card-I(class=(index + 1) % 3 == 0 ? 'row-right' : '' )
-                  //- (style="display:none;" data-bind="css: {'row-right': ($index()+1) % 3 == 0}, visible: name")
-                  .cont_f1
-                      .cont_f1_img
-                        img(src=item.image_url)
-                      .cont_f1_text 
-                          .f1_name=item.name
-                          p
-                              label #{i18n.__("系统")}：
-                              span=item.system
-                          p
-                              label #{i18n.__("设备编号")}：
-                              span 1578698
-                          p
-                              label #{i18n.__("数量")}：
-                              span=item.counts
-                          p
-                              label #{i18n.__("提交日期")}：
-                              span=item.created_at
-                  .cont_f2 #{i18n.__("样例完整度")}
-                  .cont_f3 
-                    #scheduleX
-                  .cont_f4
-                      span.cont_f4_o #{i18n.__("智能穿戴")}
-                      span #{i18n.__("IT科技")}
-                  .cont_f5
-                      .good
-                          i.icon-light-star
-                          i.icon-gray-star
-                          i.icon-gray-star
-                          i.icon-gray-star
-                          i.icon-gray-star
-                      .down
-                        a(href="/download_can/" + item.id)
-                            i.icon-download
-                            span 20
-                      .look
-                          i.icon-eye
-                          span 20
-                      .del 
-                            a(href="#") #{i18n.__("删除")}
-                      .compile
-                            a(href="#") #{i18n.__("编辑")}
-                      
+        ul.sec-bd(data-bind="foreach: deviceList")
+          //- each item,index in deviceLists
+          //- li.card-I(class=(index + 1) % 3 == 0 ? 'row-right' : '' )
+          <!-- ko if: $data.loading -->
+          li.card-I.loading(style="display:none;" data-bind="css: {'row-right': ($index()+1) % 3 == 0}, visible: loading")
+            i.icon-logo
+              span.path1
+              span.path2
+              span.path3
+              span.path4
+              span.path5
+              span.path6
+              span.path7
+              span.path8
+          <!-- /ko -->
+          <!-- ko if: $data.id -->
+          li.card-I(style="display:none;" data-bind="css: {'row-right': ($index()+1) % 3 == 0}, visible: id")
+            .cont_f1
+                .cont_f1_img
+                  img(data-bind="attr: {src: image_url}")
+                .cont_f1_text 
+                    .f1_name(data-bind="text: name")
+                    p
+                        label #{i18n.__("系统")}：
+                        span(data-bind="system")
+                    p
+                        label #{i18n.__("设备编号")}：
+                        span 1578698
+                    p
+                        label #{i18n.__("数量")}：
+                        span(data-bind="text: counts")
+                    p
+                        label #{i18n.__("提交日期")}：
+                        span(data-bind="text: created_at")
+            .cont_f2 #{i18n.__("样例完整度")}
+            .cont_f3 
+              #scheduleX
+            .cont_f4
+                span.cont_f4_o #{i18n.__("智能穿戴")}syste
+                span #{i18n.__("IT科技")}
+            .cont_f5
+                .good
+                    i.icon-light-star
+                    i.icon-gray-star
+                    i.icon-gray-star
+                    i.icon-gray-star
+                    i.icon-gray-star
+                .down
+                  a(item.id data-bind="attr:{href: '/download_can/'+id}")
+                      i.icon-download
+                      span 20
+                .look
+                    i.icon-eye
+                    span 20
+                .del 
+                      a(href="#") #{i18n.__("删除")}
+                .compile
+                      a(href="#") #{i18n.__("编辑")}
+          <!-- /ko -->     
         .l-toolbar
           button.ic-btn-big.i-outline-primary(style="width: 180px;") #{i18n.__("加载更多")}

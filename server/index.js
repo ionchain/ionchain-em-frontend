@@ -1,7 +1,6 @@
 const Koa = require('koa')
 const session = require('koa-session')
 
-// var proxy = require('http-proxy-middleware')
 const koaBody = require('koa-body')
 const Pug = require('koa-pug')
 const koaStatic = require('koa-static')
@@ -9,7 +8,8 @@ const router = require('./routers.js')
 var createLogger = require('concurrency-logger').default
 const locale = require('koa-locale')
 const i18n = require('koa-i18n')
-
+const proxy = require('koa-proxies')
+// const httpsProxyAgent = require('https-proxy-agent'))
 
 const logger = createLogger({})
 
@@ -17,6 +17,7 @@ async function start () {
   const app = new Koa()
   locale(app, 'language')
   app.keys = ['some_secret_hurr']
+
 
   const CONFIG = {
     key: 'koa-sess', /** (string) cookie key (default is koa:sess) */
@@ -44,9 +45,28 @@ async function start () {
   pug.options.filters = {
   };
 
+
+  var proxyMiddleware = proxy('/browser-api', {
+    target: 'http://192.168.23.164:3001',    
+    changeOrigin: true,
+    // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
+    rewrite: path => path.replace(/^\/browser-api/, ''),
+    logs: true,
+    events: {
+      error (err, req, res) {
+        console.log("proxy err", err)
+      },
+      proxyReq (proxyReq, req, res) { 
+      },
+      proxyRes (proxyRes, req, res) {
+      }
+    }
+  })
+
   pug.use(app)
 
-  app
+  app  
+  .use(proxyMiddleware)
   .use(i18n(app, {
     directory: __dirname + '/locales',
     locales: ['zh-CN', 'en'], //  `zh-CN` defualtLocale, must match the locales to the filenames

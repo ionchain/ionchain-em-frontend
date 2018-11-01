@@ -125,8 +125,9 @@
 	"注册成功": "register complete",
 	"公司名称": "Company name",
 	"发布设备": "launch device",
-	"作者":"Author",
+	"作者": "Author",
 	"下载调用": "Download call",
 	"设备信息": "Device description",
-	"信息样例": "Information sample"
+	"信息样例": "Information sample",
+	"like：iphone 8": "like：iphone 8"
 }

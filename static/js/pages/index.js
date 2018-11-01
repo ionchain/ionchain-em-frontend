@@ -1,4 +1,4 @@
-require(['jquery','tabs','lazyload','common'], function($,Tabs,lazyload, common){
+require(['jquery','tabs','lazyload','common','api','lodash', 'knockout'], function($,Tabs,lazyload, common, API, _, KO){
     $(function(){
         $(".tabs-component").Tabs({
             event:'click'
@@ -8,5 +8,5 @@ require(['jquery','tabs','lazyload','common'], function($,Tabs,lazyload, common)
         })
 
     })
-    
+   
 })
