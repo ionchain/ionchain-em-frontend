@@ -124,11 +124,9 @@
 	"填写企业信息": "填写企业信息",
 	"注册成功": "注册成功",
 	"发布设备": "发布设备",
-	"设备编号:": "设备编号:",
 	"公司名称": "公司名称",
-	"like：iphone 8": "like：iphone 8",
-	"Please enter device description": "Please enter device description",
-	"Online time": "Online time",
-	"Company name": "Company name",
-	"Name": "Name"
+	"作者":"作者",
+	"下载调用": "下载调用",
+	"设备信息": "设备信息",
+	"信息样例": "信息样例"
 }

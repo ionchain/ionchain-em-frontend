@@ -28,7 +28,8 @@
         "jquery_fileupload": "/plugins/jquery.fileupload/jquery.fileupload",
         "jquery_validate": "/plugins/jquery.validate/jquery.validate",
         "jquery_validate_cn": "/plugins/jquery.validate/messages_zh",
-        "locales": "/locales"
+        "locales": "/locales",
+        "cookie": "/plugins/jquery.cookie"
     },
     "map": {
         "*": {

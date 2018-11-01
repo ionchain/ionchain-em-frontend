@@ -17,6 +17,11 @@ router.all('*', (ctx, next) => {
 			i18n: ctx.i18n
 		})
 	}
+	// let language = ''
+	// if(language = _.get(ctx.req.query, 'language')){
+	// 	ctx.session.language = 
+	// }
+	
 	return next()
 })
 

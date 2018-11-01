@@ -76,7 +76,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             }
         })
         
-        KO.applyBindings( viewmodel );
+        KO.applyBindings( viewmodel , $(".js-body")[0]);
         
     }
 )

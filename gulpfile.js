@@ -30,17 +30,17 @@ gulp.task('watch', function () {
 	gulp.watch(['bower_components/*', 'src/**/*'], ['build']);
 });
 
-gulp.task('browser-sync', function () {
-	browserSync.init({
-		proxy: "http://localhost:2018",
-		port: 3001,
-		ui: {
-			port: 3002
-		}
-	});
-	//监听任何文件变化，实时刷新页面
-	gulp.watch(["./public/css/**/*.*", 'views/**/*.*', 'public/js/*.*']).on('change', browserSync.reload);
-});
+// gulp.task('browser-sync', function () {
+// 	browserSync.init({
+// 		proxy: "http://localhost:2018",
+// 		port: 3001,
+// 		ui: {
+// 			port: 3002
+// 		}
+// 	});
+// 	//监听任何文件变化，实时刷新页面
+// 	gulp.watch(["./public/css/**/*.*", 'views/**/*.*', 'public/js/*.*']).on('change', browserSync.reload);
+// });
 gulp.task('rbower', function(){
 	return gulp.src('./src/require.config.json')
 	.pipe(jeditor(function(json){

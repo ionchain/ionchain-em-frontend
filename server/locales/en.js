@@ -123,15 +123,10 @@
 	"手机验证": "Mobile verification",
 	"填写企业信息": "Enter the enterprise information",
 	"注册成功": "register complete",
-	"发布设备": "发布设备",
-	"设备编号:": "设备编号:",
 	"公司名称": "Company name",
-	"Number:": "Number:",
-	"提交日期:": "提交日期:",
-	"样例完整度:": "样例完整度:",
-	"Number": "Number",
-	"like：iphone 8": "like：iphone 8",
-	"Please enter device description": "Please enter device description",
-	"Company name": "Company name",
-	"Name": "Name"
+	"发布设备": "launch device",
+	"作者":"Author",
+	"下载调用": "Download call",
+	"设备信息": "Device description",
+	"信息样例": "Information sample"
 }

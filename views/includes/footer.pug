@@ -1,5 +1,5 @@
 
-#footer_pc.ly-footer
+#footer_pc.ly-footer.js-footer
     .container
         .row
             .col-md-3.col-sm-3.col-xs-3
@@ -42,9 +42,9 @@
             .col-md-3.col-sm-3.col-xs-3
                 .footer_text4
                     .col-titles #{i18n.__("语言")}
-                    a(href='https://www.ionchain.org/index_CN.html') 中文
-                    a(href='https://www.ionchain.org/index.html') English
-                    a(href='https://www.ionchain.org/index_KO.html') 한글
+                    a(href='javascript:;' data-language="zh-CN" data-bind="click:languageSwitch") 中文
+                    a(href='javascript:;' data-language="en" data-bind="click:languageSwitch") English
+                    //- a(href='https://www.ionchain.org/index_KO.html') 한글
     .text-center.copyright
         .container
             .row.copyrights

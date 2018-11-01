@@ -1,5 +1,5 @@
-define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales'],    
-    function( toast, _, KO, API, $, validate, locales) {
+define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', 'cookie'],
+    function( toast, _, KO, API, $, validate, locales, cookie) {
         _.assign($.toast.options, {
             showHideTransition: 'slide',
             position: 'top-center'
@@ -46,6 +46,20 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales'],
             }
         };
         /*--规则自定义end--*/
+
+        /**footer start */
+        $(function() {
+            var vmodel_footer = {
+                languageSwitch: function(x, e) {
+                    console.log(arguments, this)
+                    $.cookie('language', $(e.target).data('language'));  
+                    location.reload();
+                }
+            }
+            // console.log($('.js-footer')[0], "@@@@@@@@@@")
+            KO.applyBindings( vmodel_footer , $('.js-footer')[0]);
+        });
+        /**footer end */
 
         /*--公用utils start--*/
         return {
