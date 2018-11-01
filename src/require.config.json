@@ -27,7 +27,8 @@
         "fileupload_iframe_transport": "/plugins/jquery.fileupload/jquery.iframe-transport",
         "jquery_fileupload": "/plugins/jquery.fileupload/jquery.fileupload",
         "jquery_validate": "/plugins/jquery.validate/jquery.validate",
-        "jquery_validate_cn": "/plugins/jquery.validate/messages_zh"
+        "jquery_validate_cn": "/plugins/jquery.validate/messages_zh",
+        "locales": "/locales"
     },
     "map": {
         "*": {

@@ -66,7 +66,7 @@ gulp.task('rbower', function(){
 					let fname = shim[prop][i].split('/')
 					fname =  fname[fname.length-1]
 					// shim[prop][i] = '/dist/css/' + fname.replace(/\.css/, `_${_uuid}.css`)
-					shim[prop][i] = '/dist/css/' + fname
+					shim[prop][i] = 'css!/dist/css/' + fname
 				}
 			}
 		}		

@@ -132,5 +132,6 @@
 	"Number": "Number",
 	"like：iphone 8": "like：iphone 8",
 	"Please enter device description": "Please enter device description",
-	"Company name": "Company name"
+	"Company name": "Company name",
+	"Name": "Name"
 }
