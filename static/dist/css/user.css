@@ -202,7 +202,8 @@
 }
 .user-content .comp .comp_text textarea {
   width: 100%;
-  border-color: #CACED7;
+  border: 1px solid #CACED7;
+  padding: 3px 5px;
 }
 .user-content .comp .comp_text span {
   position: absolute;

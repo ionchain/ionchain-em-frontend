@@ -34,9 +34,9 @@
 	"请输入组织机构代码": "Company registration code",
 	"请输入您的ionc地址": "Enter your IONC wallet address",
 	"恭喜您，注册成功！": "Congratulations! Registration completed.",
-	"贡献统计": "Contribution Statistics",
-	"现有设备": "Launched devices",
-	"参与投票": "Vote on IONChain",
+	"贡献统计": "Contribution",
+	"现有设备": "Devices",
+	"参与投票": "Vote",
 	"收藏": "Save",
 	"IONChain币总数": "IONC token total number",
 	"贡献曲线": "Contribution chart/curve",
@@ -99,7 +99,7 @@
 	"请输入您的公司组织代码": "Please enter your Company code",
 	"请输入您的职位": "Please enter your position",
 	"设备名称": "Device name",
-	"如：iphone 8": "like：iphone 8",
+	"例：iphone 8": "like：iphone 8",
 	"设备数量": "Device amount",
 	"请输入设备数量": "Please enter device amount",
 	"请输入设备系统版本": "Please enter system version",
@@ -128,6 +128,5 @@
 	"作者": "Author",
 	"下载调用": "Download call",
 	"设备信息": "Device description",
-	"信息样例": "Information sample",
-	"like：iphone 8": "like：iphone 8"
+	"信息样例": "Information sample"
 }

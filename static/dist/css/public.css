@@ -1133,8 +1133,9 @@ a:-webkit-any-link {
   border-bottom: 2px solid #08AEB2;
 }
 .ly-header .nav-search {
-  float: right;
-  margin: 20px 20px 0 0;
+  float: left;
+  margin: 20px 20px 0 28px;
+  width: 300px;
 }
 .ly-header .nav-search .search-btn {
   top: 8px;
@@ -1657,6 +1658,7 @@ img {
   padding: 0 20px;
   font-size: 14px;
   background: none;
+  max-width: 100%;
 }
 .search-input .search-btn {
   padding: 2px;

@@ -1,5 +1,11 @@
-require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'csPopUp', 'selection', 'jquery_fileupload','jquery_validate','jquery_validate_cn'],
-    function($, API, _, KO, serialize, validate, toast, common, csPopUp, selection, jquery_fileupload,jquery_validate,jquery_validate_cn) {
+var localeMap = {
+    'zh-CN': 'cn',
+    'en': 'en'
+}
+var locale_name = 'jquery_validate_'+localeMap[language]
+
+require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast','common', 'csPopUp', 'selection', 'jquery_fileupload','jquery_validate', locale_name],
+    function($, API, _, KO, serialize, validate, toast, common, csPopUp, selection, jquery_fileupload,jquery_validate,jquery_validate_locale) {
         $("#tipBoxA").csPopUp();
         $(function () {
            var oDropdown ;

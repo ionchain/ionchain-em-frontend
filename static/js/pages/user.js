@@ -1,4 +1,10 @@
-require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload','serialize','jquery_validate','jquery_validate_cn'], function($, KO, validate, common, API, progress,jquery_fileupload,serialize,jquery_validate,jquery_validate_cn){
+var localeMap = {
+    'zh-CN': 'cn',
+    'en': 'en'
+}
+var locale_name = 'jquery_validate_'+localeMap[language]
+
+require(['jquery','knockout','validate', 'common', 'api', 'progress','jquery_fileupload','serialize','jquery_validate', locale_name], function($, KO, validate, common, API, progress,jquery_fileupload,serialize,jquery_validate,jquery_validate_locale){
     //表单验证
     var validator = $("#account_from").validate({
         debug:true
