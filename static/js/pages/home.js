@@ -63,6 +63,7 @@ function ($, API, _, KO, superSlide, knob, echarts,common, circleChart) {
     };
 
     function AppViewModel() {
+        this.totalIncome = KO.observable("--");
         this.deviceList = KO.observableArray([
             {loading: true},
             {loading: true},
@@ -124,16 +125,20 @@ function ($, API, _, KO, superSlide, knob, echarts,common, circleChart) {
                 console.log("getDeviceList", res)
                 if(res.success==0){
                     appviewmodel1.deviceList(res.data)
+                }else{
+                    appviewmodel1.deviceList([])
                 }
                 // deviceList
             })._catch(function(err){
                 console.log(err)
             })
+        }else{
+            appviewmodel1.deviceList([])
         }
         API.getHisProfit()._then(function(res){
             console.log(res, 22222222222)
-            if(res.success==0){
-                
+            if(res.code==0){
+                appviewmodel1.totalIncome(res.data.totalIncomeIonc)
             }
         })
 

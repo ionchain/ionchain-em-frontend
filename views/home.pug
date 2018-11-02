@@ -61,7 +61,7 @@ block content
     //- 公告
     .section-notice.home-section
         span #{i18n.__("IONChain币总数")}：
-        span.f-32.bold #{totalIncome}
+        span.f-32.bold(data-bind="text: totalIncome")
         span  IONChain
     //- 设备
     .section-equipment-data#section-equipment-data
