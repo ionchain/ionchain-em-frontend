@@ -1,5 +1,5 @@
-define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', 'cookie'],
-    function( toast, _, KO, API, $, validate, locales, cookie) {
+define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', 'cookie', 'utils'],
+    function( toast, _, KO, API, $, validate, locales, cookie, utils) {
         _.assign($.toast.options, {
             showHideTransition: 'slide',
             position: 'top-center'
@@ -50,6 +50,7 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
         /**footer start */
         $(function() {
             var vmodel_footer = {
+                //语言切换
                 languageSwitch: function(x, e) {
                     console.log(arguments, this)
                     $.cookie('language', $(e.target).data('language'));  
@@ -60,7 +61,12 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
             KO.applyBindings( vmodel_footer , $('.js-footer')[0]);
         });
         /**footer end */
-
+        /**存储语言选择，状态来自于url start */
+        var language = ""
+        if(language = utils.getSearch('language')){
+            $.cookie('language', language);
+        }
+        /**存储语言选择，状态来自于url end */
         /*--公用utils start--*/
         return {
             groupMessage: function(errors) {

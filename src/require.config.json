@@ -30,7 +30,9 @@
         "jquery_validate_cn": "/plugins/jquery.validate/messages_zh",
         "jquery_validate_en": "/plugins/jquery.validate/messages_en",
         "locales": "/locales",
-        "cookie": "/plugins/jquery.cookie"
+        "cookie": "/plugins/jquery.cookie",
+        "jquery_Slider": "/plugins/jquerySlider/js/jquery.slider.min",
+        "utils": "/plugins/utils"
     },
     "map": {
         "*": {
@@ -38,6 +40,7 @@
         }
     },
     "shim": {
+        "jquery_Slider": ["jquery"],
         "jquery_validate": ["jquery"],
         "jquery_validate_cn": ["jquery_validate"],
         "jquery_validate_en": ["jquery_validate"],

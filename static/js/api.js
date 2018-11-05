@@ -11,7 +11,10 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
     $.ajaxSetup({
         type: 'post',
         contentType: 'application/json;charset=UTF-8',
-        processData: false
+        processData: false,
+        beforeSend(){
+            console.log("beforeSend", arguments, this)
+        }
     })
     function Xajax(opt){
         function Bullet(_data, callback) {
