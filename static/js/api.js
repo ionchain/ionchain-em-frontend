@@ -12,8 +12,11 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
         type: 'post',
         contentType: 'application/json;charset=UTF-8',
         processData: false,
-        beforeSend(){
-            console.log("beforeSend", arguments, this)
+        beforeSend(XMLHttpRequest){
+            var language = ''
+            if(language = $.cookie('language')){
+                this.url+= ('?language='+language)
+            }
         }
     })
     function Xajax(opt){
