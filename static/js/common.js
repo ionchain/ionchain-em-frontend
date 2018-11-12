@@ -1,13 +1,16 @@
 define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', 'cookie', 'utils'],
     function( toast, _, KO, API, $, validate, locales, cookie, utils) {
+        var _language = $.cookie('language') ? $.cookie('language') : 'zh-CN'
         _.assign($.toast.options, {
             showHideTransition: 'slide',
             position: 'top-center'
         });
         function _translate(text){
             try{ 
-                return locales[language][text]
+                console.log("language", _language, locales)
+                return locales[_language][text]
             }catch(e){
+                console.log(e)
                 return text
             }
         }
