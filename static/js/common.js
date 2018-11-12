@@ -69,9 +69,9 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
         });
         /**footer end */
         /**存储语言选择，状态来自于url start */
-        var language = ""
-        if(language = utils.getSearch('language')){
-            $.cookie('language', language);
+        var _language = ""
+        if(_language = utils.getSearch('language')){
+            $.cookie('language', _language);
         }
         /**存储语言选择，状态来自于url end */
         /*--公用utils start--*/
