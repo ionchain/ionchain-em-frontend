@@ -47,7 +47,7 @@ async function start () {
 
 
   var proxyMiddleware = proxy('/browser-api', {
-    target: 'http://192.168.23.164:3001',    
+    target: 'http://192.168.23.164:3001',
     changeOrigin: true,
     // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
     rewrite: path => path.replace(/^\/browser-api/, ''),

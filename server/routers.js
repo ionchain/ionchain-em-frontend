@@ -100,11 +100,11 @@ router.all(/^\/api/, async (ctx, next) => {
 // 用户权限
 function userAuth() {
 	return (ctx, next) => {
-		console.log('userAuth@@@@@@')
 		if(!ctx.session.userinfo) {
 			ctx.redirect('/login')
+			return
 		}
-		return next()
+		next()
 	}
 }
 
