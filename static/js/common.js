@@ -54,7 +54,14 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
                 languageSwitch: function(x, e) {
                     console.log(arguments, this)
                     $.cookie('language', $(e.target).data('language'));  
-                    location.reload();
+                    // location.reload();
+                    var search = location.search.split('?')
+                    for(var i in search){
+                        if(search[i].indexOf('language=')!=-1){
+                            search[i]='language='+ $(e.target).data('language')
+                        }
+                    }
+                    location.href = location.origin+ location.pathname + search.join('?')
                 }
             }
             // console.log($('.js-footer')[0], "@@@@@@@@@@")
