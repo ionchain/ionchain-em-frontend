@@ -6,11 +6,11 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
             position: 'top-center'
         });
         function _translate(text){
-            try{ 
-                console.log("language", _language, locales)
-                return locales[_language][text]
+            try{
+                var _text = locales[language][text]
+                return _text ? _text : text
             }catch(e){
-                console.log(e)
+                console.log(e, 'translate')
                 return text
             }
         }
@@ -18,7 +18,6 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
         var viewmodel = {
             logout: function() {
                 API.Logout()._then(function(data) {
-                    console.log(data)
                     if(data.success == 0) {
                         $.toast({text: data.message, icon: 'success'});
                         setTimeout(function() {
@@ -57,7 +56,14 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
                 languageSwitch: function(x, e) {
                     console.log(arguments, this)
                     $.cookie('language', $(e.target).data('language'));  
-                    location.reload();
+                    // location.reload();
+                    var search = location.search.split('?')
+                    for(var i in search){
+                        if(search[i].indexOf('language=')!=-1){
+                            search[i]='language='+ $(e.target).data('language')
+                        }
+                    }
+                    location.href = location.origin+ location.pathname + search.join('?')
                 }
             }
             // console.log($('.js-footer')[0], "@@@@@@@@@@")
@@ -65,9 +71,9 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
         });
         /**footer end */
         /**存储语言选择，状态来自于url start */
-        var language = ""
-        if(language = utils.getSearch('language')){
-            $.cookie('language', language);
+        var _language = ""
+        if(_language = utils.getSearch('language')){
+            $.cookie('language', _language);
         }
         /**存储语言选择，状态来自于url end */
         /*--公用utils start--*/

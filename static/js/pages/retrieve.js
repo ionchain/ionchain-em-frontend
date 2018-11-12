@@ -61,7 +61,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
             // 切换到下一界面
             _this.step( _this.step() + 1 )
         } else {
-            $.toast({text: res.message, icon: 'error'});
+            $.toast({text: common.translate(res.message), icon: 'error'});
         }
         })._catch()._then(function() {
         })
@@ -110,7 +110,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
             } else {
                 _this.isSendSmsSuccess(false)
                 _this.sendSMSmessage(res.message);
-                $.toast({text: res.message, icon: 'error'});
+                $.toast({text: common.translate(res.message), icon: 'error'});
                 if (res.success === 2001) {
                     _this.isShowSMScodeInput(false);
                 }

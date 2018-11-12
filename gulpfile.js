@@ -1,7 +1,7 @@
 ﻿var gulp = require('gulp'),
 	less = require('gulp-less'),
 	browserSync = require('browser-sync');
-const rollup = require('rollup');
+// const rollup = require('rollup');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
