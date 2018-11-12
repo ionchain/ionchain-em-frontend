@@ -5,9 +5,11 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
             position: 'top-center'
         });
         function _translate(text){
-            try{ 
-                return locales[language][text]
+            try{
+                var _text = locales[language][text]
+                return _text ? _text : text
             }catch(e){
+                console.log(e, 'translate')
                 return text
             }
         }
@@ -15,7 +17,6 @@ define(['toast', 'lodash', 'knockout', 'api', 'jquery', 'validate', 'locales', '
         var viewmodel = {
             logout: function() {
                 API.Logout()._then(function(data) {
-                    console.log(data)
                     if(data.success == 0) {
                         $.toast({text: data.message, icon: 'success'});
                         setTimeout(function() {

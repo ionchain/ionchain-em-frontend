@@ -10,7 +10,10 @@ define(function(){
         "两次输入的密码不一致": "The password entered two times is inconsistent",
         "企业名称是必填的": "The name of the enterprise is required",
         "icon地址是必填的": "Icon address is required",
-        "请输入确认密码": "Entry password again"
+        "请输入确认密码": "Entry password again",
+        "错误的验证码": "Wrong verification code",
+        "短信验证码错误":"Wrong verification code",
+        "手机号码已注册": "This phone number has been registered"
     }
     var zh_CN = {
         "向右滑动滑块填充拼图":"向右滑动滑块填充拼图",
@@ -23,7 +26,10 @@ define(function(){
         "两次输入的密码不一致": "两次输入的密码不一致",
         "企业名称是必填的":"企业名称是必填的",
         "icon地址是必填的": "icon地址是必填的",
-        "请输入确认密码": "请输入确认密码"
+        "请输入确认密码": "请输入确认密码",
+        "错误的验证码": "错误的验证码",
+        "短信验证码错误":"短信验证码错误",
+        "手机号码已注册": "手机号码已注册"
     }
     return {
         en: en,

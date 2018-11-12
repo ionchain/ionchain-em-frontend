@@ -77,6 +77,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     },{format: "detailed", fullMessages: false});
                     if(errors) {
                         this.errorMsg2(common.getMessage(errors))
+                        return false
                     }
                     this.createUser();
                     return;
@@ -128,7 +129,6 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                                 required: {message: "^"+common.translate('请输入验证码')},
                             }
                         },{format: "detailed"});
-                        console.log(errors, "@@@@@@@@@@@")
                         if(errors) {
                             this.smsCodeValidErrMsg((common.getMessage(errors)))
                             return;
@@ -197,7 +197,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                     } else {
                         _this.isSendSmsSuccess(false)
                         _this.sendSMSmessage(res.message);
-                        $.toast({text: res.message, icon: 'error'});
+                        $.toast({text: common.translate(res.message), icon: 'error'});
                         if (res.success === 2001) {
                             _this.isShowSMScodeInput(false);
                         }
@@ -223,7 +223,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                         // 切换到下一界面
                         _this.smsStep( _this.smsStep() + 1 )
                     } else {
-                        $.toast({text: res.message, icon: 'error'});
+                        $.toast({text: common.translate(res.message) , icon: 'error'});
                     }
                 })._catch(function(){
                     layer.close(loadingIndex)
