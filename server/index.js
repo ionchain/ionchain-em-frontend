@@ -34,7 +34,7 @@ async function start () {
     renew: false /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
   }
 
-  const host = process.env.HOST || 'localhost'
+  const host = process.env.HOST || '192.168.23.112'
   const port = process.env.PORT || 2018
 
   const pug = new Pug({
@@ -69,7 +69,7 @@ async function start () {
   .use(proxyMiddleware)
   .use(i18n(app, {
     directory: __dirname + '/locales',
-    locales: ['zh-CN', 'en'], //  `zh-CN` defualtLocale, must match the locales to the filenames
+    locales: ['zh-CN', 'en','en-US'], //  `zh-CN` defualtLocale, must match the locales to the filenames
     modes: [
       'query',                //  optional detect querystring - `/?locale=en-US`
       'subdomain',            //  optional detect subdomain   - `zh-CN.koajs.com`
