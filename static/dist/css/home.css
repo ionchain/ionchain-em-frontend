@@ -29,6 +29,13 @@
   height: 560px;
   padding-top: 121px;
 }
+.section-banner .ads-words {
+  position: absolute;
+  font-size: 40px;
+  z-index: 2;
+  color: #08AEB2;
+  padding: 40px;
+}
 .section-banner .section-main {
   height: 394px;
 }
