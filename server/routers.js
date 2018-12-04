@@ -102,9 +102,8 @@ function userAuth() {
 	return (ctx, next) => {
 		if(!ctx.session.userinfo) {
 			ctx.redirect('/login')
-			return
 		}
-		next()
+		return next()
 	}
 }
 
