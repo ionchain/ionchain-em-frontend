@@ -10,10 +10,10 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 var params = serialize($('#login-form')[0], { hash: true });
                 var errors = validate(params, {
                     mobile: {
-                        presence: {message: "^手机号码是必填的"},
+                        presence: {message: "^"+common.translate('手机号码是必填的')},
                         mobile: true
                     },
-                    password: {presence: {message: "^密码是必填的"}}
+                    password: {presence: {message: "^"+common.translate('请输入密码')}}
                 },{
                     format: "detailed"
                 });
@@ -27,7 +27,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
                 
                 API.Login(params)._then(function(data) {
                     if(data.success == 0) {
-                        $.toast({text: '登录成功', icon: 'success'});
+                        $.toast({text: common.translate('登录成功'), icon: 'success'});
                         setTimeout(function() {
                             location.replace('/user/account')
                         }, 300)
@@ -40,7 +40,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.checkMobile = function() {
                 var errors = validate({mobile: this.mobile()}, {
                     mobile: {
-                        presence: {message: "^手机号码是必填的"},
+                        presence: {message: "^"+common.translate('手机号码是必填的')},
                         mobile: true
                     }
                 },{
@@ -56,7 +56,7 @@ require(['jquery', 'api', 'lodash', 'knockout', 'serialize', 'validate', 'toast'
             this.checkPwd = function() {
                 var errors = validate({password: this.password()}, {
                     password: {
-                        required: {message: "^密码是必填的"}
+                        required: {message: "^"+common.translate('请输入密码')}
                     }
                 },{
                     format: "detailed"
