@@ -43,10 +43,10 @@ module.exports = {
             return data
         }
     },
-    async getCollectList({collectId} = {}){
+    async getCollectList({userId} = {}){
         var data = []
         try{
-            await API.getCollectList({collectId}).then((res)=>{
+            await API.getCollectList({userId}).then((res)=>{
                 if(res.data.success == 0){
                     data = res.data.data
                 }

@@ -1,11 +1,11 @@
 extends ./layout.pug
 block user-content
     script.
-        require(['/dist/customerjs/pages/user.js'])
+        require(['/js/pages/user.js'])
     .release.page-message 
         .release_nav.message_nav
-            a(href="javascript:;").active 被下载
-            a(href="javascript:;") 系统消息
+            a(href="javascript:;").active #{i18n.__("被下载")}
+            a(href="javascript:;") #{i18n.__("系统消息")}
         .message_content
             //- 被下载    
             ul.release_content.message_down.message_on(data-bind="foreach: userList")
@@ -16,18 +16,18 @@ block user-content
                         .cont_f1_text 
                             .f1_name 荣耀手环3 标准版
                             p
-                                label 系统：
+                                label #{i18n.__('系统')}：
                                 span Android 6.23
                             p
-                                label 设备编号：
+                                label #{i18n.__('设备编号')}：
                                 span 1578698
                             p
-                                label 数量：
+                                label #{i18n.__('数量')}：
                                 span 157
                             p
-                                label 被下载：
+                                label #{i18n.__('下载次数')}：
                                 span 30
             //- 系统消息
             ul 
-                li(style="margin-top:20px;") 正在开发中请等待!
+                li(style="margin-top:20px;") #{i18n.__("正在开发中请等待!")}
                     

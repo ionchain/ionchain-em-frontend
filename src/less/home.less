@@ -12,7 +12,6 @@
         }
     }
 }
-
 .section-main{
     width: @mainWidth;
     margin: auto;
@@ -22,6 +21,13 @@
     background:url("@{imgUrl}img/banner/banner_bg.png") #000 no-repeat center;
     height: 560px;
     padding-top: 121px;
+    .ads-words{
+        position: absolute;
+        font-size: 40px;
+        z-index: 2;
+        color: @baseColor;
+        padding: 40px;
+    }
     .section-main{
         height: 394px;
     }
@@ -179,6 +185,11 @@
     .sec-bd{
         padding-bottom: 40px;
         .clearFix();
+        li:hover{
+            -moz-box-shadow:0px 1px 12px #E7E7E7; 
+            -webkit-box-shadow:0px 1px 12px #E7E7E7; 
+            box-shadow:0px 1px 12px #E7E7E7;
+        }
     }
     .card-I{
         width: 386px;
@@ -204,16 +215,16 @@
         .clearFix();
         .l-tit{
             font-size: 16px;
-            margin-right: 33px;
+            margin-right: 14px;
             float: left;
         }
         .l-panel{
             float: left;
             li{
                 float: left;
-                padding:0 10px;
+                padding:0 8px;
                 min-width: 50px;
-                margin-right: 12px;
+                margin-right: 4px;
                 text-align: center;
                 &.active,
                 &:hover{

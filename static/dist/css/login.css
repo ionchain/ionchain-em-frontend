@@ -10,10 +10,10 @@
 .page-login {
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-left: -600px;
-  margin-top: -216px;
+  left: 0;
+  margin-top: -226px;
   min-height: auto;
+  width: 100%;
 }
 .page-login:after {
   content: "";

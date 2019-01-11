@@ -1025,6 +1025,20 @@ body {
   font-family: PingFangSC-Regular, sans-serif !important;
   color: #2D2F37;
 }
+a:hover {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+a:visited {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+a:-webkit-any-link {
+  text-decoration: none;
+}
 #root-scope .link {
   color: #08AEB2;
 }
@@ -1119,8 +1133,9 @@ body {
   border-bottom: 2px solid #08AEB2;
 }
 .ly-header .nav-search {
-  float: right;
-  margin: 20px 20px 0 0;
+  float: left;
+  margin: 20px 20px 0 28px;
+  width: 300px;
 }
 .ly-header .nav-search .search-btn {
   top: 8px;
@@ -1277,7 +1292,7 @@ img {
   display: inline-block;
   width: 22px;
   height: 22px;
-  line-height: 18px;
+  line-height: 20px;
   border-radius: 50%;
   border: 1px solid #A5A7AE;
   text-align: center;
@@ -1315,7 +1330,7 @@ img {
   justify-content: center;
 }
 .register_cont_click_yz .click_yz_yz > div:first-child input {
-  width: 242px;
+  width: 232px;
   height: 40px;
   border-radius: 6px;
   padding-left: 12px;
@@ -1327,7 +1342,7 @@ img {
   margin-left: 10px;
 }
 .register_cont_click_yz .click_yz_yz > div:last-child > button {
-  width: 120px;
+  width: 130px;
   height: 40px;
   border-radius: 20px;
   background: #fff;
@@ -1445,7 +1460,7 @@ img {
 }
 .page-title-I {
   font-size: 24px;
-  margin: 39px 0;
+  padding: 39px 0;
 }
 .c-tool-bar {
   margin-top: 20px;
@@ -1643,6 +1658,7 @@ img {
   padding: 0 20px;
   font-size: 14px;
   background: none;
+  max-width: 100%;
 }
 .search-input .search-btn {
   padding: 2px;
@@ -1656,6 +1672,14 @@ img {
 .search-input .search-btn:before {
   color: #A5A7AE;
 }
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
 .card-I {
   height: 404px;
   margin-top: 20px;
@@ -1664,6 +1688,21 @@ img {
   width: 477px;
   box-sizing: border-box;
   border: 1px solid #EEEEEE;
+}
+.card-I.loading {
+  background: #f3f3f3;
+  font-size: 150px;
+  text-align: center;
+  padding: 0;
+}
+.card-I.loading i {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 404px;
+  animation: rotate 3s linear infinite;
+}
+.card-I.loading i .path1::before {
+  color: #d1d1d1;
 }
 .card-I .cont_f1:after {
   content: "";
@@ -1674,17 +1713,17 @@ img {
 .card-I .cont_f1 > div {
   float: left;
 }
-.card-I .cont_f1 > .cont_f1_img {
-  margin-right: 20px;
+.card-I .cont_f1 .cont_f1_img {
+  margin-right: 17px;
   width: 158px;
   height: 158px;
   border: 1px solid #EEEEEE;
 }
-.card-I .cont_f1 > .cont_f1_img > img {
+.card-I .cont_f1 .cont_f1_img img {
   width: 100%;
   height: 100%;
 }
-.card-I .cont_f1 > .cont_f1_text > .f1_name {
+.card-I .cont_f1 > .cont_f1_text .f1_name {
   color: #2D2F37;
   font-weight: bold;
   padding-bottom: 20px;
@@ -1711,7 +1750,7 @@ img {
 }
 .card-I .cont_f4 span {
   display: inline-block;
-  width: 79px;
+  width: auto;
   height: 28px;
   font-size: 12px;
   line-height: 28px;
@@ -1719,6 +1758,7 @@ img {
   border-radius: 15px;
   background: #F2FBFB;
   text-align: center;
+  padding: 0 8px;
 }
 .card-I .cont_f4 .cont_f4_o {
   margin-right: 10px;
@@ -1744,11 +1784,16 @@ img {
 }
 .card-I .cont_f5 .down,
 .card-I .cont_f5 .look {
+  color: #A5A7AE;
   font-size: 12px;
   margin-left: 20px;
 }
-.card-I .cont_f5 .down > span,
-.card-I .cont_f5 .look > span {
+.card-I .cont_f5 .down a,
+.card-I .cont_f5 .look a {
+  color: #A5A7AE;
+}
+.card-I .cont_f5 .down span,
+.card-I .cont_f5 .look span {
   padding-left: 5px;
 }
 .card-I .cont_f5 .look i {
@@ -1758,6 +1803,7 @@ img {
 .card-I .cont_f5 .del {
   font-size: 14px;
   float: right;
+  padding-top: 3px;
 }
 .card-I .cont_f5 .compile > a {
   color: #2977FF;
@@ -1818,6 +1864,10 @@ img {
 }
 .page-register {
   padding: 50px 0;
+}
+.page-register .register-form-box {
+  width: 372px;
+  margin: auto;
 }
 .page-register .register-form-box > li {
   display: none;

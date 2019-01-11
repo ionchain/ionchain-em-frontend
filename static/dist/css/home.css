@@ -29,6 +29,13 @@
   height: 560px;
   padding-top: 121px;
 }
+.section-banner .ads-words {
+  position: absolute;
+  font-size: 40px;
+  z-index: 2;
+  color: #08AEB2;
+  padding: 40px;
+}
 .section-banner .section-main {
   height: 394px;
 }
@@ -195,6 +202,11 @@
   clear: both;
   *zoom: 1;
 }
+.section-equipment .sec-bd li:hover {
+  -moz-box-shadow: 0px 1px 12px #E7E7E7;
+  -webkit-box-shadow: 0px 1px 12px #E7E7E7;
+  box-shadow: 0px 1px 12px #E7E7E7;
+}
 .section-equipment .card-I {
   width: 386px;
   margin-right: 21px;
@@ -224,7 +236,7 @@
 }
 .box-chart .chart-hd .l-tit {
   font-size: 16px;
-  margin-right: 33px;
+  margin-right: 14px;
   float: left;
 }
 .box-chart .chart-hd .l-panel {
@@ -232,9 +244,9 @@
 }
 .box-chart .chart-hd .l-panel li {
   float: left;
-  padding: 0 10px;
+  padding: 0 8px;
   min-width: 50px;
-  margin-right: 12px;
+  margin-right: 4px;
   text-align: center;
 }
 .box-chart .chart-hd .l-panel li.active,

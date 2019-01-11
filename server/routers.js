@@ -8,17 +8,25 @@ const utils = require('./utils.js')
 const  SessionMaxAge = 3600000
 const  SessionMaxAgeLong = 86400000 * 30 // a month
 
+
 // 全局数据绑定
 router.all('*', (ctx, next) => {
 	var state = {}
-	if (ctx.session.userinfo) {
-		console.log('ctx.session.userinfo@', ctx.session.userinfo);
+	if (ctx.session.userinfo) {		
 		Object.assign(ctx.state, {
-			userinfo: ctx.session.userinfo
+			userinfo: ctx.session.userinfo,
+			i18n: ctx.i18n
 		})
 	}
+	// let language = ''
+	// if(language = _.get(ctx.req.query, 'language')){
+	// 	ctx.session.language = 
+	// }
+	
 	return next()
 })
+
+
 
 router.all(/^\/user.*/, userAuth());
 
@@ -68,8 +76,7 @@ router.all(/^\/api/, async (ctx, next) => {
 		}
 		ctx.response.set({ 'content-type': res.headers['content-type'] })
 		ctx.body = res.data
-		if (ctx.request.url.indexOf('/users/login') > -1 && res.data.success == 0) {
-			console.log("@@@@@@@@@@@@ login", ctx.request.url);
+		if (ctx.request.url.indexOf('/users/login') > -1 && res.data.success === 0) {			
 			ctx.session.userinfo = res.data.data
 			if(_.get(ctx.request.body, 'loginLong') == 'on' ) {
 				ctx.session.maxAge = SessionMaxAgeLong
@@ -93,7 +100,6 @@ router.all(/^\/api/, async (ctx, next) => {
 // 用户权限
 function userAuth() {
 	return (ctx, next) => {
-		console.log('userAuth@@@@@@')
 		if(!ctx.session.userinfo) {
 			ctx.redirect('/login')
 		}
@@ -195,31 +201,39 @@ router.get('/equipment-add', (ctx, next) => {
 	})
 })
 // 首页
-router.get(['/','/home',''], async (ctx, next) => {
+router.get('/', (ctx, next) => {
 	var deviceList = [],
 	totalIncome;
 	// await service.getDeviceDesc({deviceId: 8}).then((data)=>{
 	// 	console.log('deviceDesc', data);
 	// })
-
-	await service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
-		deviceList = data;
-	})
-	await service.getHisProfit({}).then((data)=>{
+	let userId = _.get(ctx.session, 'userinfo.id')
+	if(userId){
+		service.getDeviceList({userId:  _.get(ctx.session, 'userinfo.id')}).then((data)=>{
+			deviceList = data;
+		})
+	}
+	
+	service.getHisProfit({}).then((data)=>{
 		console.log('getHisProfit', data);
 		totalIncome = data
 	})
 	
 	ctx.render('home', {
 		currentPage: 'home',
-		totalIncome: utils.thousandth(totalIncome.totalIncomeIonc),
+		totalIncome: "",
 		deviceLists: deviceList
 	})
 })
 //下载调用
-router.get('/download_can', (ctx, next) => {
+router.get('/download_can/:id', async(ctx, next) => {
+	var desc = []; 
+	await service.getDeviceDesc({deviceId: ctx.params.id}).then((data)=>{
+		desc = data;
+	})
 	ctx.render('download_can', {
-		currentPage: 'download_can'
+		currentPage: 'download_can',
+		desc: desc
 	})
 })
 /*--页面路由 end--*/

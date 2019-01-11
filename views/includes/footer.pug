@@ -1,31 +1,50 @@
 
-#footer_pc.ly-footer
+#footer_pc.ly-footer.js-footer
     .container
         .row
             .col-md-3.col-sm-3.col-xs-3
                 .footer_text1
-                    .col-titles 关于
-                    a(href='https://www.ionchain.org/team_CN.html') 团队
-                    a(href='https://www.ionchain.org/pdfjs/web/viewer_CN.html') 白皮书
-                    a(href='https://www.ionchain.org/vision_CN.html') 基金会
+                    - var teamUrl=''
+                    - var viewerUrl=''
+                    - switch(i18n.locale){
+                    -    case 'en':
+                    -       teamUrl = 'https://www.ionchain.org/team_EN.html'
+                    -       viewerUrl = 'https://www.ionchain.org/pdfjs/web/viewer_EN.html'
+                    -       visionUrl = 'https://www.ionchain.org/vision_EN.html'
+                    -       walletUrl = 'https://www.ionchain.org/wallet_EN.html'
+                    -       commingSoonUrl = 'https://www.ionchain.org/coming_soon_EN.html'
+                    -       break;
+                    -    case 'zh-CN':
+                    -       teamUrl = 'https://www.ionchain.org/team_CN.html'
+                    -       viewerUrl = 'https://www.ionchain.org/pdfjs/web/viewer_EN.html'
+                    -       visionUrl = 'https://www.ionchain.org/vision_CN.html'
+                    -       walletUrl = 'https://www.ionchain.org/wallet.html'
+                    -       commingSoonUrl = 'https://www.ionchain.org/coming_soon.html'
+                    -       break;
+                    - }
+                    .col-titles #{i18n.__("关于")}
+                    a(href=teamUrl) #{i18n.__("团队")}
+                    a(href=teamUrl) #{i18n.__("白皮书")}
+                    a(href=visionUrl) #{i18n.__("基金会")}
             .col-md-3.col-sm-3.col-xs-3
                 .footer_text2
-                    .col-titles 技术
-                    a(href='https://www.ionchain.org/wallet.html') 钱包
-                    a(href='https://www.ionchain.org/coming_soon.html') 浏览器
-                    a(href='https://www.ionchain.org/coming_soon.html') DAPP
+                    .col-titles #{i18n.__("技术")}
+                    a(href=walletUrl) #{i18n.__("技术")}
+                    a(href=commingSoonUrl) #{i18n.__("浏览器")}
+                    a(href=commingSoonUrl) #{i18n.__("DAPP")}
             .col-md-3.col-sm-3.col-xs-3
                 .footer_text3
-                    .col-titles 联系
-                    a(href='mailto:contact@ionchain.org') 概要
-                    a(href='mailto:contact@ionchain.org') 媒体
-                    a(href='mailto:contact@ionchain.org') 工作
-                    a(href='mailto:contact@ionchain.org') 实验室
+                    .col-titles #{i18n.__("联系我们")}
+                    a(href='mailto:contact@ionchain.org') #{i18n.__("概要")}
+                    a(href='mailto:contact@ionchain.org') #{i18n.__("媒体")}
+                    a(href='mailto:contact@ionchain.org') #{i18n.__("工作")}
+                    a(href='mailto:contact@ionchain.org') #{i18n.__("实验室")}
             .col-md-3.col-sm-3.col-xs-3
                 .footer_text4
-                    .col-titles 语言
-                    a(href='https://www.ionchain.org/index_CN.html') 中文
-                    a(href='https://www.ionchain.org/index.html') English
+                    .col-titles #{i18n.__("语言")}
+                    a(href='javascript:;' data-language="zh-CN" data-bind="click:languageSwitch") 中文
+                    a(href='javascript:;' data-language="en" data-bind="click:languageSwitch") English
+                    //- a(href='https://www.ionchain.org/index_KO.html') 한글
     .text-center.copyright
         .container
             .row.copyrights

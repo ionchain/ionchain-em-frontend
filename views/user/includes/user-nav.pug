@@ -1,27 +1,12 @@
 .user-nav
     ul
         li 
-            if currentPage == 'release'
-                a.active(href="/user/release") 我的发布
-            else
-                a(href="/user/release") 我的发布
+            a(class={active: currentPage == 'release'} href="/user/release") #{i18n.__("我的发布")}
         li 
-            if currentPage == 'collect'
-                a.active(href="/user/collect") 我的收藏
-            else
-                a(href="/user/collect") 我的收藏
+            a(class={active: currentPage=='collect'} href="/user/collect") #{i18n.__("我的收藏")}
         li 
-            if currentPage == 'message'
-                a.active(href="/user/message") 消息中心
-            else
-                a(href="/user/message") 消息中心
+            a(class={active: currentPage=='message'} href="/user/message") #{i18n.__("消息中心")}
         li 
-            if currentPage == 'comp'
-                a.active(href="/user/comp") 投诉与反馈
-            else
-                a(href="/user/comp") 投诉与反馈
+            a(class={active: currentPage=='comp'} href="/user/comp") #{i18n.__("投诉与反馈")}
         li 
-            if currentPage == 'account'
-                a.active(href="/user/account") 账号设置
-            else
-                a(href="/user/account") 账号设置
+            a(class={active: currentPage=='account'} href="/user/account") #{i18n.__("账号设置")}

@@ -2,7 +2,7 @@ extends ./layout.pug
 block user-content
     .release 
         .release_nav 
-            a(href="#").active 设备
+            a(href="#").active #{i18n.__("设备")}
         ul.release_content
             each item,index in deviceLists
                 li.card-I(class = index % 2 == 0 ? 'second' : '')
@@ -12,23 +12,23 @@ block user-content
                         .cont_f1_text
                             .f1_name=item.name
                             p
-                                label 系统：
+                                label #{i18n.__("系统")}：
                                 span=item.system
                             p
-                                label 设备编号：
+                                label #{i18n.__("设备编号")}：
                                 span 1578698
                             p
-                                label 数量：
+                                label #{i18n.__("数量")}：
                                 span=item.counts
                             p
-                                label 提交日期：
+                                label #{i18n.__("提交日期")}：
                                 span=item.created_at
-                    .cont_f2 样例完整度
+                    .cont_f2 #{i18n.__("样例完整度")}：
                     .cont_f3
                     .scheduleX(data-progress="90")
                     .cont_f4
-                        span.cont_f4_o 智能穿戴
-                        span IT科技
+                        span.cont_f4_o #{i18n.__("智能穿戴")}
+                        span #{i18n.__("IT科技")}
                     .cont_f5
                         .good
                             i.icon-light-star
@@ -36,16 +36,18 @@ block user-content
                             i.icon-gray-star
                             i.icon-gray-star
                             i.icon-gray-star
+                        
                         .down
-                            i.icon-download
-                            span 20
+                            a(href="/download_can/" + item.id)
+                                i.icon-download
+                                span 20
                         .look
                             i.icon-eye
                             span 20
                         .del 
-                            a(href="#") 删除    
+                            a(href="#") #{i18n.__("删除")}
                         .compile
-                            a(href="#") 编辑
+                            a(href="#") #{i18n.__("编辑")}
             a(href="/equipment-add")                
                 li.plus
                     i

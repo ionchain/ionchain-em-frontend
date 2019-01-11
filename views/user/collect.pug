@@ -1,10 +1,10 @@
 extends ./layout.pug
 block user-content
     script.
-        require(['/dist/customerjs/pages/user.js'])
+        require(['/js/pages/user.js'])
     .release 
         .release_nav 
-            a(href="#").active 设备
+            a(href="#").active #{i18n.__("设备")}
         ul.release_content
             each item,index in collectLists
                 li.card-I(class = index % 2 == 0 ? 'second' : '')
@@ -42,6 +42,7 @@ block user-content
                             i.icon-eye
                             span 20
                         .down.collect_down
-                            i.icon-download
-                            span 20
+                            a(href="/download_can/" + item.id)
+                                i.icon-download
+                                span 20
                     

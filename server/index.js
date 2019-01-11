@@ -1,19 +1,23 @@
 const Koa = require('koa')
 const session = require('koa-session')
 
-// var proxy = require('http-proxy-middleware')
 const koaBody = require('koa-body')
 const Pug = require('koa-pug')
 const koaStatic = require('koa-static')
 const router = require('./routers.js')
 var createLogger = require('concurrency-logger').default
+const locale = require('koa-locale')
+const i18n = require('koa-i18n')
+const proxy = require('koa-proxies')
+// const httpsProxyAgent = require('https-proxy-agent'))
 
 const logger = createLogger({})
 
 async function start () {
   const app = new Koa()
-
+  locale(app, 'language')
   app.keys = ['some_secret_hurr']
+
 
   const CONFIG = {
     key: 'koa-sess', /** (string) cookie key (default is koa:sess) */
@@ -39,12 +43,44 @@ async function start () {
   })
 
   pug.options.filters = {
-   
   };
+
+
+  var proxyMiddleware = proxy('/browser-api', {
+    target: 'http://192.168.23.164:3001',
+    changeOrigin: true,
+    // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
+    rewrite: path => path.replace(/^\/browser-api/, ''),
+    logs: true,
+    events: {
+      error (err, req, res) {
+        console.log("proxy err", err)
+      },
+      proxyReq (proxyReq, req, res) { 
+      },
+      proxyRes (proxyRes, req, res) {
+      }
+    }
+  })
 
   pug.use(app)
 
-  app
+  app  
+  .use(proxyMiddleware)
+  .use(i18n(app, {
+    directory: __dirname + '/locales',
+    locales: ['zh-CN', 'en','en-US'], //  `zh-CN` defualtLocale, must match the locales to the filenames
+    modes: [
+      'query',                //  optional detect querystring - `/?locale=en-US`
+      'subdomain',            //  optional detect subdomain   - `zh-CN.koajs.com`
+      'cookie',               //  optional detect cookie      - `Cookie: locale=zh-TW`
+      'header',               //  optional detect header      - `Accept-Language: zh-CN,zh;q=0.5`
+      'url',                  //  optional detect url         - `/en`
+      'tld',                  //  optional detect tld(the last domain) - `koajs.cn`
+      function() {
+      }           //  optional custom function (will be bound to the koa context)
+    ]
+  }))
   .use(logger)
   .use(koaStatic('./static',{maxage: 0}))
   .use(koaBody())
