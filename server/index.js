@@ -9,9 +9,74 @@ var createLogger = require('concurrency-logger').default
 const locale = require('koa-locale')
 const i18n = require('koa-i18n')
 const proxy = require('koa-proxies')
+
+var proxyMid = require('http-proxy-middleware')
+const koaConnect = require('koa-connect')
+const modifyResponse = require('node-http-proxy-json')
+
 // const httpsProxyAgent = require('https-proxy-agent'))
 
 const logger = createLogger({})
+
+var proxyOption = {
+  target: 'http://192.168.23.164:3001',
+  // target: 'http://localhost:8360',
+  changeOrigin: true, // needed for virtual hosted sites
+  ws: true, // proxy websockets
+  pathRewrite: {
+    // '^/api/old-path': '/api/new-path', // rewrite path
+  },
+  onProxyRes(proxyRes, req, res) {
+    for(let prop in proxyRes){
+      console.log("@%%%%%%%%%%%%%%%%%%%", prop)
+    }
+    proxyRes.on('data',function(data){
+      modifyResponse(res, proxyRes.headers['content-encoding'], function (body) {
+        if (body) {
+          console.log('body==>', body)
+          if (proxyRes.req.path.indexOf('/users/login')>-1 && body.success == 0) {
+            console.log('set session @@@@@@@@@@@#')
+            req.ctx.session.userinfo = body.data
+            // proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
+            if(_.get(req.ctx.request.body, 'loginLong') == 'on' ) {
+              ctx.session.maxAge = SessionMaxAgeLong
+            }
+          }
+        }
+        return body
+      })
+    })
+    // proxyRes.headers['x-added'] = 'foobar' // add new header to response
+    // delete proxyRes.headers['x-removed'] // remove header from response
+  },
+  onProxyReq(proxyReq, req, res) {
+    // add custom header to request
+    // proxyReq.setHeader('x-added', 'foobar')
+    for(let prop in proxyReq){
+      console.log("#######", prop)
+    }
+    console.log(req.headers.origin,"@@@@@@@@@@@@@@@@@@@@")
+  }
+}
+
+var _proxy = proxyMid('/api', proxyOption)
+
+var proxyMiddleware = proxy('/browser-api', {
+  target: 'http://192.168.23.164:3001',
+  changeOrigin: true,
+  // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
+  rewrite: path => path.replace(/^\/browser-api/, ''),
+  logs: true,
+  events: {
+    error (err, req, res) {
+      console.log("proxy err", err)
+    },
+    proxyReq (proxyReq, req, res) { 
+    },
+    proxyRes (proxyRes, req, res) {
+    }
+  }
+})
 
 async function start () {
   const app = new Koa()
@@ -46,27 +111,11 @@ async function start () {
   };
 
 
-  var proxyMiddleware = proxy('/browser-api', {
-    target: 'http://192.168.23.164:3001',
-    changeOrigin: true,
-    // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
-    rewrite: path => path.replace(/^\/browser-api/, ''),
-    logs: true,
-    events: {
-      error (err, req, res) {
-        console.log("proxy err", err)
-      },
-      proxyReq (proxyReq, req, res) { 
-      },
-      proxyRes (proxyRes, req, res) {
-      }
-    }
-  })
-
   pug.use(app)
 
   app  
   .use(proxyMiddleware)
+  // .use(koaConnect(_proxy))
   .use(i18n(app, {
     directory: __dirname + '/locales',
     locales: ['zh-CN', 'en','en-US'], //  `zh-CN` defualtLocale, must match the locales to the filenames
