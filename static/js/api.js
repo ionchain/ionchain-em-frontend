@@ -13,7 +13,7 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
         contentType: 'application/json;charset=UTF-8',
         processData: false,
         beforeSend(XMLHttpRequest){
-            var language = $.cookie('language')
+            var language = $.cookie('language') ? $.cookie('language') : 'zh-CN'
             if(language != 'zh-CN'){
                 this.url+= ('?language='+language)
             }
