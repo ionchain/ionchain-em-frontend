@@ -43,3 +43,5 @@ import 'vue-snotify/styles/material.css'
 
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
+
+

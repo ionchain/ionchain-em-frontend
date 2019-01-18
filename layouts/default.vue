@@ -3,7 +3,7 @@
         <vue-snotify></vue-snotify>
         <my-header />
         <div class="ly-body">
-          <nuxt class="ly-main" />
+          <nuxt />
         </div>
         <my-footer/>
     </div>

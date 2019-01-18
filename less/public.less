@@ -5,6 +5,7 @@
 @import 'imports/global.less';
 @import "imports/form.less";
 @import "footer.less";
+@import "imports/iconfont.less";
 
 .link{
     color: @baseColor;
@@ -16,10 +17,84 @@
 // 头部
 .ly-header{
     height:80px;
-    background: @buttonColor;
+    background: #0B101B;
+    border-bottom: 1px solid #F1F1F1;
+    // box-shadow: 0 0 20px 2px #F1F1F1;
+    position: relative;
+    z-index: 3;
     .logo{
-        float:left;
-        padding: 14px 0;
+        height:80px;
+        line-height: 80px;
+        float: left;
+        text-decoration: none;
+        img{
+            height:48px;
+            position: relative;
+        }
+        i{
+            font-size: 48px;
+            vertical-align: middle;
+        }
+    }
+    .h-main{
+        width: @mainWidth;
+        margin: auto;
+        .clearFix();
+    }
+    .navitems{
+        float: left;
+        margin-left: 90px;
+        >.navitems_t{
+            margin: 0 46px;
+        }
+        >li{
+            float: left;
+            >a{
+                display: block;
+                height: 80px;
+                line-height: 80px;
+                padding: 0 12px;
+                color: @inputTextColor;
+                box-sizing: border-box;
+                position: relative;
+                text-decoration: none;
+            }
+            >a:hover{
+                color: @baseColor;
+                text-decoration: none;
+            }
+            >a:hover:before{
+                content: "";
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                border-bottom: 2px solid @baseColor;
+            }
+            .active{
+                color: @baseColor;
+            }
+            .active::before{
+                content: "";
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                border-bottom: 2px solid @baseColor;
+            }
+        }
+    }
+    .nav-search{
+        float: left;
+        margin: 20px 20px 0 28px;
+        width: 300px;
+        .search-btn{
+            top: 8px;
+        }
     }
     .logo_gw{
         float:right;
@@ -34,9 +109,17 @@
     }
     .h-info,.h-have{
         float:right;
-        padding: 30px;
+        line-height: 80px;
+    }
+    .dis-normal{
+        color: @baseTextColor;
+        text-decoration: none;
     }
     .h-have{
+        .xc_x{
+            color: @baseTextColor;
+            padding: 0 10px;
+        }
         >.z_d{
             color: @baseTextColor;
             >span{
@@ -77,25 +160,6 @@ img{
     margin-bottom: 409px;
     min-height: ~"calc(100vh - 81px)";
     background: #fff;
-}
-.ly-header{
-    border-bottom: 1px solid #F1F1F1;
-    // box-shadow: 0 0 20px 2px #F1F1F1;
-    position: relative;
-    z-index: 3;
-    .logo{
-        height:80px;
-        line-height: 80px;
-        display: inline-block;
-        img{
-            height:48px;
-            position: relative;
-        }
-    }
-    .h-main{
-        width: 1200px;
-        margin: auto;
-    }
 }
 .login_right_hint{
     height: 30px;
@@ -295,6 +359,94 @@ img{
         background-repeat: no-repeat;
     }
 }
+.search-input{
+    position: relative;
+    input{
+        .border-radius(20px);
+        border: 1px solid #A5A7AE;
+        line-height: 38px;
+        height: 38px;
+        padding: 0 20px;
+        font-size: 14px;
+        background: none;
+        max-width:100%;
+    }
+    .search-btn{
+        padding: 2px;
+        cursor: pointer;
+        position: absolute;
+        right: 18px;
+        top:10px;
+        z-index: 2;
+        font-size: 20px;
+        &:before{
+            color: #A5A7AE;
+        }
+    }
+}
+.card-H{
+    border:1px solid @borderColor;
+    position: relative;
+    overflow:hidden;
+    width: 285px;
+    .card-hd{
+        border-bottom: 1px solid @borderColor;
+        height: 51px;
+        line-height: 51px;
+        font-size: 14px;
+        padding: 0 20px;
+        font-weight: bold;
+    }
+    .card-bd {
+        .clearFix();
+        padding: 20px 0 20px 20px;
+        .l-progess{
+            margin-right: 20px;
+            width: 86px;
+            height:86px;
+            position: relative;
+            float: left;
+            &:after{
+                width: 100%;
+                height:100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                content: "";
+                z-index: 2;
+            }
+            .l-num{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -25px;
+                margin-left: -20px;
+                span{
+                    font-size: 32px;
+                }
+                s{
+                    font-size: 16px;
+                }
+            }
+        }
+        .l-info{
+            float:left;
+            width: 157px;
+            font-size: 12px;
+            line-height: 1.72;
+            padding-top: 8px;
+            .info1{
+                margin-bottom: 6px;
+            }
+        }
+
+    }
+    .hide-tem{
+        display: none;
+    }
+}
 @import "register.less";
 @import "retrieve.less";
 @import "articles.less";
+@import "home.less";

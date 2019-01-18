@@ -1,20 +1,32 @@
-<template>
-  <header class="ly-header">
-    <section class="h-main">
-      <nuxt-link class="logo" to="/">
-        <img src="/icon/IONC_store_bule.svg" />
-      </nuxt-link>
-      <a class="logo_gw" href="http://www.ionchain.org/index_CN.html" target="_blank">离子链官网</a>
-      <div class="h-info" v-if="!isEmpty(userinfo) && !isLoginPage">
-        <span>当前登录 </span><span>{{get(userinfo, 'mobile_num')}}</span>
-        <span @click="logOut" class="quit"> 退出</span>
-      </div>
-      <div class="h-have" v-if="isEmpty(userinfo) && !isLoginPage">
-        <nuxt-link to="/register" class="z_d"><span>注册</span></nuxt-link>&nbsp;&nbsp;
-        已有账号？<nuxt-link to="/login" class="z_d"><span>请登录</span></nuxt-link>
-      </div>
-    </section>
-  </header>
+<template lang="pug">
+  div.ly-header#header
+    div.h-main
+        a.logo(href='/')
+            i.icon-site-logo
+        if userinfo && currentPage != 'login'
+            .h-info
+                span 当前登录
+                a.dis-normal(href="/user/account") #{userinfo.mobile_num}
+                span.quit(data-bind='click: logout')  退出
+        if !userinfo && currentPage != 'login'
+            .h-have(v-if='isEmpty(userinfo) && !isLoginPage')
+                a.z_d(href='/register')
+                    span 注册
+                span.xc_x |
+                a.z_d(href='/login')
+                    span 登录
+        if  !userinfo && currentPage != 'login' && currentPage != 'register' && currentPage != 'retrieve'
+            ul.navitems
+                li
+                    a.active(href="#") 贡献统计
+                li.navitems_t 
+                    a(href="#") 现有设备
+                li 
+                    a(href="#") 参与投票
+            .nav-search
+                .search-input
+                    input()
+                    i.search-btn.icon-search
 </template>
 <script>
 import _ from 'lodash'
