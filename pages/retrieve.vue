@@ -57,7 +57,7 @@
                   <p><input name="pw_confirm" ref="pw_confirm" data-vv-as="确认密码" type="password" v-model="form.password_confirmation" placeholder="确定密码"></p>
                 </div>
                 <!-- 下一步按钮 -->
-                <button class="i-button" @click="checkPwd">
+                <button class="i-button" @click="resetPwd">
                     下一步
                 </button>
              </li>
@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      step: 1, // 设置初始值为1
+      step: 3, // 设置初始值为1
       stepOne: 1,
       reGetEnable: false,
       secondsLeft: 0, // 剩余读秒
@@ -169,10 +169,11 @@ export default {
       })
     },
     // 检查两次输入的密码是否一致
-    checkPwd() {
+    resetPwd() {
+      console.log("resetPwd");
       this.$validator.validate('password', this.form.password).then((result) => {
         if (result) {
-          api.resetSmsCode({
+          api.resetPwd({
             mobile: this.form.mobile,
             password: this.form.password,
             password_confirmation: this.form.password_confirmation
@@ -201,14 +202,6 @@ export default {
         }
       }
     },
-    logOut() {
-      api.Logout().then((res) => {
-        this.$snotify.success(res.message)
-        setTimeout(() => {
-          this.$router.push('/login')
-        }, 200)
-      })
-    }
   }
 }
 </script>

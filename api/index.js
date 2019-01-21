@@ -17,7 +17,7 @@ export const getSmsCode = (data, params) => {
   return _axios.post('/users/sms_code', data, {params: params})
 }
 // 重置密码
-export const resetSmsCode = (data, params) => {
+export const resetPwd = (data, params) => {
   return _axios.post('/users/reset_password', data, {params: params})
 }
 // 校验短信验证码
