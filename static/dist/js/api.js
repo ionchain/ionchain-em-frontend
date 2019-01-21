@@ -114,6 +114,15 @@ define(['jquery', 'lodash'], function ($, _) {
                 success: success,
                 err: err
             })
+        },
+        resetPwd: function(data, success, err){
+            $.ajax({
+                methods: 'post',
+                url: config.BASE_URL + '/users/reset_password',
+                dat: data,
+                success: success,
+                err: err
+            })
         }
     }
 });

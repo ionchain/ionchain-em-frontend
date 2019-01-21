@@ -146,6 +146,7 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
         console.log('#####' ,this.smsStep())
       };
       this.nextStep = function() {
+        var _this = this;
         if(this.step() == 2) {
           var errors = validate(
             {code:this.code()}
@@ -186,7 +187,23 @@ require(['jquery','knockout', 'serialize', 'validate', 'common', 'moment', 'api'
               this.passwordValidMsg(errors.join(' ; '))
               return;
           }
-          this.step( this.step() + 1 )
+          loadingIndex = layer.load(2);
+          API.resetPwd({
+            mobile: this.mobile(),
+            password: this.password(),
+            password_confirmation: this.password_confirmation() 
+          })._then(function (res) {
+            layer.close(loadingIndex);
+            if(res.success === 0){
+                _this.step( _this.step() + 1 )
+                $.toast({text: res.message, icon: 'success'});
+            }else{
+                $.toast({text: res.message, icon: 'error'});
+            }
+          })._catch(function(){
+            layer.close(loadingIndex);
+          })
+          
         }
       };
       this.gotoLogin = function() {

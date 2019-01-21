@@ -178,6 +178,13 @@ define(['jquery', 'lodash', 'toast'], function ($, _, toast) {
                 type: 'get',
                 url: ['/browser-api/v1','/equipment/totalIncome?txTo=',txTo].join('')
             })
+        },
+        resetPwd: function(data, success, err){
+            return Xajax({
+                type: 'post',
+                url: config.BASE_URL + '/users/reset_password',
+                data: data
+            })
         }
     }
 });
