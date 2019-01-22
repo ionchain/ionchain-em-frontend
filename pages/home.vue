@@ -91,91 +91,86 @@
                         | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firefox 等，以显示完整内容
     //- 广告位
     .section-adv
-    img.wid-max(src="/img/home/adv-bg.png")
-    .l-upper
-        p 让你的设备加入全球物联网
-        a.ic-btn-normal.i-primary 发布设备
+        img.wid-max(src="/img/home/adv-bg.png")
+        .l-upper
+            p 让你的设备加入全球物联网
+            a.ic-btn-normal.i-primary(href="/user/") 发布设备
     //- 设备，卡片列表
     .section-equipment
-    .section-main
-        .sec-hd
-        span.l-title
-            i.v-line
-            em 现有设备
-        .l-search
-            .search-input
-            input()
-            i.search-btn.icon-search
-        ul.sec-bd(data-bind="foreach: deviceList")
-        //- each item,index in deviceLists
-        //- li.card-I(class=(index + 1) % 3 == 0 ? 'row-right' : '' )
-        //- <!-- ko if: $data.loading -->
-        li.card-I.loading(style="display:none;" data-bind="css: {'row-right': ($index()+1) % 3 == 0}, visible: loading")
-            i.icon-logo
-            span.path1
-            span.path2
-            span.path3
-            span.path4
-            span.path5
-            span.path6
-            span.path7
-            span.path8
-        //- <!-- /ko -->
-        //- <!-- ko if: $data.id -->
-        li.card-I(style="display:none;" data-bind="css: {'row-right': ($index()+1) % 3 == 0}, visible: id")
-            .cont_f1
-                .cont_f1_img
-                img(data-bind="attr: {src: image_url}")
-                .cont_f1_text 
-                    .f1_name(data-bind="text: name")
-                    p
-                        label 系统：
-                        span(data-bind="system")
-                    p
-                        label 设备编号：
-                        span 1578698
-                    p
-                        label 数量：
-                        span(data-bind="text: counts")
-                    p
-                        label 提交日期：
-                        span(data-bind="text: created_at")
-            .cont_f2 样例完整度
-            .cont_f3 
-            #scheduleX
-            .cont_f4
-                span.cont_f4_o 智能穿戴syste
-                span IT科技
-            .cont_f5
-                .good
-                    i.icon-light-star
-                    i.icon-gray-star
-                    i.icon-gray-star
-                    i.icon-gray-star
-                    i.icon-gray-star
-                .down
-                a(item.id data-bind="attr:{href: '/download_can/'+id}")
-                    i.icon-download
-                    span 20
-                .look
-                    i.icon-eye
-                    span 20
-                .del 
-                    a(href="#") 删除
-                .compile
-                    a(href="#") 编辑
-        //- <!-- /ko -->     
-        .l-toolbar
-        button.ic-btn-big.i-outline-primary(style="width: 180px;") 加载更多
+        .section-main
+            .sec-hd
+                span.l-title
+                    i.v-line
+                    em 现有设备
+                .l-search
+                    .search-input
+                        input()
+                        i.search-btn.icon-search
+            ul.sec-bd
+                //- li.card-I.loading(style="display:none;" data-bind="css: {'row-right': ($index()+1) % 3 == 0}, visible: loading")
+                //-     i.icon-logo
+                //-         span.path1
+                //-         span.path2
+                //-         span.path3
+                //-         span.path4
+                //-         span.path5
+                //-         span.path6
+                //-         span.path7
+                //-         span.path8
+                li.card-I(v-for="device in deviceList")
+                    .cont_f1
+                        .cont_f1_img
+                            img(data-bind="attr: {src: image_url}")
+                        .cont_f1_text 
+                            .f1_name(data-bind="text: name")
+                            p
+                                label 系统：
+                                span(data-bind="system")
+                            p
+                                label 设备编号：
+                                span 1578698
+                            p
+                                label 数量：
+                                span(data-bind="text: counts")
+                            p
+                                label 提交日期：
+                                span(data-bind="text: created_at")
+                    .cont_f2 样例完整度
+                    .cont_f3 
+                        #scheduleX
+                    .cont_f4
+                        span.cont_f4_o 智能穿戴syste
+                        span IT科技
+                    .cont_f5
+                        .good
+                            i.icon-light-star
+                            i.icon-gray-star
+                            i.icon-gray-star
+                            i.icon-gray-star
+                            i.icon-gray-star
+                        .down
+                            a(item.id data-bind="attr:{href: '/download_can/'+id}")
+                                i.icon-download
+                                span 20
+                        .look
+                            i.icon-eye
+                            span 20
+                        .del 
+                            a(href="#") 删除
+                        .compile
+                            a(href="#") 编辑
+            .l-toolbar
+                button.ic-btn-big.i-outline-primary(style="width: 180px;") 加载更多
 </template>
 
 <script>
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
+import * as API from '@/api'
 
-let chart ={
-	'chart1':{},
-	'chart2':{}
+let chart = {
+    'chart1': {},
+    'chart2': {}
 }
 var chartGrid = {
     top: '3%',
@@ -244,9 +239,9 @@ var chartsOpt2 = {
         type: 'bar'
     }]
 };
-var chartsOpt =  {
-	chartsOpt1: chartsOpt1,
-	chartsOpt2: chartsOpt2
+var chartsOpt = {
+    chartsOpt1: chartsOpt1,
+    chartsOpt2: chartsOpt2
 }
 
 function initCircleChart(cls) {
@@ -267,6 +262,7 @@ export default {
     },
     data() {
         return {
+            deviceList: [],
             completedSteps: 10,
             totalSteps: 100,
             equList: [{
@@ -291,6 +287,11 @@ export default {
                 // some swiper options...
             }
         }
+    },
+    computed: {
+        userinfo() {
+            return this.$store.state.userinfo
+        },
     },
     mounted() {
         var _this = this
@@ -320,6 +321,7 @@ export default {
             },
         })
         this.echartsInit()
+        this.getDeviceList()
     },
     updated() {
 
@@ -340,10 +342,22 @@ export default {
             chart['chart2'].setOption(chartsOpt2);
         },
         changePeriod(event, num, _period) {
-			console.log("num",num);
+            console.log("num", num);
             chartsOpt[`chartsOpt${num}`].xAxis.data = period[_period]
-			chart[`chart${num}`].setOption(chartsOpt1);
-			$(event.target).addClass('active').siblings().removeClass('active')
+            chart[`chart${num}`].setOption(chartsOpt[`chartsOpt${num}`]);
+            $(event.target).addClass('active').siblings().removeClass('active')
+        },
+        getDeviceList() {
+            if(!_.get(this.userinfo,'id'))return
+            API.getDeviceList({
+                userId: this.userinfo.id
+            }).then(({
+                data
+            }) => {
+                
+            }).catch((err) => {
+                console.log(err);
+            })
         }
     }
 }

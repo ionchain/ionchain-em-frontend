@@ -32,3 +32,7 @@ export const createUser = (data, params) => {
 export const Logout = (params) => {
   return _axios.get('/logout', {params: params, baseURL: ''})
 }
+// 设备列表
+export const getDeviceList = ({userId}) => {
+  return _axios.get(`/users${userId}/devices`)
+}

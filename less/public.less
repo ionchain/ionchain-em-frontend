@@ -6,8 +6,10 @@
 @import "imports/form.less";
 @import "footer.less";
 @import "imports/iconfont.less";
-p{
-    margin-bottom: 0 !important;
+.ly-root{
+    p{
+        margin-bottom: 0;
+    }
 }
 .link{
     color: @baseColor;
@@ -391,6 +393,7 @@ img{
     position: relative;
     overflow:hidden;
     width: 285px;
+    box-sizing: border-box;
     .card-hd{
         border-bottom: 1px solid @borderColor;
         height: 51px;
@@ -446,6 +449,27 @@ img{
     }
     .hide-tem{
         display: none;
+    }
+}
+.sec-hd{
+    .clearFix();
+    line-height: 40px;
+    margin-bottom: 40px;
+    .l-title{
+        font-size: 28px;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    .v-line{
+        margin-right: 20px;
+        border-left: 4px solid @baseColor;
+        display: inline-block;
+        height: 26px;
+        position: relative;
+        top: 4px;
+    }
+    .l-search{
+        float:right;
     }
 }
 @import "register.less";

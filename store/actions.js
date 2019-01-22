@@ -17,14 +17,14 @@ export default {
   }
   // 获取导航数据
   /* [types.GET_NAVIGATION]({ commit, state }, params) {
-    API.navigation().then((res) => {
-      if (res.data.success) {
-        commit(types.UPDATE_NAVIGATION, res.data.data)
+    API.navigation().then(({data}) => {
+      if (data.success) {
+        commit(types.UPDATE_NAVIGATION, data.data)
       } else {
         vm.$message({
           duration: 5000,
           type: 'warning',
-          message: res.data.msg
+          message: data.msg
         })
       }
     }).catch((err) => {
