@@ -65,7 +65,7 @@
             <div><img src="/icon/succeed.svg" alt=""></div>
                 <div>密码设置成功!</div>
                 <div class="register_next">
-                    <button class="i-button" @click="logOut">完成</button>
+                    <button class="i-button" @click="goto">完成</button>
                 </div>
         </li>
     </ul>
@@ -82,7 +82,7 @@ export default {
     },
     data() {
         return {
-            step: 3, // 设置初始值为1
+            step: 1, // 设置初始值为1
             stepOne: 1,
             reGetEnable: false,
             secondsLeft: 0, // 剩余读秒
@@ -212,6 +212,9 @@ export default {
                 }
             }
         },
+        goto(){
+            this.$router.push('/login')
+        }
     }
 }
 </script>

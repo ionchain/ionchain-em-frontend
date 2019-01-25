@@ -36,3 +36,7 @@ export const Logout = (params) => {
 export const getDeviceList = ({userId}) => {
   return _axios.get(`/users${userId}/devices`)
 }
+//提交反馈
+export const feedbackCode = (data) => {
+  return _axios.get(`/feedbacks/create`, data)
+}

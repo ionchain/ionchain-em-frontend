@@ -10,7 +10,8 @@ const store = () => new Vuex.Store({
   state: {
     counter: 0,
     userinfo: {},
-    isLoginPage: false
+    isLoginPage: false,
+    routeName: ''
   },
   mutations,
   actions

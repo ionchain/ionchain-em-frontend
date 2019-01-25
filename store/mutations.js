@@ -11,5 +11,8 @@ export default {
   },
   [types.SET_IS_LOGING_PAGE](state, newdata) {
     state.isLoginPage = newdata
+  },
+  [types.SET_routeName](state, newdata) {
+    state.routeName = newdata
   }
 }

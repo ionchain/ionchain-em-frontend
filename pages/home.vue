@@ -167,6 +167,7 @@
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 import * as API from '@/api'
+// import "@/less/home.less";
 
 let chart = {
     'chart1': {},
@@ -354,7 +355,7 @@ export default {
             }).then(({
                 data
             }) => {
-                
+
             }).catch((err) => {
                 console.log(err);
             })
@@ -362,7 +363,7 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
+<style lang="less">
+    @import "../less/home.less";
 </style>
+
