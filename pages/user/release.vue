@@ -54,6 +54,7 @@
 <script>
 import * as API from '@/api'
 export default {
+    layout: 'user',
 	data (){
 		return {
             deviceLists: []

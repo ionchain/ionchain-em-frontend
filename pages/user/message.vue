@@ -28,3 +28,27 @@
         ul 
             li(style="margin-top:20px;") 正在开发中请等待!    
 </template>
+<script>
+export default {
+    layout: 'user',
+	data (){
+		return {
+        }
+	},
+    computed: {
+        userinfo(){
+            return Object.assign({
+                name: '',
+                company_name: '',
+                org_code: '',
+                position: ''
+            }, this.$store.state.userinfo)
+        }
+    },
+	created() {
+		if (process.client) {
+			window.vm = this
+		}
+	}
+}
+</script>

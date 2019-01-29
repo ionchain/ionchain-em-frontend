@@ -1,0 +1,256 @@
+@import 'imports/variable.less';
+@import 'imports/mixins.less';
+// 头部
+.user-header{
+    height:118px;
+    padding-top: 30px;
+    .header-photo, .header-name{
+        float: left
+    }
+    .header-photo{
+        width: 88px;
+        height: 88px;
+        font-size: 88px;
+        >img{
+            width: 100%;
+        }
+    }
+    .header-name{
+        margin-left: 20px;
+        font-size: 12px;
+        .header-name_o{
+            margin-bottom: 10px;
+            b{
+                font-size: 24px;
+                color: @fsColor;
+            }
+            a{
+                display:inline-block;
+                width: 85px;
+                height: 18px;
+                margin-left: 8px;
+                background: @inputBorderColor;
+                border-radius: 9px;
+                text-align: center;
+                line-height: 18px;
+                color: @buttonColor;
+            }
+            .high_rz{
+                background: @baseColor;
+                display: none;
+            }
+            a:hover{
+                text-decoration: none;
+            }
+        }
+        .header-name_t{
+            margin-bottom: 6px;
+        }
+        .header-name_t, .header-name_h{
+            >label{
+                color: @inputTextColor;
+            }
+            >span{
+                color:@baseTextColor;
+            }
+        }
+    }
+} 
+.user-content{
+    .clearFix();
+    padding: 20px 0 60px;
+    font-size: 16px;
+    .user-nav,.release{
+        float: left
+    }
+    //  侧边导航栏
+    .user-nav{
+        width: 206px;
+        margin-right: 20px;
+        box-sizing: border-box;
+        border:1px solid @borderColor;
+        -moz-transition: height 2s;
+        -webkit-transition: height 2s;
+        -o-transition: height 2s;
+        transition: height 2s;
+        a{
+            width: 206px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            display: block;
+            box-sizing: border-box;
+            color: @fsColor;
+            border-bottom: 1px solid @borderColor;
+            padding-right: 1px;
+        }
+        li:last-child>a{
+            border-bottom: 1px solid  @borderColor;
+        }
+        a:hover{
+            border-right: 2px solid @baseColor;
+            padding-right:0;
+            background: #F4F7FC;
+            color: @baseColor;
+            text-decoration: none;
+        }
+        // 选中
+        .active{
+            border-right: 2px solid @baseColor;
+            padding-right:0;
+            background: #F4F7FC;
+            color: @baseColor;
+            text-decoration: none;
+        }
+        .a_border{
+            border:none !important;
+            transition: all 2s;
+        }
+    }
+    // 内容
+    // 我的发布(通用)
+    .release{
+        width: 974px;
+        .release_nav{
+            height: 60px;
+            border: 1px solid @borderColor;
+            >a{
+                height: 59px;
+                padding: 0 10px;
+                line-height: 60px;
+                margin-left: 26px;
+                text-align: center;
+                box-sizing: border-box;
+                float: left;
+                color: @fsColor;
+                text-decoration: none;
+            }
+            >a:hover{
+                text-decoration: none;
+            }
+            .active{
+                color: @baseColor;
+                border-bottom: 2px solid @baseColor;
+            }
+        }
+        .release_content{
+            .clearFix();
+            .second{
+                margin-right: 20px !important;
+            }
+            .plus{
+                height: 404px;
+                margin-top: 20px;
+                padding:30px 20px;
+                float: left;
+                width: 477px;
+                box-sizing: border-box;
+                border: 1px dotted @inputBorderColor;
+                text-align: center;
+                color: @baseColor;
+                position: relative;
+                i,span{
+                    position: absolute;
+                    background: @baseColor;
+                    top:0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
+                i{
+                    width: 50px;
+                    height: 2px;
+                }
+                span{
+                    width: 2px;
+                    height: 50px;
+                }
+            }
+            .plus:hover{
+                border-color: @baseColor;    
+            }
+        }
+    }
+    // 我的收藏
+    .collect_down,.collect_look{
+        float: right;
+    }
+    // 消息中心
+    .page-message{
+        .message_down{
+            li{
+                height: auto !important;
+            }
+        }
+        ul{
+            display: none;
+        }
+        .message_on{
+            display: block !important;
+        }
+    }
+    
+    // 投诉与反馈
+    .comp{
+        .comp_text{
+            position: relative;
+            width: 974px;
+            textarea{
+                width: 100%;
+                border:1px solid @inputBorderColor;
+                padding: 3px 5px;
+            }
+            span{
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                font-size:14px;
+                color: @inputBorderColor;
+            }
+        }  
+        .comp_tj{
+            text-align: left;
+            margin-top: 20px;
+        }
+    } 
+    // 账户设置
+    .account{
+        .account_photo{
+            width: 160px;
+            height: 160px;
+            font-size: 160px;
+            >img{
+                width: 100%;
+            }
+            >input{
+                display: none;
+            }
+        }
+        .account_select{
+            margin: 20px 0 20px 20px;
+            background: none;
+            border: 1px solid #169194;
+            color: #169194;
+            outline: none;
+        }
+        .account_text{
+            color: @grayText;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .account_form{
+            label{
+                padding-left: 12px;
+            }
+            label::before{
+                content:" ";
+            }
+            .input-wrap{
+                width: 830px;
+            }
+        }
+    } 
+    
+
+}

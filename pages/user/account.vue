@@ -32,22 +32,28 @@
 </template>
 <script>
 export default {
+    layout: 'user',
 	data (){
 		return {
-            _userinfo: {
-                name: '',
-                company_name: '',
-                org_code: '',
-                position: ''
-            }
         }
 	},
     computed: {
         userinfo(){
-            return Object.assign({}, this._userinfo, this.$store.state.userinfo)
+            return Object.assign({
+                name: '',
+                company_name: '',
+                org_code: '',
+                position: ''
+            }, this.$store.state.userinfo)
+        }
+    },
+    watch: {
+        userinfo(val){
+            console.log("userinfo", val);
         }
     },
 	created() {
+        console.log("userinfo", this.$store.state.userinfo)
 		if (process.client) {
 			window.vm = this
 		}

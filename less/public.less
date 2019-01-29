@@ -6,6 +6,10 @@
 @import "imports/form.less";
 @import "footer.less";
 @import "imports/iconfont.less";
+body {
+    font-family: PingFangSC-Regular, sans-serif !important;
+    color: #2D2F37;
+}
 .ly-root{
     p{
         margin-bottom: 0;
@@ -471,6 +475,62 @@ img{
         float:right;
     }
 }
+.ly-thin{
+    margin: auto;
+    width: 830px;
+    .clearFix();
+    padding-bottom: 72px;
+}
+.page-title-I{
+    font-size: 24px;
+    padding: 39px 0;
+}
+.v-select{
+    .dropdown-toggle{
+        padding: 4px 0 6px !important;
+    }
+    .clear{
+        margin-top: 5px;
+        margin-right: 8px;
+        display: none;
+    }
+}
+.tip-box-A{
+    position: absolute;
+    display: none;
+    .arrow-left{
+        position: relative;
+        top: 16px;
+        display: inline-block;
+    }
+    .tip-text{
+        display: inline-block;
+        padding: 35px;
+        color: @grayText;
+        border-radius: 5px;
+        border: 1px solid #CCCFD8;
+        .l-tit{
+            margin-right: 42px;
+            position: relative;
+            top: -10px;
+        }
+        img{
+            margin-right: 30px;
+        }
+        .l-tip-words{
+            padding: 25px 0;
+            font-size: 12px;
+            display: inline-block;
+        }
+    }
+}
+.c-tool-bar{
+    margin-top: 20px;
+    >*{
+        margin-right: 30px;
+    }
+}
 @import "register.less";
 @import "retrieve.less";
 @import "articles.less";
+@import "user.less";

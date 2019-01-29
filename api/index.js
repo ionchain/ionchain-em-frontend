@@ -40,3 +40,19 @@ export const getDeviceList = ({userId}) => {
 export const feedbackCode = (data) => {
   return _axios.get(`/feedbacks/create`, data)
 }
+//收藏
+export const collectCode = (data) => {
+  return _axios.post(`/favorites/create`, data)
+}
+//取消收藏
+export const cancelCode = (data) => {
+  return _axios.post(`/favorites/destroy`, data)
+}
+//获取设备一级分类列表
+export const deviceCats = () => {
+  return _axios.get(`/categories`)
+}
+//获取设备子级分类列表
+export const deviceSubCats = (pid) => {
+  return _axios.get(`categories/${pid}/sub_categories`)
+}

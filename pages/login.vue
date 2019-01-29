@@ -72,7 +72,7 @@ export default {
                     }) => {
                         if (data.success === 0) {
                             this.$snotify.success('登录成功')
-                            this.$router.push('/')
+                            this.$router.push('/user/account')
                             this.$store.commit(types.SET_USERINFO, data.data)
                             if (this.isLoginAuto) {}
                         } else {
