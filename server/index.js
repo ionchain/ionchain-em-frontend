@@ -161,19 +161,14 @@ async function start () {
     var custormHeaders = {}
     var headersProps = ['token']
     var target = 'http://sendrobot.ionchain.org'
-    // var target = 'http://ionc_stoer.ionchain.org:8001'
     headersProps.forEach((item) => {
       if (ctx.req.headers.hasOwnProperty(item)) {
         custormHeaders[item] = ctx.req.headers.token
       }
     })
 
-    // for(let prop in ctx.req.headers){
-    //   console.log("}}}}}}}}}}}}}}}}}}", prop)
-    // }
-
     url = target + ctx.request.url
-    // console.log('proxy url @@', url, ctx.request.body)
+    console.log('proxy url @@', url, ctx.request.body)
 
     var options = {
       url: url,
@@ -198,15 +193,14 @@ async function start () {
       }
       ctx.response.set({'content-type': res.headers['content-type']})
       ctx.body = res.data
-      if (ctx.request.url.indexOf(('/users/login') > -1 && ctx.body.success === 0)) {
-        console.log("set session **********");
+      if (ctx.request.url.indexOf('/users/login') != -1 && ctx.body.success === 0) {
         ctx.session.userinfo = res.data.data
+        console.log(ctx.request.url, "$$$$$$$$$$$$$$$$$$");
       }
     }).catch((err) => {
-      // console.log('err===>', err)
+      console.log('err===>', err)
       ctx.body = err.response.statusText
       ctx.status = err.response.status
-    }).then(() => {
     })
   })
 

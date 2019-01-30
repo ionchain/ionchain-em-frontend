@@ -44,6 +44,14 @@ import MyHeader from '../components/Header.vue'
 import MyFooter from '../components/Footer.vue'
 
 export default {
+	head () {
+		return {
+			title: "IONPartnership",
+			meta: [
+			// { hid: 'description', name: 'description', content: 'My custom description' }
+			]
+		}
+	},
 	computed: {
         userinfo(){
             return Object.assign({

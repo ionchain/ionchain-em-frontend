@@ -34,11 +34,11 @@ export const Logout = (params) => {
 }
 // 设备列表
 export const getDeviceList = ({userId}) => {
-  return _axios.get(`/users${userId}/devices`)
+  return _axios.get(`/users/${userId}/devices`)
 }
 //提交反馈
 export const feedbackCode = (data) => {
-  return _axios.get(`/feedbacks/create`, data)
+  return _axios.post(`/feedbacks/create`, data)
 }
 //收藏
 export const collectCode = (data) => {
@@ -54,5 +54,22 @@ export const deviceCats = () => {
 }
 //获取设备子级分类列表
 export const deviceSubCats = (pid) => {
-  return _axios.get(`categories/${pid}/sub_categories`)
+  return _axios.get(`/categories/${pid}/sub_categories`)
+}
+// 用户信息 
+export const userInfo = ({userId} = {}) =>{
+  return _axios.get(`/companies/detail?user_id=${userId}`)
+}
+// 收藏列表
+export const getCollectList = ({userId} = {}) =>{
+  return _axios.get(`/users/${userId}/favorites`)
+}
+// 历史总收益接口
+export const getHisProfit = ({txTo} = {})=> {
+  var txTo = '0x1ac505f02e6a6aa7abb1b8b99c7c43bc53dba2de'
+  return _axios.get(`/equipment/totalIncome?txTo=${txTo}`,{baseURL: 'http://192.168.23.149:3001/v1'})
+}
+// 设备详情
+export const getDeviceDesc = ({deviceId} = {}) =>{
+    return _axios.get(`/devices/${deviceId}`)
 }

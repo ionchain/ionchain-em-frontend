@@ -18,9 +18,9 @@ export const _axios = axios.create({
 
 _axios.interceptors.request.use(
   (config) => {
-    if (localStorage.token) {
-      config.headers.accessToken = localStorage.token
-    }
+    // if (localStorage.token) {
+    //   config.headers.accessToken = localStorage.token
+    // }
     return config
   },
   (error) => {
@@ -36,7 +36,7 @@ _axios.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          localStorage.clear()
+          // localStorage.clear()
           break
         default:
           window.vm.$snotify.error(`${error.response.status} ${error.response.statusText}`)

@@ -43,28 +43,39 @@
                             span 20
 </template>
 <script>
+import * as API from '@/api'
 export default {
     layout: 'user',
 	data (){
 		return {
             collectLists: [],
-            _userinfo: {
-                name: '',
-                company_name: '',
-                org_code: '',
-                position: ''
-            }
         }
 	},
     computed: {
         userinfo(){
-            return Object.assign({}, this._userinfo, this.$store.state.userinfo)
+            return Object.assign({}, {
+                id: '',
+                name: '',
+                position: ''
+            }, this.$store.state.userinfo)
         }
     },
 	created() {
 		if (process.client) {
 			window.vm = this
-		}
-	}
+        }
+        this.getCollectList()
+    },
+    methods: {
+        getCollectList(){
+            API.getCollectList({userId: this.userinfo.id}).then(({data})=>{
+                if(data.success){
+                    this.collectLists =  data.data
+                }else{
+                    this.$notify.error(data.message)
+                }
+            })
+        }
+    }
 }
 </script>

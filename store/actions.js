@@ -10,7 +10,7 @@ export default {
     }
     // console.log('nuxtServerInit', arguments[1])
     // console.log('nuxtServerInit###############', Object.keys(arguments[1]).join(','))
-    console.log('nuxtServerInit@@@@@@@', req.ctx.session.userinfo)
+    // console.log('nuxtServerInit@@@@@@@', req.ctx.session.userinfo)
     if (req.ctx.session && req.ctx.session.userinfo) {
       commit(types.SET_USERINFO, req.ctx.session.userinfo)
     }

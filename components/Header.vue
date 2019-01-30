@@ -3,30 +3,27 @@ div.ly-header#header
     div.h-main
         a.logo(href='/')
             i.icon-site-logo
-        if userinfo && routeName!='login'
-            .h-info
-                span 当前登录
-                a.dis-normal(href="/user/account") #{userinfo.mobile_num}
-                span.quit(data-bind='click: logout')  退出
-        if userinfo && routeName!="login"
-            .h-have
-                a.z_d(href='/register')
-                    span 注册  {{routeName}}
-                span.xc_x |
-                a.z_d(href='/login')
-                    span 登录
-        if  !userinfo && routeName=='login' || currentPage == 'register' || currentPage == 'retrieve'
-            ul.navitems
-                li
-                    a.active(href="#") 贡献统计
-                li.navitems_t 
-                    a(href="#") 现有设备
-                li 
-                    a(href="#") 参与投票
-            .nav-search
-                .search-input
-                    input()
-                    i.search-btn.icon-search
+        .h-info(v-if="!isEmpty(userinfo) && routeName!='login'")
+            span 当前登录
+            a.dis-normal(href="/user/account") {{userinfo.mobile_num}}
+            span.quit(@click="logOut")  退出
+        .h-have(v-if='isEmpty(userinfo) && routeName!="login"')
+            a.z_d(href='/register')
+                span 注册
+            span.xc_x |
+            a.z_d(href='/login')
+                span 登录
+        ul.navitems(v-if="!userinfo && routeName=='login' || routeName == 'register' || routeName == 'retrieve'")
+            li
+                a.active(href="#") 贡献统计
+            li.navitems_t 
+                a(href="#") 现有设备
+            li 
+                a(href="#") 参与投票
+        .nav-search(v-if="!userinfo && routeName=='login' || routeName == 'register' || routeName == 'retrieve'")
+            .search-input
+                input()
+                i.search-btn.icon-search
 </template>
 
 <script>
@@ -36,6 +33,11 @@ import * as types from '../store/mutation-types'
 
 
 export default {
+    data(){
+        return {
+            _: _
+        }
+    },
     computed: {
         userinfo() {
             return this.$store.state.userinfo

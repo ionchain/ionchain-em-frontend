@@ -15,6 +15,14 @@ import MyFooter from '../components/Footer.vue'
 // import _ from 'lodash'
 
 export default {
+  head () {
+    return {
+      title: "IONPartnership",
+      meta: [
+        // { hid: 'description', name: 'description', content: 'My custom description' }
+      ]
+    }
+  },
   components: {
     MyHeader,
     MyFooter

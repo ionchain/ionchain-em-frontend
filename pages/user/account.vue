@@ -1,5 +1,5 @@
 <template lang="pug">
-.account.release 
+.account.release
     form.ic-form.of-hide.account_form#account_from
         .account_photo.hide
             img(src="/img/product/product_1.jpg")
@@ -31,10 +31,17 @@
         button.ic-btn.i-outline 取消
 </template>
 <script>
+import * as API from '@/api'
 export default {
     layout: 'user',
 	data (){
 		return {
+            userInfoAll: {
+                name: '',
+                company_name: '',
+                org_code: '',
+                position: ''
+            }
         }
 	},
     computed: {
@@ -44,7 +51,7 @@ export default {
                 company_name: '',
                 org_code: '',
                 position: ''
-            }, this.$store.state.userinfo)
+            }, this.$store.state.userinfo, this.userInfoAll)
         }
     },
     watch: {
@@ -56,8 +63,20 @@ export default {
         console.log("userinfo", this.$store.state.userinfo)
 		if (process.client) {
 			window.vm = this
-		}
-	}
+        }
+        this.getUserInfoAll()
+    },
+    methods: {
+        getUserInfoAll(){
+            API.userInfo({userId:this.userinfo.id}).then(({data})=>{
+                if(data.success == 0){
+                    Object.assign(this.userInfoAll, data.data)
+                }else{
+                    this.$snotify.error(data.message)
+                }
+            })
+        }
+    }
 }
 </script>
     

@@ -66,10 +66,10 @@ export default {
         }
     },
 	created() {
+        this.getDeviceLists()
     },
     methods: {
         getDeviceLists(){
-            console.log("userinfo", this.userinfo);
             API.getDeviceList({userId: this.userinfo.id}).then(({data})=>{
                 if(data.success == 0){
                     this.deviceLists = data.data
