@@ -8,6 +8,7 @@ import Tabs from 'vue-tabs-component'
 import messages from '@/locales'
 Vue.use(Tabs);
 
+// console.log("message>>>>", messages);
 
 // VeeValidate 汉化配置
 Vue.use(VueI18n)
@@ -47,4 +48,26 @@ import 'vue-snotify/styles/material.css'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 
+export default ({ app, store }) => {
+  // Set i18n instance on app
+  // This way we can use it in middleware and pages asyncData/fetch
+  app.i18n = new VueI18n({
+    locale: store.state.locale,
+    fallbackLocale: 'en',
+    messages
+    // messages: {
+    //   'en': require('~/locales/en.js'),
+    //   'zh_CN': require('~/locales/zh-CN.js')
+    // }
+  })
+
+  app.i18n.path = (link) => {
+    console.log("link==============>",link);
+    if (app.i18n.locale === app.i18n.fallbackLocale) {
+      return `/${link}`
+    }
+
+    return `/${app.i18n.locale}/${link}`
+  }
+}
 

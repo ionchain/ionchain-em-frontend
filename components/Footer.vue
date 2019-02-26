@@ -4,38 +4,38 @@
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="footer_text1">
-                    <div class="col-titles">关于</div>
-                    <a href="team_CN.html">团队</a>
-                    <a href="pdfjs/web/viewer_CN.html">白皮书</a>
-                    <a href="vision_CN.html">基金会</a>
-                    <a href="http://ionc_stoer.ionchain.org/">厂商生态</a>
+                    <div class="col-titles" v-html="$t('vote')">关于</div>
+                    <a href="team_CN.html" v-html="$t('team')">团队</a>
+                    <a href="pdfjs/web/viewer_CN.html" v-html="$t('white_paper')">白皮书</a>
+                    <a href="vision_CN.html" v-html="$t('foundation')">基金会</a>
+                    <a href="http://ionc_stoer.ionchain.org/"  v-html="$t('IONPartnership')">厂商生态</a>
                 </div>
 
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="footer_text2">
-                    <div class="col-titles">技术</div>
-                    <a href="wallet.html" >钱包</a>
-                    <a href="coming_soon.html">浏览器</a>
-                    <a href="coming_soon.html" >DAPP</a>
+                    <div class="col-titles" v-html="$t('technology')">技术</div>
+                    <a href="wallet.html" v-html="$t('wallet')">钱包</a>
+                    <a href="coming_soon.html" v-html="$t('explorer')">浏览器</a>
+                    <a href="coming_soon.html" v-html="$t('explorer')">DAPP</a>
                 </div>
 
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="footer_text3">
-                    <div class="col-titles">联系</div>
-                    <a href="mailto:80863100@qq.com">概要</a>
-                    <a href="mailto:80863100@qq.com">媒体</a>
-                    <a href="mailto:80863100@qq.com">工作</a>
-                    <a href="mailto:80863100@qq.com">实验室</a>
+                    <div class="col-titles" v-html="$t('technology')">联系</div>
+                    <a href="mailto:80863100@qq.com" v-html="$t('summary')">概要</a>
+                    <a href="mailto:80863100@qq.com" v-html="$t('media')">媒体</a>
+                    <a href="mailto:80863100@qq.com" v-html="$t('work')">工作</a>
+                    <a href="mailto:80863100@qq.com" v-html="$t('laboratory')">实验室</a>
                 </div>
 
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="footer_text4">
-                    <div class="col-titles">语言</div>
-                    <a href="index_CN.html">中文</a>
-                    <a href="index.html" >English</a>
+                    <div class="col-titles" v-html="$t('language')">语言</div>
+                    <a href="/?locale=zh_CN" v-html="$t('technology')">中文</a>
+                    <a href="/?locale=en">English</a>
                 </div>
 
             </div>

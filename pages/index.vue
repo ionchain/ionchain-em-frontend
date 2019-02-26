@@ -7,7 +7,7 @@
                 ul.swiper-wrapper
                     li.b-item.swiper-slide(v-for="banner in banners")
                         a(href="javascript:;")
-                            .ads-words 广告位招租
+                            .ads-words {{$t('adv_space_rental')}}
                             img(:src="banner")
                             .l-upper
                                 .l-tool-bar
@@ -18,12 +18,12 @@
                                         span.item.item2
                                             i.icon-eye
                                             s 20
-                                        button.ic-btn-big.i-outline-primary 参与投票
+                                        button.ic-btn-big.i-outline-primary {{$t('vote')}}
             ul.panel.swiper-pagination
     //- banner end
     //- 公告 start
     .section-notice.home-section
-        span IONChain币总数：
+        span {{$t('IONC_token_total_number')}} ：
         span.f-32.bold(data-bind="text: totalIncome")
         span  IONChain
     //- 公告 end
@@ -54,14 +54,14 @@
                                         s %
                             .l-info
                                 p.info1
-                                    span.tip-color 贡献度：
+                                    span.tip-color {{$t('contribution_degree')}}：
                                     span.bold.them-em1.font-nm 8981
                                     span.them-em2   IONC
                                 p
-                                    span.tip-color 数量：
+                                    span.tip-color {{$t('amount')}} ：
                                     span 50 K
                                 p
-                                    span.tip-color 在线时长：
+                                    span.tip-color {{$t('online_time')}} ：
                                     span 9,099.00 h
         .eq_next.icon-right-arrow
     //- 数据图表
@@ -69,39 +69,37 @@
         .section-main
             .box-chart.l-boxL
                 .chart-hd
-                    span.l-tit 贡献曲线
+                    span.l-tit {{$t('contribution_curve')}}
                     ul.l-panel
                         li.active(@click="changePeriod($event,1,'24h')") 24h
-                        li(@click="changePeriod($event,1, 'week')") 周
-                        li(@click="changePeriod($event,1, 'month')") 月
-                        li(@click="changePeriod($event,1, 'year')") 年
+                        li(@click="changePeriod($event,1, 'week')") {{$t('week')}}
+                        li(@click="changePeriod($event,1, 'month')" ) {{$t('month')}}
+                        li(@click="changePeriod($event,1, 'year')" ) {{$t('year')}}
                 .chart-bd.chart1#chart1
-                    .error-tip-gray(style="display:none;")
-                        | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firefox 等，以显示完整内容
+                    .error-tip-gray(style="display:none;") {{$t('your_broswer_v_low')}}
             .box-chart.l-boxR
                 .chart-hd
-                    span.l-tit 类型增长比
+                    span.l-tit {{$t('category_increase_proportion')}}
                     ul.l-panel
                         li.active(@click="changePeriod($event,2,'24h')") 24h
-                        li(@click="changePeriod($event,2, 'week')") 周
-                        li(@click="changePeriod($event,2, 'month')") 月
-                        li(@click="changePeriod($event,2, 'year')") 年
+                        li(@click="changePeriod($event,2, 'week')") {{$t('week')}}
+                        li(@click="changePeriod($event,2, 'month')" ) {{$t('month')}}
+                        li(@click="changePeriod($event,2, 'year')" ) {{$t('year')}}
                 .chart-bd.chart2#chart2
-                    .error-tip-gray(style="display:none;" data-bind="visible: canvasError()")
-                        | 您的浏览器版本过低，不支持canvas，请升级浏览器，或更换支持的浏览器，如 chrome ，firefox 等，以显示完整内容
+                    .error-tip-gray(style="display:none;" ) {{$t('your_broswer_v_low')}}
     //- 广告位
     .section-adv
         img.wid-max(src="/img/home/adv-bg.png")
         .l-upper
-            p 让你的设备加入全球物联网
-            a.ic-btn-normal.i-primary(href="/user/") 发布设备
+            p {{$t('let_your_equ_join_net')}}
+            a.ic-btn-normal.i-primary(href="/user/" ) {{$t('launch_device')}}
     //- 设备，卡片列表
     .section-equipment
         .section-main
             .sec-hd
                 span.l-title
                     i.v-line
-                    em 现有设备
+                    em {{$t('equipments')}}
                 .l-search
                     .search-input
                         input()
@@ -124,23 +122,23 @@
                         .cont_f1_text 
                             .f1_name(data-bind="text: name")
                             p
-                                label 系统：
+                                label {{$t('system')}} ：
                                 span(data-bind="system")
                             p
-                                label 设备编号：
+                                label {{$t('device_number')}} ：
                                 span 1578698
                             p
-                                label 数量：
+                                label {{$t('amount')}} ：
                                 span(data-bind="text: counts")
                             p
-                                label 提交日期：
+                                label {{$t('submit_date')}} ：
                                 span(data-bind="text: created_at")
-                    .cont_f2 样例完整度
+                    .cont_f2 {{$t('sample_integrity')}}
                     .cont_f3 
                         #scheduleX
                     .cont_f4
-                        span.cont_f4_o 智能穿戴syste
-                        span IT科技
+                        span.cont_f4_o {{$t('smart_wear')}}
+                        span {{$t('it_technology')}}
                     .cont_f5
                         .good
                             i.icon-light-star
@@ -156,11 +154,11 @@
                             i.icon-eye
                             span 20
                         .del 
-                            a(href="#") 删除
+                            a(href="#") {{$t('delete')}}
                         .compile
-                            a(href="#") 编辑
+                            a(href="#") {{$t('edit')}}
             .l-toolbar
-                button.ic-btn-big.i-outline-primary(style="width: 180px;") 加载更多
+                button.ic-btn-big.i-outline-primary(style="width: 180px;" ) {{$t('load_more')}}
 </template>
 
 <script>

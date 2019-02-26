@@ -1,4 +1,4 @@
-export const en = {
+export default {
 	please_enter_mobile: "Enter your mobile no",
 	mobile_illegal: "Invalid mobile number",
 	please_enter_pwd: "Enter your password",
@@ -94,7 +94,7 @@ export const en = {
 	colon: ":",
 	online_time: "Online time",
 	contribution_degree: "Contribution degree",
-	please_enter_your_name: "请输入您的姓名",
+	please_enter_your_name: "Please enter your name",
 	please_enter_your_company: "Please enter your company",
 	please_enter_your_company_code: "Please enter your Company code",
 	please_enter_your_position: "Please enter your position",
@@ -127,5 +127,8 @@ export const en = {
 	author: "Author",
 	cownload_call: "Download call",
 	device_description: "Device description",
-	information_sample: "Information sample"
+	information_sample: "Information sample",
+	adv_space_rental:"advertising space rental",
+	select_image: "select picture",
+	account_image_tip: "Choose your favorite image: JPG, PNG, GIF, size no more than 5MB",
 }

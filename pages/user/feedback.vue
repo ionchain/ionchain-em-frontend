@@ -1,7 +1,7 @@
 <template lang="pug">
     .comp.release 
         .comp_text
-            textarea(row="5" v-model="form.content" style="height:400px;resize:none" placeholder="请输入您的反馈对我们非常重要，如果您的建议被系统采用认可，将会获得10枚ION奖励...")
+            textarea(row="5" v-model="form.content" style="height:400px;resize:none" :placeholder="$t('please_enter_feekback_may_have_award')")
             span 0/1000
         .comp_tj
             button.ic-btn.i-primary(@click="feedbackCommit") 提交

@@ -1,4 +1,4 @@
-export const zh_CN = {
+export default {
 	please_enter_mobile : "请输入手机号",
 	mobile_illegal: "手机号码不合法",
 	please_enter_pwd: "请输入密码",
@@ -90,7 +90,7 @@ export const zh_CN = {
 	language: "语言",
 	technology: "技术",
 	explorer: "浏览器",
-	DAPP: "DAPP",
+	explorer: "DAPP",
 	colon: "：",
 	online_time: "在线时长",
 	contribution_degree: "贡献度",
@@ -127,5 +127,8 @@ export const zh_CN = {
 	author:"作者",
 	cownload_call: "下载调用",
 	device_description: "设备信息",
-	information_sample: "信息样例"
+	information_sample: "信息样例",
+	adv_space_rental:"广告位招租",
+	select_image: "选择图片",
+	account_image_tip: "选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB" 
 }

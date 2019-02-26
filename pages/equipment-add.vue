@@ -1,6 +1,6 @@
 <template lang="pug">
     .ly-thin#page-equ-add
-        h2.page-title-I 发布设备
+        h2.page-title-I 发布设备 
         .page-content
             .ic-form.clearfix#equipment-form
                 .ic-form-item

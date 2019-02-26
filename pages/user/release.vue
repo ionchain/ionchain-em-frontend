@@ -1,7 +1,7 @@
 <template lang="pug">
     .release 
         .release_nav 
-            a(href="#").active 设备
+            a(href="#").active {{$t('device')}}
         ul.release_content
             li.card-I(v-for="(item,index) in deviceLists" :class="{second: index % 2 == 0 }")
                 .cont_f1
@@ -10,23 +10,23 @@
                     .cont_f1_text
                         .f1_name {{item.name}}
                         p
-                            label 系统：
+                            label {{$t('system')}}：
                             span {{item.system}}
                         p
-                            label 设备编号：
+                            label {{$t('device_number')}}：
                             span 1578698
                         p
-                            label 数量：
+                            label {{$t('amount')}}：
                             span {{item.counts}}
                         p
-                            label 提交日期：
+                            label {{$t('submit_date')}}：
                             span {{item.created_at}}
-                .cont_f2 样例完整度：
+                .cont_f2 {{$t('sample_integrity')}}：
                 .cont_f3
                 .scheduleX(data-progress="90")
                 .cont_f4
-                    span.cont_f4_o 智能穿戴
-                    span IT科技
+                    span.cont_f4_o {{$t('smart_wear')}}
+                    span {{$t('it_technology')}}
                 .cont_f5
                     .good
                         i.icon-light-star
@@ -43,9 +43,9 @@
                         i.icon-eye
                         span 20
                     .del 
-                        a(href="#") 删除
+                        a(href="#") {{$t('delete')}}
                     .compile
-                        a(href="#") 编辑
+                        a(href="#") {{$t('edit')}}
             a(href="/equipment-add")    
                 li.plus
                     i

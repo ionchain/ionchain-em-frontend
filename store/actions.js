@@ -14,7 +14,10 @@ export default {
     if (req.ctx.session && req.ctx.session.userinfo) {
       commit(types.SET_USERINFO, req.ctx.session.userinfo)
     }
-  }
+    if (req.ctx.session && req.ctx.session.locale) {
+      commit(types.UPDATE_locale, req.ctx.session.locale)
+    }
+  },
   // 获取导航数据
   /* [types.GET_NAVIGATION]({ commit, state }, params) {
     API.navigation().then(({data}) => {
@@ -31,4 +34,7 @@ export default {
       console.log(err)
     })
   } */
+  [types.UPDATE_locale]({ commit, state }, params) {
+    commit(types.UPDATE_locale, data.data)
+  }
 }

@@ -4,31 +4,31 @@
         .account_photo.hide
             img(src="/img/product/product_1.jpg")
             input.hide(name='' id='equipment-pic-photo' type="file" )
-        button.hide.account_select.ic-btn-big(id="data-sample-photo")  选择图片
-        .account_text.hide 选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB
+        button.hide.account_select.ic-btn-big(id="data-sample-photo") {{$t('select_image')}} 
+        .account_text.hide {{$t('account_image_tip')}} 
         .ic-form-item
-            label 姓名
+            label {{$t('name')}} 
             .input-wrap
-                input.ic-input-big(placeholder="请输入您的姓名" name="nickname" required :value="userinfo.name")
+                input.ic-input-big(:placeholder="$t('please_enter_your_name')" name="nickname" required :value="userinfo.name")
                 //- span.input-append.tip-status 0/10
         .ic-form-item
-            label 公司
+            label {{$t('company')}}
             .input-wrap
-                input.ic-input-big(placeholder="请输入您所在的公司" name="company_name" required :value="userinfo.company_name")
+                input.ic-input-big(:placeholder="$t('please_enter_your_company')" name="company_name" required :value="userinfo.company_name")
                 //- span.input-append.tip-status 0/80
         .ic-form-item
-            label 公司组织代码
+            label {{$t('company_code')}}
             .input-wrap
-                input.ic-input-big(placeholder="请输入您的公司组织代码" name="company_org_code" required :value="userinfo.org_code")
+                input.ic-input-big(:placeholder="$t('please_enter_your_company_code')" name="company_org_code" required :value="userinfo.org_code")
                 //- span.input-append.tip-status 0/80
         .ic-form-item
-            label 职位
+            label {{$t('position')}} 
             .input-wrap
-                input.ic-input-big(placeholder="请输入您的职位" name="position" required :value="userinfo.position")
+                input.ic-input-big(:placeholder="$t('please_enter_your_position')" name="position" required :value="userinfo.position")
                 //- span.input-append.tip-status 0/80
     .c-tool-bar
-        button.ic-btn.i-primary(data-bind="click: ac_submit") 提交
-        button.ic-btn.i-outline 取消
+        button.ic-btn.i-primary(data-bind="click: ac_submit" ) {{$t('submit')}} 
+        button.ic-btn.i-outline {{$t('cancel')}} 
 </template>
 <script>
 import * as API from '@/api'
@@ -56,11 +56,11 @@ export default {
     },
     watch: {
         userinfo(val){
-            console.log("userinfo", val);
+            // console.log("userinfo", val);
         }
     },
 	created() {
-        console.log("userinfo", this.$store.state.userinfo)
+        // console.log("userinfo", this.$store.state.userinfo)
 		if (process.client) {
 			window.vm = this
         }

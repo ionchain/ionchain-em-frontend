@@ -18,24 +18,24 @@
 						//- a.high_rz(href="#")
 						//-     span.icon-member 企业认证
 					.header-name_t
-						label 发布设备数：
+						labe {{$t('number_of_launched_device')}}：
 						span 12
 					.header-name_h
-						label 获赞数：
+						label {{$t('number_of_launched_praise')}}：
 						span 10k
 			.user-content
 				.user-nav
 					ul
 						li
-							a(:class="{active: $route.name == 'user-release'}" href="/user/release") 我的发布
+							a(:class="{active: $route.name == 'user-release'}" href="/user/release") {{$t('my_publish')}}
 						li 
-							a(:class="{active: $route.name=='user-collect'}" href="/user/collect") 我的收藏
+							a(:class="{active: $route.name=='user-collect'}" href="/user/collect") {{$t('my_collect')}}
 						li 
-							a(:class="{active: $route.name=='user-message'}" href="/user/message") 消息中心
+							a(:class="{active: $route.name=='user-message'}" href="/user/message") {{$t('message_center')}}
 						li 
-							a(:class="{active: $route.name=='user-comp'}" href="/user/feedback") 投诉与反馈
+							a(:class="{active: $route.name=='user-comp'}" href="/user/feedback") {{$t('complain_feedback')}}
 						li 
-							a(:class="{active: $route.name=='user-account'}" href="/user/account") 账号设置
+							a(:class="{active: $route.name=='user-account'}" href="/user/account") {{$t('account_set')}}
 				nuxt
 	my-footer
 </template>

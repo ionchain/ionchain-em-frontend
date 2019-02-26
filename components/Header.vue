@@ -4,22 +4,22 @@ div.ly-header#header
         a.logo(href='/')
             i.icon-site-logo
         .h-info(v-if="!isEmpty(userinfo) && routeName!='login'")
-            span 当前登录
-            a.dis-normal(href="/user/account") {{userinfo.mobile_num}}
-            span.quit(@click="logOut")  退出
+            span {{$t('current_login')}}
+            a.dis-normal(href="/user/account") {{userinfo.mobile_num}} 
+            span.quit(@click="logOut" ) {{$t('logout')}}
         .h-have(v-if='isEmpty(userinfo) && routeName!="login"')
             a.z_d(href='/register')
-                span 注册
+                span {{$t('register')}}
             span.xc_x |
             a.z_d(href='/login')
-                span 登录
+                span {{$t('login')}}
         ul.navitems(v-if="!userinfo && routeName=='login' || routeName == 'register' || routeName == 'retrieve'")
             li
-                a.active(href="#") 贡献统计
+                a.active(href="#" ) {{$t('contribution_statistics')}}
             li.navitems_t 
-                a(href="#") 现有设备
+                a(href="#") {{$t('equipments')}}
             li 
-                a(href="#") 参与投票
+                a(href="#" ) {{$t('vote')}}
         .nav-search(v-if="!userinfo && routeName=='login' || routeName == 'register' || routeName == 'retrieve'")
             .search-input
                 input()
@@ -30,6 +30,7 @@ div.ly-header#header
 import _ from 'lodash'
 import * as api from '@/api'
 import * as types from '../store/mutation-types'
+import { setTimeout } from 'timers';
 
 
 export default {
@@ -61,6 +62,9 @@ export default {
     created() {
         this.$store.commit(types.SET_routeName, this.$route.name)
     },
+    // mounted(){
+    //     this.$store.commit(types.UPDATE_locale, this.$route.query.locale)
+    // },
     methods: {
         get(obj, path) {
             return _.get(obj, path)

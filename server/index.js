@@ -10,7 +10,7 @@ var proxyMid = require('http-proxy-middleware')
 const koaConnect = require('koa-connect')
 const modifyResponse = require('node-http-proxy-json')
 const _ = require('lodash')
-
+const path = require('path')
 
 var proxyOption = {
   target: 'http://sendrobot.ionchain.org',
@@ -204,9 +204,17 @@ async function start () {
     })
   })
 
+async function before (ctx, next) {
+  if(ctx.query.locale){
+    ctx.session.locale = ctx.query.locale
+  }
+  await next();
+}
+
   app
   // .use(proxyMiddleware)
   // .use(koaConnect(_proxy))
+  .use(before)
   .use(session(CONFIG, app))
   .use(koaBody())
   .use(router.routes())
@@ -217,6 +225,7 @@ async function start () {
     ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
     nuxt.render(ctx.req, ctx.res)
   })
+  
   .listen(port, host)
 
   console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
