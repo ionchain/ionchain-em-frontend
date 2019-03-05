@@ -32,7 +32,6 @@ import * as api from '@/api'
 import * as types from '../store/mutation-types'
 import { setTimeout } from 'timers';
 
-
 export default {
     data(){
         return {
@@ -48,8 +47,7 @@ export default {
         },
         routeName() {
             return this.$store.state.routeName
-        }
-
+        },
     },
     watch: {
         $route(to, from) {
@@ -62,9 +60,9 @@ export default {
     created() {
         this.$store.commit(types.SET_routeName, this.$route.name)
     },
-    // mounted(){
-    //     this.$store.commit(types.UPDATE_locale, this.$route.query.locale)
-    // },
+    mounted(){
+        this.$store.commit(types.UPDATE_locale, 'en')
+    },
     methods: {
         get(obj, path) {
             return _.get(obj, path)

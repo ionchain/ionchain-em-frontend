@@ -13,12 +13,9 @@
 				.header-name 
 					.header-name_o
 						b {{userinfo.nickname}}
-						//- a(href="#")
-						//-     span.icon-member 企业认证
-						//- a.high_rz(href="#")
-						//-     span.icon-member 企业认证
+					
 					.header-name_t
-						labe {{$t('number_of_launched_device')}}：
+						label {{$t('number_of_launched_device')}}：
 						span 12
 					.header-name_h
 						label {{$t('number_of_launched_praise')}}：

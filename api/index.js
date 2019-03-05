@@ -1,4 +1,10 @@
 import { _axios } from './config'
+import _ from 'lodash'
+
+let dict = {
+  'zh_CN': 'zh_CN',
+  en: 'en'
+}
 
 // 测试数据
 export const DATA_TEST = (data, params) => {
@@ -49,12 +55,16 @@ export const cancelCode = (data) => {
   return _axios.post(`/favorites/destroy`, data)
 }
 //获取设备一级分类列表
-export const deviceCats = () => {
-  return _axios.get(`/categories`)
+export const deviceCats = ({language='en'}) => {
+  language = _.get(dict, language, 'en')
+  let locale = language=='zh_CN' ? '' :`language=${language}`
+  return _axios.get(`/categories?${locale}`)
 }
 //获取设备子级分类列表
-export const deviceSubCats = (pid) => {
-  return _axios.get(`/categories/${pid}/sub_categories`)
+export const deviceSubCats = (pid,language='en') => {
+  language = _.get(dict, language, 'en')
+  let locale = language=='zh_CN' ? '' :`language=${language}`
+  return _axios.get(`/categories/${pid}/sub_categories?${locale}`)
 }
 // 用户信息 
 export const userInfo = ({userId} = {}) =>{
@@ -72,4 +82,8 @@ export const getHisProfit = ({txTo} = {})=> {
 // 设备详情
 export const getDeviceDesc = ({deviceId} = {}) =>{
     return _axios.get(`/devices/${deviceId}`)
+}
+//添加设备
+export const deviceAdd = (data) =>{
+  return _axios.post('/devices/create', data)
 }

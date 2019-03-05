@@ -14,6 +14,7 @@ export default {
     if (req.ctx.session && req.ctx.session.userinfo) {
       commit(types.SET_USERINFO, req.ctx.session.userinfo)
     }
+    console.log("req.ctx.session.locale", req.ctx.session.locale)
     if (req.ctx.session && req.ctx.session.locale) {
       commit(types.UPDATE_locale, req.ctx.session.locale)
     }

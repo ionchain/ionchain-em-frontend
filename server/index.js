@@ -150,7 +150,7 @@ async function start () {
   }
 
   router.get('/logout', async (ctx, next) => {
-    ctx.session = null
+    ctx.session.userinfo = {}
     ctx.body = {
       message: '退出成功',
       success: 0

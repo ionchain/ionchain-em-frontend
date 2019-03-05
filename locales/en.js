@@ -131,4 +131,8 @@ export default {
 	adv_space_rental:"advertising space rental",
 	select_image: "select picture",
 	account_image_tip: "Choose your favorite image: JPG, PNG, GIF, size no more than 5MB",
+	info_sample_text: "Iconfont-The vector icon library with powerful functions and abundant icon contents in China provides functions of vector icon download, online storage and format conversion. Iconfont - a powerful vector icon library with rich icon content in China, which provides functions of vector icon download, online storage, format conversion and so on. Iconfont - a powerful vector icon library with rich icon content in China, which provides functions of vector icon download, online storage, format conversion and so on.",
+	upload: "upload",
+	password: "password",
+	please_wait: "please wait..."
 }

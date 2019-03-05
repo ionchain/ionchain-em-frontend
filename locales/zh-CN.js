@@ -130,5 +130,9 @@ export default {
 	information_sample: "信息样例",
 	adv_space_rental:"广告位招租",
 	select_image: "选择图片",
-	account_image_tip: "选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB" 
+	account_image_tip: "选择你喜欢的图片：格式为JPG,PNG,GIF, 大小不超过5MB",
+	info_sample_text: "Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。",
+	upload: "上传",
+	password: "密码",
+	please_wait: "请稍后..."
 }

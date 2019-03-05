@@ -13,20 +13,20 @@
                     img(src='/icon/error.svg', alt='')
                 span {{ errors.first('mobile') }}{{ errors.first('password') }}
             .login_right_name
-                input.ic-input-lg(v-validate="'required'", data-vv-as='手机号', name='mobile', placeholder='请输入手机号', v-model='form.mobile', type='text')
+                input.ic-input-lg(v-validate="'required'", :data-vv-as="$t('mobile')", name='mobile', :placeholder="$t('please_enter_mobile')", v-model='form.mobile', type='text')
             .login_right_pw
-                input.ic-input-lg(@keyup.enter='Login', v-validate="'required'", v-model='form.password', data-vv-as='密码', name='password', placeholder='请输入密码', type='password')
+                input.ic-input-lg(@keyup.enter='Login', v-validate="'required'", v-model='form.password', :data-vv-as="$t('password')", name='password', :placeholder="$t('please_enter_pwd')", type='password')
                 div
-                    nuxt-link(to='/retrieve') 忘记密码？
+                    nuxt-link(to='/retrieve') {{$t('forget_pwd_')}}
             .login_right_select
                 div
                     p-check.p-svg.p-curve(name='check', color='success', v-model='isLoginAuto')
                         svg.svg.svg-icon(slot='extra', viewBox='0 0 20 20')
                             path(d='M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z', style="{stroke: 'white',fill:'white'}")
-                            | 自动登录
-                nuxt-link.link(to='/register') 注册 ION Chain ID
+                            | {{$t('auto_login')}}
+                nuxt-link.link(to='/register') {{$t('register_ionchain_id')}}
             .login_right_log.cursor-hand(@click='Login')
-                a(href='javascript:;') 登录
+                a(href='javascript:;') {{$t('login')}}
 </template>
 
 <script>

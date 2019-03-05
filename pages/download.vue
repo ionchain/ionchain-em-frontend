@@ -58,11 +58,11 @@
         .download_can_f3
             div {{$t('device_picture')}}
             ul
-                li(v-if="(item,index) in desc.photos" :class="{thethird:(index + 1) % 3 == 0}")
+                li(v-for="(item,index) in desc.photos" :class="{thethird:(index + 1) % 3 == 0}")
                     img(:src="desc.photos[index]")
         .download_can_f4
             .f4_t {{$t('information_sample')}}
-            .f4_b Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。
+            .f4_b {{$t('info_sample_text')}}
 </template>
 <script>
 import * as API from '@/api'
@@ -81,6 +81,7 @@ export default {
         }
     },
 	created() {
+        this.getDeviceInfo()
     },
     methods: {
         collectClick(){
@@ -108,6 +109,16 @@ export default {
                     }
                 })
             }
+        },
+        getDeviceInfo(){
+            let deviceId = this.$route.query.id
+            API.getDeviceDesc({deviceId}).then((res)=>{
+                if( res.data.success == 0 ){
+                    Object.assign(this.desc, res.data.data)
+                }
+            }).catch((err)=>{
+                console.log(err)
+            })
         }
         
     }

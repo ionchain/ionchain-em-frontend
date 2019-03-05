@@ -3,9 +3,11 @@ import Vue from 'vue'
 import 'bootstrap/dist/css/bootstrap-grid.css'
 import VeeValidate from 'vee-validate'
 import zh_CN from 'vee-validate/dist/locale/zh_CN'
+import en from 'vee-validate/dist/locale/en'
 import VueI18n from 'vue-i18n'
 import Tabs from 'vue-tabs-component'
 import messages from '@/locales'
+
 Vue.use(Tabs);
 
 // console.log("message>>>>", messages);
@@ -13,7 +15,7 @@ Vue.use(Tabs);
 // VeeValidate 汉化配置
 Vue.use(VueI18n)
 const i18n = new VueI18n({
-  locale: 'zh_CN',
+  locale: 'en',
   messages
 })
 
@@ -31,7 +33,8 @@ Vue.use(VeeValidate, {
   i18n,
   i18nRootKey: 'validation',
   dictionary: {
-    zh_CN
+    zh_CN,
+    en
   }
 })
 
@@ -55,14 +58,13 @@ export default ({ app, store }) => {
     locale: store.state.locale,
     fallbackLocale: 'en',
     messages
-    // messages: {
-    //   'en': require('~/locales/en.js'),
-    //   'zh_CN': require('~/locales/zh-CN.js')
-    // }
   })
+  VeeValidate.configure({
+    locale: store.state.locale
+  });
 
   app.i18n.path = (link) => {
-    console.log("link==============>",link);
+    console.log("link===>", link)
     if (app.i18n.locale === app.i18n.fallbackLocale) {
       return `/${link}`
     }

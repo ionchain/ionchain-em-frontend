@@ -69,5 +69,5 @@ module.exports = {
     ],
     middleware: 'auth-router'
   },
-  serverMiddleware: ['~/middleware/server-middleware']
+  serverMiddleware: ['~/middleware/server-middleware'],
 }
