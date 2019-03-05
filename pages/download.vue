@@ -7,7 +7,7 @@
                 .f1_left_r
                     b {{desc.name}}
                     .r_first
-                        label 作者：
+                        label {{$t('author')}}：
                         b {{userinfo.nickname}}
                     .r_second
                         i.icon-light-star
@@ -16,8 +16,8 @@
                         i.icon-gray-star
                         i.icon-gray-star
                     .r_third
-                        span.third_one 智能穿戴
-                        span IT科技
+                        span.third_one {{$t('smart_wear')}}
+                        span {{$t('it_technology')}}
             .f1_right  
                 .f1_right_t
                     .t_first
@@ -27,7 +27,7 @@
                         i.icon-eye
                         span 20 
                     .t_third
-                        button(@click="collectClick") 收藏
+                        button(@click="collectClick") {{$t('collect')}}
                     //- if  desc.has_favorite != true
                     //-     .t_third
                     //-         button(data-bind="click: collectClick" data-param=`{"user_id":"${userinfo.id}","device_id":"${desc.id}"}`) 收藏  
@@ -35,33 +35,33 @@
                     //-     .t_third.active
                     //-         button(data-bind="click: cancelClik" data-param=`{"id":"${desc.favorite_id}"}`) 收藏
                 .f1_right_b
-                    button 下载调用
+                    button {{$t('cownload_call')}}
                 //- div=JSON.stringify(desc)
         .download_can_f2
-            .f2_name 设备信息
+            .f2_name {{$t('device_description')}}
             div  
                 .f3_xs 
                     div
-                        label 系统：
+                        label {{$t('system')}}：
                         span {{desc.system}}
                     .f3_mt
-                        label 设备编号：
+                        label {{$t('device_number')}}：
                         span 1578698
                    
                 .f3_st 
                     div
-                        label 数量：
+                        label {{$t('amount')}}：
                         span {{desc.counts}}
                     .f3_mt
-                        label 提交日期：
+                        label {{$t('submit_date')}}：
                         span {{desc.created_at}}
         .download_can_f3
-            div 设备图片
+            div {{$t('device_picture')}}
             ul
                 li(v-if="(item,index) in desc.photos" :class="{thethird:(index + 1) % 3 == 0}")
                     img(:src="desc.photos[index]")
         .download_can_f4
-            .f4_t 信息样例
+            .f4_t {{$t('information_sample')}}
             .f4_b Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。
 </template>
 <script>
