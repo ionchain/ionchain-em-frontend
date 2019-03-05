@@ -1,0 +1,188 @@
+@import 'imports/variable.less';
+@import 'imports/mixins.less';
+.download_can{
+    .download_can_f1{
+        .clearFix();
+        padding:34px 0 32px;
+        border-bottom: 1px dotted @inputTextColor; 
+        .f1_left{
+            float: left;
+            .clearFix();
+            .f1_left_l,.f1_left_r{
+                float: left;
+            }
+            .f1_left_l{
+                width: 158px;
+                height: 158px;
+                border: 1px solid @borderColor;
+                >img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .f1_left_r{
+                margin-left: 20px; 
+                >b{
+                    font-size: 24px;
+                    color: @fsColor;
+                }
+                >.r_first{
+                    margin-top: 14px;
+                    font-size: 12px;
+                    >label{
+                        color: @inputTextColor;
+                    }
+                    >b{
+                        color:@baseTextColor;
+                    }
+                }
+                >.r_second{
+                    margin-top: 8px;
+                }
+                >.r_third{
+                    font-size: 0;
+                    margin-top: 24px;
+                    span{
+                        display: inline-block;
+                        width: 79px;
+                        height: 28px;
+                        font-size:12px;
+                        line-height: 28px;
+                        color: @baseColor;
+                        border-radius: 15px;
+                        background: #F2FBFB;
+                        text-align: center;
+                    }
+                    .third_one{
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        .f1_right{
+            float: right;
+            >.f1_right_t{
+                font-size: 0;
+                >div{
+                    display: inline-block;
+                    font-size: 12px;
+                }
+                >.t_first{
+                    >span{
+                        padding-left: 5px;
+                    }
+                }
+                >.t_second{
+                    margin-left: 20px;
+                    i{
+                        font-size: 15px; 
+                    }
+                    >span{
+                        padding-left: 5px;
+                    } 
+                }
+                >.t_third{
+                    margin-left: 30px;
+                    >button{
+                        width: 123px;
+                        height: 40px;
+                        border-radius: 20px;
+                        font-size: 14px;
+                        background: none;
+                        outline: none;
+                        border:1px solid @inputTextColor;
+                        color: #808A9B;
+
+                    }
+                }
+                .active{
+                    border:1px solid @baseColor !important;
+                    color: @baseColor !important;
+                }
+                button:hover{
+                    border:1px solid @baseColor;
+                    color: @baseColor;
+                }
+            }
+            >.f1_right_b{
+                margin-top: 70px;
+                >button{
+                    float: right;
+                    font-size: 14px;
+                    color: @buttonColor;
+                    width: 180px;
+                    height: 48px;
+                    border-radius: 24px;
+                    background: @baseColor;
+                    outline: none;
+                    border: none;
+                }
+            }
+        }
+    }
+    .download_can_f2{
+         padding:37px 0 0; 
+         >.f2_name{
+             color: @fsColor;
+         }
+         >div{
+            .clearFix();
+            padding-top: 13px;
+            .f3_st{
+                    margin-left: 118px;
+            }
+            .f3_xs,.f3_st {
+                float: left;
+                .f3_mt{
+                    padding-top: 10px;
+                }
+                 >div{
+                     font-size: 12px;
+                     >label{
+                        color: @inputTextColor;
+                    }
+                    >span{
+                        color:@baseTextColor;
+                    }
+                 }
+             }
+         }    
+    }
+    .download_can_f3{
+        margin-top: 41px;  
+        >div{
+            color: @fsColor;
+        }
+        >ul{
+            .clearFix();
+            li{
+                margin-right: 20px;
+                margin-top: 12px;
+                float: left;
+                width: 386px;
+                height: 386px;
+                box-sizing: border-box;
+                border: 1px solid @borderColor;
+                img{
+                    width: 100%;
+                }
+            }
+            .thethird{
+                margin-right:0;
+            }
+        }     
+    }
+    .download_can_f4{
+        padding: 40px 0 60px;
+        >.f4_t{
+            color: @fsColor;
+            margin-bottom: 12px;
+        }
+        >.f4_b{
+            font-size: 12px;
+            color: @baseTextColor;
+            line-height: 21px;
+        }
+    }
+   
+}
