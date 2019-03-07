@@ -156,7 +156,6 @@ export default {
             console.log("catSelect", this.catSelect)
             this.$validator.validateAll().then((check_res) => {
                 console.log("check_res", check_res, this.errors)
-                window.errors= this.errors
                 if(!check_res)return
                 this.$snotify.info(this.$t('please_wait'), {
                     title: '',

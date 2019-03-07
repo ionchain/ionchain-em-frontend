@@ -9,29 +9,34 @@
         .ic-form-item
             label {{$t('name')}} 
             .input-wrap
-                input.ic-input-big(:placeholder="$t('please_enter_your_name')" name="nickname" required :value="userinfo.name")
+                input.ic-input-big(:placeholder="$t('please_enter_your_name')" name="name" v-validate="'required'" v-model="userInfoAll.name" :data-vv-as="$t('name')")
+                p.error(v-show="errors.has('name')") {{errors.first('name')}}
                 //- span.input-append.tip-status 0/10
         .ic-form-item
             label {{$t('company')}}
             .input-wrap
-                input.ic-input-big(:placeholder="$t('please_enter_your_company')" name="company_name" required :value="userinfo.company_name")
+                input.ic-input-big(:placeholder="$t('please_enter_your_company')" name="company_name" v-validate="'required'" v-model="userInfoAll.company_name" :data-vv-as="$t('company_name')")
+                p.error(v-show="errors.has('company_name')") {{errors.first('company_name')}}
                 //- span.input-append.tip-status 0/80
         .ic-form-item
             label {{$t('company_code')}}
             .input-wrap
-                input.ic-input-big(:placeholder="$t('please_enter_your_company_code')" name="company_org_code" required :value="userinfo.org_code")
+                input.ic-input-big(:placeholder="$t('please_enter_your_company_code')" name="org_code" v-validate="'required'" v-model="userInfoAll.org_code" :data-vv-as="$t('org_code')")
+                p.error(v-show="errors.has('org_code')") {{errors.first('org_code')}}
                 //- span.input-append.tip-status 0/80
         .ic-form-item
             label {{$t('position')}} 
             .input-wrap
-                input.ic-input-big(:placeholder="$t('please_enter_your_position')" name="position" required :value="userinfo.position")
+                input.ic-input-big(:placeholder="$t('please_enter_your_position')" name="position" v-validate="'required'" v-model="userInfoAll.position" :data-vv-as="$t('position')")
+                p.error(v-show="errors.has('position')") {{errors.first('position')}}
                 //- span.input-append.tip-status 0/80
     .c-tool-bar
-        button.ic-btn.i-primary(data-bind="click: ac_submit" ) {{$t('submit')}} 
+        button.ic-btn.i-primary(data-bind="click: ac_submit" @click="submit") {{$t('submit')}} 
         button.ic-btn.i-outline {{$t('cancel')}} 
 </template>
 <script>
 import * as API from '@/api'
+import _ from 'lodash'
 export default {
     layout: 'user',
 	data (){
@@ -74,6 +79,25 @@ export default {
                 }else{
                     this.$snotify.error(data.message)
                 }
+            })
+        },
+        submit(){
+           
+            this.$validator.validateAll().then((check_res) => {
+                if(!check_res)return
+                let params = _.clone(this.userInfoAll)
+                params.nickname = params.name
+                params.company_org_code = params.org_code
+                delete params.name
+                delete params.org_code
+              
+                API.updateUserInfo(params).then(({data})=>{
+                    if(data.success==0){
+                        this.$snotify.success(data.message)
+                    }else{
+                        this.$snotify.error(data.message)
+                    }
+                })
             })
         }
     }

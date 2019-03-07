@@ -87,3 +87,7 @@ export const getDeviceDesc = ({deviceId} = {}) =>{
 export const deviceAdd = (data) =>{
   return _axios.post('/devices/create', data)
 }
+//用户信息更新
+export const updateUserInfo = (data)=>{
+  return _axios.post('/companies/update', data)
+}
