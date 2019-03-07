@@ -134,5 +134,9 @@ export default {
 	info_sample_text: "Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。Iconfont-国内功能很强大且图标内容很丰富的矢量图标库,提供矢量图标下载、在线存储、格式转换等功能。",
 	upload: "上传",
 	password: "密码",
-	please_wait: "请稍后..."
+	please_wait: "请稍后...",
+	confirm_pwd: "确认密码",
+	"手机号码已注册": "手机号码已注册",
+	mobile: "手机号",
+	icon_wallet_address: "IONC 钱包地址"
 }

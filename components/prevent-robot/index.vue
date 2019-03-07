@@ -9,7 +9,9 @@ import jigsaw from './jigsaw'
 export default {
   name: 'prevent-robot',
   data() {
-    return {}
+    return {
+      defender: ""
+    }
   },
   props: {
     isVisible: {
@@ -20,7 +22,7 @@ export default {
     }
   },
   mounted() {
-    jigsaw.init(
+    this.defender = jigsaw.init(
       document.getElementById('captcha'),
       () => {
         // document.getElementById('msg').innerHTML = '登录成功！'
@@ -28,11 +30,14 @@ export default {
       },
       () => {
         this.$emit('robot-check', false)
-      }
+      },
+      {useTip: this.$t('slide_to_fix_picture')}
     )
   },
   methods: {
-
+    reset(){
+      this.defender.reset()
+    }
   }
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
 <div class="page-register">
     <div class="i-step">
-        <div :class="{active:formStatus[0],finish:(step > 0)}"><span>1</span><label>手机验证</label></div>
-        <div :class="{active:formStatus[1],finish:(step > 1)}"><b></b><span>2</span><label>填写企业信息</label></div>
-        <div :class="{active:formStatus[2],finish:(step > 2)}"><b></b><span>3</span><label>注册成功</label></div>
+        <div :class="{active:formStatus[0],finish:(step > 0)}"><span>1</span><label>{{$t('mobile_verify')}}</label></div>
+        <div :class="{active:formStatus[1],finish:(step > 1)}"><b></b><span>2</span><label>{{$t('enter_the_enterprise_information')}}</label></div>
+        <div :class="{active:formStatus[2],finish:(step > 2)}"><b></b><span>3</span><label>{{$t('register_complete')}}</label></div>
     </div>
     <ul class="register-form-box">
         <!-- 手机验证 -->
@@ -14,61 +14,87 @@
                         <span><img src="/icon/error.svg" alt=""></span>
                         <span>{{ errors.first('mobile') }}</span>
                     </div>
-                    <div class="register_cont_number"><input v-validate="'required|mobile'" name="mobile" data-vv-as="手机号码" data-vv-validate-on="input" type="text" v-model="form.mobile" placeholder="请输入手机号"></div>
-                        <div class="register_cont_click"><button @click="showCheckRobotBox">点击按钮进行验证</button></div>
+                    <div class="register_cont_number">
+                        <input v-validate="'required|mobile'" name="mobile" :data-vv-as="$t('mobile')" data-vv-validate-on="input" type="text" v-model="form.mobile" :placeholder="$t('please_enter_mobile')">
                     </div>
-                    <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
-                        <prevent-robot :isVisible="true" @robot-check="robotCheck" />
+                    <div class="register_cont_click"><button @click="showCheckRobotBox">{{$t('click_to_verify')}}</button></div>
+                </div>
+                <div :class="{active:stepA==2,finish:stepA>2}" class="stepA-item">
+                    <prevent-robot ref="prevent-robot" :isVisible="true" @robot-check="robotCheck" />
+                </div>
+                <div :class="{active:stepA==3,finish:stepA>3}" class="stepA-item register_cont_click">
+                    <div v-if="isShowErrorMsg" class="login_right_hint login_right_w">
+                        <span><img src="/icon/error.svg" alt=""></span>
+                        <span>{{ smsCodeFailMessage }}</span>
                     </div>
-                    <div :class="{active:stepA==3,finish:stepA>3}" class="stepA-item register_cont_click">
-                        <div v-if="isShowErrorMsg" class="login_right_hint login_right_w">
-                            <span><img src="/icon/error.svg" alt=""></span>
-                            <span>{{ smsCodeFailMessage }}</span>
+                    <div class="error-msg" v-show="errors.has('code')">
+                        <span class="icon"><img src="/img/icon/error.svg" /></span>
+                        <span>{{errors.first('code')}}</span>
+                    </div>
+                    <div class="register_cont_number">
+                        <input type="text" :placeholder="$t('please_enter_mobile')" readonly v-model="form.mobile">
                         </div>
-                        <div class="register_cont_number">
-                            <input type="text" placeholder="请输入手机号" readonly v-model="form.mobile">
-                  </div>
-                            <div class="register_cont_click_yz">
-                                <div v-if="isShowSMScodeInput" class="click_yz_yz">
-                                    <div><input v-validate="'required'" v-model="code" name="code" data-vv-as="手机验证码" type="text" placeholder="手机验证码"></div>
-                                        <div><button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s后重新获取</button><button @click="getSmsCode" v-else class="click_yz_cx">重新获取</button></div>
-                                    </div>
-                                    <div v-if="isSmsSendSuccess" class="click_yz_text">校验码短信已发送到你的手机上，有效时间为10分钟，请及时查收。</div>
-                                </div>
-                                <button class="i-button" @click="verifySMScode">下一步</button>
+                    <div class="register_cont_click_yz">
+                        <div v-if="isShowSMScodeInput" class="click_yz_yz">
+                            <div>
+                                <input v-validate="'required'" v-model="code" name="code" :data-vv-as="$t('verify_code')" type="text" :placeholder="$t('verify_code')">
                             </div>
-                            <!-- 输入密码 -->
-                            <div :class="{active:stepA==4,finish:stepA>4}" class="stepA-item register_cont_pw">
-                                <div class="login_right_hint login_right_w" v-show="errors.has('password')">
-                                    <span><img src="/icon/error.svg" alt=""></span>
-                                    <span>{{ errors.first('password') }}</span>
-                                </div>
-                                <p><input v-validate="'required|confirmed:pw_confirm|min:6'" name="password" data-vv-as="密码" type="password" v-model="form.password" placeholder="请输入密码"></p>
-                                    <p><input name="pw_confirm" ref="pw_confirm" data-vv-as="确认密码" type="password" v-model="form.password_confirmation" placeholder="确定密码"></p>
-                                        <!-- 下一步按钮 -->
-                                        <button class="i-button" @click="checkPwd">
-                      下一步
-                  </button>
+                          
+                            <div>
+                                <button v-if="!reGetEnable && secondsLeft>0">{{secondsLeft}}s</button><button @click="getSmsCode" v-else class="click_yz_cx">{{$t('re_get')}}</button>
                             </div>
                         </div>
+                        <div v-if="isSmsSendSuccess" class="click_yz_text">{{$t('verify_code_send_msg')}}</div>
+                    </div>
+                    <button class="i-button" @click="verifySMScode">{{$t('next')}}</button>
+                </div>
+                <!-- 输入密码 -->
+                <div :class="{active:stepA==4,finish:stepA>4}" class="stepA-item register_cont_pw">
+                    <div class="login_right_hint login_right_w" v-show="errors.has('password') || errors.has('password_confirmation')">
+                        <span><img src="/icon/error.svg" alt=""></span>
+                        <span>{{ errors.first('password') }}</span>
+                    </div>
+                    <p><input v-validate="'required|confirmed:pw_confirm|min:6'" name="password" :data-vv-as="$t('password')" type="password" v-model="form.password" :placeholder="$t('please_enter_pwd')"></p>
+                    <p>
+                        <input name="password_confirmation" ref="pw_confirm" :data-vv-as="$t('confirm_pwd')" type="password" v-model="form.password_confirmation" :placeholder="$t('confirm_pwd')">
+                    </p>
+                    <!-- 下一步按钮 -->
+                    <button class="i-button" @click="checkPwd">
+                        {{$t('next')}}
+                    </button>
+                </div>
+            </div>
         </li>
         <!-- 填写企业信息 -->
         <li class="register-step2 register_cont_xx" :class="{active:formStatus[1]}">
-            <p><input type="text" v-validate="'required'" v-model="form.company_name" placeholder="请输入企业名称"></p>
-                <p><input type="text" v-model="form.company_org_code" placeholder="请输入组织机构代码"></p>
-                    <p><textarea name="" v-validate="'required'" v-model="form.eth_address" cols="30" rows="6" placeholder="请输入您的icon地址"></textarea></p>
-                    <!-- 下一步按钮 -->
-                    <button class="i-button" @click="createUser">
-                   下一步
-                </button>
+            <p>
+                <input type="text" v-validate="'required'" :data-vv-as="$t('company_name')" v-model="form.company_name" name="company_name"  :placeholder="$t('please_enter_enp_name')">
+                
+            </p>
+            <div class="error-msg" v-show="errors.has('company_name')">
+                <span class="icon"><img src="/img/icon/error.svg" /></span>
+                <span>{{errors.first('company_name')}}</span>
+            </div>
+            <p>
+                <input type="text" v-model="form.company_org_code" name="company_org_code" :placeholder="$t('please_enter_org_code')">
+            </p>
+            <p><textarea class="ic-textarea" name="eth_address" :data-vv-as="$t('company_name')" v-validate="'required'" v-model="form.eth_address" cols="30" rows="6" :placeholder="$t('please_enter_ionc_address')"></textarea></p>
+            <div class="error-msg" v-show="errors.has('eth_address')">
+                <span class="icon"><img src="/img/icon/error.svg" /></span>
+                <span>{{errors.first('eth_address')}}</span>
+            </div>
+            <!-- 下一步按钮 -->
+            <button class="i-button" @click="createUser">
+                {{$t('next')}}
+            </button>
         </li>
         <!-- 注册完成 -->
         <li class="register-step3 register_cont_wc" :class="{active:formStatus[2]}">
             <div><img src="/icon/succeed.svg" alt=""></div>
-                <div>恭喜您，注册成功！</div>
+                <div>{{$t('con_register_success')}}</div>
                 <div class="register_next">
                     <nuxt-link to="/login">
-                        <button class="i-button">完成</button>
+                        <button class="i-button">{{$t('finish')}}</button>
                     </nuxt-link>
                 </div>
         </li>
@@ -172,7 +198,7 @@ export default {
         },
         // 获取短信验证码
         getSmsCode() {
-            this.$snotify.info('请稍后...', {
+            this.$snotify.info(this.$t('please_wait'), {
                 title: '',
                 type: 'async',
                 backdrop: 0.3,
@@ -183,15 +209,25 @@ export default {
             }).then(({
                 data
             }) => {
-                if (data.success === 0) { // 短信发送成功
+                if (data.success == 0) { // 短信发送成功
                     this.isSmsSendSuccess = true
                     this.isShowErrorMsg = false
                     // this.$snotify.success(data.message)
                 } else {
-                    this.smsCodeFailMessage = data.message
-                    this.isShowErrorMsg = true
-                    if (data.success === 2001) {
-                        this.isShowSMScodeInput = false
+                    this.$snotify.error(this.$t('手机号码已注册') ,{
+                        timeout: 2600,
+                        closeOnClick: false,
+                        backdrop: 0
+                    })
+                    // this.smsCodeFailMessage = this.$t('手机号码已注册')
+                    // this.isShowErrorMsg = true
+                    setTimeout(()=>{
+                        this.$refs['prevent-robot'].reset()
+                        this.step = 0
+                        this.stepA = 1
+                    },2500)
+                    if (data.success == 2001) {
+                        // this.isShowSMScodeInput = false
                     }
                 }
             }).catch().then(() => {
@@ -204,40 +240,49 @@ export default {
         },
         // 校验验短信证码
         verifySMScode() {
-            this.$snotify.info('请稍后...', {
-                title: '',
-                type: 'async',
-                backdrop: 0.3,
-                id: 'verifySMScode'
+            this.$validator.validateAll({code: this.code}).then((c_res)=>{
+                if(!c_res) return
+                this.$snotify.info(this.$t('please_wait'), {
+                    title: '',
+                    type: 'async',
+                    backdrop: 0.3,
+                    id: 'verifySMScode'
+                })
+                api.verifySMScode({
+                    mobile: this.form.mobile,
+                    code: this.code
+                }).then(({
+                    data
+                }) => {
+                    if (data.success === 0) {
+                        this.$snotify.success(data.message)
+                        this.stepA += 1 // 切换到下一界面
+                    } else {
+                        this.$snotify.error(data.message)
+                    }
+                }).catch().then(() => {
+                    this.$snotify.remove('verifySMScode')
+                })
             })
-            api.verifySMScode({
-                mobile: this.form.mobile,
-                code: this.code
-            }).then(({
-                data
-            }) => {
-                if (data.success === 0) {
-                    this.$snotify.success(data.message)
-                    this.stepA += 1 // 切换到下一界面
-                } else {
-                    this.$snotify.error(data.message)
-                }
-            }).catch().then(() => {
-                this.$snotify.remove('verifySMScode')
-            })
+            
         },
         // 创建用户
         createUser() {
-            api.createUser(this.form).then(({
-                data
-            }) => {
-                if (data.success === 0) {
-                    this.$snotify.success(data.message)
-                    this.nextStep() // 切换到下一界面
-                } else {
-                    this.$snotify.error(data.message)
-                }
+            this.$validator.validateAll(this.form).then((ck_res)=>{
+                console.log("ck_res", ck_res)
+                if(!ck_res) return
+                api.createUser(this.form).then(({
+                    data
+                }) => {
+                    if (data.success === 0) {
+                        this.$snotify.success(data.message)
+                        this.nextStep() // 切换到下一界面
+                    } else {
+                        this.$snotify.error(data.message)
+                    }
+                })
             })
+            
         }
     }
 }

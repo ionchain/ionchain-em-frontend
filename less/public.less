@@ -662,6 +662,28 @@ img{
         margin-right: 30px;
     }
 }
+.error-msg{
+    padding: 5px 10px;
+    line-height: 1.5;
+    border:1px solid #FFBAB8;
+    background:#FFE7E6; 
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #FF5F58;
+    text-align: left;
+    .icon{
+        width: 20px;
+        height: 20px;
+        margin: 0 7px 0 12px;
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    }
+    &.show{
+        display: block;
+    }
+}
 @import "register.less";
 @import "retrieve.less";
 @import "articles.less";

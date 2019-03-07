@@ -18,7 +18,7 @@ export default {
 	set_new_pwd: "Reset password",
 	finish: "Complete",
 	click_to_verify: "Click the button to verify",
-	slide_to_fix_picture: "Slide the block to the right to complete the image",
+	slide_to_fix_picture: "Slide to right to complete",
 	slide_to_right_end: "Slide the block to the right",
 	mobile_is_used: "This phone number has been registered",
 	verify_code: "verification code",
@@ -117,7 +117,7 @@ export default {
 	recommended_size: "Recommended size",
 	size_recommended: "Not less than 400 x 400px, and square.",
 	recommended_format: "Recommended format",
-	re_get: "re get",
+	re_get: "reget",
 	entry_password_again: "Entry password again",
 	mobile_verification: "Mobile verification",
 	enter_the_enterprise_information: "Enter the enterprise information",
@@ -134,5 +134,9 @@ export default {
 	info_sample_text: "Iconfont-The vector icon library with powerful functions and abundant icon contents in China provides functions of vector icon download, online storage and format conversion. Iconfont - a powerful vector icon library with rich icon content in China, which provides functions of vector icon download, online storage, format conversion and so on. Iconfont - a powerful vector icon library with rich icon content in China, which provides functions of vector icon download, online storage, format conversion and so on.",
 	upload: "upload",
 	password: "password",
-	please_wait: "please wait..."
+	please_wait: "please wait...",
+	confirm_pwd: "confirm password",
+	"手机号码已注册": "This phone number has been registered",
+	mobile: "mobile",
+	icon_wallet_address: "IONC wallet address"
 }

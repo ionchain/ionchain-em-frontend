@@ -74,10 +74,13 @@ function square(x) {
 }
 
 class Ligsaw {
-  constructor(el, success, fail) {
+  constructor(el, success, fail, opt) {
     this.el = el
     this.success = success
     this.fail = fail
+    this.opt = Object.assign({
+      useTip: ''
+    }, opt)
   }
 
   init() {
@@ -85,6 +88,7 @@ class Ligsaw {
     this.initImg()
     this.draw()
     this.bindEvents()
+    return this
   }
 
   initDOM() {
@@ -103,7 +107,7 @@ class Ligsaw {
     sliderMask.className = 'sliderMask'
     slider.className = 'slider'
     sliderIcon.className = 'sliderIcon'
-    text.innerHTML = '向右滑动滑块填充拼图'
+    text.innerHTML = this.opt.useTip ? this.opt.useTip :  '向右滑动滑块填充拼图'
     text.className = 'sliderText'
 
     const el = this.el
@@ -230,7 +234,7 @@ class Ligsaw {
 }
 
 export default {
-  init: function (element, success, fail) {
-    new Ligsaw(element, success, fail).init()
+  init: function (element, success, fail, opt) {
+    return new Ligsaw(element, success, fail, opt).init()
   }
 }

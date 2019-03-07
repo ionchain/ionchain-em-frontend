@@ -16,7 +16,8 @@ Vue.use(Tabs);
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'en',
-  messages
+  messages,
+  silentFallbackWarn: true
 })
 
 const _messages = {
@@ -57,7 +58,8 @@ export default ({ app, store }) => {
   app.i18n = new VueI18n({
     locale: store.state.locale,
     fallbackLocale: 'en',
-    messages
+    messages,
+    silentFallbackWarn: true
   })
   VeeValidate.configure({
     locale: store.state.locale
