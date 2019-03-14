@@ -160,8 +160,8 @@ async function start () {
     var url = ''
     var custormHeaders = {}
     var headersProps = ['token']
-    // var target = 'http://sendrobot.ionchain.org'
-    var target = 'https://37a42273-162a-48b7-9986-6ec0042ccef4.mock.pstmn.io'
+    var target = 'http://sendrobot.ionchain.org'
+    // var target = 'https://37a42273-162a-48b7-9986-6ec0042ccef4.mock.pstmn.io'
     headersProps.forEach((item) => {
       if (ctx.req.headers.hasOwnProperty(item)) {
         custormHeaders[item] = ctx.req.headers.token
