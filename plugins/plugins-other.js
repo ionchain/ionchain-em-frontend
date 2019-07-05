@@ -55,10 +55,7 @@ Vue.use(VueCookies)
 export default ({ app, store }) => {
   // Set i18n instance on app
   // This way we can use it in middleware and pages asyncData/fetch
-  console.log("store.state.locale *************", store.state.locale)
-  for(let prop in app.router){
-    // console.log("==============>", prop)
-  }
+  console.log("store.state.locale ************@*", store.state.locale)
   app.i18n = new VueI18n({
     locale: store.state.locale,
     fallbackLocale: 'en',
@@ -75,7 +72,7 @@ export default ({ app, store }) => {
       return `/${link}`
     }
 
-    return `/${link}?locale=${app.i18n.locale}/`
+    return `/${link}?locale=/${app.i18n.locale}/`
   }
 }
 
