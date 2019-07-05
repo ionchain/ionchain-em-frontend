@@ -67,7 +67,7 @@ module.exports = {
   router: {
     routes: [
     ],
-    middleware: 'auth-router'
+    middleware: ['auth-router','i18n']
   },
   serverMiddleware: ['~/middleware/server-middleware'],
 }

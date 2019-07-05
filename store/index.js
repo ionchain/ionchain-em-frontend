@@ -12,7 +12,8 @@ const store = () => new Vuex.Store({
     userinfo: {},
     isLoginPage: false,
     routeName: '',
-    locale: 'zh-CN'
+    locale: 'zh_CN',
+    locales: ['zh_CN','en']
   },
   mutations,
   actions

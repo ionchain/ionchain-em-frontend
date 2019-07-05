@@ -12,108 +12,124 @@ const modifyResponse = require('node-http-proxy-json')
 const _ = require('lodash')
 const path = require('path')
 
-var proxyOption = {
-  target: 'http://sendrobot.ionchain.org',
-  // target: 'http://localhost:8360',
-  changeOrigin: true, // needed for virtual hosted sites
-  // ws: true, // proxy websockets
-  pathRewrite: {
-    // '^/api/old-path': '/api/new-path', // rewrite path
-  },
-  onProxyReq(proxyReq, req, res) {
-    Object.keys(req.headers).forEach(function (key) {
-      // proxyReq.headers[key] = req.headers[key]
-      // proxyReq.setHeader(key, req.headers[key])
-    })
-    proxyReq.setHeader('cookie', "sessionid="+_.get(req.headers, 'cookie', ''))
+const axiosRetry  = require('axios-retry')
+axiosRetry(axios, { retries: 3 });
+
+// var proxyOption = {
+//   target: 'http://em-api.ionchain.org',
+//   // target: 'http://localhost:8360',
+//   changeOrigin: true, // needed for virtual hosted sites
+//   // ws: true, // proxy websockets
+//   pathRewrite: {
+//     // '^/api/old-path': '/api/new-path', // rewrite path
+//   },
+//   onProxyReq(proxyReq, req, res) {
+//     Object.keys(req.headers).forEach(function (key) {
+//       // proxyReq.headers[key] = req.headers[key]
+//       // proxyReq.setHeader(key, req.headers[key])
+//     })
+//     proxyReq.setHeader('cookie', "sessionid="+_.get(req.headers, 'cookie', ''))
+
+//     req.on('data',function(data){
+//         console.log("req @@@@@@@@@@@", data.toString())
+//         // req.setHeader('data', data.toString())
+//         req.body = JSON.parse(data.toString())
+//     })
     
-    for(let prop in req.headers){
-      console.log("onProxyReq #######", prop)
-    }
-    console.log("onProxyReq <<<", proxyReq.path)
-    // proxyReq.headers['cookie'] = _.get(req.headers, 'cookie')
-    // _.set()
+//     for(let prop in req){
+//       // console.log("onProxyReq #######", prop)
+//     }
+//     console.log("onProxyReq <<<", proxyReq.path)
+//     // proxyReq.headers['cookie'] = _.get(req.headers, 'cookie')
+//     // _.set()
     
-    // add custom header to request
-    // proxyReq.setHeader('x-added', 'foobar')
+//     // add custom header to request
+//     // proxyReq.setHeader('x-added', 'foobar')
     
-    // console.log(req.headers.origin,"@@@@@@@@@@@@@@@@@@@@")
-  },
-  onProxyRes:function(proxyRes, req, res) {
-    proxyRes.headers['Access-Control-Allow-Credentials'] = true
-    proxyRes.headers['Access-Control-Allow-Headers'] = 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'
-    proxyRes.headers['Access-Control-Allow-Methods'] = 'PUT, POST, GET, DELETE, OPTIONS'
-    // Object.keys(res.headers).forEach(function (key) {
-    //   proxyRes.setHeader(key, res.headers[key])
-    // });
-    // proxyRes.setHeader('set-cookie', _.get(res.headers, 'set-cookie'))
-    for(let prop in res){
-      console.log("onProxyRes %%%%%%%%%%%%%%%%%%%", prop)
-    }
-    // console.log('@@@@@@@@@@@###', req.ctx)
-    // console.log("onProxyRes", req.headers);
-    console.log("----------------------------");
-    // console.log("req", req.headers);
-    proxyRes.on('data',function(data){
-      modifyResponse(res, proxyRes.headers['content-encoding'], function (body) {
+//     // console.log(req.headers.origin,"@@@@@@@@@@@@@@@@@@@@")
+//   },
+//   onProxyRes:function(proxyRes, req, res) {
+//     proxyRes.headers['Access-Control-Allow-Credentials'] = true
+//     proxyRes.headers['Access-Control-Allow-Headers'] = 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'
+//     proxyRes.headers['Access-Control-Allow-Methods'] = 'PUT, POST, GET, DELETE, OPTIONS'
+//     // Object.keys(res.headers).forEach(function (key) {
+//     //   proxyRes.setHeader(key, res.headers[key])
+//     // });
+//     // proxyRes.setHeader('set-cookie', _.get(res.headers, 'set-cookie'))
+//     for(let prop in req){
+//       console.log("onProxyRes %%%%%%%%%%%%%%%%%%%", prop)
+//     }
+//     // console.log('@@@@@@@@@@@###', req)
+//     // console.log("onProxyRes", req.headers);
+//     console.log("----------------------------");
+//     // console.log("req", req.headers);
+
+//     req.on('data',function(data){
+//       console.log("req @@@@=============@@@", data.toString())
+//       // req.setHeader('data', data.toString())
+//       req.body = JSON.parse(data.toString())
+//     })
+
+//     proxyRes.on('data',function(data){
+//       modifyResponse(res, proxyRes.headers['content-encoding'], function (body) {
         
-        if (body) {
-          console.log('body==>', body)
-          if (proxyRes.req.path.indexOf('/users/login')>-1 && body.success == 0) {
-            // req.session.userinfo = body.data
-            // _.set(req, 'session.userinfo', {test: "yes"})
+//         if (body) {
+//           console.log('body==>', body)
+//           if (proxyRes.req.path.indexOf('/users/login')>-1 && body.success == 0) {
+//             // req.session.userinfo = body.data
+//             // _.set(req, 'session.userinfo', {test: "yes"})
 
-            // proxyRes.headers['cookie'] = 'JSESSIONID=' + 'xxxxxxxxxxx'
-            // if(_.get(req.ctx.request.body, 'loginLong') == 'on' ) {
-            //   proxyRes.ctx.session.maxAge = SessionMaxAgeLong
-            // }
-          }
-        }
-        return body
-      })
-    })
-    // proxyRes.headers['x-added'] = 'foobar' // add new header to response
-    // delete proxyRes.headers['x-removed'] // remove header from response
-  },
-  
-}
+//             proxyRes.headers['cookie'] = 'JSESSIONID=' + 'ionc'
+//             // if(_.get(req.ctx.request.body, 'loginLong') == 'on' ) {
+//             //   proxyRes.ctx.session.maxAge = SessionMaxAgeLong
+//             // }
+//           }
+//         }
+//         return body
+//       })
+//     })
+//     // proxyRes.headers['x-added'] = 'foobar' // add new header to response
+//     // delete proxyRes.headers['x-removed'] // remove header from response
+//   },
+//   // buffer:
+// }
 
-var proxyMiddleware = proxy('/api', {
-  // target: 'http://192.168.23.164:3001',
-  target: 'http://sendrobot.ionchain.org',
-  changeOrigin: true,
-  // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
-  // rewrite: path => path.replace(/^\/api/, ''),
-  logs: true,
-  events: {
-    error (err, req, res) {
-      console.log("proxy err", err)
-    },
-    proxyReq (proxyReq, req, res) {
-      console.log();
-      Object.keys(req.headers).forEach(function (key) {
-        proxyReq.headers[key] = req.headers[key]
-      });
-      // console.log("proxyReq", req.session)
-      // console.log("req", req);
-      // console.log("===================================");
-    },
-    proxyRes (proxyRes, req, res) {
-      Object.keys(res.headers).forEach(function (key) {
-        // res.append(key, proxyRes.headers[key]);
-        proxyRes.headers[key] = res.headers[key]
-      });
-      // console.log("proxyRes", req.session)
-      console.log("===================================");
-      // console.log("res 2222", proxyRes.headers.data);
-      for(let prop in proxyRes){
-        // console.log("}}}}}}}}}}}}}}}}}}", prop)
-      }
-    }
-  }
-})
+// var proxyMiddleware = proxy('/api', {
+//   // target: 'http://192.168.23.164:3001',
+//   target: 'http://sendrobot.ionchain.org',
+//   changeOrigin: true,
+//   // agent: new httpsProxyAgent('http://1.2.3.4:88'), // if you need or just delete this line
+//   // rewrite: path => path.replace(/^\/api/, ''),
+//   logs: true,
+//   events: {
+//     error (err, req, res) {
+//       console.log("proxy err", err)
+//     },
+//     proxyReq (proxyReq, req, res) {
+//       console.log();
+//       Object.keys(req.headers).forEach(function (key) {
+//         proxyReq.headers[key] = req.headers[key]
+//       });
+//       // console.log("proxyReq", req.session)
+//       // console.log("req", req);
+//       // console.log("===================================");
+//     },
+//     proxyRes (proxyRes, req, res) {
+//       Object.keys(res.headers).forEach(function (key) {
+//         // res.append(key, proxyRes.headers[key]);
+//         proxyRes.headers[key] = res.headers[key]
+//       });
+//       // console.log("proxyRes", req.session)
+//       console.log("===================================");
+//       // console.log("res 2222", proxyRes.headers.data);
+//       for(let prop in proxyRes){
+//         // console.log("}}}}}}}}}}}}}}}}}}", prop)
+//       }
+//     }
+//   }
+// })
 
-var _proxy = proxyMid('/api', proxyOption)
+// var _proxy = proxyMid('/api', proxyOption)
 
 async function start () {
   const app = new Koa()
@@ -134,7 +150,7 @@ async function start () {
   }
 
   const host = process.env.HOST || '127.0.0.1'
-  const port = process.env.PORT || 2018
+  const port = process.env.PORT || 2019
 
   // Import and Set Nuxt.js options
   const config = require('../nuxt.config.js')
@@ -160,7 +176,7 @@ async function start () {
     var url = ''
     var custormHeaders = {}
     var headersProps = ['token']
-    var target = 'http://sendrobot.ionchain.org'
+    var target = 'http://em-api.ionchain.org'
     // var target = 'https://37a42273-162a-48b7-9986-6ec0042ccef4.mock.pstmn.io'
     headersProps.forEach((item) => {
       if (ctx.req.headers.hasOwnProperty(item)) {

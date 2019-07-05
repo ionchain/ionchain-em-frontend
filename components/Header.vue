@@ -61,7 +61,7 @@ export default {
         this.$store.commit(types.SET_routeName, this.$route.name)
     },
     mounted(){
-        this.$store.commit(types.UPDATE_locale, 'en')
+        this.$store.commit(types.SET_LANG, 'en')
     },
     methods: {
         get(obj, path) {

@@ -10,13 +10,13 @@ export default {
     }
     // console.log('nuxtServerInit', arguments[1])
     // console.log('nuxtServerInit###############', Object.keys(arguments[1]).join(','))
-    // console.log('nuxtServerInit@@@@@@@', req.ctx.session.userinfo)
+    console.log('nuxtServerInit@@@@@@@', req.ctx.session.userinfo)
     if (req.ctx.session && req.ctx.session.userinfo) {
       commit(types.SET_USERINFO, req.ctx.session.userinfo)
     }
     console.log("req.ctx.session.locale", req.ctx.session.locale)
     if (req.ctx.session && req.ctx.session.locale) {
-      commit(types.UPDATE_locale, req.ctx.session.locale)
+      commit(types.SET_LANG, req.ctx.session.locale)
     }
   },
   // 获取导航数据
@@ -35,7 +35,7 @@ export default {
       console.log(err)
     })
   } */
-  [types.UPDATE_locale]({ commit, state }, params) {
-    commit(types.UPDATE_locale, data.data)
+  [types.SET_LANG]({ commit, state }, params) {
+    commit(types.SET_LANG, data.data)
   }
 }

@@ -15,7 +15,7 @@ export default {
   [types.SET_routeName](state, newdata) {
     state.routeName = newdata
   },
-  [types.UPDATE_locale](state, newdata) {
+  [types.SET_LANG](state, newdata) {
     state.locale = newdata
   }
 }
