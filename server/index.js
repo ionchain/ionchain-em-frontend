@@ -150,7 +150,7 @@ async function start () {
   }
 
   const host = process.env.HOST || '127.0.0.1'
-  const port = process.env.PORT || 2019
+  const port = process.env.PORT || 2018
 
   // Import and Set Nuxt.js options
   const config = require('../nuxt.config.js')
@@ -212,7 +212,7 @@ async function start () {
       ctx.body = res.data
       if (ctx.request.url.indexOf('/users/login') != -1 && ctx.body.success === 0) {
         ctx.session.userinfo = res.data.data
-        console.log(ctx.request.url, "$$$$$$$$$$$$$$$$$$");
+        console.log(ctx.request.url, "$$$$$$$$$$$$$$$$$$",ctx.session.userinfo);
       }
     }).catch((err) => {
       console.log('err===>', err)

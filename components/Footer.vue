@@ -34,8 +34,8 @@
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div class="footer_text4">
                     <div class="col-titles" v-html="$t('language')">语言</div>
-                    <a href="/?locale=zh_CN" >中文</a>
-                    <a href="/?locale=en" >English</a>
+                    <a href="?locale=zh_CN" >中文</a>
+                    <a href="?locale=en" >English</a>
                 </div>
 
             </div>

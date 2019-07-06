@@ -21,7 +21,7 @@
         .ic-form-item
             label {{$t('company_code')}}
             .input-wrap
-                input.ic-input-big(:placeholder="$t('please_enter_your_company_code')" name="org_code" v-validate="'required'" v-model="userInfoAll.org_code" :data-vv-as="$t('org_code')")
+                input.ic-input-big(:placeholder="$t('please_enter_your_company_code')" name="org_code" v-validate="'required'" v-model="userInfoAll.org_code" :data-vv-as="$t('company_code')")
                 p.error(v-show="errors.has('org_code')") {{errors.first('org_code')}}
                 //- span.input-append.tip-status 0/80
         .ic-form-item

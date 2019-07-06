@@ -57,6 +57,9 @@ export default {
             title: `Login - IONPartnership`
         }
     },
+    mounted(){
+        console.log(this.$store)
+    },
     methods: {
         Login() {
             this.$validator.validateAll().then((result) => {

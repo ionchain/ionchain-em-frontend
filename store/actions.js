@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import _ from 'lodash'
 // import axios from 'axios'
 // import API from '@/api'
 
@@ -10,11 +11,9 @@ export default {
     }
     // console.log('nuxtServerInit', arguments[1])
     // console.log('nuxtServerInit###############', Object.keys(arguments[1]).join(','))
-    console.log('nuxtServerInit@@@@@@@', req.ctx.session.userinfo)
     if (req.ctx.session && req.ctx.session.userinfo) {
       commit(types.SET_USERINFO, req.ctx.session.userinfo)
     }
-    console.log("req.ctx.session.locale", req.ctx.session.locale)
     if (req.ctx.session && req.ctx.session.locale) {
       commit(types.SET_LANG, req.ctx.session.locale)
     }
