@@ -31,6 +31,7 @@ import _ from 'lodash'
 import * as api from '@/api'
 import * as types from '../store/mutation-types'
 import { setTimeout } from 'timers';
+import { lang } from 'moment';
 
 export default {
     data(){
@@ -48,6 +49,9 @@ export default {
         routeName() {
             return this.$store.state.routeName
         },
+        lang(){
+            return this.$store.state.locale
+        }
     },
     watch: {
         $route(to, from) {
@@ -55,12 +59,17 @@ export default {
                 this.$router.push('/login')
             }
             this.$store.commit(types.SET_routeName, to.name)
+        },
+        lang(val){
+            this.$store.commit(types.SET_LANG, val)
         }
     },
     created() {
-        this.$store.commit(types.SET_routeName, this.$route.name)
-    },
-    mounted(){
+        // this.$validator.configure({
+        //   locale: this.lang
+        // });
+        console.log("this.lang--", this.lang)
+        this.$validator.locale = this.lang
     },
     methods: {
         get(obj, path) {
