@@ -9,10 +9,4 @@ npm-debug.log
 
 build
 
-<<<<<<< HEAD
-bower_components
-=======
-build
-
 *.zip
->>>>>>> by-nuxtjs
