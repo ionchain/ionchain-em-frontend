@@ -132,6 +132,9 @@ export default {
                 data
             }) => {
                 if (data.success === 0) { // 短信发送成功
+                    var sentTime = moment().format('YYYY-MM-DD HH:mm:ss')
+                    sessionStorage.setItem('sent-time', sentTime)
+                    this.timerTick(sentTime)
                     this.$snotify.success(data.message)
                 } else {
                     this.$snotify.error(data.message)
@@ -140,16 +143,23 @@ export default {
                 this.$snotify.remove('getSmsCode')
             })
             this.reGetEnable = false
-            var sentTime = moment().toString('YYYY-MM-DD HH:mm:ss')
-            sessionStorage.setItem('sent-time', sentTime)
-            this.timerTick(sentTime)
         },
         // 数秒
         timerTick(timeOld) {
-            var secondsPast = moment().diff(moment('2018-08-17 12:15:00'), 'seconds')
-            this.secondsLeft = secondsPast > this.interval ? this.interval : secondsPast
-            setInterval(() => {
-                this.secondsLeft -= 1
+            var sendtime = _.get(sessionStorage,'sent-time','')
+            var secondsPast = 0
+            if(sendtime){
+                secondsPast = moment().diff(moment(sendtime), 'seconds')
+            }
+            secondsPast = secondsPast > this.interval ? this.interval : secondsPast
+            this.secondsLeft = this.interval - secondsPast
+
+            this.timmer = setInterval(() => {
+                if(this.secondsLeft>=0){
+                    this.secondsLeft -= 1
+                }else{
+                    clearInterval(this.timmer)
+                }
             }, 1000)
         },
         // 校验验短信证码
