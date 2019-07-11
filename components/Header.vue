@@ -59,17 +59,9 @@ export default {
                 this.$router.push('/login')
             }
             this.$store.commit(types.SET_routeName, to.name)
-        },
-        lang(val){
-            this.$store.commit(types.SET_LANG, val)
         }
     },
     created() {
-        // this.$validator.configure({
-        //   locale: this.lang
-        // });
-        console.log("this.lang--", this.lang)
-        this.$validator.locale = this.lang
     },
     methods: {
         get(obj, path) {

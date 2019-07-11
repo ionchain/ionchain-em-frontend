@@ -12,7 +12,6 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
     //   return error({ message: 'This page could not be found.', statusCode: 404 })
     // }
     // Set locale
-    console.log("locale ====", locale, route.query.locale, route.path,route.name,  !!route.name, store.state.locale)
 
     if(route.name){
         store.commit('SET_LANG', locale)

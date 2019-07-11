@@ -221,18 +221,18 @@ async function start () {
     })
   })
 
-async function before (ctx, next) {
-  if(ctx.query.locale){
-    ctx.session.locale = ctx.query.locale
+  async function before (ctx, next) {
+    if(ctx.query.locale){
+      ctx.session.locale = ctx.query.locale
+    }
+    await next();
   }
-  await next();
-}
 
   app
   // .use(proxyMiddleware)
   // .use(koaConnect(_proxy))
-  .use(before)
   .use(session(CONFIG, app))
+  .use(before)
   .use(koaBody())
   .use(router.routes())
   .use(router.allowedMethods())
@@ -245,7 +245,7 @@ async function before (ctx, next) {
   
   .listen(port, host)
 
-  console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
+  console.log('Server listening on : ' + host + ':' + port) // eslint-disable-line no-console
 }
 
 start()
