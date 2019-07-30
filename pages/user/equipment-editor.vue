@@ -35,23 +35,32 @@
                         span.textarea-append.tip-status 0/1000
                 .ic-form-item
                     label {{$t("device_cat")}}
-                    //- .row
-                    //-     .col-lg-6
-                    //-         .input-wrap
-                    //-             select.ic-input-big#websites1(placeholder=一级类目 name="cat_L1")
-                    //-     .col-lg-6
-                    //-         .input-wrap
-                    //-              select.ic-input-big#websites2(name="device_category_id", placeholder=二级类目 required)
                     .row
                         .col-lg-6
                             no-ssr
                                 .input-wrap
-                                    v-select(v-model='catSelect.cat_L1', :onChange="catChangeL1" :options='cat1_options' :clearSearchOnSelect="false" v-validate="'required'" :data-vv-as="$t('first_category')" name="cat_L1")
+                                    el-select.wid-max(
+                                        v-model="formData.cat_L1"
+                                        v-validate="'required'" :data-vv-as="$t('first_category')" name="cat_L1")
+                                        el-option(
+                                            v-for="item in cat1_options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value"
+                                        )
                                     p.error(v-show="errors.has('cat_L1')") {{errors.first('cat_L1')}}
                         .col-lg-6
                             no-ssr
                                 .input-wrap
-                                    v-select(v-model='catSelect.device_category_id', :onChange="catChangeL2" :options='cat2_options' :clearSearchOnSelect="false" v-validate="'required'" :data-vv-as="$t('second_category')" name="device_category_id")
+                                    el-select.wid-max(
+                                        v-model="formData.device_category_id"
+                                        v-validate="'required'" :data-vv-as="$t('second_category')" name="device_category_id")
+                                        el-option(
+                                            v-for="item in cat2_options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value"
+                                        )
                                     p.error(v-show="errors.has('device_category_id')") {{errors.first('device_category_id')}}
                 .ic-form-item
                     label {{$t("device_picture")}}
@@ -138,32 +147,30 @@ export default {
         },
     },
 	created() {
-		if (process.client) {
-			window.vm = this
-        }
-        this.deviceRootCats()
-        this.deviceSubCats(1)
         if(process.client){
+            window.test_vm = this
+            this.deviceRootCats()
             if(this.$route.query.id){
-                this.getDetail()
+                this.getDetail().then(()=>{
+                    this.deviceSubCats(this.formData.cat_L1)
+                })
+            }else{
+                this.deviceSubCats(1)
             }
-            
         }
     },
     watch: {
         'catSelect.cat_L1'(val){
-            console.log(val);
             this.deviceSubCats(val.value)
         }
     },
     methods: {
-        getDetail(){
-            console.log("this.context",this.$context)
+        async getDetail(){
             let id = this.$route.query.id
-            API.getDeviceDesc({deviceId:id}).then(({data})=>{
+            return API.getDeviceDesc({deviceId:id}).then(({data})=>{
                 if(data.success==0){
                     Object.assign(this.formData,{
-                        cat_L1: data.data.cat_L1,
+                        cat_L1: data.data.root_category_id,
                         device_category_id: data.data.device_category_id,
                         name: data.data.name,
                         system: data.data.system,
@@ -173,10 +180,11 @@ export default {
                     })
                 }
             }).catch((err)=>{
-                console.log(err,"eeeeeee")
+                console.log("eeeeee",err)
             })
         },
         catChangeL1(item){
+            console.log("catChangeL1", item)
             this.formData.cat_L1 = item.value
             this.catSelect.cat_L1 = item
         },
@@ -197,9 +205,7 @@ export default {
                 params.id = id
             }
             console.log(params, "params")
-            console.log("catSelect", this.catSelect)
             this.$validator.validateAll().then((check_res) => {
-                console.log("check_res", check_res, this.errors)
                 if(!check_res)return
                 this.$snotify.info(this.$t('please_wait'), {
                     title: '',
@@ -253,8 +259,14 @@ export default {
                         })
                     })
                     this.cat2_options = list
+                    if(this.formData.device_category_id){
+                        this.cat2_options.forEach((item)=>{
+                            if(item.value==this.formData.device_category_id){
+                                this.catSelect.device_category_id = item
+                            }
+                        })
+                    }
                 }else{
-                    // this.$
                 }
             })
         },

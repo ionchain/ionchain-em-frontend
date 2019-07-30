@@ -34,7 +34,8 @@ Vue.use(VeeValidate, {
   dictionary: {
     zh_CN,
     en
-  }
+  },
+  fieldsBagName:'vfields'
 })
 
 import Snotify, { SnotifyPosition } from 'vue-snotify'
