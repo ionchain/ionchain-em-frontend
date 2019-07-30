@@ -55,7 +55,7 @@
                                     p.error(v-show="errors.has('device_category_id')") {{errors.first('device_category_id')}}
                 .ic-form-item
                     label {{$t("device_picture")}}
-                    ul.gallery-E.hide
+                    ul.gallery-E(v-if="false")
                         li.plus-btn
                             input(name='device_photo' id='equipment-pic-upload' type="file"  data-url="http://localhost/jQuery-File-Upload/server/php/")
                         li.ga-item
@@ -92,6 +92,20 @@
 </template>
 <script>
 import * as API from '@/api'
+import { _axios } from '@/api/config'
+
+function form_tpl(){
+    return {
+        cat_L1:'',
+        device_category_id: '',
+        name:'',
+        system: '',
+        counts: '',
+        description: '',
+        device_photo:''
+    }
+}
+
 export default {
 	data (){
 		return {
@@ -100,19 +114,19 @@ export default {
                 cat_L1:'',
                 device_category_id: ''
             },
-            formData: {
-                cat_L1:'',
-                device_category_id: '',
-                name:'',
-                system: '',
-                counts: '',
-                description: '',
-                device_photo:''
-            },
             cat1_options: [],
-            cat2_options: []
+            cat2_options: [],
+            formData: form_tpl(),
         }
-	},
+    },
+    async asyncData (context) {
+        let deviceData=null
+        let id = context.route.query.id
+        
+        return {
+            deviceData
+        }
+    },
     computed: {
         userinfo(){
             return Object.assign({
@@ -121,7 +135,7 @@ export default {
                 org_code: '',
                 position: ''
             }, this._userinfo, this.$store.state.userinfo)
-        }
+        },
     },
 	created() {
 		if (process.client) {
@@ -129,6 +143,12 @@ export default {
         }
         this.deviceRootCats()
         this.deviceSubCats(1)
+        if(process.client){
+            if(this.$route.query.id){
+                this.getDetail()
+            }
+            
+        }
     },
     watch: {
         'catSelect.cat_L1'(val){
@@ -137,6 +157,25 @@ export default {
         }
     },
     methods: {
+        getDetail(){
+            console.log("this.context",this.$context)
+            let id = this.$route.query.id
+            API.getDeviceDesc({deviceId:id}).then(({data})=>{
+                if(data.success==0){
+                    Object.assign(this.formData,{
+                        cat_L1: data.data.cat_L1,
+                        device_category_id: data.data.device_category_id,
+                        name: data.data.name,
+                        system: data.data.system,
+                        counts: data.data.counts,
+                        description: data.data.description,
+                        device_photo: data.data.image_url,
+                    })
+                }
+            }).catch((err)=>{
+                console.log(err,"eeeeeee")
+            })
+        },
         catChangeL1(item){
             this.formData.cat_L1 = item.value
             this.catSelect.cat_L1 = item
@@ -147,12 +186,17 @@ export default {
         },
         doSubmit(){
             console.log(this.userinfo, 'userinfo')
-             $.extend(this.formData,{
+            let params = _.clone(this.formData)
+            $.extend(params,{
                 user_id: this.userinfo.id,
                 specification_file: '@',
                 data_demo_file: '@'
             })
-            console.log(this.formData, "formData")
+            let id = this.$route.query.id
+            if(id){
+                params.id = id
+            }
+            console.log(params, "params")
             console.log("catSelect", this.catSelect)
             this.$validator.validateAll().then((check_res) => {
                 console.log("check_res", check_res, this.errors)
@@ -163,9 +207,9 @@ export default {
                     backdrop: 0.3,
                     id: 'loading'
                 })
-                this.formData.cat_L1 += ''
-                this.formData.device_category_id += ''
-                API.deviceAdd(this.formData).then(({data}) => {
+                params.cat_L1 += ''
+                params.device_category_id += ''
+                API.deviceAdd(params).then(({data}) => {
                     if (data.success === 0) {
                         this.$router.push('/user/release')
                     } else {

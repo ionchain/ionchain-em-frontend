@@ -45,11 +45,10 @@
                     .del 
                         a(href="#") {{$t('delete')}}
                     .compile
-                        a(href="#") {{$t('edit')}}
-            a(href="/equipment-add")    
-                li.plus
-                    i
-                    span
+                        a(:href="`/user/equipment-editor?id=${item.id}`") {{$t('edit')}}
+            li.plus.cursor-hand(@click="$router.push('/user/equipment-editor')")
+                i
+                span
 </template>
 <script>
 import * as API from '@/api'

@@ -13,7 +13,6 @@
 				.header-name 
 					.header-name_o
 						b {{userinfo.nickname}}
-					
 					.header-name_t
 						label {{$t('number_of_launched_device')}}：
 						span 12
@@ -30,7 +29,7 @@
 						li 
 							a(:class="{active: $route.name=='user-message'}" href="/user/message") {{$t('message_center')}}
 						li 
-							a(:class="{active: $route.name=='user-comp'}" href="/user/feedback") {{$t('complain_feedback')}}
+							a(:class="{active: $route.name=='user-feedback'}" href="/user/feedback") {{$t('complain_feedback')}}
 						li 
 							a(:class="{active: $route.name=='user-account'}" href="/user/account") {{$t('account_set')}}
 				nuxt

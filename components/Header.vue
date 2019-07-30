@@ -62,6 +62,9 @@ export default {
         }
     },
     created() {
+        if(process.client){
+            window.app_vm = this
+        }
     },
     methods: {
         get(obj, path) {
