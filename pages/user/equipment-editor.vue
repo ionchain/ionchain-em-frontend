@@ -40,6 +40,8 @@
                             no-ssr
                                 .input-wrap
                                     el-select.wid-max(
+                                        @change="handle_catL1_change"
+                                        el="cat-L1"
                                         v-model="formData.cat_L1"
                                         v-validate="'required'" :data-vv-as="$t('first_category')" name="cat_L1")
                                         el-option(
@@ -53,6 +55,7 @@
                             no-ssr
                                 .input-wrap
                                     el-select.wid-max(
+                                        el="cat-L2"
                                         v-model="formData.device_category_id"
                                         v-validate="'required'" :data-vv-as="$t('second_category')" name="device_category_id")
                                         el-option(
@@ -160,11 +163,14 @@ export default {
         }
     },
     watch: {
-        'catSelect.cat_L1'(val){
-            this.deviceSubCats(val.value)
+        'formData.cat_L1'(val){
+            this.deviceSubCats(val)
         }
     },
     methods: {
+        handle_catL1_change(){
+            this.formData.device_category_id = ''
+        },
         async getDetail(){
             let id = this.$route.query.id
             return API.getDeviceDesc({deviceId:id}).then(({data})=>{
